@@ -9,7 +9,7 @@
 </head>
 <body>
     <button>Login</button>
-    <a href="register.jsp">
+    <a href="WEB-INF/views/register.jsp">
         <button>Register</button>
     </a>
 </body>

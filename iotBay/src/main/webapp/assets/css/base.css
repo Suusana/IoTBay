@@ -1,0 +1,53 @@
+/* Clear default style */
+/* Clear margin and padding of default tags */
+* {
+    margin: 0;
+    padding: 0;
+    /* Internal reduction mode */
+    box-sizing: border-box;
+}
+
+/* Uniform page font size, line height, font series related properties */
+body {
+    font: 16px/1.5 "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei",
+    "Hiragion Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
+    color: #333;
+    background-color: #DBD2BC;
+    overflow-x: hidden;
+}
+
+/* Remove list default style */
+ul, ol{
+    list-style: none;
+}
+
+/* Remove the default tilt effect */
+em,i{
+    font-style: normal;
+}
+
+/* Remove underline from a tag and set default text color */
+a {
+    text-decoration:none;
+    color: #333;
+}
+
+/* Remove input default style */
+input{
+    border: none;
+    outline: none;
+    color: #333;
+}
+
+/* Set img vertical alignment to center alignment, remove img default lower gap */
+img {
+    vertical-align: middle;
+}
+
+.fl{
+    float: left;
+}
+
+.fr{
+    float: right;
+}
