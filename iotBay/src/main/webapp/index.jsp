@@ -9,8 +9,10 @@
 </head>
 <body>
     <button>Login</button>
-    <a href="WEB-INF/views/register.jsp">
+    <a href="./views/login.jsp">
+
         <button>Register</button>
     </a>
+    <a href="WEB-INF/views/register.jsp">
 </body>
 </html>

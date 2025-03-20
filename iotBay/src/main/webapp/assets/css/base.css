@@ -12,7 +12,6 @@ body {
     font: 16px/1.5 "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei",
     "Hiragion Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
     color: #333;
-    background-color: #DBD2BC;
     overflow-x: hidden;
 }
 
@@ -50,4 +49,10 @@ img {
 
 .fr{
     float: right;
+}
+
+/* reset the button */
+button {
+    border: none;
+    background-color: #fff;
 }

@@ -1,0 +1,70 @@
+.header {
+    height: 100px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.header img {
+    margin-top: 6%;
+    height: 70px;
+}
+
+menu {
+    margin-top: 40px;
+    font-weight: 700;
+}
+
+menu a {
+    margin-left: 60px;
+}
+
+menu a:hover {
+    color: #ffad66;
+}
+
+.icon {
+    margin-top: 35px;
+}
+
+.footer {
+    width: 90%;
+    margin-left: 5%;
+    height: 500px;
+}
+
+.footer p {
+    font-size: 12px;
+    margin: 3% 0 15px 10%;
+}
+
+.footer div {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 5%;
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    margin: 30px 0 30px 0;
+}
+
+.section h6 {
+    font-size: 16px;
+    color: #8f8f8f;
+    margin-bottom: 40px;
+}
+
+.section span,
+.section a {
+    font-size: 14px;
+    color: #000000;
+    margin-bottom: 50px;
+}
+
+#dif {
+    font-size: 30px;
+    font-weight: 900;
+    color: #000;
+}
