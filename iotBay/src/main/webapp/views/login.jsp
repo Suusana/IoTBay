@@ -10,10 +10,37 @@
 <head>
     <title>Login</title>
     <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/HeaderAndFooter.css">
 <%--    post form-data to the welcome page--%>
 </head>
 
 <body>
+<div class="header">
+    <!-- Logo -->
+    <a href="./main.jsp">
+        <img src="../assets/img/Logo.png" alt="IotBay Logo">
+    </a>
+    <!-- Menu -->
+    <menu>
+        <li><a href=""><span>Home</span></a></li>
+        <li><a href=""><span>Shop</span></a></li>
+        <li><a href=""><span>Order</span></a></li>
+        <li><a href=""><span>Category</span></a></li>
+    </menu>
+    <!-- icon menu -->
+    <menu class="icon">
+        <li><a href="">
+            <i class="fa-solid fa-magnifying-glass fa-2x"></i>
+            <span>Search</span>
+        </a></li>
+        <li><a href="">
+            <i class="fa-solid fa-cart-shopping fa-2x"></i>
+            <span>Cart</span>
+        </a></li>
+    </menu>
+</div>
+
+    <%--Login Form--%>
     <h1>IoTBay</h1>
     <h2>Login</h2>
 
