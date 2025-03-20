@@ -14,10 +14,6 @@ menu {
     font-weight: 700;
 }
 
-menu a {
-    margin-left: 60px;
-}
-
 menu a:hover {
     color: #ffad66;
 }

@@ -35,7 +35,7 @@
     <menu class="icon">
         <a href="">
             <i class="fa-solid fa-circle-user fa-2x"></i>
-            <span>Customer</span>
+            <span>Name</span>
         </a>
         <a href="">
             <i class="fa-solid fa-magnifying-glass fa-2x"></i>
@@ -45,6 +45,11 @@
             <i class="fa-solid fa-cart-shopping fa-2x"></i>
             <span>Cart</span>
         </a>
+        <a href="">
+            <i class="fa-solid fa-right-from-bracket fa-2x"></i>
+            <span>Log Out</span>
+        </a>
+
     </menu>
 </div>
 <!-- main body -->
