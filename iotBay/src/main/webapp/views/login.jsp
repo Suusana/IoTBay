@@ -9,6 +9,7 @@
 <html lang="en">
 <head>
     <title>Login</title>
+    <link rel="stylesheet" href="../assets/css/base.css">
 <%--    post form-data to the welcome page--%>
 </head>
 
