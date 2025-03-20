@@ -16,8 +16,12 @@ body {
 }
 
 /* Remove list default style */
-ul, ol{
+ul, ol, menu{
     list-style: none;
+}
+
+menu li {
+    display: inline;
 }
 
 /* Remove the default tilt effect */
