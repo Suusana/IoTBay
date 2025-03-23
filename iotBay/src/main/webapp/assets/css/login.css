@@ -1,0 +1,50 @@
+/* Aligns content to centre  */
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 0 150px 0;
+}
+
+.title {
+    font-size: 1.5em;
+    padding: 30px;
+}
+
+/* Stacks form fields vertically */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Styling of input fields */
+input {
+    margin-bottom: 10px;
+    border: 1px solid #a7a7a7;
+    border-radius: 10px;
+    padding: 10px 30px;
+}
+
+#loginBtn {
+    background-color: #ffbb54;
+    border-radius: 10px;
+    color: white;
+    margin-top: 25px;
+}
+
+#loginBtn:hover {
+    box-shadow: 5px 5px rgba(255, 187, 84, 0.3);
+}
+
+/* Adds asterisk to labels for required inputs */
+label:has(+ input:required):after {
+    content: ' *';
+    color: red;
+}
+
+.visibleLink {
+    color: blue;
+    text-decoration: underline blue solid;
+}
+

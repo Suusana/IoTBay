@@ -10,12 +10,13 @@
 <head>
     <title>Login</title>
     <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/login.css">
     <link rel="stylesheet" href="../assets/css/HeaderAndFooter.css">
 <%--    post form-data to the welcome page--%>
 </head>
 
 <body>
-<div class="header">
+<div class="header" style="border-bottom: 1px solid #a7a7a7">
     <!-- Logo -->
     <a href="./main.jsp">
         <img src="../assets/img/Logo.png" alt="IotBay Logo">
@@ -40,19 +41,22 @@
     </menu>
 </div>
 
-    <%--Login Form--%>
-    <h1>IoTBay</h1>
-    <h2>Login</h2>
+<div class="content">
+    <div class="title"><h2>Login</h2></div>
 
+    <%--Login Form--%>
     <form action="welcome.jsp" method="post">
         <label for="email">Email Address</label>
-        <input id="email" name="email" type="text" required />
+        <input id="email" name="email" type="text" placeholder="Email@site.com" required/>
 
         <label for="password">Password</label>
-        <input id="password" name="password" type="password" required />
+        <input id="password" name="password" type="password" placeholder="Your password" required/>
 
-        <input id="login" type="submit" value="Login" style="cursor: pointer; padding: 10px;" />
+        <input id="loginBtn" type="submit" value="Login" style="cursor: pointer;"/>
     </form>
+
+    <a href="register.jsp" class="visibleLink">Create an account?</a>
+</div>
 
 <!-- footer -->
 <div class="footer">
