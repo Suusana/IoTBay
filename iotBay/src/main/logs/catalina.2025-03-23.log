@@ -1,0 +1,207 @@
+23-Mar-2025 10:38:38.479 INFO [Thread-1] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
+23-Mar-2025 10:38:38.500 INFO [Thread-1] org.apache.catalina.core.StandardService.stopInternal Stopping service [Catalina]
+23-Mar-2025 10:38:38.572 INFO [Thread-1] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8080"]
+23-Mar-2025 10:38:38.587 INFO [Thread-1] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]
+23-Mar-2025 10:38:40.143 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/10.1.36
+23-Mar-2025 10:38:40.146 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Feb 13 2025 13:13:30 UTC
+23-Mar-2025 10:38:40.146 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 10.1.36.0
+23-Mar-2025 10:38:40.146 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Mac OS X
+23-Mar-2025 10:38:40.146 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            15.3.2
+23-Mar-2025 10:38:40.146 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          aarch64
+23-Mar-2025 10:38:40.146 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             /Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home
+23-Mar-2025 10:38:40.146 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           21.0.5+9-LTS-239
+23-Mar-2025 10:38:40.146 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+23-Mar-2025 10:38:40.146 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         /Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main
+23-Mar-2025 10:38:40.146 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         /Users/yunseo/Downloads/apache-tomcat-10.1.36
+23-Mar-2025 10:38:40.152 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang=ALL-UNNAMED
+23-Mar-2025 10:38:40.153 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.io=ALL-UNNAMED
+23-Mar-2025 10:38:40.153 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util=ALL-UNNAMED
+23-Mar-2025 10:38:40.153 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
+23-Mar-2025 10:38:40.153 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+23-Mar-2025 10:38:40.153 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=/Users/yunseo/Downloads/apache-tomcat-10.1.36
+23-Mar-2025 10:38:40.153 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=/Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main
+23-Mar-2025 10:38:40.153 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=/Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main/temp
+23-Mar-2025 10:38:40.153 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=/Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main/conf/logging.properties
+23-Mar-2025 10:38:40.153 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+23-Mar-2025 10:38:40.153 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -javaagent:/Applications/IntelliJ IDEA.app/Contents/lib/idea_rt.jar=59940
+23-Mar-2025 10:38:40.153 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dfile.encoding=UTF-8
+23-Mar-2025 10:38:40.153 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dsun.stdout.encoding=UTF-8
+23-Mar-2025 10:38:40.153 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dsun.stderr.encoding=UTF-8
+23-Mar-2025 10:38:40.162 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent The Apache Tomcat Native library which allows using OpenSSL was not found on the java.library.path: [/Users/yunseo/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+23-Mar-2025 10:38:40.341 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+23-Mar-2025 10:38:40.351 INFO [main] org.apache.catalina.startup.Catalina.load Server initialization in [316] milliseconds
+23-Mar-2025 10:38:40.379 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+23-Mar-2025 10:38:40.379 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/10.1.36]
+23-Mar-2025 10:38:40.384 INFO [main] org.apache.catalina.startup.HostConfig.deployDescriptor Deploying deployment descriptor [/Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main/conf/Catalina/localhost/iotBay.xml]
+23-Mar-2025 10:38:40.554 INFO [main] org.apache.catalina.startup.HostConfig.deployDescriptor Deployment of deployment descriptor [/Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main/conf/Catalina/localhost/iotBay.xml] has finished in [170] ms
+23-Mar-2025 10:38:40.555 INFO [main] org.apache.catalina.startup.HostConfig.deployDescriptor Deploying deployment descriptor [/Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main/conf/Catalina/localhost/Test_proj.xml]
+23-Mar-2025 10:38:40.567 INFO [main] org.apache.catalina.startup.HostConfig.deployDescriptor Deployment of deployment descriptor [/Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main/conf/Catalina/localhost/Test_proj.xml] has finished in [11] ms
+23-Mar-2025 10:38:40.568 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+23-Mar-2025 10:38:40.575 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [223] milliseconds
+23-Mar-2025 10:57:09.645 INFO [Thread-1] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
+23-Mar-2025 10:57:09.659 INFO [Thread-1] org.apache.catalina.core.StandardService.stopInternal Stopping service [Catalina]
+23-Mar-2025 10:57:09.696 INFO [Thread-1] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8080"]
+23-Mar-2025 10:57:09.702 INFO [Thread-1] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]
+23-Mar-2025 10:57:13.938 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/10.1.36
+23-Mar-2025 10:57:13.941 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Feb 13 2025 13:13:30 UTC
+23-Mar-2025 10:57:13.941 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 10.1.36.0
+23-Mar-2025 10:57:13.941 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Mac OS X
+23-Mar-2025 10:57:13.941 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            15.3.2
+23-Mar-2025 10:57:13.941 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          aarch64
+23-Mar-2025 10:57:13.941 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             /Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home
+23-Mar-2025 10:57:13.941 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           21.0.5+9-LTS-239
+23-Mar-2025 10:57:13.941 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+23-Mar-2025 10:57:13.941 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         /Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main
+23-Mar-2025 10:57:13.941 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         /Users/yunseo/Downloads/apache-tomcat-10.1.36
+23-Mar-2025 10:57:13.946 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang=ALL-UNNAMED
+23-Mar-2025 10:57:13.946 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.io=ALL-UNNAMED
+23-Mar-2025 10:57:13.946 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util=ALL-UNNAMED
+23-Mar-2025 10:57:13.946 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
+23-Mar-2025 10:57:13.946 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+23-Mar-2025 10:57:13.946 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=/Users/yunseo/Downloads/apache-tomcat-10.1.36
+23-Mar-2025 10:57:13.946 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=/Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main
+23-Mar-2025 10:57:13.946 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=/Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main/temp
+23-Mar-2025 10:57:13.946 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=/Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main/conf/logging.properties
+23-Mar-2025 10:57:13.947 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+23-Mar-2025 10:57:13.947 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -javaagent:/Applications/IntelliJ IDEA.app/Contents/lib/idea_rt.jar=60182
+23-Mar-2025 10:57:13.947 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dfile.encoding=UTF-8
+23-Mar-2025 10:57:13.947 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dsun.stdout.encoding=UTF-8
+23-Mar-2025 10:57:13.947 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dsun.stderr.encoding=UTF-8
+23-Mar-2025 10:57:13.952 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent The Apache Tomcat Native library which allows using OpenSSL was not found on the java.library.path: [/Users/yunseo/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+23-Mar-2025 10:57:14.105 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+23-Mar-2025 10:57:14.113 INFO [main] org.apache.catalina.startup.Catalina.load Server initialization in [263] milliseconds
+23-Mar-2025 10:57:14.131 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+23-Mar-2025 10:57:14.131 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/10.1.36]
+23-Mar-2025 10:57:14.134 INFO [main] org.apache.catalina.startup.HostConfig.deployDescriptor Deploying deployment descriptor [/Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main/conf/Catalina/localhost/iotBay.xml]
+23-Mar-2025 10:57:14.289 INFO [main] org.apache.catalina.startup.HostConfig.deployDescriptor Deployment of deployment descriptor [/Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main/conf/Catalina/localhost/iotBay.xml] has finished in [154] ms
+23-Mar-2025 10:57:14.289 INFO [main] org.apache.catalina.startup.HostConfig.deployDescriptor Deploying deployment descriptor [/Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main/conf/Catalina/localhost/Test_proj.xml]
+23-Mar-2025 10:57:14.297 INFO [main] org.apache.catalina.startup.HostConfig.deployDescriptor Deployment of deployment descriptor [/Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main/conf/Catalina/localhost/Test_proj.xml] has finished in [8] ms
+23-Mar-2025 10:57:14.299 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+23-Mar-2025 10:57:14.305 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [191] milliseconds
+23-Mar-2025 11:08:06.355 INFO [Thread-1] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
+23-Mar-2025 11:08:06.371 INFO [Thread-1] org.apache.catalina.core.StandardService.stopInternal Stopping service [Catalina]
+23-Mar-2025 11:08:06.398 INFO [Thread-1] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8080"]
+23-Mar-2025 11:08:06.409 INFO [Thread-1] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]
+23-Mar-2025 11:08:08.375 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/10.1.36
+23-Mar-2025 11:08:08.378 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Feb 13 2025 13:13:30 UTC
+23-Mar-2025 11:08:08.379 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 10.1.36.0
+23-Mar-2025 11:08:08.379 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Mac OS X
+23-Mar-2025 11:08:08.379 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            15.3.2
+23-Mar-2025 11:08:08.380 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          aarch64
+23-Mar-2025 11:08:08.380 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             /Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home
+23-Mar-2025 11:08:08.380 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           21.0.5+9-LTS-239
+23-Mar-2025 11:08:08.380 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+23-Mar-2025 11:08:08.380 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         /Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main
+23-Mar-2025 11:08:08.380 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         /Users/yunseo/Downloads/apache-tomcat-10.1.36
+23-Mar-2025 11:08:08.384 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang=ALL-UNNAMED
+23-Mar-2025 11:08:08.384 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.io=ALL-UNNAMED
+23-Mar-2025 11:08:08.384 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util=ALL-UNNAMED
+23-Mar-2025 11:08:08.384 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
+23-Mar-2025 11:08:08.385 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+23-Mar-2025 11:08:08.385 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=/Users/yunseo/Downloads/apache-tomcat-10.1.36
+23-Mar-2025 11:08:08.385 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=/Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main
+23-Mar-2025 11:08:08.385 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=/Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main/temp
+23-Mar-2025 11:08:08.385 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=/Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main/conf/logging.properties
+23-Mar-2025 11:08:08.385 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+23-Mar-2025 11:08:08.385 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -javaagent:/Applications/IntelliJ IDEA.app/Contents/lib/idea_rt.jar=62842
+23-Mar-2025 11:08:08.385 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dfile.encoding=UTF-8
+23-Mar-2025 11:08:08.385 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dsun.stdout.encoding=UTF-8
+23-Mar-2025 11:08:08.385 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dsun.stderr.encoding=UTF-8
+23-Mar-2025 11:08:08.390 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent The Apache Tomcat Native library which allows using OpenSSL was not found on the java.library.path: [/Users/yunseo/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+23-Mar-2025 11:08:08.536 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+23-Mar-2025 11:08:08.545 INFO [main] org.apache.catalina.startup.Catalina.load Server initialization in [261] milliseconds
+23-Mar-2025 11:08:08.563 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+23-Mar-2025 11:08:08.564 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/10.1.36]
+23-Mar-2025 11:08:08.567 INFO [main] org.apache.catalina.startup.HostConfig.deployDescriptor Deploying deployment descriptor [/Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main/conf/Catalina/localhost/iotBay.xml]
+23-Mar-2025 11:08:08.711 INFO [main] org.apache.catalina.startup.HostConfig.deployDescriptor Deployment of deployment descriptor [/Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main/conf/Catalina/localhost/iotBay.xml] has finished in [144] ms
+23-Mar-2025 11:08:08.711 INFO [main] org.apache.catalina.startup.HostConfig.deployDescriptor Deploying deployment descriptor [/Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main/conf/Catalina/localhost/Test_proj.xml]
+23-Mar-2025 11:08:08.721 INFO [main] org.apache.catalina.startup.HostConfig.deployDescriptor Deployment of deployment descriptor [/Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main/conf/Catalina/localhost/Test_proj.xml] has finished in [10] ms
+23-Mar-2025 11:08:08.722 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+23-Mar-2025 11:08:08.729 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [183] milliseconds
+23-Mar-2025 11:51:30.040 INFO [Thread-1] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
+23-Mar-2025 11:51:30.086 INFO [Thread-1] org.apache.catalina.core.StandardService.stopInternal Stopping service [Catalina]
+23-Mar-2025 11:51:30.202 INFO [Thread-1] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8080"]
+23-Mar-2025 11:51:30.214 INFO [Thread-1] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]
+23-Mar-2025 11:51:32.636 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/10.1.36
+23-Mar-2025 11:51:32.642 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Feb 13 2025 13:13:30 UTC
+23-Mar-2025 11:51:32.642 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 10.1.36.0
+23-Mar-2025 11:51:32.642 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Mac OS X
+23-Mar-2025 11:51:32.642 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            15.3.2
+23-Mar-2025 11:51:32.642 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          aarch64
+23-Mar-2025 11:51:32.642 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             /Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home
+23-Mar-2025 11:51:32.643 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           21.0.5+9-LTS-239
+23-Mar-2025 11:51:32.643 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+23-Mar-2025 11:51:32.643 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         /Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main
+23-Mar-2025 11:51:32.643 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         /Users/yunseo/Downloads/apache-tomcat-10.1.36
+23-Mar-2025 11:51:32.657 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang=ALL-UNNAMED
+23-Mar-2025 11:51:32.657 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.io=ALL-UNNAMED
+23-Mar-2025 11:51:32.657 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util=ALL-UNNAMED
+23-Mar-2025 11:51:32.657 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
+23-Mar-2025 11:51:32.657 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+23-Mar-2025 11:51:32.657 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -agentlib:jdwp=transport=dt_socket,address=127.0.0.1:57654,suspend=y,server=n
+23-Mar-2025 11:51:32.657 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=/Users/yunseo/Downloads/apache-tomcat-10.1.36
+23-Mar-2025 11:51:32.657 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=/Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main
+23-Mar-2025 11:51:32.657 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=/Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main/temp
+23-Mar-2025 11:51:32.657 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=/Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main/conf/logging.properties
+23-Mar-2025 11:51:32.657 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+23-Mar-2025 11:51:32.657 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -javaagent:/Users/yunseo/Library/Caches/JetBrains/IntelliJIdea2024.3/captureAgent/debugger-agent.jar
+23-Mar-2025 11:51:32.657 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dkotlinx.coroutines.debug.enable.creation.stack.trace=false
+23-Mar-2025 11:51:32.658 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Ddebugger.agent.enable.coroutines=true
+23-Mar-2025 11:51:32.658 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dkotlinx.coroutines.debug.enable.flows.stack.trace=true
+23-Mar-2025 11:51:32.658 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dkotlinx.coroutines.debug.enable.mutable.state.flows.stack.trace=true
+23-Mar-2025 11:51:32.658 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dfile.encoding=UTF-8
+23-Mar-2025 11:51:32.658 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dsun.stdout.encoding=UTF-8
+23-Mar-2025 11:51:32.658 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dsun.stderr.encoding=UTF-8
+23-Mar-2025 11:51:32.666 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent The Apache Tomcat Native library which allows using OpenSSL was not found on the java.library.path: [/Users/yunseo/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+23-Mar-2025 11:51:32.846 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+23-Mar-2025 11:51:32.874 INFO [main] org.apache.catalina.startup.Catalina.load Server initialization in [427] milliseconds
+23-Mar-2025 11:51:32.902 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+23-Mar-2025 11:51:32.902 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/10.1.36]
+23-Mar-2025 11:51:32.908 INFO [main] org.apache.catalina.startup.HostConfig.deployDescriptor Deploying deployment descriptor [/Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main/conf/Catalina/localhost/iotBay.xml]
+23-Mar-2025 11:51:33.098 INFO [main] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+23-Mar-2025 11:51:33.132 INFO [main] org.apache.catalina.startup.HostConfig.deployDescriptor Deployment of deployment descriptor [/Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main/conf/Catalina/localhost/iotBay.xml] has finished in [224] ms
+23-Mar-2025 11:51:33.132 INFO [main] org.apache.catalina.startup.HostConfig.deployDescriptor Deploying deployment descriptor [/Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main/conf/Catalina/localhost/Test_proj.xml]
+23-Mar-2025 11:51:33.168 INFO [main] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+23-Mar-2025 11:51:33.169 INFO [main] org.apache.catalina.startup.HostConfig.deployDescriptor Deployment of deployment descriptor [/Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main/conf/Catalina/localhost/Test_proj.xml] has finished in [37] ms
+23-Mar-2025 11:51:33.171 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+23-Mar-2025 11:51:33.178 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [303] milliseconds
+23-Mar-2025 12:07:10.101 INFO [Thread-1] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
+23-Mar-2025 12:07:10.125 INFO [Thread-1] org.apache.catalina.core.StandardService.stopInternal Stopping service [Catalina]
+23-Mar-2025 12:07:10.156 INFO [Thread-1] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8080"]
+23-Mar-2025 12:07:10.162 INFO [Thread-1] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]
+23-Mar-2025 12:07:46.972 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/10.1.36
+23-Mar-2025 12:07:46.975 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Feb 13 2025 13:13:30 UTC
+23-Mar-2025 12:07:46.975 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 10.1.36.0
+23-Mar-2025 12:07:46.975 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Mac OS X
+23-Mar-2025 12:07:46.975 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            15.3.2
+23-Mar-2025 12:07:46.975 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          aarch64
+23-Mar-2025 12:07:46.975 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             /Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home
+23-Mar-2025 12:07:46.975 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           21.0.5+9-LTS-239
+23-Mar-2025 12:07:46.975 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+23-Mar-2025 12:07:46.975 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         /Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main
+23-Mar-2025 12:07:46.976 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         /Users/yunseo/Downloads/apache-tomcat-10.1.36
+23-Mar-2025 12:07:46.981 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang=ALL-UNNAMED
+23-Mar-2025 12:07:46.981 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.io=ALL-UNNAMED
+23-Mar-2025 12:07:46.981 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util=ALL-UNNAMED
+23-Mar-2025 12:07:46.981 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
+23-Mar-2025 12:07:46.981 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+23-Mar-2025 12:07:46.981 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=/Users/yunseo/Downloads/apache-tomcat-10.1.36
+23-Mar-2025 12:07:46.981 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=/Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main
+23-Mar-2025 12:07:46.981 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=/Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main/temp
+23-Mar-2025 12:07:46.981 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=/Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main/conf/logging.properties
+23-Mar-2025 12:07:46.981 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+23-Mar-2025 12:07:46.981 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -javaagent:/Applications/IntelliJ IDEA.app/Contents/lib/idea_rt.jar=58293
+23-Mar-2025 12:07:46.981 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dfile.encoding=UTF-8
+23-Mar-2025 12:07:46.981 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dsun.stdout.encoding=UTF-8
+23-Mar-2025 12:07:46.981 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dsun.stderr.encoding=UTF-8
+23-Mar-2025 12:07:46.986 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent The Apache Tomcat Native library which allows using OpenSSL was not found on the java.library.path: [/Users/yunseo/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+23-Mar-2025 12:07:47.139 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+23-Mar-2025 12:07:47.148 INFO [main] org.apache.catalina.startup.Catalina.load Server initialization in [259] milliseconds
+23-Mar-2025 12:07:47.166 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+23-Mar-2025 12:07:47.166 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/10.1.36]
+23-Mar-2025 12:07:47.170 INFO [main] org.apache.catalina.startup.HostConfig.deployDescriptor Deploying deployment descriptor [/Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main/conf/Catalina/localhost/iotBay.xml]
+23-Mar-2025 12:07:47.323 INFO [main] org.apache.catalina.startup.HostConfig.deployDescriptor Deployment of deployment descriptor [/Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main/conf/Catalina/localhost/iotBay.xml] has finished in [153] ms
+23-Mar-2025 12:07:47.323 INFO [main] org.apache.catalina.startup.HostConfig.deployDescriptor Deploying deployment descriptor [/Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main/conf/Catalina/localhost/Test_proj.xml]
+23-Mar-2025 12:07:47.332 INFO [main] org.apache.catalina.startup.HostConfig.deployDescriptor Deployment of deployment descriptor [/Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main/conf/Catalina/localhost/Test_proj.xml] has finished in [9] ms
+23-Mar-2025 12:07:47.334 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+23-Mar-2025 12:07:47.339 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [191] milliseconds
