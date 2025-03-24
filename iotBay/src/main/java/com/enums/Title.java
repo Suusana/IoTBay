@@ -9,7 +9,6 @@ public enum Title {
     USER_PLACE_ORDER(104, "User placed an order"),
     USER_CANCEL(105, "User cancelled"),
 
-    // ===== 员工行为 =====
     STAFF_LOGIN(200, "Staff login"),
     STAFF_LOGOUT(201, "Staff logout"),
     STAFF_ADD_PRODUCT(202, "Staff added"),

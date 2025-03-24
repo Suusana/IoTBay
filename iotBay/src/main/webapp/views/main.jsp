@@ -1,6 +1,4 @@
-<%@ page import="com.enums.Status" %>
-<%@ page import="java.beans.Customizer" %>
-<%@ page import="com.bean.Customer" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: yunseo
   Date: 19/03/2025
@@ -18,10 +16,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
-<%Customer x = new Customer();
-
-
-%>
 <body>
 <!-- header -->
 <div class="header">
