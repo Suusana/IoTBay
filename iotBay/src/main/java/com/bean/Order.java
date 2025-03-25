@@ -9,17 +9,17 @@ public class Order {
     private Date createDate;
     private OrderStatus orderStatus;
     private Integer[] productIds;
-    private Integer userId;
+    private Customer buyer;
 
     public Order() {
     }
 
-    public Order(Integer orderId, Date createDate, OrderStatus orderStatus, Integer[] productIds, Integer userId) {
+    public Order(Integer orderId, Date createDate, OrderStatus orderStatus, Integer[] productIds, Customer buyer) {
         this.orderId = orderId;
         this.createDate = createDate;
         this.orderStatus = orderStatus;
         this.productIds = productIds;
-        this.userId = userId;
+        this.buyer = buyer;
     }
 
     public Integer getOrderId() {
@@ -54,11 +54,11 @@ public class Order {
         this.productIds = productIds;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public Customer getBuyer() {
+        return buyer;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setBuyer(Customer buyer) {
+        this.buyer = buyer;
     }
 }

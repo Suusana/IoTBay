@@ -7,20 +7,20 @@ public class Product {
     private Double price;
     private String description;
     private String image;
-    private Integer categoryId;
+    private Category category;
 
     public Product() {
     }
 
     public Product(Integer productId, String productName, Integer quantity,
-                   Double price, String description, String image, Integer categoryId) {
+                   Double price, String description, String image, Category category) {
         this.productId = productId;
         this.productName = productName;
         this.quantity = quantity;
         this.price = price;
         this.description = description;
         this.image = image;
-        this.categoryId = categoryId;
+        this.category = category;
     }
 
     public Integer getProductId() {
@@ -71,11 +71,11 @@ public class Product {
         this.image = image;
     }
 
-    public Integer getCategoryId() {
-        return categoryId;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

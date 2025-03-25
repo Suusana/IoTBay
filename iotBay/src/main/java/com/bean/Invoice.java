@@ -1,21 +1,22 @@
 package com.bean;
 
 import java.util.Date;
+import java.util.List;
 
 public class Invoice {
     private Integer invoiceId;
     private Integer totalPrice;
     private Date createDate;
-    private Integer orderId;
+    private List<Order> orders;
 
     public Invoice() {
     }
 
-    public Invoice(Integer invoiceId, Integer totalPrice, Date createDate, Integer orderId) {
+    public Invoice(Integer invoiceId, Integer totalPrice, Date createDate, List<Order> orders) {
         this.invoiceId = invoiceId;
         this.totalPrice = totalPrice;
         this.createDate = createDate;
-        this.orderId = orderId;
+        this.orders = orders;
     }
 
     public Integer getInvoiceId() {
@@ -42,11 +43,11 @@ public class Invoice {
         this.createDate = createDate;
     }
 
-    public Integer getOrderId() {
-        return orderId;
+    public List<Order> getOrders() {
+        return orders;
     }
 
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }

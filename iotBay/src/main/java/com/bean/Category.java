@@ -1,19 +1,19 @@
 package com.bean;
 
+import java.util.List;
+
 public class Category {
     private Integer categoryId;
     private String category;
-    private Integer productId;
-    private String product;
+    private List<Product> products;
 
     public Category() {
     }
 
-    public Category(Integer categoryId, String category, Integer productId, String product) {
+    public Category(Integer categoryId, String category, List<Product> products) {
         this.categoryId = categoryId;
         this.category = category;
-        this.productId = productId;
-        this.product = product;
+        this.products = products;
     }
 
     public Integer getCategoryId() {
@@ -32,19 +32,11 @@ public class Category {
         this.category = category;
     }
 
-    public Integer getProductId() {
-        return productId;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setProductId(Integer productId) {
-        this.productId = productId;
-    }
-
-    public String getProduct() {
-        return product;
-    }
-
-    public void setProduct(String product) {
-        this.product = product;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 }
