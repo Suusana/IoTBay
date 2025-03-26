@@ -25,7 +25,7 @@
 <!-- header -->
 <div class="header">
     <!-- Logo -->
-    session.invalidate();
+    
     <a href="./main.jsp">
         <img src="../assets/img/Logo.png" alt="IotBay Logo">
     </a>
