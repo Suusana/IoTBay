@@ -1,11 +1,11 @@
 
 .logo-container {
-    width: 100%; /* 화면 전체 너비 */
-    height: 200px; /* 로고의 높이 설정 */
-    background-color: #FFB64C; /* 여백을 노란색으로 채우기 */
+    width: 100%; 
+    height: 200px; 
+    background-color: #FFB64C; 
     display: flex;
-    justify-content: center; /* 로고를 가로 중앙에 정렬 */
-    align-items: center; /* 로고를 세로 중앙에 정렬 */
+    justify-content: center; 
+    align-items: center; 
 }
 
 .logo {
@@ -24,14 +24,14 @@
 }
 
 .main-container h1 {
-    font-family: 'Georgia', serif; /* 차분한 글씨체로 변경 */
-    font-size: 3rem; /* 글자 크기 설정 */
-    color: #FFB300; /* 노란색 텍스트 */
-    background-color: rgba(255, 204, 86, 0.365); /* 반투명한 배경 */
-    padding: 10px; /* 텍스트 주위에 여백 */
-    text-align: center; /* 텍스트 가운데 맞춤 */
-    max-width: 80%; /* 글씨 크기에 맞게 최대 너비 설정 */
-    margin: 0 auto; /* 가운데 정렬 */
+    font-family: 'Georgia', serif; 
+    font-size: 3rem; 
+    color: #FFB300;
+    background-color: rgba(255, 204, 86, 0.365);
+    padding: 10px;
+    text-align: center; 
+    max-width: 80%;
+    margin: 0 auto; 
     margin-top: 50px;
 }
 
