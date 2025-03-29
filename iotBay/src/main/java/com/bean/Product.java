@@ -8,13 +8,12 @@ public class Product {
     private String description;
     private String image;
     private Category category;
-    private Boolean isInCart;
 
     public Product() {
     }
 
     public Product(Integer productId, String productName, Integer quantity, Double price,
-                   String description, String image, Category category, Boolean isInCart) {
+                   String description, String image, Category category) {
         this.productId = productId;
         this.productName = productName;
         this.quantity = quantity;
@@ -22,7 +21,6 @@ public class Product {
         this.description = description;
         this.image = image;
         this.category = category;
-        this.isInCart = isInCart;
     }
 
     public Integer getProductId() {
@@ -79,13 +77,5 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
-    }
-
-    public Boolean getInCart() {
-        return isInCart;
-    }
-
-    public void setInCart(Boolean inCart) {
-        isInCart = inCart;
     }
 }

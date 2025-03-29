@@ -7,16 +7,16 @@ public class Invoice {
     private Integer invoiceId;
     private Integer totalPrice;
     private Date createDate;
-    private List<Order> orders;
+    private Order order;
 
     public Invoice() {
     }
 
-    public Invoice(Integer invoiceId, Integer totalPrice, Date createDate, List<Order> orders) {
+    public Invoice(Integer invoiceId, Integer totalPrice, Date createDate, Order order) {
         this.invoiceId = invoiceId;
         this.totalPrice = totalPrice;
         this.createDate = createDate;
-        this.orders = orders;
+        this.order = order;
     }
 
     public Integer getInvoiceId() {
@@ -43,11 +43,11 @@ public class Invoice {
         this.createDate = createDate;
     }
 
-    public List<Order> getOrders() {
-        return orders;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }

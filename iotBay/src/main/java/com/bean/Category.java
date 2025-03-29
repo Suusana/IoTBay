@@ -5,15 +5,13 @@ import java.util.List;
 public class Category {
     private Integer categoryId;
     private String category;
-    private List<Product> products;
 
     public Category() {
     }
 
-    public Category(Integer categoryId, String category, List<Product> products) {
+    public Category(Integer categoryId, String category) {
         this.categoryId = categoryId;
         this.category = category;
-        this.products = products;
     }
 
     public Integer getCategoryId() {
@@ -30,13 +28,5 @@ public class Category {
 
     public void setCategory(String category) {
         this.category = category;
-    }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
     }
 }

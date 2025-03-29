@@ -19,6 +19,7 @@ form{
     padding: 10px;
     border-radius: 10px;
     color: white;
+    cursor: pointer;
 }
 #registerBtn:hover{
     box-shadow: 5px 5px rgba(255, 187, 84, 0.3);

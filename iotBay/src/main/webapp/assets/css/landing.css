@@ -36,21 +36,23 @@
 }
 
 .button {
+    background-color: #FFB300;
+    border: solid 2px #FFB300;
+    color: white;
     padding: 10px 20px;
     border-radius: 5px;
     width: 150px; 
     font-size: 1rem; 
     margin: 10px;
     margin-top: 50px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #FFF3E3;
+    color: black;
 }
 
 .button-login {
-    background-color: #FFB300;
-    color: white;
     margin-right: 10px;
-}
-
-.button-register {
-    background-color: #FFB300;
-    color: white;
 }

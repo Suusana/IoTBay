@@ -7,7 +7,8 @@ public class Customer {
     private Integer userId;
     private String username;
     private String password;
-    private String name;
+    private String firstName;
+    private String lastName;
     private Integer phone;
     private String email;
     private Status status;
@@ -20,12 +21,13 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(Integer userId, String username, String password, String name, Integer phone, String email,
-                    Status status, String address, String city, State state, Integer postcode, String[] history) {
+    public Customer(Integer userId, String username, String password, String firstName, String lastName, Integer phone,
+                    String email, Status status, String address, String city, State state, Integer postcode, String[] history) {
         this.userId = userId;
         this.username = username;
         this.password = password;
-        this.name = name;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.phone = phone;
         this.email = email;
         this.status = status;
@@ -60,12 +62,20 @@ public class Customer {
         this.password = password;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public Integer getPhone() {
