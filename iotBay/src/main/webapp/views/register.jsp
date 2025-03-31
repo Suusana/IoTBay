@@ -44,7 +44,6 @@
         customer.setPostcode(postal);
     }
 
-
     customer.setUserId(id);
     customer.setUsername(username);
     customer.setPassword(password);
