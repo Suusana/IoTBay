@@ -81,7 +81,7 @@
 
 <main>
     <h1>Register</h1>
-    <form action="register.jsp" method="post" onsubmit="return checkValidity()">
+    <form action="register.jsp" method="post">
         <h4>Personal Information</h4>
         <div class="container">
             <div>
@@ -100,7 +100,7 @@
             </div>
             <div>
                 <label for="phoneNumber">Phone Number</label><br>
-                <input id="phoneNumber" name="phoneNumber" type="tel" required placeholder="phoneNumber"/>
+                <input id="phoneNumber" name="phoneNumber" type="tel" required placeholder="e.g 0412 345 678"/>
             </div>
         </div>
         <div class="container">
@@ -110,9 +110,9 @@
                        placeholder="Enter your password"/>
             </div>
             <div>
-                <label for="comfirmPassword">Comfirm Password</label><br>
-                <input id="ComfirmPassword" name="ComfirmPassword" type="password" required minlength="6"
-                       placeholder="Comfirm your password"/>
+                <label for="confirmPassword">Confirm Password</label><br>
+                <input id="ConfirmPassword" name="ConfirmPassword" type="password" required minlength="6"
+                       placeholder="Confirm your password"/>
             </div>
         </div>
 
