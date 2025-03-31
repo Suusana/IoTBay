@@ -9,7 +9,35 @@
 <%@ page import="com.bean.Customer" %>
 <html>
 <%
- Customer customer = (Customer)session.getAttribute("loggedIn");
+    // Using JavaBeans (Customer)
+    Customer customer = (Customer) session.getAttribute("loggedIn");
+
+    // In case no session is set (to avoid the email: unknown issue)
+    // create a temporary Customer using the submitted form data
+    if (customer == null) {
+        String firstName = request.getParameter("firstName");
+        String email = request.getParameter("email");
+
+        if (firstName != null || email != null) {
+            customer = new Customer();
+            customer.setFirstName(firstName);
+            customer.setEmail(email);
+            session.setAttribute("loggedIn", customer);
+        }
+    }
+
+    // Set default values if null session or fields are missing
+    String displayName = "Guest";
+    String displayEmail = "unknown";
+
+    if (customer != null) {
+        if (customer.getFirstName() != null && !customer.getFirstName().isEmpty()) {
+            displayName = customer.getFirstName();
+        }
+        if (customer.getEmail() != null && !customer.getEmail().isEmpty()) {
+            displayEmail = customer.getEmail();
+        }
+    }
 %>
 <head>
     <title>Welcome</title>
@@ -19,7 +47,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-<!-- header -->
 <div class="header">
     <a href="./main.jsp">
         <img src="../assets/img/Logo.png" alt="IotBay Logo">
@@ -33,7 +60,7 @@
     <menu class="icon">
         <a href="">
             <i class="fa-solid fa-circle-user fa-2x"></i>
-            <span><%= customer.getFirstName() != null ? customer.getFirstName() : "Customer" %></span>
+            <span><%= displayName %></span>
         </a>
         <a href="">
             <i class="fa-solid fa-magnifying-glass fa-2x"></i>
@@ -50,13 +77,12 @@
     </menu>
 </div>
 
-<!-- main content -->
 <div class="mainBody">
     <div class="banner">
         <img src="../assets/img/example.jpg" alt="Welcome Banner">
         <div class="intro">
-            <h5>Welcome, <%= customer.getFirstName() != null ? customer.getFirstName() : "Guest" %>!</h5>
-            <p>Your email: <%= customer.getEmail() != null ? customer.getEmail() : "unknown" %></p>
+            <h5>Welcome, <%= displayName %>!</h5>
+            <p>Your email: <%= displayEmail %></p>
             <span>We're excited to have you join IoTBay. Start exploring now!</span>
             <br>
             <a href="main.jsp"><button class="style1">Go to Main Page</button></a>
@@ -64,7 +90,6 @@
     </div>
 </div>
 
-<!-- footer -->
 <div class="footer">
     <hr>
     <div>
