@@ -1,7 +1,7 @@
 package com.bean;
 
 public class Product {
-    private Integer productId;
+    private Long productId;
     private String productName;
     private Integer quantity;
     private Double price;
@@ -12,7 +12,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(Integer productId, String productName, Integer quantity, Double price,
+    public Product(Long productId, String productName, Integer quantity, Double price,
                    String description, String image, Category category) {
         this.productId = productId;
         this.productName = productName;
@@ -23,11 +23,11 @@ public class Product {
         this.category = category;
     }
 
-    public Integer getProductId() {
+    public Long getProductId() {
         return productId;
     }
 
-    public void setProductId(Integer productId) {
+    public void setProductId(Long productId) {
         this.productId = productId;
     }
 

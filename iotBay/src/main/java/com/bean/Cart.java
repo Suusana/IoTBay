@@ -3,15 +3,15 @@ package com.bean;
 import java.util.List;
 
 public class Cart {
-    private Integer cartId;
-    private Integer userId;
+    private Long cartId;
+    private Long userId;
     private List<Product> products;
     private double totalPrice;
 
     public Cart() {
     }
 
-    public Cart(Integer cartId, Integer userId, List<Product> products, double totalPrice) {
+    public Cart(Long cartId, Long userId, List<Product> products, double totalPrice) {
         this.cartId = cartId;
         this.userId = userId;
         this.products = products;
@@ -34,19 +34,19 @@ public class Cart {
         this.products = products;
     }
 
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    public Integer getCartId() {
+    public Long getCartId() {
         return cartId;
     }
 
-    public void setCartId(Integer cartId) {
+    public void setCartId(Long cartId) {
         this.cartId = cartId;
     }
 }

@@ -4,31 +4,27 @@ import com.enums.State;
 import com.enums.Status;
 import java.io.Serializable;
 public class Customer implements Serializable {
-    private Integer userId;
+    private Long userId;
     private String username;
     private String password;
     private String firstName;
     private String lastName;
-    private Integer phone;
+    private Long phone;
     private String email;
-    private Status status;
+    private String status;
     private String address;
     private String city;
-    private State state;
+    private String state;
     private Integer postcode;
+    private String country;
     private String[] history;
 
     public Customer() {
     }
-    public Customer(String username, String firstName, String lastName,String password,String email){
-        this.username = username;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.password = password;
-        this.email = email;
-    }
-    public Customer(Integer userId, String username, String password, String firstName, String lastName, Integer phone,
-                    String email, Status status, String address, String city, State state, Integer postcode, String[] history) {
+
+    public Customer(Long userId, String username, String password, String firstName, String lastName, Long phone,
+                    String email, String status, String address, String city, String state, Integer postcode,
+                    String country, String[] history) {
         this.userId = userId;
         this.username = username;
         this.password = password;
@@ -41,14 +37,15 @@ public class Customer implements Serializable {
         this.city = city;
         this.state = state;
         this.postcode = postcode;
+        this.country = country;
         this.history = history;
     }
 
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -84,11 +81,11 @@ public class Customer implements Serializable {
         this.lastName = lastName;
     }
 
-    public Integer getPhone() {
+    public Long getPhone() {
         return phone;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(Long phone) {
         this.phone = phone;
     }
 
@@ -100,11 +97,11 @@ public class Customer implements Serializable {
         this.email = email;
     }
 
-    public Status getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -124,11 +121,11 @@ public class Customer implements Serializable {
         this.city = city;
     }
 
-    public State getState() {
+    public String getState() {
         return state;
     }
 
-    public void setState(State state) {
+    public void setState(String state) {
         this.state = state;
     }
 
@@ -138,6 +135,14 @@ public class Customer implements Serializable {
 
     public void setPostcode(Integer postcode) {
         this.postcode = postcode;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public String[] getHistory() {

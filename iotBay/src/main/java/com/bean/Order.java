@@ -5,7 +5,7 @@ import com.enums.OrderStatus;
 import java.util.Date;
 
 public class Order {
-    private Integer orderId;
+    private Long orderId;
     private Date createDate;
     private OrderStatus orderStatus;
     private Integer[] productIds;
@@ -14,7 +14,7 @@ public class Order {
     public Order() {
     }
 
-    public Order(Integer orderId, Date createDate, OrderStatus orderStatus, Integer[] productIds, Customer buyer) {
+    public Order(Long orderId, Date createDate, OrderStatus orderStatus, Integer[] productIds, Customer buyer) {
         this.orderId = orderId;
         this.createDate = createDate;
         this.orderStatus = orderStatus;
@@ -22,11 +22,11 @@ public class Order {
         this.buyer = buyer;
     }
 
-    public Integer getOrderId() {
+    public Long getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(Integer orderId) {
+    public void setOrderId(Long orderId) {
         this.orderId = orderId;
     }
 

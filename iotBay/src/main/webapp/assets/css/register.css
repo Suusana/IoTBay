@@ -1,48 +1,80 @@
+h1 {
+    text-align: center;
+    color: #FFB300;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+h4 {
+    text-align: center;
+}
+
 main{
     display: flex;
     flex-direction: column;
-    height:50%;
-    justify-content: center;
-    align-content: center;
     margin:0 10%;
 }
-form{
-    display: flex;
+
+form {
+    margin-bottom: 5%;
     flex-direction: column;
-    justify-content: center;
-    align-content: center;
 }
-#registerBtn{
-    margin-top: 20px;
-    background-color: #ffbb54;
-    width:120px;
-    padding: 10px;
+
+form div {
+    margin: 10px auto;
+}
+
+.container {
+    width: 40%;
+    display: flex;
+}
+
+.container div{
+    margin-right: 10px;
+}
+
+input {
+    width: 250px;
+    border: 1px solid #a7a7a7;
     border-radius: 10px;
+    padding: 10px 30px
+}
+
+button {
+    background-color: #FFB300;
+    border: solid 2px #FFB300;
     color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    width: 200px;
+    font-size: 1rem;
+    margin: 50px auto 10px;
     cursor: pointer;
 }
-#registerBtn:hover{
-    box-shadow: 5px 5px rgba(255, 187, 84, 0.3);
+
+button:hover{
+    background-color: #FFF3E3;
+    color: black;
 }
-main{
-    position: relative;
+
+.address input{
+    width: 160px;
 }
-#registered{
-    border: 2px solid #ffbb54;
-    position: absolute;
-    top:30%;
-    left:40%;
+
+select {
+    width: 160px;
+    height: 40px;
+    padding: 5px 10px;
+    font-size: 16px;
+    border: 1px solid #a7a7a7;
     border-radius: 10px;
-    box-shadow: 5px 5px rgba(255, 187, 84, 0.3);
-    width: 200px;
-    height: 70px;
-    background-color: white;
-    display:flex;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    z-index: 5;
 }
-.hidden{
-    display: none;
+
+.visibleLink {
+    color: blue;
+    text-decoration: underline blue solid;
+}
+
+.buttons {
+    text-align: center;
 }

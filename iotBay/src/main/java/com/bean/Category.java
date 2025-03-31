@@ -3,22 +3,22 @@ package com.bean;
 import java.util.List;
 
 public class Category {
-    private Integer categoryId;
+    private Long categoryId;
     private String category;
 
     public Category() {
     }
 
-    public Category(Integer categoryId, String category) {
+    public Category(Long categoryId, String category) {
         this.categoryId = categoryId;
         this.category = category;
     }
 
-    public Integer getCategoryId() {
+    public Long getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(Integer categoryId) {
+    public void setCategoryId(Long categoryId) {
         this.categoryId = categoryId;
     }
 

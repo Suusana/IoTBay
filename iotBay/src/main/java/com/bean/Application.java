@@ -5,7 +5,7 @@ import com.enums.Title;
 import java.util.Date;
 
 public class Application {
-    private Integer applicationId;
+    private Long applicationId;
     private Title title;
     private String description;
     private Date createDate;
@@ -15,7 +15,7 @@ public class Application {
     public Application() {
     }
 
-    public Application(Integer applicationId, Title title, String description, Date createDate, Date updateDate, Integer userId) {
+    public Application(Long applicationId, Title title, String description, Date createDate, Date updateDate, Integer userId) {
         this.applicationId = applicationId;
         this.title = title;
         this.description = description;
@@ -24,11 +24,11 @@ public class Application {
         this.userId = userId;
     }
 
-    public Integer getApplicationId() {
+    public Long getApplicationId() {
         return applicationId;
     }
 
-    public void setApplicationId(Integer applicationId) {
+    public void setApplicationId(Long applicationId) {
         this.applicationId = applicationId;
     }
 

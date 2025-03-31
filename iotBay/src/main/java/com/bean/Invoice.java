@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Invoice {
-    private Integer invoiceId;
+    private Long invoiceId;
     private Integer totalPrice;
     private Date createDate;
     private Order order;
@@ -12,18 +12,18 @@ public class Invoice {
     public Invoice() {
     }
 
-    public Invoice(Integer invoiceId, Integer totalPrice, Date createDate, Order order) {
+    public Invoice(Long invoiceId, Integer totalPrice, Date createDate, Order order) {
         this.invoiceId = invoiceId;
         this.totalPrice = totalPrice;
         this.createDate = createDate;
         this.order = order;
     }
 
-    public Integer getInvoiceId() {
+    public Long getInvoiceId() {
         return invoiceId;
     }
 
-    public void setInvoiceId(Integer invoiceId) {
+    public void setInvoiceId(Long invoiceId) {
         this.invoiceId = invoiceId;
     }
 

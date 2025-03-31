@@ -1,26 +1,26 @@
 package com.bean;
 
 public class Staff {
-    private Integer staffId;
+    private Long staffId;
     private String staffName;
     private String password;
-    private Integer phoneNum;
+    private Long phoneNum;
 
     public Staff() {
     }
 
-    public Staff(Integer staffId, String staffName, String password, Integer phoneNum) {
+    public Staff(Long staffId, String staffName, String password, Long phoneNum) {
         this.staffId = staffId;
         this.staffName = staffName;
         this.password = password;
         this.phoneNum = phoneNum;
     }
 
-    public Integer getStaffId() {
+    public Long getStaffId() {
         return staffId;
     }
 
-    public void setStaffId(Integer staffId) {
+    public void setStaffId(Long staffId) {
         this.staffId = staffId;
     }
 
@@ -40,11 +40,11 @@ public class Staff {
         this.password = password;
     }
 
-    public Integer getPhoneNum() {
+    public Long getPhoneNum() {
         return phoneNum;
     }
 
-    public void setPhoneNum(Integer phoneNum) {
+    public void setPhoneNum(Long phoneNum) {
         this.phoneNum = phoneNum;
     }
 }
