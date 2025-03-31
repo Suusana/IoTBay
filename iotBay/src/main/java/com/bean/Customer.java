@@ -2,8 +2,8 @@ package com.bean;
 
 import com.enums.State;
 import com.enums.Status;
-
-public class Customer {
+import java.io.Serializable;
+public class Customer implements Serializable {
     private Integer userId;
     private String username;
     private String password;
@@ -20,7 +20,13 @@ public class Customer {
 
     public Customer() {
     }
-
+    public Customer(String username, String firstName, String lastName,String password,String email){
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.email = email;
+    }
     public Customer(Integer userId, String username, String password, String firstName, String lastName, Integer phone,
                     String email, Status status, String address, String city, State state, Integer postcode, String[] history) {
         this.userId = userId;

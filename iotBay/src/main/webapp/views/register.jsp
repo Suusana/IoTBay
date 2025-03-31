@@ -6,8 +6,34 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="com.bean.Customer" %>
+<%
+    String firstName = request.getParameter("firstName");
+    String lastName = request.getParameter("lastName");
+    String email = request.getParameter("email");
+    String pw= request.getParameter("password");
+    String phoneNumber = request.getParameter("phoneNumber");
+    String street= request.getParameter("street");
+    String unit= request.getParameter("unit");
+    String state= request.getParameter("state");
+    String city= request.getParameter("city");
+    String postalCode= request.getParameter("postalCode");
+    String country= request.getParameter("country");
+    String username = "no username";
 
+    if(email != null){
+        username=email.split("@")[0]; //Can be used as a unique username
+    }
 
+    Customer customer = new Customer(username,firstName,lastName,pw,email);
+    session.setAttribute("loggedIn",customer);
+    Customer loggedIn = (Customer) session.getAttribute("loggedIn");
+    if("POST".equalsIgnoreCase(request.getMethod())){
+        response.sendRedirect("welcome.jsp");
+        return;
+    }
+
+%>
 <html>
 <head>
     <title>Register</title>
@@ -25,7 +51,7 @@
 
 <main>
     <h2 id="welcome">Register</h2>
-    <form class="form" action="welcome.jsp" method="post">
+    <form class="form" action="register.jsp" method="post">
         <div>
             <label for="firstName">First Name</label>
             <input id="firstName" name="firstName" type="text" required placeholder="First Name"/>
@@ -43,6 +69,10 @@
             <label for="password">Password</label>
             <input id="password" name="password" type="password" required minlength="6" placeholder="password"/>
         </div>
+        <div>
+            <label for="phoneNumber">Phone Number</label>
+            <input id="phoneNumber" name="phoneNumber" type="tel" placeholder="phoneNumber"/>
+        </div>
         <div class="address">
             <h4>Address</h4>
             <label for="Street">Street</label>
@@ -58,7 +88,9 @@
             <label for="country">Country</label>
             <input id="country" name="country" type="text" placeholder="Country">
         </div>
-        <button id="registerBtn" type="submit">Submit</button>
+            <button id="registerBtn" type="submit">Submit</button>
+
+
     </form>
 </main>
 

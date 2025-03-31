@@ -6,20 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="com.bean.Customer" %>
 <html>
 <%
-    String firstName = request.getParameter("firstName");
-    String lastName = request.getParameter("lastName");
-    String email = request.getParameter("email");
-    String pw= request.getParameter("password");
-
-    String street= request.getParameter("street");
-    String unit= request.getParameter("unit");
-    String state= request.getParameter("state");
-    String city= request.getParameter("city");
-    String postalCode= request.getParameter("postalCode");
-    String country= request.getParameter("country");
-    //String username=email.split("@")[0]; //Can be used as a unique username
+ Customer customer = (Customer)session.getAttribute("loggedIn");
 %>
 <head>
     <title>Welcome</title>
@@ -43,7 +33,7 @@
     <menu class="icon">
         <a href="">
             <i class="fa-solid fa-circle-user fa-2x"></i>
-            <span><%= firstName != null ? firstName : "Customer" %></span>
+            <span><%= customer.getFirstName() != null ? customer.getFirstName() : "Customer" %></span>
         </a>
         <a href="">
             <i class="fa-solid fa-magnifying-glass fa-2x"></i>
@@ -65,8 +55,8 @@
     <div class="banner">
         <img src="../assets/img/example.jpg" alt="Welcome Banner">
         <div class="intro">
-            <h5>Welcome, <%= firstName != null ? firstName : "Guest" %>!</h5>
-            <p>Your email: <%= email != null ? email : "unknown" %></p>
+            <h5>Welcome, <%= customer.getFirstName() != null ? customer.getFirstName() : "Guest" %>!</h5>
+            <p>Your email: <%= customer.getEmail() != null ? customer.getEmail() : "unknown" %></p>
             <span>We're excited to have you join IoTBay. Start exploring now!</span>
             <br>
             <a href="main.jsp"><button class="style1">Go to Main Page</button></a>

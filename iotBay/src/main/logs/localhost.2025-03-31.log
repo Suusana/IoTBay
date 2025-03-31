@@ -1,0 +1,2636 @@
+31-Mar-2025 13:53:03.479 SEVERE [http-nio-8080-exec-6] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [23] in the jsp file: [/views/welcome.jsp]
+Customer cannot be resolved to a type
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     //String username=email.split("@")[0]; //Can be used as a unique username
+23:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+24:     session.setAttribute("loggedIn",customer);
+25: %>
+26: <head>
+
+
+An error occurred at line: [23] in the jsp file: [/views/welcome.jsp]
+Customer cannot be resolved to a type
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     //String username=email.split("@")[0]; //Can be used as a unique username
+23:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+24:     session.setAttribute("loggedIn",customer);
+25: %>
+26: <head>
+
+
+An error occurred at line: [23] in the jsp file: [/views/welcome.jsp]
+username cannot be resolved to a variable
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     //String username=email.split("@")[0]; //Can be used as a unique username
+23:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+24:     session.setAttribute("loggedIn",customer);
+25: %>
+26: <head>
+
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [23] in the jsp file: [/views/welcome.jsp]
+Customer cannot be resolved to a type
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     //String username=email.split("@")[0]; //Can be used as a unique username
+23:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+24:     session.setAttribute("loggedIn",customer);
+25: %>
+26: <head>
+
+
+An error occurred at line: [23] in the jsp file: [/views/welcome.jsp]
+Customer cannot be resolved to a type
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     //String username=email.split("@")[0]; //Can be used as a unique username
+23:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+24:     session.setAttribute("loggedIn",customer);
+25: %>
+26: <head>
+
+
+An error occurred at line: [23] in the jsp file: [/views/welcome.jsp]
+username cannot be resolved to a variable
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     //String username=email.split("@")[0]; //Can be used as a unique username
+23:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+24:     session.setAttribute("loggedIn",customer);
+25: %>
+26: <head>
+
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:72)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:192)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:524)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:373)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:345)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:331)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:603)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:396)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 13:54:47.396 SEVERE [http-nio-8080-exec-7] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [23] in the jsp file: [/views/welcome.jsp]
+Customer cannot be resolved to a type
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     //String username=email.split("@")[0]; //Can be used as a unique username
+23:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+24:     session.setAttribute("loggedIn",customer);
+25: %>
+26: <head>
+
+
+An error occurred at line: [23] in the jsp file: [/views/welcome.jsp]
+Customer cannot be resolved to a type
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     //String username=email.split("@")[0]; //Can be used as a unique username
+23:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+24:     session.setAttribute("loggedIn",customer);
+25: %>
+26: <head>
+
+
+An error occurred at line: [23] in the jsp file: [/views/welcome.jsp]
+username cannot be resolved to a variable
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     //String username=email.split("@")[0]; //Can be used as a unique username
+23:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+24:     session.setAttribute("loggedIn",customer);
+25: %>
+26: <head>
+
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [23] in the jsp file: [/views/welcome.jsp]
+Customer cannot be resolved to a type
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     //String username=email.split("@")[0]; //Can be used as a unique username
+23:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+24:     session.setAttribute("loggedIn",customer);
+25: %>
+26: <head>
+
+
+An error occurred at line: [23] in the jsp file: [/views/welcome.jsp]
+Customer cannot be resolved to a type
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     //String username=email.split("@")[0]; //Can be used as a unique username
+23:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+24:     session.setAttribute("loggedIn",customer);
+25: %>
+26: <head>
+
+
+An error occurred at line: [23] in the jsp file: [/views/welcome.jsp]
+username cannot be resolved to a variable
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     //String username=email.split("@")[0]; //Can be used as a unique username
+23:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+24:     session.setAttribute("loggedIn",customer);
+25: %>
+26: <head>
+
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:72)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:192)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:524)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:373)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:345)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:331)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:603)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:396)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 13:54:51.442 SEVERE [http-nio-8080-exec-10] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [23] in the jsp file: [/views/welcome.jsp]
+Customer cannot be resolved to a type
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     //String username=email.split("@")[0]; //Can be used as a unique username
+23:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+24:     session.setAttribute("loggedIn",customer);
+25: %>
+26: <head>
+
+
+An error occurred at line: [23] in the jsp file: [/views/welcome.jsp]
+Customer cannot be resolved to a type
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     //String username=email.split("@")[0]; //Can be used as a unique username
+23:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+24:     session.setAttribute("loggedIn",customer);
+25: %>
+26: <head>
+
+
+An error occurred at line: [23] in the jsp file: [/views/welcome.jsp]
+username cannot be resolved to a variable
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     //String username=email.split("@")[0]; //Can be used as a unique username
+23:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+24:     session.setAttribute("loggedIn",customer);
+25: %>
+26: <head>
+
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [23] in the jsp file: [/views/welcome.jsp]
+Customer cannot be resolved to a type
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     //String username=email.split("@")[0]; //Can be used as a unique username
+23:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+24:     session.setAttribute("loggedIn",customer);
+25: %>
+26: <head>
+
+
+An error occurred at line: [23] in the jsp file: [/views/welcome.jsp]
+Customer cannot be resolved to a type
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     //String username=email.split("@")[0]; //Can be used as a unique username
+23:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+24:     session.setAttribute("loggedIn",customer);
+25: %>
+26: <head>
+
+
+An error occurred at line: [23] in the jsp file: [/views/welcome.jsp]
+username cannot be resolved to a variable
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     //String username=email.split("@")[0]; //Can be used as a unique username
+23:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+24:     session.setAttribute("loggedIn",customer);
+25: %>
+26: <head>
+
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:72)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:192)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:524)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:373)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:345)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:331)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:603)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:396)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 13:55:11.317 SEVERE [http-nio-8080-exec-4] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [23] in the jsp file: [/views/welcome.jsp]
+Customer cannot be resolved to a type
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     String username=email.split("@")[0]; //Can be used as a unique username
+23:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+24:     session.setAttribute("loggedIn",customer);
+25: %>
+26: <head>
+
+
+An error occurred at line: [23] in the jsp file: [/views/welcome.jsp]
+Customer cannot be resolved to a type
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     String username=email.split("@")[0]; //Can be used as a unique username
+23:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+24:     session.setAttribute("loggedIn",customer);
+25: %>
+26: <head>
+
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [23] in the jsp file: [/views/welcome.jsp]
+Customer cannot be resolved to a type
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     String username=email.split("@")[0]; //Can be used as a unique username
+23:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+24:     session.setAttribute("loggedIn",customer);
+25: %>
+26: <head>
+
+
+An error occurred at line: [23] in the jsp file: [/views/welcome.jsp]
+Customer cannot be resolved to a type
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     String username=email.split("@")[0]; //Can be used as a unique username
+23:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+24:     session.setAttribute("loggedIn",customer);
+25: %>
+26: <head>
+
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:72)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:192)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:524)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:373)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:345)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:331)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:603)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:396)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 13:57:23.522 SEVERE [http-nio-8080-exec-8] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [14] in the generated java file: [/Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main/work/Catalina/localhost/iotBay/org/apache/jsp/views/welcome_jsp.java]
+Only a type can be imported. java.com.bean.Customer resolves to a package
+
+An error occurred at line: [24] in the jsp file: [/views/welcome.jsp]
+Customer cannot be resolved to a type
+21:     String postalCode= request.getParameter("postalCode");
+22:     String country= request.getParameter("country");
+23:     String username=email.split("@")[0]; //Can be used as a unique username
+24:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+25:     session.setAttribute("loggedIn",customer);
+26: %>
+27: <head>
+
+
+An error occurred at line: [24] in the jsp file: [/views/welcome.jsp]
+Customer cannot be resolved to a type
+21:     String postalCode= request.getParameter("postalCode");
+22:     String country= request.getParameter("country");
+23:     String username=email.split("@")[0]; //Can be used as a unique username
+24:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+25:     session.setAttribute("loggedIn",customer);
+26: %>
+27: <head>
+
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [14] in the generated java file: [/Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main/work/Catalina/localhost/iotBay/org/apache/jsp/views/welcome_jsp.java]
+Only a type can be imported. java.com.bean.Customer resolves to a package
+
+An error occurred at line: [24] in the jsp file: [/views/welcome.jsp]
+Customer cannot be resolved to a type
+21:     String postalCode= request.getParameter("postalCode");
+22:     String country= request.getParameter("country");
+23:     String username=email.split("@")[0]; //Can be used as a unique username
+24:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+25:     session.setAttribute("loggedIn",customer);
+26: %>
+27: <head>
+
+
+An error occurred at line: [24] in the jsp file: [/views/welcome.jsp]
+Customer cannot be resolved to a type
+21:     String postalCode= request.getParameter("postalCode");
+22:     String country= request.getParameter("country");
+23:     String username=email.split("@")[0]; //Can be used as a unique username
+24:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+25:     session.setAttribute("loggedIn",customer);
+26: %>
+27: <head>
+
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:72)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:192)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:524)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:373)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:345)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:331)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:603)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:396)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 13:58:59.330 SEVERE [http-nio-8080-exec-9] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [24] in the jsp file: [/views/welcome.jsp]
+The constructor Customer(String, String, String, String, String) is undefined
+21:     String postalCode= request.getParameter("postalCode");
+22:     String country= request.getParameter("country");
+23:     String username=email.split("@")[0]; //Can be used as a unique username
+24:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+25:     session.setAttribute("loggedIn",customer);
+26: %>
+27: <head>
+
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [24] in the jsp file: [/views/welcome.jsp]
+The constructor Customer(String, String, String, String, String) is undefined
+21:     String postalCode= request.getParameter("postalCode");
+22:     String country= request.getParameter("country");
+23:     String username=email.split("@")[0]; //Can be used as a unique username
+24:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+25:     session.setAttribute("loggedIn",customer);
+26: %>
+27: <head>
+
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:72)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:192)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:524)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:373)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:345)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:331)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:603)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:396)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 14:00:29.744 SEVERE [http-nio-8080-exec-1] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [25] in the jsp file: [/views/welcome.jsp]
+The constructor Customer(String, String, String, String, String) is undefined
+22:     String country= request.getParameter("country");
+23:     String username=email.split("@")[0]; //Can be used as a unique username
+24: 
+25:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+26:     
+27:     session.setAttribute("loggedIn",customer);
+28: %>
+
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [25] in the jsp file: [/views/welcome.jsp]
+The constructor Customer(String, String, String, String, String) is undefined
+22:     String country= request.getParameter("country");
+23:     String username=email.split("@")[0]; //Can be used as a unique username
+24: 
+25:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+26:     
+27:     session.setAttribute("loggedIn",customer);
+28: %>
+
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:72)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:192)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:524)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:373)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:345)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:331)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:603)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:396)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 14:06:33.037 SEVERE [http-nio-8080-exec-7] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [34] in the jsp file: [/views/welcome.jsp]
+firstName cannot be resolved to a variable
+31:     <menu class="icon">
+32:         <a href="">
+33:             <i class="fa-solid fa-circle-user fa-2x"></i>
+34:             <span><%= firstName != null ? firstName : "Customer" %></span>
+35:         </a>
+36:         <a href="">
+37:             <i class="fa-solid fa-magnifying-glass fa-2x"></i>
+
+
+An error occurred at line: [34] in the jsp file: [/views/welcome.jsp]
+firstName cannot be resolved to a variable
+31:     <menu class="icon">
+32:         <a href="">
+33:             <i class="fa-solid fa-circle-user fa-2x"></i>
+34:             <span><%= firstName != null ? firstName : "Customer" %></span>
+35:         </a>
+36:         <a href="">
+37:             <i class="fa-solid fa-magnifying-glass fa-2x"></i>
+
+
+An error occurred at line: [56] in the jsp file: [/views/welcome.jsp]
+firstName cannot be resolved to a variable
+53:     <div class="banner">
+54:         <img src="../assets/img/example.jpg" alt="Welcome Banner">
+55:         <div class="intro">
+56:             <h5>Welcome, <%= firstName != null ? firstName : "Guest" %>!</h5>
+57:             <p>Your email: <%= email != null ? email : "unknown" %></p>
+58:             <span>We're excited to have you join IoTBay. Start exploring now!</span>
+59:             <br>
+
+
+An error occurred at line: [56] in the jsp file: [/views/welcome.jsp]
+firstName cannot be resolved to a variable
+53:     <div class="banner">
+54:         <img src="../assets/img/example.jpg" alt="Welcome Banner">
+55:         <div class="intro">
+56:             <h5>Welcome, <%= firstName != null ? firstName : "Guest" %>!</h5>
+57:             <p>Your email: <%= email != null ? email : "unknown" %></p>
+58:             <span>We're excited to have you join IoTBay. Start exploring now!</span>
+59:             <br>
+
+
+An error occurred at line: [57] in the jsp file: [/views/welcome.jsp]
+email cannot be resolved to a variable
+54:         <img src="../assets/img/example.jpg" alt="Welcome Banner">
+55:         <div class="intro">
+56:             <h5>Welcome, <%= firstName != null ? firstName : "Guest" %>!</h5>
+57:             <p>Your email: <%= email != null ? email : "unknown" %></p>
+58:             <span>We're excited to have you join IoTBay. Start exploring now!</span>
+59:             <br>
+60:             <a href="main.jsp"><button class="style1">Go to Main Page</button></a>
+
+
+An error occurred at line: [57] in the jsp file: [/views/welcome.jsp]
+email cannot be resolved to a variable
+54:         <img src="../assets/img/example.jpg" alt="Welcome Banner">
+55:         <div class="intro">
+56:             <h5>Welcome, <%= firstName != null ? firstName : "Guest" %>!</h5>
+57:             <p>Your email: <%= email != null ? email : "unknown" %></p>
+58:             <span>We're excited to have you join IoTBay. Start exploring now!</span>
+59:             <br>
+60:             <a href="main.jsp"><button class="style1">Go to Main Page</button></a>
+
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [34] in the jsp file: [/views/welcome.jsp]
+firstName cannot be resolved to a variable
+31:     <menu class="icon">
+32:         <a href="">
+33:             <i class="fa-solid fa-circle-user fa-2x"></i>
+34:             <span><%= firstName != null ? firstName : "Customer" %></span>
+35:         </a>
+36:         <a href="">
+37:             <i class="fa-solid fa-magnifying-glass fa-2x"></i>
+
+
+An error occurred at line: [34] in the jsp file: [/views/welcome.jsp]
+firstName cannot be resolved to a variable
+31:     <menu class="icon">
+32:         <a href="">
+33:             <i class="fa-solid fa-circle-user fa-2x"></i>
+34:             <span><%= firstName != null ? firstName : "Customer" %></span>
+35:         </a>
+36:         <a href="">
+37:             <i class="fa-solid fa-magnifying-glass fa-2x"></i>
+
+
+An error occurred at line: [56] in the jsp file: [/views/welcome.jsp]
+firstName cannot be resolved to a variable
+53:     <div class="banner">
+54:         <img src="../assets/img/example.jpg" alt="Welcome Banner">
+55:         <div class="intro">
+56:             <h5>Welcome, <%= firstName != null ? firstName : "Guest" %>!</h5>
+57:             <p>Your email: <%= email != null ? email : "unknown" %></p>
+58:             <span>We're excited to have you join IoTBay. Start exploring now!</span>
+59:             <br>
+
+
+An error occurred at line: [56] in the jsp file: [/views/welcome.jsp]
+firstName cannot be resolved to a variable
+53:     <div class="banner">
+54:         <img src="../assets/img/example.jpg" alt="Welcome Banner">
+55:         <div class="intro">
+56:             <h5>Welcome, <%= firstName != null ? firstName : "Guest" %>!</h5>
+57:             <p>Your email: <%= email != null ? email : "unknown" %></p>
+58:             <span>We're excited to have you join IoTBay. Start exploring now!</span>
+59:             <br>
+
+
+An error occurred at line: [57] in the jsp file: [/views/welcome.jsp]
+email cannot be resolved to a variable
+54:         <img src="../assets/img/example.jpg" alt="Welcome Banner">
+55:         <div class="intro">
+56:             <h5>Welcome, <%= firstName != null ? firstName : "Guest" %>!</h5>
+57:             <p>Your email: <%= email != null ? email : "unknown" %></p>
+58:             <span>We're excited to have you join IoTBay. Start exploring now!</span>
+59:             <br>
+60:             <a href="main.jsp"><button class="style1">Go to Main Page</button></a>
+
+
+An error occurred at line: [57] in the jsp file: [/views/welcome.jsp]
+email cannot be resolved to a variable
+54:         <img src="../assets/img/example.jpg" alt="Welcome Banner">
+55:         <div class="intro">
+56:             <h5>Welcome, <%= firstName != null ? firstName : "Guest" %>!</h5>
+57:             <p>Your email: <%= email != null ? email : "unknown" %></p>
+58:             <span>We're excited to have you join IoTBay. Start exploring now!</span>
+59:             <br>
+60:             <a href="main.jsp"><button class="style1">Go to Main Page</button></a>
+
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:72)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:192)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:524)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:373)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:345)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:331)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:603)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:396)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 14:06:40.723 SEVERE [http-nio-8080-exec-1] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [24] in the jsp file: [/views/register.jsp]
+Customer cannot be resolved to a type
+21:     String country= request.getParameter("country");
+22:     String username=email.split("@")[0]; //Can be used as a unique username
+23: 
+24:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+25: 
+26:     session.setAttribute("loggedIn",customer);
+27: %>
+
+
+An error occurred at line: [24] in the jsp file: [/views/register.jsp]
+Customer cannot be resolved to a type
+21:     String country= request.getParameter("country");
+22:     String username=email.split("@")[0]; //Can be used as a unique username
+23: 
+24:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+25: 
+26:     session.setAttribute("loggedIn",customer);
+27: %>
+
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [24] in the jsp file: [/views/register.jsp]
+Customer cannot be resolved to a type
+21:     String country= request.getParameter("country");
+22:     String username=email.split("@")[0]; //Can be used as a unique username
+23: 
+24:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+25: 
+26:     session.setAttribute("loggedIn",customer);
+27: %>
+
+
+An error occurred at line: [24] in the jsp file: [/views/register.jsp]
+Customer cannot be resolved to a type
+21:     String country= request.getParameter("country");
+22:     String username=email.split("@")[0]; //Can be used as a unique username
+23: 
+24:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+25: 
+26:     session.setAttribute("loggedIn",customer);
+27: %>
+
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:72)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:192)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:524)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:373)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:345)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:331)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:603)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:396)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 14:14:59.961 SEVERE [http-nio-8080-exec-9] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [24] in the jsp file: [/views/register.jsp]
+Customer cannot be resolved to a type
+21:     String country= request.getParameter("country");
+22:     String username=email.split("@")[0]; //Can be used as a unique username
+23: 
+24:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+25: 
+26:     session.setAttribute("loggedIn",customer);
+27: %>
+
+
+An error occurred at line: [24] in the jsp file: [/views/register.jsp]
+Customer cannot be resolved to a type
+21:     String country= request.getParameter("country");
+22:     String username=email.split("@")[0]; //Can be used as a unique username
+23: 
+24:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+25: 
+26:     session.setAttribute("loggedIn",customer);
+27: %>
+
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [24] in the jsp file: [/views/register.jsp]
+Customer cannot be resolved to a type
+21:     String country= request.getParameter("country");
+22:     String username=email.split("@")[0]; //Can be used as a unique username
+23: 
+24:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+25: 
+26:     session.setAttribute("loggedIn",customer);
+27: %>
+
+
+An error occurred at line: [24] in the jsp file: [/views/register.jsp]
+Customer cannot be resolved to a type
+21:     String country= request.getParameter("country");
+22:     String username=email.split("@")[0]; //Can be used as a unique username
+23: 
+24:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+25: 
+26:     session.setAttribute("loggedIn",customer);
+27: %>
+
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:72)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:192)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:524)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:373)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:345)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:331)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:603)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:396)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 14:17:01.808 SEVERE [http-nio-8080-exec-5] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [24] in the jsp file: [/views/register.jsp]
+Customer cannot be resolved to a type
+21:     String country= request.getParameter("country");
+22:     String username=email.split("@")[0]; //Can be used as a unique username
+23: 
+24:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+25: 
+26:     session.setAttribute("loggedIn",customer);
+27: %>
+
+
+An error occurred at line: [24] in the jsp file: [/views/register.jsp]
+Customer cannot be resolved to a type
+21:     String country= request.getParameter("country");
+22:     String username=email.split("@")[0]; //Can be used as a unique username
+23: 
+24:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+25: 
+26:     session.setAttribute("loggedIn",customer);
+27: %>
+
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [24] in the jsp file: [/views/register.jsp]
+Customer cannot be resolved to a type
+21:     String country= request.getParameter("country");
+22:     String username=email.split("@")[0]; //Can be used as a unique username
+23: 
+24:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+25: 
+26:     session.setAttribute("loggedIn",customer);
+27: %>
+
+
+An error occurred at line: [24] in the jsp file: [/views/register.jsp]
+Customer cannot be resolved to a type
+21:     String country= request.getParameter("country");
+22:     String username=email.split("@")[0]; //Can be used as a unique username
+23: 
+24:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+25: 
+26:     session.setAttribute("loggedIn",customer);
+27: %>
+
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:72)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:192)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:524)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:373)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:345)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:331)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:603)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:396)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 14:17:08.424 SEVERE [http-nio-8080-exec-7] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [24] in the jsp file: [/views/register.jsp]
+Customer cannot be resolved to a type
+21:     String country= request.getParameter("country");
+22:     String username=email.split("@")[0]; //Can be used as a unique username
+23: 
+24:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+25: 
+26:     session.setAttribute("loggedIn",customer);
+27: %>
+
+
+An error occurred at line: [24] in the jsp file: [/views/register.jsp]
+Customer cannot be resolved to a type
+21:     String country= request.getParameter("country");
+22:     String username=email.split("@")[0]; //Can be used as a unique username
+23: 
+24:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+25: 
+26:     session.setAttribute("loggedIn",customer);
+27: %>
+
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [24] in the jsp file: [/views/register.jsp]
+Customer cannot be resolved to a type
+21:     String country= request.getParameter("country");
+22:     String username=email.split("@")[0]; //Can be used as a unique username
+23: 
+24:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+25: 
+26:     session.setAttribute("loggedIn",customer);
+27: %>
+
+
+An error occurred at line: [24] in the jsp file: [/views/register.jsp]
+Customer cannot be resolved to a type
+21:     String country= request.getParameter("country");
+22:     String username=email.split("@")[0]; //Can be used as a unique username
+23: 
+24:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+25: 
+26:     session.setAttribute("loggedIn",customer);
+27: %>
+
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:72)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:192)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:524)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:373)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:345)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:331)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:603)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:396)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 14:17:16.200 SEVERE [http-nio-8080-exec-9] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [24] in the jsp file: [/views/register.jsp]
+Customer cannot be resolved to a type
+21:     String country= request.getParameter("country");
+22:     String username=email.split("@")[0]; //Can be used as a unique username
+23: 
+24:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+25: 
+26:     session.setAttribute("loggedIn",customer);
+27: %>
+
+
+An error occurred at line: [24] in the jsp file: [/views/register.jsp]
+Customer cannot be resolved to a type
+21:     String country= request.getParameter("country");
+22:     String username=email.split("@")[0]; //Can be used as a unique username
+23: 
+24:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+25: 
+26:     session.setAttribute("loggedIn",customer);
+27: %>
+
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [24] in the jsp file: [/views/register.jsp]
+Customer cannot be resolved to a type
+21:     String country= request.getParameter("country");
+22:     String username=email.split("@")[0]; //Can be used as a unique username
+23: 
+24:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+25: 
+26:     session.setAttribute("loggedIn",customer);
+27: %>
+
+
+An error occurred at line: [24] in the jsp file: [/views/register.jsp]
+Customer cannot be resolved to a type
+21:     String country= request.getParameter("country");
+22:     String username=email.split("@")[0]; //Can be used as a unique username
+23: 
+24:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+25: 
+26:     session.setAttribute("loggedIn",customer);
+27: %>
+
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:72)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:192)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:524)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:373)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:345)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:331)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:603)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:396)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 14:17:53.340 SEVERE [http-nio-8080-exec-2] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [An exception occurred processing [/views/register.jsp] at line [22]
+
+19:     String city= request.getParameter("city");
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     String username=email.split("@")[0]; //Can be used as a unique username
+23: 
+24:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+25: 
+
+
+Stacktrace:] with root cause
+	java.lang.NullPointerException: Cannot invoke "String.split(String)" because "email" is null
+		at org.apache.jsp.views.register_jsp._jspService(register_jsp.java:138)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:67)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 14:17:54.005 SEVERE [http-nio-8080-exec-4] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [An exception occurred processing [/views/register.jsp] at line [22]
+
+19:     String city= request.getParameter("city");
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     String username=email.split("@")[0]; //Can be used as a unique username
+23: 
+24:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+25: 
+
+
+Stacktrace:] with root cause
+	java.lang.NullPointerException: Cannot invoke "String.split(String)" because "email" is null
+		at org.apache.jsp.views.register_jsp._jspService(register_jsp.java:138)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:67)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 14:18:07.656 SEVERE [http-nio-8080-exec-6] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [An exception occurred processing [/views/register.jsp] at line [22]
+
+19:     String city= request.getParameter("city");
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     String username=email.split("@")[0]; //Can be used as a unique username
+23: 
+24:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+25: 
+
+
+Stacktrace:] with root cause
+	java.lang.NullPointerException: Cannot invoke "String.split(String)" because "email" is null
+		at org.apache.jsp.views.register_jsp._jspService(register_jsp.java:138)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:67)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 14:18:08.127 SEVERE [http-nio-8080-exec-7] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [An exception occurred processing [/views/register.jsp] at line [22]
+
+19:     String city= request.getParameter("city");
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     String username=email.split("@")[0]; //Can be used as a unique username
+23: 
+24:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+25: 
+
+
+Stacktrace:] with root cause
+	java.lang.NullPointerException: Cannot invoke "String.split(String)" because "email" is null
+		at org.apache.jsp.views.register_jsp._jspService(register_jsp.java:138)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:67)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 14:18:16.251 SEVERE [http-nio-8080-exec-3] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [An exception occurred processing [/views/register.jsp] at line [22]
+
+19:     String city= request.getParameter("city");
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     String username=email.split("@")[0]; //Can be used as a unique username
+23: 
+24:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+25: 
+
+
+Stacktrace:] with root cause
+	java.lang.NullPointerException: Cannot invoke "String.split(String)" because "email" is null
+		at org.apache.jsp.views.register_jsp._jspService(register_jsp.java:138)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:67)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 14:18:58.230 SEVERE [http-nio-8080-exec-5] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [An exception occurred processing [/views/register.jsp] at line [22]
+
+19:     String city= request.getParameter("city");
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     String username=email.split("@")[0]; //Can be used as a unique username
+23: 
+24:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+25:     if(customer != null){
+
+
+Stacktrace:] with root cause
+	java.lang.NullPointerException: Cannot invoke "String.split(String)" because "email" is null
+		at org.apache.jsp.views.register_jsp._jspService(register_jsp.java:138)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:67)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 14:18:58.956 SEVERE [http-nio-8080-exec-6] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [An exception occurred processing [/views/register.jsp] at line [22]
+
+19:     String city= request.getParameter("city");
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     String username=email.split("@")[0]; //Can be used as a unique username
+23: 
+24:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+25:     if(customer != null){
+
+
+Stacktrace:] with root cause
+	java.lang.NullPointerException: Cannot invoke "String.split(String)" because "email" is null
+		at org.apache.jsp.views.register_jsp._jspService(register_jsp.java:138)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:67)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 14:18:59.114 SEVERE [http-nio-8080-exec-7] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [An exception occurred processing [/views/register.jsp] at line [22]
+
+19:     String city= request.getParameter("city");
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     String username=email.split("@")[0]; //Can be used as a unique username
+23: 
+24:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+25:     if(customer != null){
+
+
+Stacktrace:] with root cause
+	java.lang.NullPointerException: Cannot invoke "String.split(String)" because "email" is null
+		at org.apache.jsp.views.register_jsp._jspService(register_jsp.java:138)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:67)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 14:20:08.118 SEVERE [http-nio-8080-exec-9] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [An exception occurred processing [/views/register.jsp] at line [22]
+
+19:     String city= request.getParameter("city");
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     String username=email.split("@")[0]; //Can be used as a unique username
+23: 
+24:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+25:     if(customer != null){
+
+
+Stacktrace:] with root cause
+	java.lang.NullPointerException: Cannot invoke "String.split(String)" because "email" is null
+		at org.apache.jsp.views.register_jsp._jspService(register_jsp.java:138)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:67)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 14:20:08.623 SEVERE [http-nio-8080-exec-10] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [An exception occurred processing [/views/register.jsp] at line [22]
+
+19:     String city= request.getParameter("city");
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     String username=email.split("@")[0]; //Can be used as a unique username
+23: 
+24:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+25:     if(customer != null){
+
+
+Stacktrace:] with root cause
+	java.lang.NullPointerException: Cannot invoke "String.split(String)" because "email" is null
+		at org.apache.jsp.views.register_jsp._jspService(register_jsp.java:138)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:67)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 14:20:12.395 SEVERE [http-nio-8080-exec-4] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [An exception occurred processing [/views/register.jsp] at line [22]
+
+19:     String city= request.getParameter("city");
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     String username=email.split("@")[0]; //Can be used as a unique username
+23: 
+24:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+25:     if(customer != null){
+
+
+Stacktrace:] with root cause
+	java.lang.NullPointerException: Cannot invoke "String.split(String)" because "email" is null
+		at org.apache.jsp.views.register_jsp._jspService(register_jsp.java:138)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:67)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 14:21:38.546 SEVERE [http-nio-8080-exec-6] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [27] in the jsp file: [/views/register.jsp]
+username cannot be resolved to a variable
+24:     }
+25: 
+26: 
+27:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+28:     if(customer != null){
+29:         session.setAttribute("loggedIn",customer);
+30:     }
+
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [27] in the jsp file: [/views/register.jsp]
+username cannot be resolved to a variable
+24:     }
+25: 
+26: 
+27:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+28:     if(customer != null){
+29:         session.setAttribute("loggedIn",customer);
+30:     }
+
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:72)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:192)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:524)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:373)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:345)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:331)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:603)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:396)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 14:21:39.288 SEVERE [http-nio-8080-exec-7] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [An exception occurred processing [/views/register.jsp] at line [22]
+
+19:     String city= request.getParameter("city");
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     if(email != null){
+23:         String username=email.split("@")[0]; //Can be used as a unique username
+24:     }
+25: 
+
+
+Stacktrace:] with root cause
+	java.lang.NullPointerException: Cannot invoke "String.split(String)" because "email" is null
+		at org.apache.jsp.views.register_jsp._jspService(register_jsp.java:138)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:67)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 14:23:02.807 SEVERE [http-nio-8080-exec-9] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [29] in the jsp file: [/views/register.jsp]
+userName cannot be resolved to a variable
+26:     }
+27: 
+28: 
+29:     Customer customer = new Customer(userName,firstName,lastName,pw,email);
+30:     if(customer != null){
+31:         session.setAttribute("loggedIn",customer);
+32:     }
+
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [29] in the jsp file: [/views/register.jsp]
+userName cannot be resolved to a variable
+26:     }
+27: 
+28: 
+29:     Customer customer = new Customer(userName,firstName,lastName,pw,email);
+30:     if(customer != null){
+31:         session.setAttribute("loggedIn",customer);
+32:     }
+
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:72)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:192)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:524)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:373)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:345)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:331)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:603)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:396)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 14:23:03.250 SEVERE [http-nio-8080-exec-10] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [An exception occurred processing [/views/register.jsp] at line [22]
+
+19:     String city= request.getParameter("city");
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     if(email != null){
+23:         String userName=email.split("@")[0]; //Can be used as a unique username
+24:     }else{
+25:         String username = firstName;
+
+
+Stacktrace:] with root cause
+	java.lang.NullPointerException: Cannot invoke "String.split(String)" because "email" is null
+		at org.apache.jsp.views.register_jsp._jspService(register_jsp.java:138)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:67)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 14:24:33.164 SEVERE [http-nio-8080-exec-2] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [24] in the jsp file: [/views/register.jsp]
+userName cannot be resolved to a variable
+21:     String country= request.getParameter("country");
+22:     String username = "userName";
+23:     if(email != null){
+24:         userName=email.split("@")[0]; //Can be used as a unique username
+25:     }
+26: 
+27: 
+
+
+An error occurred at line: [28] in the jsp file: [/views/register.jsp]
+userName cannot be resolved to a variable
+25:     }
+26: 
+27: 
+28:     Customer customer = new Customer(userName,firstName,lastName,pw,email);
+29:     session.setAttribute("loggedIn",customer);
+30: 
+31: %>
+
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [24] in the jsp file: [/views/register.jsp]
+userName cannot be resolved to a variable
+21:     String country= request.getParameter("country");
+22:     String username = "userName";
+23:     if(email != null){
+24:         userName=email.split("@")[0]; //Can be used as a unique username
+25:     }
+26: 
+27: 
+
+
+An error occurred at line: [28] in the jsp file: [/views/register.jsp]
+userName cannot be resolved to a variable
+25:     }
+26: 
+27: 
+28:     Customer customer = new Customer(userName,firstName,lastName,pw,email);
+29:     session.setAttribute("loggedIn",customer);
+30: 
+31: %>
+
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:72)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:192)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:524)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:373)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:345)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:331)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:603)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:396)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 14:24:33.818 SEVERE [http-nio-8080-exec-3] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [An exception occurred processing [/views/register.jsp] at line [22]
+
+19:     String city= request.getParameter("city");
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     String username = "userName";
+23:     if(email != null){
+24:         userName=email.split("@")[0]; //Can be used as a unique username
+25:     }
+
+
+Stacktrace:] with root cause
+	java.lang.NullPointerException: Cannot invoke "String.split(String)" because "email" is null
+		at org.apache.jsp.views.register_jsp._jspService(register_jsp.java:138)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:67)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 14:24:34.516 SEVERE [http-nio-8080-exec-4] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [An exception occurred processing [/views/register.jsp] at line [22]
+
+19:     String city= request.getParameter("city");
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     String username = "userName";
+23:     if(email != null){
+24:         userName=email.split("@")[0]; //Can be used as a unique username
+25:     }
+
+
+Stacktrace:] with root cause
+	java.lang.NullPointerException: Cannot invoke "String.split(String)" because "email" is null
+		at org.apache.jsp.views.register_jsp._jspService(register_jsp.java:138)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:67)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 14:24:51.627 SEVERE [http-nio-8080-exec-6] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [25] in the jsp file: [/views/register.jsp]
+userName cannot be resolved to a variable
+22:     String username = "userName";
+23:     
+24:     if(email != null){
+25:         userName=email.split("@")[0]; //Can be used as a unique username
+26:     }
+27: 
+28: 
+
+
+An error occurred at line: [29] in the jsp file: [/views/register.jsp]
+userName cannot be resolved to a variable
+26:     }
+27: 
+28: 
+29:     Customer customer = new Customer(userName,firstName,lastName,pw,email);
+30:     session.setAttribute("loggedIn",customer);
+31: 
+32: %>
+
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [25] in the jsp file: [/views/register.jsp]
+userName cannot be resolved to a variable
+22:     String username = "userName";
+23:     
+24:     if(email != null){
+25:         userName=email.split("@")[0]; //Can be used as a unique username
+26:     }
+27: 
+28: 
+
+
+An error occurred at line: [29] in the jsp file: [/views/register.jsp]
+userName cannot be resolved to a variable
+26:     }
+27: 
+28: 
+29:     Customer customer = new Customer(userName,firstName,lastName,pw,email);
+30:     session.setAttribute("loggedIn",customer);
+31: 
+32: %>
+
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:72)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:192)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:524)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:373)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:345)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:331)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:603)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:396)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 14:24:52.204 SEVERE [http-nio-8080-exec-7] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [An exception occurred processing [/views/register.jsp] at line [22]
+
+19:     String city= request.getParameter("city");
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     String username = "userName";
+23:     
+24:     if(email != null){
+25:         userName=email.split("@")[0]; //Can be used as a unique username
+
+
+Stacktrace:] with root cause
+	java.lang.NullPointerException: Cannot invoke "String.split(String)" because "email" is null
+		at org.apache.jsp.views.register_jsp._jspService(register_jsp.java:138)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:67)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 14:24:52.964 SEVERE [http-nio-8080-exec-8] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [An exception occurred processing [/views/register.jsp] at line [22]
+
+19:     String city= request.getParameter("city");
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     String username = "userName";
+23:     
+24:     if(email != null){
+25:         userName=email.split("@")[0]; //Can be used as a unique username
+
+
+Stacktrace:] with root cause
+	java.lang.NullPointerException: Cannot invoke "String.split(String)" because "email" is null
+		at org.apache.jsp.views.register_jsp._jspService(register_jsp.java:138)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:67)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 14:25:44.026 SEVERE [http-nio-8080-exec-10] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [25] in the jsp file: [/views/register.jsp]
+userName cannot be resolved to a variable
+22:     String username = "userName";
+23: 
+24:     if(email != null){
+25:         userName=email.split("@")[0]; //Can be used as a unique username
+26:     }
+27: 
+28: 
+
+
+Stacktrace:] with root cause
+	org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [25] in the jsp file: [/views/register.jsp]
+userName cannot be resolved to a variable
+22:     String username = "userName";
+23: 
+24:     if(email != null){
+25:         userName=email.split("@")[0]; //Can be used as a unique username
+26:     }
+27: 
+28: 
+
+
+Stacktrace:
+		at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:72)
+		at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:192)
+		at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:524)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:373)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:345)
+		at org.apache.jasper.compiler.Compiler.compile(Compiler.java:331)
+		at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:603)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:396)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 14:25:44.561 SEVERE [http-nio-8080-exec-1] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [An exception occurred processing [/views/register.jsp] at line [22]
+
+19:     String city= request.getParameter("city");
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     String username = "userName";
+23: 
+24:     if(email != null){
+25:         userName=email.split("@")[0]; //Can be used as a unique username
+
+
+Stacktrace:] with root cause
+	java.lang.NullPointerException: Cannot invoke "String.split(String)" because "email" is null
+		at org.apache.jsp.views.register_jsp._jspService(register_jsp.java:138)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:67)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 14:28:30.039 SEVERE [http-nio-8080-exec-4] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [An exception occurred processing [/views/register.jsp] at line [22]
+
+19:     String city= request.getParameter("city");
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     String username = email.split("@")[0];
+23: 
+24:     Customer customer = new Customer(username,firstName,lastName,pw,email);
+25:     session.setAttribute("loggedIn",customer);
+
+
+Stacktrace:] with root cause
+	java.lang.NullPointerException: Cannot invoke "String.split(String)" because "email" is null
+		at org.apache.jsp.views.register_jsp._jspService(register_jsp.java:138)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:67)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 14:28:40.239 SEVERE [http-nio-8080-exec-7] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [An exception occurred processing [/views/register.jsp] at line [22]
+
+19:     String city= request.getParameter("city");
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     String username = email.split("@")[0];
+23: 
+24:     if(email != null){
+25:         username=email.split("@")[0]; //Can be used as a unique username
+
+
+Stacktrace:] with root cause
+	java.lang.NullPointerException: Cannot invoke "String.split(String)" because "email" is null
+		at org.apache.jsp.views.register_jsp._jspService(register_jsp.java:138)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:67)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 14:28:40.855 SEVERE [http-nio-8080-exec-9] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [An exception occurred processing [/views/register.jsp] at line [22]
+
+19:     String city= request.getParameter("city");
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     String username = email.split("@")[0];
+23: 
+24:     if(email != null){
+25:         username=email.split("@")[0]; //Can be used as a unique username
+
+
+Stacktrace:] with root cause
+	java.lang.NullPointerException: Cannot invoke "String.split(String)" because "email" is null
+		at org.apache.jsp.views.register_jsp._jspService(register_jsp.java:138)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:67)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 14:28:41.065 SEVERE [http-nio-8080-exec-8] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [An exception occurred processing [/views/register.jsp] at line [22]
+
+19:     String city= request.getParameter("city");
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     String username = email.split("@")[0];
+23: 
+24:     if(email != null){
+25:         username=email.split("@")[0]; //Can be used as a unique username
+
+
+Stacktrace:] with root cause
+	java.lang.NullPointerException: Cannot invoke "String.split(String)" because "email" is null
+		at org.apache.jsp.views.register_jsp._jspService(register_jsp.java:138)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:67)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 14:28:43.016 SEVERE [http-nio-8080-exec-1] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [An exception occurred processing [/views/register.jsp] at line [22]
+
+19:     String city= request.getParameter("city");
+20:     String postalCode= request.getParameter("postalCode");
+21:     String country= request.getParameter("country");
+22:     String username = email.split("@")[0];
+23: 
+24:     if(email != null){
+25:         username=email.split("@")[0]; //Can be used as a unique username
+
+
+Stacktrace:] with root cause
+	java.lang.NullPointerException: Cannot invoke "String.split(String)" because "email" is null
+		at org.apache.jsp.views.register_jsp._jspService(register_jsp.java:138)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:67)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 14:37:50.828 SEVERE [http-nio-8080-exec-2] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [An exception occurred processing [/views/main.jsp] at line [41]
+
+38:     <menu class="icon">
+39:         <a href="">
+40:             <i class="fa-solid fa-circle-user fa-2x"></i>
+41:             <span><%= customer.getFirstName() != null ? customer.getFirstName() : "Customer" %></span>
+42:         </a>
+43:         <a href="">
+44:             <i class="fa-solid fa-magnifying-glass fa-2x"></i>
+
+
+Stacktrace:] with root cause
+	java.lang.NullPointerException: Cannot invoke "com.bean.Customer.getFirstName()" because "customer" is null
+		at org.apache.jsp.views.main_jsp._jspService(main_jsp.java:159)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:67)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 14:37:55.638 SEVERE [http-nio-8080-exec-5] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [An exception occurred processing [/views/main.jsp] at line [41]
+
+38:     <menu class="icon">
+39:         <a href="">
+40:             <i class="fa-solid fa-circle-user fa-2x"></i>
+41:             <span><%= customer.getFirstName() != null ? customer.getFirstName() : "Customer" %></span>
+42:         </a>
+43:         <a href="">
+44:             <i class="fa-solid fa-magnifying-glass fa-2x"></i>
+
+
+Stacktrace:] with root cause
+	java.lang.NullPointerException: Cannot invoke "com.bean.Customer.getFirstName()" because "customer" is null
+		at org.apache.jsp.views.main_jsp._jspService(main_jsp.java:159)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:67)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+31-Mar-2025 14:37:58.340 SEVERE [http-nio-8080-exec-4] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/iotBay] threw exception [An exception occurred processing [/views/welcome.jsp] at line [36]
+
+33:     <menu class="icon">
+34:         <a href="">
+35:             <i class="fa-solid fa-circle-user fa-2x"></i>
+36:             <span><%= customer.getFirstName() != null ? customer.getFirstName() : "Customer" %></span>
+37:         </a>
+38:         <a href="">
+39:             <i class="fa-solid fa-magnifying-glass fa-2x"></i>
+
+
+Stacktrace:] with root cause
+	java.lang.NullPointerException: Cannot invoke "com.bean.Customer.getFirstName()" because "customer" is null
+		at org.apache.jsp.views.welcome_jsp._jspService(welcome_jsp.java:154)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:67)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:456)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:377)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:325)
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:663)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)

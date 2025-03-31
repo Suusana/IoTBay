@@ -6,8 +6,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="com.bean.Customer" %>
 <html>
-
+<%
+    Customer customer = (Customer)session.getAttribute("loggedIn");
+%>
 <head>
     <title>Main</title>
     <link rel="stylesheet" href="../assets/css/base.css">
@@ -35,7 +38,7 @@
     <menu class="icon">
         <a href="">
             <i class="fa-solid fa-circle-user fa-2x"></i>
-            <span>Name</span>
+            <span><%= customer.getFirstName() != null ? customer.getFirstName() : "Customer" %></span>
         </a>
         <a href="">
             <i class="fa-solid fa-magnifying-glass fa-2x"></i>
