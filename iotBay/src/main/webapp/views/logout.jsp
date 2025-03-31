@@ -34,29 +34,6 @@
     <a href="./main.jsp">
         <img src="../assets/img/Logo.png" alt="IotBay Logo">
     </a>
-    <!-- menu -->
-    <menu>
-        <a href=""><span>Home</span></a>
-        <a href=""><span>Shop</span></a>
-        <a href=""><span>Order</span></a>
-        <a href=""><span>Category</span></a>
-    </menu>
-
-    <!-- icon menu -->
-    <menu class="icon">
-        <a href="">
-            <i class="fa-solid fa-circle-user fa-2x"></i>
-            <span>Customer</span>
-        </a>
-        <a href="">
-            <i class="fa-solid fa-magnifying-glass fa-2x"></i>
-            <span>Search</span>
-        </a>
-        <a href="">
-            <i class="fa-solid fa-cart-shopping fa-2x"></i>
-            <span>Cart</span>
-        </a>
-    </menu>
 </div>
 
 <!-- main body -->
