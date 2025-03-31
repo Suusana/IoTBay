@@ -55,8 +55,6 @@
     customer.setCity(city);
     customer.setState(state);
     customer.setCountry(country);
-    customer.setAddress(address);
-    customer.setAddress(address);
 
     session.setAttribute("loggedIn", customer);
     if ("POST".equalsIgnoreCase(request.getMethod())) {
