@@ -41,6 +41,7 @@
 %>
 <head>
     <title>Welcome</title>
+    <meta http-equiv="refresh" content="3;url=./main.jsp">
     <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="stylesheet" href="../assets/css/HeaderAndFooter.css">
     <link rel="stylesheet" href="../assets/css/main.css">
