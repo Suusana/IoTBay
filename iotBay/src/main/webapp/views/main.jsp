@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.bean.Customer" %>
+<%@ page import="com.enums.Status" %>
 <html>
 <%
     Customer customer = (Customer)session.getAttribute("loggedIn");
@@ -38,7 +39,7 @@
     <menu class="icon">
         <a href="">
             <i class="fa-solid fa-circle-user fa-2x"></i>
-            <span><%= customer.getFirstName() != null ? customer.getFirstName() : "Customer" %></span>
+            <span><%= customer.getFirstName() != null ? customer.getFirstName() : Status.GUEST.getStatus()%></span>
         </a>
         <a href="">
             <i class="fa-solid fa-magnifying-glass fa-2x"></i>
