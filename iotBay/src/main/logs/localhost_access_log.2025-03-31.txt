@@ -207,3 +207,13 @@
 0:0:0:0:0:0:0:1 - - [31/Mar/2025:14:50:24 +1100] "GET /iotBay/views/register.jsp HTTP/1.1" 200 4084
 0:0:0:0:0:0:0:1 - - [31/Mar/2025:14:50:31 +1100] "POST /iotBay/views/register.jsp HTTP/1.1" 302 -
 0:0:0:0:0:0:0:1 - - [31/Mar/2025:14:50:31 +1100] "GET /iotBay/views/welcome.jsp HTTP/1.1" 200 3273
+0:0:0:0:0:0:0:1 - - [31/Mar/2025:19:20:30 +1100] "GET /iotBay HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [31/Mar/2025:19:20:32 +1100] "GET /iotBay/ HTTP/1.1" 200 2472
+0:0:0:0:0:0:0:1 - - [31/Mar/2025:19:20:32 +1100] "GET /iotBay/assets/css/base.css HTTP/1.1" 200 1076
+0:0:0:0:0:0:0:1 - - [31/Mar/2025:19:20:32 +1100] "GET /iotBay/assets/css/landing.css HTTP/1.1" 200 1017
+0:0:0:0:0:0:0:1 - - [31/Mar/2025:19:20:32 +1100] "GET /iotBay/assets/img/Logo.png HTTP/1.1" 200 83838
+0:0:0:0:0:0:0:1 - - [31/Mar/2025:19:20:32 +1100] "GET /iotBay/assets/css/HeaderAndFooter.css HTTP/1.1" 200 863
+0:0:0:0:0:0:0:1 - - [31/Mar/2025:19:20:37 +1100] "GET /iotBay/views/register.jsp HTTP/1.1" 200 4084
+0:0:0:0:0:0:0:1 - - [31/Mar/2025:19:20:37 +1100] "GET /iotBay/assets/css/register.css HTTP/1.1" 200 905
+0:0:0:0:0:0:0:1 - - [31/Mar/2025:19:22:23 +1100] "POST /iotBay/views/register.jsp HTTP/1.1" 500 3928
+0:0:0:0:0:0:0:1 - - [31/Mar/2025:19:22:38 +1100] "POST /iotBay/views/register.jsp HTTP/1.1" 500 3928
