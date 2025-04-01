@@ -18,7 +18,7 @@ function checkValidity(event) {
         event.preventDefault()
         valid=false;
     }
-    return valid;
+
 
     //check phoneNumber
     const phoneNumber = document.getElementById("phoneNumber")
@@ -27,6 +27,7 @@ function checkValidity(event) {
         event.preventDefault()
         valid=false;
     }
+
     const pattern= /^0\d{9}/; // ^0 : start with 0, /d{9} : 9 digit
     if(!pattern.test(phoneNumber.value)){
         alert("phone number should start with 0 and without \"-\" dash");
@@ -41,8 +42,23 @@ function checkValidity(event) {
         event.preventDefault()
         valid=false;
     }
-
-
+    //City should be string not number
+    const addressCity = document.getElementById("city")
+    const addressCityPattern = /^[a-zA-Z]/
+    if(!addressCityPattern.test(addressCity.value)){
+        alert("City name should be letters not number");
+        event.preventDefault()
+        valid=false;
+    }
+    //Country should be string
+    const addressCountry = document.getElementById("country")
+    const addressCountryPattern = /^[a-zA-Z]/
+    if(!addressCountryPattern.test(addressCountry.value)){
+        alert("Country name should be letters not number");
+        event.preventDefault()
+        valid=false;
+    }
+    return valid;
 }
 document.addEventListener("submit",checkValidity)
 
