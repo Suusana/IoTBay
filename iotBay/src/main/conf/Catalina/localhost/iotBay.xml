@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Context docBase="/Users/yunseo/Documents/ISD/IoTBay/iotBay/src/main/webapp">
-  <Resources cacheMaxSize="10240">
-    <PreResources base="/Users/yunseo/Documents/ISD/IoTBay/iotBay/target/classes" className="org.apache.catalina.webresources.DirResourceSet" webAppMount="/WEB-INF/classes"/>
-  </Resources>
-</Context>
