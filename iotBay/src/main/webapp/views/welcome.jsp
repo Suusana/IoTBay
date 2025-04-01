@@ -11,7 +11,8 @@
 <html>
 <%
     // Using JavaBeans (Customer)
-    Customer customer = (Customer) session.getAttribute("loggedIn");
+    Customer customer = (Customer) session.getAttribute("registeredUser");
+    Boolean loggedIn = (Boolean) session.getAttribute("loggedIn");
 
     // In case no session is set (to avoid the email: unknown issue)
     // create a temporary Customer using the submitted form data
@@ -23,7 +24,7 @@
             customer = new Customer();
             customer.setFirstName(firstName);
             customer.setEmail(email);
-            session.setAttribute("loggedIn", customer);
+            session.setAttribute("registeredUser", customer);
         }
     }
 
@@ -42,6 +43,11 @@
         if (customer.getFirstName() != null && !customer.getFirstName().isEmpty()) {
             displayName = customer.getFirstName();
         }
+    }
+
+    if (!loggedIn) {
+        response.sendRedirect("login.jsp");
+        return;
     }
 %>
 <head>

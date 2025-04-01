@@ -10,7 +10,7 @@
 <%@ page import="com.enums.Status" %>
 <html>
 <%
-    Customer customer = (Customer)session.getAttribute("loggedIn");
+    Customer customer = (Customer)session.getAttribute("registeredUser");
 %>
 <head>
     <title>Main</title>

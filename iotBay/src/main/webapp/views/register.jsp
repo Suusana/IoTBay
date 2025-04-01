@@ -57,7 +57,8 @@
     customer.setState(state);
     customer.setCountry(country);
 
-    session.setAttribute("loggedIn", customer);
+    session.setAttribute("registeredUser", customer);
+    session.setAttribute("loggedIn", Boolean.FALSE);
     if ("POST".equalsIgnoreCase(request.getMethod())) {
         response.sendRedirect("./welcome.jsp");
         return;
