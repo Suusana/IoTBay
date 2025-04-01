@@ -44,5 +44,11 @@ function checkValidity(event) {
 
 
 }
-
 document.addEventListener("submit",checkValidity)
+
+function hideMsg(){
+    const msg = document.getElementById("errorMsg");
+    if (msg) {
+        msg.style.visibility = "hidden";
+    }
+}

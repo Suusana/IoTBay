@@ -14,7 +14,6 @@
     String password = request.getParameter("password");
 
     if ("POST".equalsIgnoreCase(request.getMethod())) {
-
         if (customer != null && email.equalsIgnoreCase(customer.getEmail()) && password.equals(customer.getPassword())) {
             session.setAttribute("loggedIn", Boolean.TRUE);
             response.sendRedirect("./welcome.jsp");
@@ -30,6 +29,7 @@
     <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="stylesheet" href="../assets/css/login.css">
     <link rel="stylesheet" href="../assets/css/HeaderAndFooter.css">
+    <script src="../assets/js/UIHandler.js"></script>
 </head>
 
 <body>
@@ -46,19 +46,19 @@
     <%--Login Form--%>
     <form action="login.jsp" method="post">
         <label for="email">Email Address</label>
-        <input id="email" name="email" type="text" placeholder="Email@site.com" required/>
+        <input id="email" name="email" type="text" placeholder="Email@site.com" onclick="hideMsg()" required/>
 
         <label for="password">Password</label>
-        <input id="password" name="password" type="password" placeholder="Your password" required/>
+        <input id="password" name="password" type="password" placeholder="Your password" onclick="hideMsg()" required/>
 
         <%
             String errorMessage = (String) request.getAttribute("error");
-            if (errorMessage != null) {
+            boolean hasError = errorMessage != null;
         %>
-        <p style="color:red"><%=errorMessage%></p>
-        <%
-            }
-        %>
+        <p id="errorMsg"
+           style="color: red; visibility: <%= hasError ? "visible" : "hidden" %>;">
+            <%=errorMessage%>
+        </p>
 
         <input id="loginBtn" type="submit" value="Login" style="cursor: pointer;"/>
     </form>
