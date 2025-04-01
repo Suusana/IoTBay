@@ -2,10 +2,10 @@
 <%@ page import="com.bean.Customer" %>
 <%
     HttpSession LoggedInCustomer = request.getSession(false);
-    if(LoggedInCustomer != null) {
-        session.invalidate();
+   // if(LoggedInCustomer != null) { // this caused error from line 48
+        //session.invalidate();
         //LoggedInCustomer.removeAttribute("loggedIn");
-    }
+   // }
 %>
 <html>
 <head>
@@ -27,10 +27,12 @@
         </div>
 
         <h2 class="logout-subtitle">Are you sure you want to log out?</h2>
+        <!--
         <form action="logout.jsp" method="post">
             <input type="hidden" name="choice" value="yes" />
             <button type="submit">Yes</button>
         </form>
+        -->
         <div class="logout-button">
             <form action="logout.jsp" method="post">
                 <input type="hidden" name="choice" value="yes" />
@@ -45,12 +47,12 @@
             <%
                 String choice = request.getParameter("choice");
                 if(choice != null){
-                    session.setAttribute("logoutChoice, choice");
+                    session.setAttribute("logoutChoice", choice);
                 }
 
                 if("yes".equals(choice)){
                     session.invalidate();
-                    response.sendRedirect("index.jsp");
+                    response.sendRedirect("../index.jsp");
                 }else if("no".equals(choice)){
                     response.sendRedirect("main.jsp");
                 }
