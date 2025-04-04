@@ -29,7 +29,7 @@
     </a>
     <!-- menu -->
     <menu>
-        <a href=""><span>Home</span></a>
+        <a href=""><span class="selected">Home</span></a>
         <a href=""><span>Shop</span></a>
         <a href=""><span>Order</span></a>
         <a href=""><span>Category</span></a>

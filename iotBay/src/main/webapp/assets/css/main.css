@@ -53,6 +53,12 @@
     background-color: #a67224;
 }
 
+.selected{
+    color: #ff8400;
+    font-weight: 900;
+    text-decoration: underline;
+}
+
 .title {
     font-size: 40px;
     font-weight: 800;

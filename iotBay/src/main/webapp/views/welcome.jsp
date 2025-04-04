@@ -63,14 +63,14 @@
     <h1>Welcome, <%= displayName %>!</h1>
     <p>Your email: <strong><%= displayEmail %></strong></p>
     <p class="description">We're excited to have you join IoTBay. Start exploring now!</p>
-    <p>Will jump to the homepage within 3 seconds.</p>
+<%--    <p>Will jump to the homepage within 3 seconds.</p>--%>
     <!-- Go to Main Page -->
     <a href="main.jsp"><button class="style1">Go to Main Page</button></a>
 </div>
-<script>
-    setTimeout(()=>{
-        window.location.href = "main.jsp";
-    },3000)
-</script>
+<%--<script>--%>
+<%--    setTimeout(()=>{--%>
+<%--        window.location.href = "main.jsp";--%>
+<%--    },3000)--%>
+<%--</script>--%>
 </body>
 </html>

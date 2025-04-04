@@ -10,7 +10,7 @@
 <%@ page import="com.enums.State" %>
 <%@ page import="com.enums.Status" %>
 <%
-    //    generate a unique id
+    // generate a unique id
     long currentTime = System.currentTimeMillis();
     int randomPart = (int) (Math.random() * 1000);
     long id = currentTime * 1000 + randomPart;
@@ -43,7 +43,6 @@
         Integer postal = Integer.parseInt(postalCode);
         customer.setPostcode(postal);
     }
-
 
     customer.setUserId(id);
     customer.setUsername(username);
@@ -112,7 +111,7 @@
                        placeholder="Enter your password"/>
             </div>
             <div>
-                <label for="confirmPassword">Confirm Password</label><br>
+                <label for="ConfirmPassword">Confirm Password</label><br>
                 <input id="ConfirmPassword" name="ConfirmPassword" type="password" required minlength="6"
                        placeholder="Confirm your password"/>
             </div>
@@ -133,6 +132,7 @@
                     <label for="city">City</label><br>
                     <input id="city" name="city" type="text" required placeholder="City">
                 </div>
+
             </div>
             <div class="container">
                 <div>

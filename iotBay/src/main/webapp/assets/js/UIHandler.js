@@ -19,7 +19,6 @@ function checkValidity(event) {
         valid=false;
     }
 
-
     //check phoneNumber
     const phoneNumber = document.getElementById("phoneNumber")
     if(phoneNumber.value.length !== 10){

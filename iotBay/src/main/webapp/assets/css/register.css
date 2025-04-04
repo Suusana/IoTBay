@@ -78,3 +78,9 @@ select {
 .buttons {
     text-align: center;
 }
+
+/* Adds asterisk to labels for required inputs */
+label:has(+ input:required):after {
+    content: ' *';
+    color: red;
+}
