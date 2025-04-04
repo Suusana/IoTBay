@@ -1,6 +1,6 @@
 package com.bean;
-
-public class Product {
+import java.io.Serializable;
+public class Product implements Serializable {
     private Long productId;
     private String productName;
     private Integer quantity;

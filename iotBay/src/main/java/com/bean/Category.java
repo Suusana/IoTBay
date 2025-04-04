@@ -1,8 +1,8 @@
 package com.bean;
 
 import java.util.List;
-
-public class Category {
+import java.io.Serializable;
+public class Category implements Serializable {
     private Long categoryId;
     private String category;
 

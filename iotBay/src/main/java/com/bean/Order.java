@@ -3,8 +3,8 @@ package com.bean;
 import com.enums.OrderStatus;
 
 import java.util.Date;
-
-public class Order {
+import java.io.Serializable;
+public class Order implements Serializable {
     private Long orderId;
     private Date createDate;
     private OrderStatus orderStatus;

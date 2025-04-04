@@ -1,8 +1,8 @@
 package com.bean;
 
 import java.util.List;
-
-public class Cart {
+import java.io.Serializable;
+public class Cart implements Serializable {
     private Long cartId;
     private Long userId;
     private List<Product> products;

@@ -3,8 +3,8 @@ package com.bean;
 import com.enums.Title;
 
 import java.util.Date;
-
-public class Application {
+import java.io.Serializable;
+public class Application implements Serializable {
     private Long applicationId;
     private Title title;
     private String description;

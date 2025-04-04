@@ -1,6 +1,6 @@
 package com.bean;
-
-public class Staff {
+import java.io.Serializable;
+public class Staff implements Serializable {
     private Long staffId;
     private String staffName;
     private String password;

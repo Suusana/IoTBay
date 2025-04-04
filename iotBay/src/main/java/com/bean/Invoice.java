@@ -2,8 +2,8 @@ package com.bean;
 
 import java.util.Date;
 import java.util.List;
-
-public class Invoice {
+import java.io.Serializable;
+public class Invoice implements Serializable {
     private Long invoiceId;
     private Integer totalPrice;
     private Date createDate;
