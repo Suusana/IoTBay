@@ -1,7 +1,7 @@
 package com.bean;
 import java.io.Serializable;
 public class Product implements Serializable {
-    private Long productId;
+    private Integer productId;
     private String productName;
     private Integer quantity;
     private Double price;
@@ -12,7 +12,7 @@ public class Product implements Serializable {
     public Product() {
     }
 
-    public Product(Long productId, String productName, Integer quantity, Double price,
+    public Product(Integer productId, String productName, Integer quantity, Double price,
                    String description, String image, Category category) {
         this.productId = productId;
         this.productName = productName;
@@ -23,11 +23,11 @@ public class Product implements Serializable {
         this.category = category;
     }
 
-    public Long getProductId() {
+    public Integer getProductId() {
         return productId;
     }
 
-    public void setProductId(Long productId) {
+    public void setProductId(Integer productId) {
         this.productId = productId;
     }
 

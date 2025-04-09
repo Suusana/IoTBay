@@ -5,7 +5,7 @@ import com.enums.Title;
 import java.util.Date;
 import java.io.Serializable;
 public class Application implements Serializable {
-    private Long applicationId;
+    private Integer applicationId;
     private Title title;
     private String description;
     private Date createDate;
@@ -15,7 +15,7 @@ public class Application implements Serializable {
     public Application() {
     }
 
-    public Application(Long applicationId, Title title, String description, Date createDate, Date updateDate, Integer userId) {
+    public Application(Integer applicationId, Title title, String description, Date createDate, Date updateDate, Integer userId) {
         this.applicationId = applicationId;
         this.title = title;
         this.description = description;
@@ -24,11 +24,11 @@ public class Application implements Serializable {
         this.userId = userId;
     }
 
-    public Long getApplicationId() {
+    public Integer getApplicationId() {
         return applicationId;
     }
 
-    public void setApplicationId(Long applicationId) {
+    public void setApplicationId(Integer applicationId) {
         this.applicationId = applicationId;
     }
 

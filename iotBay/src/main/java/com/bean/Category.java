@@ -1,24 +1,23 @@
 package com.bean;
 
-import java.util.List;
 import java.io.Serializable;
 public class Category implements Serializable {
-    private Long categoryId;
+    private Integer categoryId;
     private String category;
 
     public Category() {
     }
 
-    public Category(Long categoryId, String category) {
+    public Category(Integer categoryId, String category) {
         this.categoryId = categoryId;
         this.category = category;
     }
 
-    public Long getCategoryId() {
+    public Integer getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(Long categoryId) {
+    public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
     }
 

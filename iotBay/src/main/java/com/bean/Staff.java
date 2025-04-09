@@ -1,7 +1,7 @@
 package com.bean;
 import java.io.Serializable;
 public class Staff implements Serializable {
-    private Long staffId;
+    private Integer staffId;
     private String staffName;
     private String password;
     private Long phoneNum;
@@ -9,18 +9,18 @@ public class Staff implements Serializable {
     public Staff() {
     }
 
-    public Staff(Long staffId, String staffName, String password, Long phoneNum) {
+    public Staff(Integer staffId, String staffName, String password, Long phoneNum) {
         this.staffId = staffId;
         this.staffName = staffName;
         this.password = password;
         this.phoneNum = phoneNum;
     }
 
-    public Long getStaffId() {
+    public Integer getStaffId() {
         return staffId;
     }
 
-    public void setStaffId(Long staffId) {
+    public void setStaffId(Integer staffId) {
         this.staffId = staffId;
     }
 

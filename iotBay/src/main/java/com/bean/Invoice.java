@@ -1,10 +1,9 @@
 package com.bean;
 
 import java.util.Date;
-import java.util.List;
 import java.io.Serializable;
 public class Invoice implements Serializable {
-    private Long invoiceId;
+    private Integer invoiceId;
     private Integer totalPrice;
     private Date createDate;
     private Order order;
@@ -12,18 +11,18 @@ public class Invoice implements Serializable {
     public Invoice() {
     }
 
-    public Invoice(Long invoiceId, Integer totalPrice, Date createDate, Order order) {
+    public Invoice(Integer invoiceId, Integer totalPrice, Date createDate, Order order) {
         this.invoiceId = invoiceId;
         this.totalPrice = totalPrice;
         this.createDate = createDate;
         this.order = order;
     }
 
-    public Long getInvoiceId() {
+    public Integer getInvoiceId() {
         return invoiceId;
     }
 
-    public void setInvoiceId(Long invoiceId) {
+    public void setInvoiceId(Integer invoiceId) {
         this.invoiceId = invoiceId;
     }
 

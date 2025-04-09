@@ -3,7 +3,7 @@ package com.bean;
 import java.util.List;
 import java.io.Serializable;
 public class Cart implements Serializable {
-    private Long cartId;
+    private Integer cartId;
     private Long userId;
     private List<Product> products;
     private double totalPrice;
@@ -11,7 +11,7 @@ public class Cart implements Serializable {
     public Cart() {
     }
 
-    public Cart(Long cartId, Long userId, List<Product> products, double totalPrice) {
+    public Cart(Integer cartId, Long userId, List<Product> products, double totalPrice) {
         this.cartId = cartId;
         this.userId = userId;
         this.products = products;
@@ -42,11 +42,11 @@ public class Cart implements Serializable {
         this.userId = userId;
     }
 
-    public Long getCartId() {
+    public Integer getCartId() {
         return cartId;
     }
 
-    public void setCartId(Long cartId) {
+    public void setCartId(Integer cartId) {
         this.cartId = cartId;
     }
 }

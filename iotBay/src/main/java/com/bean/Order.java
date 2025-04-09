@@ -5,7 +5,7 @@ import com.enums.OrderStatus;
 import java.util.Date;
 import java.io.Serializable;
 public class Order implements Serializable {
-    private Long orderId;
+    private Integer orderId;
     private Date createDate;
     private OrderStatus orderStatus;
     private Integer[] productIds;
@@ -14,7 +14,7 @@ public class Order implements Serializable {
     public Order() {
     }
 
-    public Order(Long orderId, Date createDate, OrderStatus orderStatus, Integer[] productIds, Customer buyer) {
+    public Order(Integer orderId, Date createDate, OrderStatus orderStatus, Integer[] productIds, Customer buyer) {
         this.orderId = orderId;
         this.createDate = createDate;
         this.orderStatus = orderStatus;
@@ -22,11 +22,11 @@ public class Order implements Serializable {
         this.buyer = buyer;
     }
 
-    public Long getOrderId() {
+    public Integer getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(Long orderId) {
+    public void setOrderId(Integer orderId) {
         this.orderId = orderId;
     }
 
