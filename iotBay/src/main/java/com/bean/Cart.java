@@ -4,14 +4,14 @@ import java.util.List;
 import java.io.Serializable;
 public class Cart implements Serializable {
     private Integer cartId;
-    private Long userId;
+    private Integer userId;
     private List<Product> products;
     private double totalPrice;
 
     public Cart() {
     }
 
-    public Cart(Integer cartId, Long userId, List<Product> products, double totalPrice) {
+    public Cart(Integer cartId, Integer userId, List<Product> products, double totalPrice) {
         this.cartId = cartId;
         this.userId = userId;
         this.products = products;
@@ -34,11 +34,11 @@ public class Cart implements Serializable {
         this.products = products;
     }
 
-    public Long getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
