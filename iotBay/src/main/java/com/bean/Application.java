@@ -6,7 +6,7 @@ import java.util.Date;
 import java.io.Serializable;
 public class Application implements Serializable {
     private Integer applicationId;
-    private Title title;
+    private String title;
     private String description;
     private Date createDate;
     private Date updateDate;
@@ -15,7 +15,7 @@ public class Application implements Serializable {
     public Application() {
     }
 
-    public Application(Integer applicationId, Title title, String description, Date createDate, Date updateDate, Integer userId) {
+    public Application(Integer applicationId, String title, String description, Date createDate, Date updateDate, Integer userId) {
         this.applicationId = applicationId;
         this.title = title;
         this.description = description;
@@ -32,11 +32,11 @@ public class Application implements Serializable {
         this.applicationId = applicationId;
     }
 
-    public Title getTitle() {
+    public String getTitle() {
         return title;
     }
 
-    public void setTitle(Title title) {
+    public void setTitle(String title) {
         this.title = title;
     }
 
