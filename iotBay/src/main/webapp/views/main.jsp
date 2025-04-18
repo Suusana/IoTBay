@@ -45,7 +45,7 @@
             <i class="fa-solid fa-magnifying-glass fa-2x"></i>
             <span>Search</span>
         </a>
-        <a href="">
+        <a href="./cart.jsp">
             <i class="fa-solid fa-cart-shopping fa-2x"></i>
             <span>Cart</span>
         </a>
