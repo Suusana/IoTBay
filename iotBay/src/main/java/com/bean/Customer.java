@@ -2,7 +2,7 @@ package com.bean;
 
 import java.io.Serializable;
 public class Customer implements Serializable {
-    private Integer userId;
+    private long userId;
     private String username;
     private String password;
     private String firstName;
@@ -20,7 +20,7 @@ public class Customer implements Serializable {
     public Customer() {
     }
 
-    public Customer(Integer userId, String username, String password, String firstName, String lastName, Long phone,
+    public Customer(long userId, String username, String password, String firstName, String lastName, Long phone,
                     String email, String status, String address, String city, String state, Integer postcode,
                     String country, String[] history) {
         this.userId = userId;
@@ -39,11 +39,11 @@ public class Customer implements Serializable {
         this.history = history;
     }
 
-    public Integer getUserId() {
+    public long getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 
