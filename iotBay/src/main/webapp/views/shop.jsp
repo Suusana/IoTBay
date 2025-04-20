@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: yunseo
-  Date: 19/03/2025
-  Time: 2:09 PM
+  Date: 19/04/2025
+  Time: 2:38 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -13,10 +13,11 @@
     Customer customer = (Customer)session.getAttribute("registeredUser");
 %>
 <head>
-    <title>Main</title>
+    <title>Shop</title>
     <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="stylesheet" href="../assets/css/HeaderAndFooter.css">
     <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/shop.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
@@ -29,8 +30,8 @@
     </a>
     <!-- menu -->
     <menu>
-        <a href=""><span class="selected">Home</span></a>
-        <a href="shop.jsp"><span>Shop</span></a>
+        <a href="main.jsp"><span>Home</span></a>
+        <a href="shop.jsp"><span class="selected">Shop</span></a>
         <a href=""><span>Order</span></a>
         <a href=""><span>Category</span></a>
     </menu>
@@ -57,65 +58,29 @@
     </menu>
 </div>
 <!-- main body -->
-<div class="mainBody">
-    <div class="banner">
-        <img src="../assets/img/example.jpg" alt="Banner Img">
-        <div class="intro">
-            <h5>New Arrival</h5>
-            <p>Discover Our New Collection</p>
-            <span>This is a new Iot Device. This is a new Iot Device.This is a new Iot DeviceThis is a new Iot DeviceThis is
-          a new Iot Device</span>
-            <br><button class="style1">Buy Now</button>
-        </div>
-    </div>
-
-    <h5 class="title">Our Products</h5>
-        <div class="Products">
-    <%
-        for (int i = 0; i < 8; i++) {
-    %>
-                <a href="" class="card">
-                    <img src="../assets/img/example.jpg" alt="Device">
-                    <h5>IOT Device</h5>
-                    <p>This is an Introduction. This is an IntroductionThis is an Introduction. This is an Introduction</p>
-                    <span>$1500.00</span>
-                </a>
-    <%
-        }
-    %>
-        </div>
-    <a href=""><button class="style1">Show More</button></a>
-
-    <div class="orderIntro">
-        <div>
-            <h5>Want to manage your orders?</h5>
-            <p>Manage all of your orders and track your purchases easily.</p>
-            <a href="">
-                <button>Go to Order</button>
-            </a>
-        </div>
-        <img src="../assets/img/example.jpg">
-    </div>
-
-    <h5 class="title">Categories</h5>
-    <div class="categories">
-    <%
-        for (int i = 0; i < 3; i++) {
-    %>
-        <a href="" class="category">
-            <img src="../assets/img/example.jpg" alt="Category">
-            <br><span>Category <%=i%></span>
-        </a>
-    <%
-        }
-    %>
-
-</div>
-    <a href="shop.jsp"><button class="style1">Show More</button></a>
-</div>
+<main>
+    <a class="shop_product">
+        <img src="../assets/img/example.jpg" alt="Device">
+        <h5>IOT Device</h5>
+        <p>This is an Introduction. This is an IntroductionThis is an Introduction. This is an Introduction</p>
+        <span>$1500.00</span>
+    </a>
+    <a class="shop_product">
+        <img src="../assets/img/example.jpg" alt="Device">
+        <h5>IOT Device</h5>
+        <p>This is an Introduction. This is an IntroductionThis is an Introduction. This is an Introduction</p>
+        <span>$1500.00</span>
+    </a>
+    <a class="shop_product">
+        <img src="../assets/img/example.jpg" alt="Device">
+        <h5>IOT Device</h5>
+        <p>This is an Introduction. This is an IntroductionThis is an Introduction. This is an Introduction</p>
+        <span>$1500.00</span>
+    </a>
+</main>
 
 <!-- footer -->
-<div class="footer">
+ <div class="footer">
     <hr>
     <div>
         <div class="section">
@@ -158,6 +123,8 @@
     <hr>
     <p>©2025. IoTBay Group 4 All Right Reserved</p>
 </div>
+
+
 </body>
 
 </html>
