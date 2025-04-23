@@ -2,6 +2,8 @@ package com.dao;
 import com.bean.Product;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DBManager {
     private final Statement statement;
@@ -24,7 +26,10 @@ public class DBManager {
 
     }
     //Product READ - to everyone
-    public void getAllProduct(Product product) throws SQLException {}
+    public List<Product> getAllProducts(Product product) throws SQLException {
+        List<Product> products = new ArrayList<>();
+        return products;
+    }
 
     public void getProductById(int productID) throws SQLException {
         PreparedStatement preparedstatement = connection.prepareStatement("select * from product where product_id=?");
