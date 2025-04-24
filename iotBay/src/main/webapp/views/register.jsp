@@ -80,7 +80,7 @@
     </a>
 </header>
 
-<main
+<main>
     <h1>Register</h1>
     <form action="register.jsp" method="post">
         <h4>Personal Information</h4>

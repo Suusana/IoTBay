@@ -21,10 +21,12 @@ public class DBManager {
         resultSet.next();
         return resultSet.getInt(1);
     }
+
     //Product CREATE - staff only
     public void createProduct(Product product) throws SQLException {
 
     }
+
     //Product READ - to everyone
     public List<Product> getAllProducts(Product product) throws SQLException {
         List<Product> products = new ArrayList<>();
@@ -37,6 +39,7 @@ public class DBManager {
         preparedstatement.executeQuery();
        // return product;
     }
+
     //Product Update - staff only
     public void updateProduct(Product product) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Product SET price = ? productName=? category=? quantity=? image=? description=? WHERE product_id = ?");
@@ -49,6 +52,7 @@ public class DBManager {
         //preparedStatement.setInt(7,product.getCategory());
         preparedStatement.executeUpdate();
     }
+
     //Product Delete - staff only
     public void deleteProduct(Product product) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("delete from product where productId = ?");

@@ -42,5 +42,4 @@ public class DBConnector {
             e.printStackTrace();
         }
     }
-
 }
