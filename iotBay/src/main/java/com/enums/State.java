@@ -2,14 +2,14 @@ package com.enums;
 
 public enum State {
     // All the states in Australia
-    NSW("New South Wales"),
-    QLD("Queensland"),
-    SA("South Australia"),
-    TAS("Tasmania"),
-    VIC("Victoria"),
-    WA("Western Australia"),
-    ACT("Australian Capital Territory"),
-    NT("Northern Territory");
+    NSW("NSW"),
+    QLD("QLD"),
+    SA("SA"),
+    TAS("TAS"),
+    VIC("VIC"),
+    WA("WA"),
+    ACT("ACT"),
+    NT("NT");
 
     private String state;
 
