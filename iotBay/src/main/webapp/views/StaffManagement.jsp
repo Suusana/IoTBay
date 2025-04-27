@@ -1,4 +1,5 @@
-<%--
+<%@ page import="java.util.List" %>
+<%@ page import="com.bean.Staff" %><%--
   Created by IntelliJ IDEA.
   User: Susana
   Date: 4/25/2025
@@ -9,14 +10,16 @@
 <html>
 <head>
     <title>Staff Management</title>
-    <link rel="stylesheet" href="../assets/css/base.css">
-    <link rel="stylesheet" href="../assets/css/sideBar.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/base.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/sideBar.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/staffManagement.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
+
 <body>
 <div class="sideBar">
     <h2>Admin Panel</h2>
-    <a href="./AdminDashboard.jsp">
+    <a href="<%= request.getContextPath() %>/views/AdminDashboard.jsp">
         <i class="fa-solid fa-house fa-lg"></i>
         <span>Dashboard</span>
     </a>
@@ -24,7 +27,7 @@
         <i class="fa-solid fa-user fa-lg"></i>
         <span>Customer Management</span>
     </a>
-    <a href="./StaffManagement.jsp" class="current">
+    <a href="<%= request.getContextPath() %>/ShowStaffInfo" class="current">
         <i class="fa-solid fa-user-tie fa-lg"></i>
         <span>Staff Management</span>
     </a>
@@ -34,14 +37,29 @@
     </a>
 </div>
 
+<%
+    List<Staff> staffList = (List<Staff>) request.getAttribute("staffList");
+%>
+
 <div class="main-content">
     <h1>Staff Management</h1>
+    <div class="top-bar">
+<%--        searh for a staff --%>
+        <form action="<%= request.getContextPath() %>/ShowStaffInfo" method="get" class="search-form">
+            <input type="text" name="query" placeholder="Search by Name or Position" class="search-input"
+                   value="<%= (request.getAttribute("query") != null) ? (String)request.getAttribute("query") : "" %>">
+            <button type="submit" class="search-button">Search</button>
+        </form>
+        <form action="<%= request.getContextPath() %>/views/CreateStaff.jsp" method="post">
+            <button type="submit" class="create-button">+ Create Staff</button>
+        </form>
+    </div>
+
     <table>
         <thead>
         <tr>
-            <th>Staff Id</th>
+            <th>Id</th>
             <th>Staff Name</th>
-            <th>Phone Number</th>
             <th>Email</th>
             <th>Position</th>
             <th>Address</th>
@@ -50,17 +68,75 @@
         </tr>
         </thead>
         <tbody>
+<%--        Iterate through the data--%>
+        <%
+            if (staffList != null) {
+                for (Staff staff : staffList) {
+        %>
         <tr>
-            <td>12</td>
-            <td>Alice</td>
-            <td>0425197723/td>
-            <td>alice@example.com</td>
-            <td>Staff</td>
-            <td>123 UTS BUILDING2</td>
-            <td>operations</td>
+            <td><%= staff.getStaffId()%>
+            </td>
+            <td><%= staff.getStaffName()%>
+            </td>
+            <td><%= staff.getEmail()%>
+            </td>
+            <td><%= staff.getPosition()%>
+            </td>
+            <td><%= staff.getAddress()%>
+            </td>
+
+            <td>
+                <%
+                    if ("Active".equals(staff.getStatus())) {
+                %>
+                <button class="active">Active</button>
+                <%
+                } else {
+                %>
+                <button class="inactive">Inactive</button>
+                <%
+                    }
+                %>
+            </td>
+            <td>
+                <button>View</button>
+                <button class="update">Update</button>
+                <button class="delete">Delete</button>
+            </td>
         </tr>
+
+        <%
+                }
+            }
+        %>
         </tbody>
     </table>
+
+<%--    showing the pagination--%>
+    <%
+        int totalPages = (Integer) request.getAttribute("staffTotalPage");
+        int totalRecords = (Integer) request.getAttribute("staffTotalRecords");
+        int currentPage = (Integer) request.getAttribute("staffCurrentPage");
+        String query = (String) request.getAttribute("query");
+        if (query == null) {
+            query = "";
+        }
+    %>
+    <div class="pagination">
+        <span>Total <%= totalRecords %> records & Total <%= totalPages%> Pages</span>
+
+        <form action="<%= request.getContextPath() %>/ShowStaffInfo" method="get">
+            <input type="hidden" name="page" value="<%=currentPage - 1 %>">
+            <input type="hidden" name="query" value="<%= query %>">
+            <button type="submit" <%= (currentPage == 1) ? "disabled" : "" %> >Previous</button>
+        </form>
+
+        <form action="<%= request.getContextPath() %>/ShowStaffInfo" method="get">
+            <input type="hidden" name="page" value="<%= currentPage + 1 %>">
+            <input type="hidden" name="query" value="<%= query %>">
+            <button type="submit" <%= (currentPage >= totalPages) ? "disabled" : "" %> >Next</button>
+        </form>
+    </div>
 </div>
 </body>
 </html>

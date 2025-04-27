@@ -142,8 +142,8 @@
                         <%
                             for (State s : State.values()) {
                         %>
-                        <option value= <%=s.getState()%>>
-                            <%=s.getState()%>
+                        <option value= <%=s.getName()%>>
+                            <%=s.getName()%>
                         </option>
                         <%
                             }

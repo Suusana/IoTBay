@@ -2,15 +2,16 @@ package com.enums;
 
 public enum Position {
     ADMIN("Admin"),
-    STAFF("Staff");
+    STAFF("Staff"),
+    MANAGER("Manager");
 
-    private String position;
+    private String name;
 
-    Position(String position) {
-        this.position = position;
+    Position(String name) {
+        this.name = name;
     }
 
-    public String getPosition() {
-        return position;
+    public String getName() {
+        return name;
     }
 }

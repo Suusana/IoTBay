@@ -1,0 +1,54 @@
+body{
+    background-color: #f9f7f7;
+}
+h1{
+    margin-left: 17%;
+}
+button {
+    width: 100px;
+    padding: 10px;
+    background-color: #ffc8c8;
+    margin: 20px;
+    border-radius: 4px;
+}
+
+button:hover{
+    cursor : pointer;
+    background-color: #ff9999;
+}
+
+form {
+    width: 50%;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+form label {
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #333;
+}
+
+form input {
+    width: 300px;
+    padding: 8px 20px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+select{
+    width: 300px;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.group{
+    display: flex;
+    justify-content: space-around;
+}
+
+.buttonGroup{
+    margin-left: 30%;
+}

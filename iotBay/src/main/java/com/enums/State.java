@@ -11,13 +11,13 @@ public enum State {
     ACT("ACT"),
     NT("NT");
 
-    private String state;
+    private String name;
 
-    State(String state) {
-        this.state = state;
+    State(String name) {
+        this.name = name;
     }
 
-    public String getState() {
-        return state;
+    public String getName() {
+        return name;
     }
 }
