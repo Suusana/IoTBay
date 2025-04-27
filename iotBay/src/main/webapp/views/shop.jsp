@@ -8,9 +8,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.bean.Customer" %>
 <%@ page import="com.enums.Status" %>
+<%@ page import="com.bean.Product" %>
+<%@ page import="java.util.List" %>
 <html>
 <%
-    Customer customer = (Customer)session.getAttribute("registeredUser");
+    Customer customer = new Customer();
+    if (session.getAttribute("registeredUser")!=null){
+        customer = (Customer)session.getAttribute("registeredUser");
+    }else {
+        customer.setUsername(Status.GUEST.getStatus());
+    }    List<Product> allProducts = (List<Product>) request.getAttribute("allProducts");
 %>
 <head>
     <title>Shop</title>
@@ -59,24 +66,18 @@
 </div>
 <!-- main body -->
 <main>
+    <% if (allProducts != null && !allProducts.isEmpty()) {
+        for (Product product : allProducts) { %>
     <a class="shop_product">
-        <img src="../assets/img/example.jpg" alt="Device">
-        <h5>IOT Device</h5>
-        <p>This is an Introduction. This is an IntroductionThis is an Introduction. This is an Introduction</p>
-        <span>$1500.00</span>
+        <img src="../assets/img/<%= product.getImage() %>" alt="Device">
+        <h5><%= product.getProductName() %></h5>
+        <p><%= product.getDescription() %></p>
+        <span>$<%= product.getPrice() %></span>
     </a>
-    <a class="shop_product">
-        <img src="../assets/img/example.jpg" alt="Device">
-        <h5>IOT Device</h5>
-        <p>This is an Introduction. This is an IntroductionThis is an Introduction. This is an Introduction</p>
-        <span>$1500.00</span>
-    </a>
-    <a class="shop_product">
-        <img src="../assets/img/example.jpg" alt="Device">
-        <h5>IOT Device</h5>
-        <p>This is an Introduction. This is an IntroductionThis is an Introduction. This is an Introduction</p>
-        <span>$1500.00</span>
-    </a>
+    <% }
+    } else { %>
+    <p>No products available right now.</p>
+    <% } %>
 </main>
 
 <!-- footer -->

@@ -1,5 +1,6 @@
 package com.dao;
 
+import com.bean.Category;
 import com.bean.Product;
 
 import java.sql.Connection;
@@ -11,7 +12,7 @@ import java.util.List;
 
 public class ProductDao {
     private final Connection connection;
-
+   // private String db_url = "jdbc:mysql://localhost:3306/iotbay";
     public ProductDao(Connection connection) {
         this.connection = connection;
     }
@@ -19,19 +20,44 @@ public class ProductDao {
     //Product CRUD
     public int getProductCount() throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("select count(*) from product");
-        ResultSet resultSet = preparedStatement.executeQuery();
-        resultSet.next();
-        return resultSet.getInt(1);
+        ResultSet totalProductAmount = preparedStatement.executeQuery();
+        totalProductAmount.next();
+        return totalProductAmount.getInt(1);
     }
 
     //Product CREATE - staff only
     public void createProduct(Product product) throws SQLException {
-
     }
-
-    //Product READ - to everyone
-    public List<Product> getAllProducts(Product product) throws SQLException {
+/*  Product_T
+*   private Integer productId;
+    private String productName;
+    private Integer quantity;
+    private Double price;
+    private String description;
+    private String image;
+    private Category category;
+*
+* */
+    //Product READ - everyone can see it
+    //getAllProducts shows all the products from the database -> the shop.jsp will show all these products
+    public List<Product> getAllProducts() throws SQLException {
         List<Product> products = new ArrayList<>();
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM product");
+        ResultSet ProductTable = preparedStatement.executeQuery();
+        while(ProductTable.next()) {
+         Product product = new Product();
+         product.setProductId(ProductTable.getInt("product_id"));
+         product.setProductName(ProductTable.getString("product_name"));
+         product.setQuantity(ProductTable.getInt("quantity"));
+         product.setPrice(ProductTable.getDouble("price"));
+         product.setDescription(ProductTable.getString("description"));
+         product.setImage(ProductTable.getString("image"));
+          int categoryId = ProductTable.getInt("category_id");
+          Category category = new Category();
+          category.setCategoryId(categoryId);
+          product.setCategory(category);
+         products.add(product);
+        }
         return products;
     }
 
