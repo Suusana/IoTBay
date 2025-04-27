@@ -16,7 +16,6 @@
     }else {
         customer.setUsername(Status.GUEST.getStatus());
     }
-
 %>
 <head>
     <title>Main</title>

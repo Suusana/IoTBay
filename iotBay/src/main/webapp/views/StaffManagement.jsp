@@ -36,7 +36,31 @@
 
 <div class="main-content">
     <h1>Staff Management</h1>
-
+    <table>
+        <thead>
+        <tr>
+            <th>Staff Id</th>
+            <th>Staff Name</th>
+            <th>Phone Number</th>
+            <th>Email</th>
+            <th>Position</th>
+            <th>Address</th>
+            <th>Status</th>
+            <th>Operations</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>12</td>
+            <td>Alice</td>
+            <td>0425197723/td>
+            <td>alice@example.com</td>
+            <td>Staff</td>
+            <td>123 UTS BUILDING2</td>
+            <td>operations</td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>
