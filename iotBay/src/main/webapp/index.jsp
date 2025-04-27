@@ -21,6 +21,9 @@
             <a href="./views/register.jsp">
                 <button class="button button-register">Register</button>
             </a>
+            <a href="./views/main.jsp">
+                <button class="button button-register">Continue as a Guest</button>
+            </a>
         </div>
     </main>  
 
