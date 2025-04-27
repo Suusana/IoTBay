@@ -3,9 +3,11 @@ package com.dao;
 import java.sql.Connection;
 
 public class StaffDao {
-    private Connection connection;
+    private final Connection connection;
 
-    public StaffDao() {
-        this.connection =
+    public StaffDao(Connection connection) {
+        this.connection = connection;
     }
+
+
 }
