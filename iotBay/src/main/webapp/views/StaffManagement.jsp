@@ -39,12 +39,21 @@
 
 <%
     List<Staff> staffList = (List<Staff>) request.getAttribute("staffList");
+
+//    showing the pagination
+    int totalPages = (Integer) request.getAttribute("staffTotalPage");
+    int totalRecords = (Integer) request.getAttribute("staffTotalRecords");
+    int currentPage = (Integer) request.getAttribute("staffCurrentPage");
+    String query = (String) request.getAttribute("query");
+    if (query == null) {
+        query = "";
+    }
 %>
 
 <div class="main-content">
     <h1>Staff Management</h1>
     <div class="top-bar">
-<%--        searh for a staff --%>
+        <%--        searh for a staff --%>
         <form action="<%= request.getContextPath() %>/ShowStaffInfo" method="get" class="search-form">
             <input type="text" name="query" placeholder="Search by Name or Position" class="search-input"
                    value="<%= (request.getAttribute("query") != null) ? (String)request.getAttribute("query") : "" %>">
@@ -68,7 +77,7 @@
         </tr>
         </thead>
         <tbody>
-<%--        Iterate through the data--%>
+        <%--        Iterate through the data--%>
         <%
             if (staffList != null) {
                 for (Staff staff : staffList) {
@@ -86,22 +95,30 @@
             </td>
 
             <td>
-                <%
-                    if ("Active".equals(staff.getStatus())) {
-                %>
-                <button class="active">Active</button>
-                <%
-                } else {
-                %>
-                <button class="inactive">Inactive</button>
-                <%
-                    }
-                %>
+                <form action="<%= request.getContextPath() %>/toggleStaffStatus" method="post">
+                    <input type="hidden" name="staffId" value="<%= staff.getStaffId() %>">
+                    <input type="hidden" name="currentPage" value="<%= currentPage %>">
+                    <input type="hidden" name="query" value="<%= query %>">
+                    <button type="submit" name="status" value="<%= staff.getStatus() %>"
+                            class="<%= "Active".equals(staff.getStatus()) ? "active" : "inactive" %>">
+                        <%= staff.getStatus() %>
+                    </button>
+                </form>
             </td>
             <td>
-                <button>View</button>
-                <button class="update">Update</button>
-                <button class="delete">Delete</button>
+                <form action="<%=request.getContextPath()%>/showStaff" method="post">
+                    <input type="hidden" name="staffId" value="<%=staff.getStaffId()%>">
+                    <button type="submit" name="view" value="view">View</button>
+                </form>
+                <form action="<%=request.getContextPath()%>/showStaff" method="post">
+                    <input type="hidden" name="staffId" value="<%=staff.getStaffId()%>">
+                    <button type="submit" name="update" class="update" value="update">Update</button>
+                </form>
+                <form action="<%=request.getContextPath()%>/DeleteStaff" method="get">
+                    <input type="hidden" name="staffId" value="<%=staff.getStaffId()%>">
+                    <button type="submit" onclick="return confirm('Are you sure you want to delete this staff?');"
+                            class="delete" >Delete</button>
+                </form>
             </td>
         </tr>
 
@@ -112,16 +129,6 @@
         </tbody>
     </table>
 
-<%--    showing the pagination--%>
-    <%
-        int totalPages = (Integer) request.getAttribute("staffTotalPage");
-        int totalRecords = (Integer) request.getAttribute("staffTotalRecords");
-        int currentPage = (Integer) request.getAttribute("staffCurrentPage");
-        String query = (String) request.getAttribute("query");
-        if (query == null) {
-            query = "";
-        }
-    %>
     <div class="pagination">
         <span>Total <%= totalRecords %> records & Total <%= totalPages%> Pages</span>
 

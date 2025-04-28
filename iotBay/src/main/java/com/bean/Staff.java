@@ -129,4 +129,22 @@ public class Staff implements Serializable {
     public void setCountry(String country) {
         this.country = country;
     }
+
+    @Override
+    public String toString() {
+        return "Staff{" +
+                "staffId=" + staffId +
+                ", staffName='" + staffName + '\'' +
+                ", password='" + password + '\'' +
+                ", phoneNum=" + phoneNum +
+                ", email='" + email + '\'' +
+                ", position='" + position + '\'' +
+                ", Status='" + Status + '\'' +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", postcode='" + postcode + '\'' +
+                ", state='" + state + '\'' +
+                ", country='" + country + '\'' +
+                '}';
+    }
 }

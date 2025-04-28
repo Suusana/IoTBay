@@ -99,24 +99,84 @@ public class StaffDao {
         return 0;
     }
 
-//    add a new staff
+    //    add a new staff
     public void addStaff(Staff staff) throws SQLException {
         PreparedStatement ps = connection.prepareStatement("insert into Staff(staff_name,password,phone_num,email," +
                 "position,status,address,city,postcode,state,country) values(?,?,?,?,?,?,?,?,?,?,?)");
 
-        int status = ("Active".equals(staff.getStatus()))? 1:0;
+        int status = ("Active".equals(staff.getStatus())) ? 1 : 0;
         ps.setString(1, staff.getStaffName());
         ps.setString(2, staff.getPassword());
         ps.setInt(3, staff.getPhoneNum());
         ps.setString(4, staff.getEmail());
         ps.setString(5, staff.getPosition());
-        ps.setInt(6,status);
+        ps.setInt(6, status);
         ps.setString(7, staff.getAddress());
         ps.setString(8, staff.getCity());
         ps.setString(9, staff.getPostcode());
         ps.setString(10, staff.getState());
         ps.setString(11, staff.getCountry());
 
+        ps.executeUpdate();
+    }
+
+    //   get a staff by their id
+    public Staff getStaffById(int staffId) throws SQLException {
+        PreparedStatement ps = connection.prepareStatement("select * from Staff where staff_id=?");
+        ps.setInt(1, staffId);
+        ResultSet resultSet = ps.executeQuery();
+        Staff staff = new Staff();
+        if (resultSet.next()) {
+            int num = resultSet.getInt("status");
+            staff.setStatus(num == 1 ? "Active" : "Inactive");
+
+            staff.setStaffId(resultSet.getInt("staff_id"));
+            staff.setStaffName(resultSet.getString("staff_name"));
+            staff.setPassword(resultSet.getString("password"));
+            staff.setPhoneNum(resultSet.getInt("phone_num"));
+            staff.setEmail(resultSet.getString("email"));
+            staff.setPosition(resultSet.getString("position"));
+            staff.setAddress(resultSet.getString("address"));
+            staff.setCity(resultSet.getString("city"));
+            staff.setPostcode(resultSet.getString("postcode"));
+            staff.setState(resultSet.getString("state"));
+            staff.setCountry(resultSet.getString("country"));
+        }
+        return staff;
+    }
+
+    //    update a staff
+    public void UpdateStaff(Staff staff) throws SQLException {
+        PreparedStatement ps = connection.prepareStatement("update Staff set staff_name = ?, password = ?, phone_num = ?," +
+                "email=?, position = ?, address = ?, city = ?, postcode = ?, state = ?,country = ? where staff_id=?");
+
+        ps.setString(1, staff.getStaffName());
+        ps.setString(2, staff.getPassword());
+        ps.setInt(3, staff.getPhoneNum());
+        ps.setString(4, staff.getEmail());
+        ps.setString(5, staff.getPosition());
+        ps.setString(6, staff.getAddress());
+        ps.setString(7, staff.getCity());
+        ps.setString(8, staff.getPostcode());
+        ps.setString(9, staff.getState());
+        ps.setString(10, staff.getCountry());
+        ps.setInt(11, staff.getStaffId());
+
+        ps.executeUpdate();
+    }
+
+//    toggle Staff Status
+    public void setStatusById(int staffId, int status) throws SQLException {
+        PreparedStatement ps = connection.prepareStatement("update Staff set status = ? where staff_id=?");
+        ps.setInt(1, status);
+        ps.setInt(2, staffId);
+        ps.executeUpdate();
+    }
+
+    // delete a staff
+    public void deleteStaffById(int staffId) throws SQLException {
+        PreparedStatement ps = connection.prepareStatement("delete from Staff where staff_id=?");
+        ps.setInt(1, staffId);
         ps.executeUpdate();
     }
 }

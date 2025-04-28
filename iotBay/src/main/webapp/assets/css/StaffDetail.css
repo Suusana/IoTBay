@@ -1,0 +1,50 @@
+.card {
+    width: 800px;
+    padding: 30px;
+    margin-top: 20px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    display: flex;
+    gap: 40px;
+}
+
+.avatar {
+    font-size: 200px;
+    color: #4CAF50;
+}
+
+.info-section {
+    flex-grow: 1;
+}
+
+.info-section h2 {
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.info-row {
+    display: flex;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.info-row div {
+    width: 150px;
+}
+
+.info-value {
+    font-weight: normal;
+}
+
+button {
+    margin: 35px 18% 0 18%;
+    padding: 10px 25px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 8px;
+}
+
+button:hover {
+    background-color: #45a049;
+    cursor: pointer;
+}

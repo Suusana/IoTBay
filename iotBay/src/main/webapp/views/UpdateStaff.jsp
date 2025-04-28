@@ -1,18 +1,20 @@
-<%@ page import="com.enums.State" %>
-<%@ page import="com.enums.Position" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: Susana
-  Date: 4/27/2025
-  Time: 23:31
+  Date: 4/28/2025
+  Time: 12:53
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="com.enums.State" %>
+<%@ page import="com.enums.Position" %>
+<%@ page import="com.bean.Staff" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Staff Details</title>
-    <link rel="stylesheet" href="../assets/css/base.css">
-    <link rel="stylesheet" href="../assets/css/sideBar.css">
-    <link rel="stylesheet" href="../assets/css/createStaff.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/base.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/sideBar.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/createStaff.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
@@ -37,27 +39,30 @@
 </div>
 
 <div class="main-content">
-    <h1>Create a New Staff</h1>
-    <form action="<%= request.getContextPath() %>/AddStaff" method="post">
+    <h1>Edit Staff Details</h1>
+    <%
+        Staff staff = (Staff) request.getAttribute("staff");
+    %>
+    <form action="<%= request.getContextPath() %>/UpdateStaff" method="post">
         <div class="group">
             <div>
                 <label>Staff Name:</label><br>
-                <input type="text" name="staff_name" required>
+                <input type="text" name="staff_name" value="<%= staff.getStaffName()%>" required>
             </div>
             <div>
                 <label>Password:</label><br>
-                <input type="password" name="password" required>
+                <input type="password" name="password" value="<%= staff.getPassword()%>" required>
             </div>
         </div>
 
         <div class="group">
             <div>
                 <label>Phone Number:</label><br>
-                <input type="text" name="phone_num" required>
+                <input type="text" name="phone_num" value="<%= staff.getPhoneNum()%>" required>
             </div>
             <div>
                 <label>Email:</label><br>
-                <input type="email" name="email" required>
+                <input type="email" name="email" value="<%= staff.getEmail()%>" required>
             </div>
         </div>
 
@@ -65,11 +70,11 @@
             <div>
                 <label>Position</label><br>
                 <select name="position" id="position">
-                    <option selected disabled>Choose a position</option>
+                    <option disabled>Choose a position</option>
                     <%
                         for (Position p : Position.values()) {
                     %>
-                    <option value="<%=p.getName()%>">
+                    <option value="<%=p.getName()%>" <%= p.getName().equals(staff.getPosition()) ? "selected" : "" %>>
                         <%=p.getName()%>
                     </option>
                     <%
@@ -79,18 +84,18 @@
             </div>
             <div>
                 <label>Address:</label><br>
-                <input type="text" name="address" required>
+                <input type="text" name="address" value="<%= staff.getAddress()%>" required>
             </div>
         </div>
 
         <div class="group">
             <div>
                 <label>City:</label><br>
-                <input type="text" name="city" required>
+                <input type="text" name="city" value="<%= staff.getCity()%>" required>
             </div>
             <div>
                 <label>Postcode:</label><br>
-                <input type="text" name="postcode" required>
+                <input type="text" name="postcode" value="<%= staff.getPostcode()%>" required>
             </div>
         </div>
 
@@ -98,11 +103,11 @@
             <div>
                 <label>State</label><br>
                 <select name="state" id="state">
-                    <option selected disabled>Choose a state</option>
+                    <option disabled>Choose a state</option>
                     <%
                         for (State s : State.values()) {
                     %>
-                    <option value="<%=s.getName()%>">
+                    <option value="<%=s.getName()%>" <%= s.getName().equals(staff.getState()) ? "selected" : "" %> >
                         <%=s.getName()%>
                     </option>
                     <%
@@ -112,15 +117,17 @@
             </div>
             <div>
                 <label>Country:</label><br>
-                <input type="text" name="country" required>
+                <input type="text" name="country" value="<%= staff.getCountry()%>" required>
             </div>
         </div>
 
         <div class="buttonGroup">
             <button type="button" onclick="if(confirm('Are you sure you want to leave without saving?')) history.back();">Cancel</button>
+            <input type="hidden" name="staffId" value="<%= staff.getStaffId()%>">
             <button type="submit">Save</button>
         </div>
     </form>
 </div>
 </body>
 </html>
+
