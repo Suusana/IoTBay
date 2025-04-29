@@ -37,7 +37,7 @@
     </a>
     <!-- menu -->
     <menu>
-        <a href="main.jsp"><span>Home</span></a>
+        <a href="<%= request.getContextPath() %>/views/main.jsp"><span>Home</span></a>
         <a href="productServlet"><span class="selected">Shop</span></a> <!-- change here -->
 
        <!-- <a href="shop.jsp"><span class="selected">Shop</span></a>-->
