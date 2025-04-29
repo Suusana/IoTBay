@@ -20,17 +20,20 @@ import java.util.List;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-@WebServlet("/ProductServlet")
+@WebServlet("/productServlet")
 public class ProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         try {
             //"jdbc:sqlite:/absolute/path/to/your/database.db"
             Connection connection = DriverManager.getConnection("jdbc:sqlite:/Users/yunseo/.SmartTomcat/IoTBay/IoTBay/IoTBayDB.db");
             ProductDao productDao = new ProductDao(connection);
             List<Product> allProducts = productDao.getAllProducts();
             req.setAttribute("allProducts", allProducts); // set to request
-            req.getRequestDispatcher("views/shop.jsp").forward(req, resp); // forward to JSP
+            req.getRequestDispatcher("/views/shop.jsp").forward(req, resp); // forward to JSP
+            System.out.println("Fetched products: " + allProducts.size());
+
         } catch (SQLException e) {
             throw new ServletException(e);
         }

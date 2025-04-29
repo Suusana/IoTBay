@@ -38,7 +38,9 @@
     <!-- menu -->
     <menu>
         <a href="main.jsp"><span>Home</span></a>
-        <a href="shop.jsp"><span class="selected">Shop</span></a>
+        <a href="productServlet"><span class="selected">Shop</span></a> <!-- change here -->
+
+       <!-- <a href="shop.jsp"><span class="selected">Shop</span></a>-->
         <a href=""><span>Order</span></a>
         <a href=""><span>Category</span></a>
     </menu>
