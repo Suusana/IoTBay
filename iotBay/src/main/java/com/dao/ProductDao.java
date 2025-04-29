@@ -18,11 +18,14 @@ public class ProductDao {
     }
 
     //Product CRUD
+    //This is just to check whether the code is working
     public int getProductCount() throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("select count(*) from product");
         ResultSet totalProductAmount = preparedStatement.executeQuery();
-        totalProductAmount.next();
-        return totalProductAmount.getInt(1);
+        if(totalProductAmount.next()) {
+            return totalProductAmount.getInt(1);
+        }
+        return 0;
     }
 
     //Product CREATE - staff only
@@ -40,6 +43,7 @@ public class ProductDao {
 * */
     //Product READ - everyone can see it
     //getAllProducts shows all the products from the database -> the shop.jsp will show all these products
+    //Feature 2 - READ - Customer and staff user can list the IoT device records
     public List<Product> getAllProducts() throws SQLException {
         List<Product> products = new ArrayList<>();
         PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM product");
@@ -82,9 +86,9 @@ public class ProductDao {
     }
 
     //Product Delete - staff only
-    public void deleteProduct(Product product) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("delete from product where productId = ?");
-        preparedStatement.setInt(1, product.getProductId());
+    public void deleteProduct(int productId) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("delete from product where product_id = ?");
+        preparedStatement.setInt(1, productId);
         preparedStatement.executeUpdate();
     }
 }
