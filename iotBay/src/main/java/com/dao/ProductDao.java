@@ -30,6 +30,16 @@ public class ProductDao {
 
     //Product CREATE - staff only
     public void createProduct(Product product) throws SQLException {
+        PreparedStatement ps = connection.prepareStatement("INSERT INTO product (product_name, price, quantity, description, image, category_id) " +
+                "VALUES (?, ?, ?, ?, ?, ?)");
+        ps.setString(1, product.getProductName());
+        ps.setDouble(2, product.getPrice());
+        ps.setInt(3, product.getQuantity());
+        ps.setString(4, product.getDescription());
+        ps.setString(5, product.getImage()); // assuming image filename or path
+        ps.setInt(6, product.getCategory().getCategoryId());
+
+        ps.executeUpdate();
     }
 /*  Product_T
 *   private Integer productId;
@@ -74,14 +84,14 @@ public class ProductDao {
 
     //Product Update - staff only
     public void updateProduct(Product product) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Product SET price = ? productName=? category=? quantity=? image=? description=? WHERE product_id = ?");
+        PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Product SET price = ? productName=? category=? quantity=? image=? description=? category_id=? WHERE product_id = ?");
         preparedStatement.setInt(1, product.getProductId());
         preparedStatement.setDouble(2,product.getPrice());
         preparedStatement.setString(3, product.getProductName());
         preparedStatement.setInt(4,product.getQuantity());
         preparedStatement.setString(5,product.getImage());
         preparedStatement.setString(6,product.getDescription());
-        //preparedStatement.setInt(7,product.getCategory());
+        preparedStatement.setInt(7,product.getCategory().getCategoryId());
         preparedStatement.executeUpdate();
     }
 

@@ -9,10 +9,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.bean.Product" %>
+<%@ page import="com.bean.Category" %>
 <html>
 <%
     List<Product> allProducts = (List<Product>) request.getAttribute("allProducts");
+    List<Category> categories = (List<Category>) request.getAttribute("categories");
 %>
+
 <head>
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="../assets/css/base.css">
@@ -46,6 +49,16 @@
 
 <div class="main-content">
     <h1>Product</h1>
+    <div>
+        <h2>Add New Product</h2>
+        <form action="<%= request.getContextPath() %>/AddNewProduct" method="post">
+            Name: <input type="text" name="productName"><br>
+            Price: <input type="text" name="price"><br>
+            Quantity: <input type="number" name="quantity"><br>
+            Description: <textarea name="description"></textarea><br>
+            <button type="submit">Add New Product</button>
+        </form>
+    </div>
     <% if (allProducts != null && !allProducts.isEmpty()) {
         for (Product product : allProducts) { %>
     <a class="shop_product">
@@ -54,9 +67,13 @@
         <p><%= product.getDescription() %></p>
         <span>$<%= product.getPrice() %></span>
         <div>
-            <form action="<%= request.getContextPath() %>/UpdateProduct" method="post">
-                <input type="hidden" name="productId" value="<%= product.getProductId() %>"/>
-                Name: <input type="text" name="productName" value="<%= product.getProductName() %>"/><br>
+            <h3>Update Product Info</h3>
+            <form action="<%= request.getContextPath() %>/UpdateProductServlet" method="post">
+                <input type="hidden" name="productId" value="<%= product.getProductId() %>">
+                Name: <input type="text" name="productName" value="<%= product.getProductName() %>"><br>
+                Price: <input type="text" name="price" value="<%= product.getPrice() %>"><br>
+                Quantity: <input type="number" name="quantity" value="<%= product.getQuantity() %>"><br>
+                Description: <textarea name="description"><%= product.getDescription() %></textarea><br>
                 <button type="submit">Update</button>
             </form>
         </div>
