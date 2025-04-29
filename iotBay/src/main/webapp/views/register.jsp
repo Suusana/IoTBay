@@ -9,60 +9,7 @@
 <%@ page import="com.bean.Customer" %>
 <%@ page import="com.enums.State" %>
 <%@ page import="com.enums.Status" %>
-<%
-    // generate a unique id
-    long currentTime = System.currentTimeMillis();
-    int randomPart = (int) (Math.random() * 1000);
-    long id = currentTime * 1000 + randomPart;
 
-    String firstName = request.getParameter("firstName");
-    String lastName = request.getParameter("lastName");
-    String email = request.getParameter("email");
-    String password = request.getParameter("password");
-    String phoneNumber = request.getParameter("phoneNumber");
-    String state = request.getParameter("state");
-    String city = request.getParameter("city");
-    String postalCode = request.getParameter("postalCode");
-    String country = request.getParameter("country");
-    String username = "";
-    String address = request.getParameter("unit") + request.getParameter("street");
-    String status = Status.REGISTERED.getStatus();
-
-    if (email != null) {
-        username = email.split("@")[0]; //Can be used as a unique username
-    }
-
-    //    create a user
-    Customer customer = new Customer();
-
-    if (phoneNumber != null && !phoneNumber.trim().isEmpty()) {
-        Long phone = Long.parseLong(phoneNumber);
-        customer.setPhone(phone);
-    }
-    if (postalCode != null && !postalCode.trim().isEmpty()) {
-        Integer postal = Integer.parseInt(postalCode);
-        customer.setPostcode(postal);
-    }
-
-    customer.setUserId(id);
-    customer.setUsername(username);
-    customer.setPassword(password);
-    customer.setFirstName(firstName);
-    customer.setLastName(lastName);
-    customer.setEmail(email);
-    customer.setStatus(status);
-    customer.setAddress(address);
-    customer.setCity(city);
-    customer.setState(state);
-    customer.setCountry(country);
-
-    session.setAttribute("registeredUser", customer);
-    session.setAttribute("loggedIn", Boolean.FALSE);
-    if ("POST".equalsIgnoreCase(request.getMethod())) {
-        response.sendRedirect("./welcome.jsp");
-        return;
-    }
-%>
 <html>
 <head>
     <title>Register</title>
@@ -82,7 +29,7 @@
 
 <main>
     <h1>Register</h1>
-    <form action="register.jsp" method="post">
+    <form action="/RegisterServlet" method="post">
         <h4>Personal Information</h4>
         <div class="container">
             <div>
@@ -126,7 +73,7 @@
                 </div>
                 <div>
                     <label for="Unit">Unit</label><br>
-                    <input id="Unit" name="unit" type="text" required placeholder="Unit, building, floor etc">
+                    <input id="Unit" name="unit" type="text" placeholder="Unit, building, floor etc">
                 </div>
                 <div>
                     <label for="city">City</label><br>
@@ -137,7 +84,7 @@
             <div class="container">
                 <div>
                     <label for="State">State</label><br>
-                    <select name="State" id="State">
+                    <select name="state" id="State">
                         <option selected disabled>Choose a state</option>
                         <%
                             for (State s : State.values()) {
