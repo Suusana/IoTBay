@@ -45,10 +45,6 @@
         }
     }
 
-    if (!loggedIn) {
-        response.sendRedirect("login.jsp");
-        return;
-    }
 %>
 <head>
     <title>Welcome</title>
