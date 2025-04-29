@@ -21,10 +21,10 @@
 %>
 <head>
     <title>Shop</title>
-    <link rel="stylesheet" href="../assets/css/base.css">
-    <link rel="stylesheet" href="../assets/css/HeaderAndFooter.css">
-    <link rel="stylesheet" href="../assets/css/main.css">
-    <link rel="stylesheet" href="../assets/css/shop.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/base.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/HeaderAndFooter.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/main.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/shop.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
@@ -33,7 +33,7 @@
 <div class="header">
     <!-- Logo -->
     <a href="./main.jsp">
-        <img src="../assets/img/Logo.png" alt="IotBay Logo">
+        <img src="<%= request.getContextPath() %>/assets/img/Logo.png" alt="IotBay Logo">
     </a>
     <!-- menu -->
     <menu>
@@ -71,7 +71,7 @@
     <% if (allProducts != null && !allProducts.isEmpty()) {
         for (Product product : allProducts) { %>
     <a class="shop_product">
-        <img src="../assets/img/<%= product.getImage() %>" alt="Device">
+        <img src="<%= request.getContextPath() %>/assets/img/<%= product.getImage() %>" alt="Device">
         <h5><%= product.getProductName() %></h5>
         <p><%= product.getDescription() %></p>
         <span>$<%= product.getPrice() %></span>
