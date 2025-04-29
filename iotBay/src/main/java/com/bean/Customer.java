@@ -1,6 +1,8 @@
 package com.bean;
 
 import java.io.Serializable;
+import java.util.List;
+
 public class Customer implements Serializable {
     private long userId;
     private String username;
@@ -15,15 +17,15 @@ public class Customer implements Serializable {
     private String state;
     private Integer postcode;
     private String country;
-    private String[] history;
+    private List<String> history;
 
     public Customer() {
     }
 
-    public Customer(long userId, String username, String password, String firstName, String lastName, Long phone,
+    // New Customer
+    public Customer(String username, String password, String firstName, String lastName, Long phone,
                     String email, String status, String address, String city, String state, Integer postcode,
-                    String country, String[] history) {
-        this.userId = userId;
+                    String country,  List<String> history) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
@@ -37,6 +39,14 @@ public class Customer implements Serializable {
         this.postcode = postcode;
         this.country = country;
         this.history = history;
+    }
+
+    // From Database
+    public Customer(long userId, String username, String password, String firstName, String lastName, Long phone,
+                    String email, String status, String address, String city, String state, Integer postcode,
+                    String country, List<String>  history) {
+        this(username, password, firstName, lastName, phone, email, status, address, city, state, postcode, country, history);
+        this.userId = userId;
     }
 
     public long getUserId() {
@@ -143,11 +153,11 @@ public class Customer implements Serializable {
         this.country = country;
     }
 
-    public String[] getHistory() {
+    public List<String> getHistory() {
         return history;
     }
 
-    public void setHistory(String[] history) {
+    public void setHistory(List<String> history) {
         this.history = history;
     }
 }
