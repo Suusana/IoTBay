@@ -1,4 +1,4 @@
-package uts.isd.controller;
+package com.controller;
 
 import com.dao.DBConnector;
 import com.dao.DBManager;
