@@ -37,4 +37,5 @@ public class CustomerDao {
 //        preparedStatement.setString(13, customer.getHistory().toString());
         preparedStatement.execute();
     }
+}
 
