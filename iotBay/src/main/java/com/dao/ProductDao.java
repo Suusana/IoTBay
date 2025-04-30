@@ -41,7 +41,8 @@ public class ProductDao {
 
         ps.executeUpdate();
     }
-/*  Product_T
+/* class
+    Product_T
 *   private Integer productId;
     private String productName;
     private Integer quantity;
@@ -50,6 +51,19 @@ public class ProductDao {
     private String image;
     private Category category;
 *
+* sql
+* create table Product
+(
+//    product_id   integer        not null
+//        constraint Product_pk
+//            primary key autoincrement,
+//    product_name varchar(255)   not null,
+//    quantity     integer        not null,
+//    price        decimal(10, 2) not null,
+//    description  text,
+//    image        text           not null,
+    category_id  integer        not null
+);
 * */
     //Product READ - everyone can see it
     //getAllProducts shows all the products from the database -> the shop.jsp will show all these products
@@ -82,9 +96,39 @@ public class ProductDao {
         // return product;
     }
 
+    public void getProductByName(String productName) throws SQLException {
+        PreparedStatement preparedstatement = connection.prepareStatement("select * from product where product_name=?");
+        preparedstatement.setString(1,productName);
+        preparedstatement.executeQuery();
+    }
+//    create table Category
+//            (
+//                    category_id integer      not null
+//                            constraint Category_pk
+//                            primary key autoincrement,
+//                    category    varchar(255) not null
+//            );
+//-- create categories
+//    INSERT INTO Category (category) VALUES
+//                                    ('Smart Home'),
+//                                            ('Health & Fitness'),
+//                                            ('Security Devices'),
+//                                            ('Industrial Devices'),
+//                                            ('Wearables'),
+//                                            ('Agriculture & Environment'),
+//                                            ('Automotive & Transport'),
+//                                            ('Smart Appliances'),
+//                                            ('Energy & Utilities'),
+//                                            ('Networking & Hubs');
+
+    public void getProductByCategoryId(int categoryId) throws SQLException {
+        PreparedStatement preparedstatement = connection.prepareStatement("select * from product where category_id=?");
+        preparedstatement.setInt(1,categoryId);
+        preparedstatement.executeQuery();
+    }
     //Product Update - staff only
     public void updateProduct(Product product) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Product SET price = ? productName=? category=? quantity=? image=? description=? category_id=? WHERE product_id = ?");
+        PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Product SET price = ? productName=? category_id=? quantity=? image=? description=? category_id=? WHERE product_id = ?");
         preparedStatement.setInt(1, product.getProductId());
         preparedStatement.setDouble(2,product.getPrice());
         preparedStatement.setString(3, product.getProductName());

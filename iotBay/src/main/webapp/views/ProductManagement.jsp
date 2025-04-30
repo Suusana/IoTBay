@@ -18,8 +18,9 @@
 
 <head>
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="../assets/css/base.css">
-    <link rel="stylesheet" href="../assets/css/sideBar.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/base.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/sideBar.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/ProductManagement.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
@@ -48,17 +49,54 @@
 </div>
 
 <div class="main-content">
-    <h1>Product</h1>
-    <div>
+    <h1>Product Management</h1>
+    <div class="search-box">
+        <h2>Search Products</h2>
+        <div class="search-box-name">
+            <h3>Search by Name</h3>
+            <form action="<%= request.getContextPath() %>/GetByProductName" method="get">
+                <label for="search">
+                    <input type="search" id="search" name="search" />
+                </label>
+                <button>Search</button>
+            </form>
+        </div>
+        <div class="search-box-category">
+            <h3>Search by Category</h3>
+            <form action="<%= request.getContextPath() %>/GetByCategory" method="get">
+                <button type="submit" name="categoryId" value="1">Smart Home</button>
+                <button type="submit" name="categoryId" value="2">Health & Fitness</button>
+                <button type="submit" name="categoryId" value="3">Security Devices</button>
+                <button type="submit" name="categoryId" value="4">Industrial Devices</button>
+                <button type="submit" name="categoryId" value="5">Wearables</button>
+                <button type="submit" name="categoryId" value="6">Agriculture & Environment</button>
+                <button type="submit" name="categoryId" value="7">Automotive & Transport</button>
+                <button type="submit" name="categoryId" value="8">Smart Appliances</button>
+                <button type="submit" name="categoryId" value="9">Energy & Utilities</button>
+                <button type="submit" name="categoryId" value="10">Networking & Hubs</button>
+            </form>
+        </div>
+
+    </div>
+    <div class="add-product-box">
         <h2>Add New Product</h2>
         <form action="<%= request.getContextPath() %>/AddNewProduct" method="post">
-            Name: <input type="text" name="productName"><br>
-            Price: <input type="text" name="price"><br>
-            Quantity: <input type="number" name="quantity"><br>
-            Description: <textarea name="description"></textarea><br>
+            <label for="productName">
+                Name: <input type="text" name="productName">
+            </label>
+            <label for="price">
+                Price: <input type="text" name="price">
+            </label>
+            <label for="quantity">
+                Quantity: <input type="number" name="quantity">
+            </label>
+            <label for="description">
+                Description: <textarea name="description"></textarea>
+            </label>
             <button type="submit">Add New Product</button>
         </form>
     </div>
+    <h2>Product List</h2>
     <% if (allProducts != null && !allProducts.isEmpty()) {
         for (Product product : allProducts) { %>
     <a class="shop_product">
@@ -66,33 +104,33 @@
         <h5><%= product.getProductName() %></h5>
         <p><%= product.getDescription() %></p>
         <span>$<%= product.getPrice() %></span>
-        <div>
-            <h3>Update Product Info</h3>
+        <h5><%= product.getCategory()%></h5>
+        <div class="update-product-info">
+            <h4>Update Product Info</h4>
             <form action="<%= request.getContextPath() %>/UpdateProductServlet" method="post">
                 <input type="hidden" name="productId" value="<%= product.getProductId() %>">
-                Name: <input type="text" name="productName" value="<%= product.getProductName() %>"><br>
-                Price: <input type="text" name="price" value="<%= product.getPrice() %>"><br>
-                Quantity: <input type="number" name="quantity" value="<%= product.getQuantity() %>"><br>
-                Description: <textarea name="description"><%= product.getDescription() %></textarea><br>
+                Name: <input type="text" name="productName" value="<%= product.getProductName() %>">
+                Price: <input type="text" name="price" value="<%= product.getPrice() %>">
+                Quantity: <input type="number" name="quantity" value="<%= product.getQuantity() %>">
+                Description: <textarea name="description"><%= product.getDescription() %></textarea>
                 <button type="submit">Update</button>
             </form>
         </div>
 
-        <div>
+        <div class="delete-product">
             <form action="<%= request.getContextPath() %>/DeleteProduct" method="post" onsubmit="return confirm('Are you sure you want to delete this product?');">
                 <input type="hidden" name="productId" value="<%= product.getProductId() %>">
                 <button type="submit">Delete</button>
             </form>
         </div>
-
     </a>
     <% }
     } else { %>
-    <p>No products available right now.</p>
+    <p>No products available right now.</p> <!--this will appear when there is an servlet connection error or nothing to show --->
     <% } %>
+</div> <!--This is end of the .main-content div -->
 
 
-</div>
 </body>
 </html>
 

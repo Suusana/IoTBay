@@ -1,3 +1,4 @@
+
 button{
     display: flex;
     justify-content: center;
@@ -15,12 +16,13 @@ button:hover {
     background-color: #a67224;
 }
 .search-box{
-    border: 1px solid #B88E2F;
-    border-radius: 13px;
-    width: 30%;
+    border-top: 1px solid #B88E2F;
+    border-bottom: 1px solid #B88E2F;
+
+    width: 70%;
     padding: 3px 10px;
     margin: 10px 0px;
-    div{
+    form{
         display: flex;
     }
     label{
@@ -34,9 +36,9 @@ button:hover {
     }
 }
 .add-product-box{
-    border: 1px solid #B88E2F;
-    border-radius: 13px;
-    width: 30%;
+    border-top: 1px solid #B88E2F;
+    border-bottom: 1px solid #B88E2F;
+    width: 70%;
     padding: 0px 10px;
     margin: 10px 0px;
     form{
@@ -47,8 +49,32 @@ button:hover {
     }
     button{
         font-size: small;
-        width: 30%;
+        width: 25%;
         margin-right: 30%;
     }
 
+}
+.search-box-category{
+    form{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    button{
+        margin-top: 3px;
+    }
+}
+.update-product-info{
+    border: 1px solid #B88E2F;
+    border-radius: 10px;
+    width: 400px;
+}
+
+.main-content {
+    margin-left: 18%;
+    padding: 30px;
+    width: 100%;
+}
+img{
+    width: 200px;
+    height: 200px;
 }
