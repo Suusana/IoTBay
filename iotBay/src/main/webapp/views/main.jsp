@@ -11,9 +11,9 @@
 <html>
 <%
     Customer customer = new Customer();
-    if (session.getAttribute("registeredUser")!=null){
-        customer = (Customer)session.getAttribute("registeredUser");
-    }else {
+    if (session.getAttribute("loggedInUser") != null){
+        customer = (Customer)session.getAttribute("loggedInUser");
+    } else {
         customer.setUsername(Status.GUEST.getStatus());
     }
 %>

@@ -20,8 +20,8 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        DBManager db =  (DBManager) req.getSession().getAttribute("db");
         HttpSession session = req.getSession();
+        DBManager db =  (DBManager) session.getAttribute("db");
         CustomerDao customerDao = db.getCustomerDao();
 
         String firstName = req.getParameter("firstName");
