@@ -1,4 +1,6 @@
 package com.controller.ProductController;
 
-public class GetByProductName {
+import jakarta.servlet.http.HttpServlet;
+
+public class GetByProductName extends HttpServlet {
 }
