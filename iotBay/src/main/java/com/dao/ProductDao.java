@@ -145,4 +145,34 @@ public class ProductDao {
         preparedStatement.setInt(1, productId);
         preparedStatement.executeUpdate();
     }
+
+    // get the last product
+    public Product getLastProduct() throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("select * from product order by product_id desc limit 1");
+        ResultSet rs = preparedStatement.executeQuery();
+        Product product = new Product();
+        if(rs.next()) {
+            product.setProductId(rs.getInt("product_id"));
+            product.setProductName(rs.getString("product_name"));
+            product.setDescription(rs.getString("description"));
+            product.setImage(rs.getString("image"));
+        }
+        return product;
+    }
+
+    public List<Product> getEightProducts() throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("select * from product limit 8");
+        List<Product> products = new ArrayList<>();
+        ResultSet rs = preparedStatement.executeQuery();
+        while(rs.next()) {
+            Product product = new Product();
+            product.setProductId(rs.getInt("product_id"));
+            product.setProductName(rs.getString("product_name"));
+            product.setDescription(rs.getString("description"));
+            product.setImage(rs.getString("image"));
+            product.setPrice(rs.getDouble("price"));
+            products.add(product);
+        }
+        return products;
+    }
 }
