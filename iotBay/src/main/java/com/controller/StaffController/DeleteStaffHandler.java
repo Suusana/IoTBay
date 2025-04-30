@@ -1,4 +1,4 @@
-package com.controller;
+package com.controller.StaffController;
 
 import com.dao.DBManager;
 import com.dao.StaffDao;

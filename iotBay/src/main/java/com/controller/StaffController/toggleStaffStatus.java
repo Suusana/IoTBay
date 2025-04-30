@@ -1,6 +1,5 @@
-package com.controller;
+package com.controller.StaffController;
 
-import com.bean.Staff;
 import com.dao.DBManager;
 import com.dao.StaffDao;
 import jakarta.servlet.ServletException;
@@ -13,31 +12,33 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/showStaff")
-public class GetAStaff extends HttpServlet {
+@WebServlet("/toggleStaffStatus")
+public class toggleStaffStatus extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         DBManager db = (DBManager) session.getAttribute("db");
         StaffDao staffDao = db.getStaffDao();
 
+        String currentPage = req.getParameter("currentPage");
+        String query = req.getParameter("query");
         int id = Integer.parseInt(req.getParameter("staffId"));
+        String _status = req.getParameter("status");
+
+        int status = _status.equals("Active")?0:1;
+
         try {
-            Staff staff = staffDao.getStaffById(id);
-            if (staff != null) {
-                req.setAttribute("staff", staff);
-            }
+            staffDao.setStatusById(id,status);
         } catch (SQLException e) {
-            System.out.println("Failed to get staff by id");
+            System.out.println("Failed to update staff status");
         }
 
-        String view = req.getParameter("view");
-        if (view != null) {
-            // for viewing staff detail
-            req.getRequestDispatcher("views/StaffDetails.jsp").forward(req, resp);
-        } else {
-            //for updating the staff
-            req.getRequestDispatcher("views/UpdateStaff.jsp").forward(req, resp);
+        // if there is a search keyword, then add search info
+        String url = req.getContextPath() + "/ShowStaffInfo?page=" + currentPage;
+        if (query != null && !query.isEmpty()) {
+            url += "&query=" + query;
         }
+
+        resp.sendRedirect(url);
     }
 }

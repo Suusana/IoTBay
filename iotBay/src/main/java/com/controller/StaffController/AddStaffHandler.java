@@ -1,4 +1,4 @@
-package com.controller;
+package com.controller.StaffController;
 
 import com.bean.Staff;
 import com.dao.DBManager;
@@ -13,8 +13,8 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/UpdateStaff")
-public class UpdateStaffHandler extends HttpServlet {
+@WebServlet("/AddStaff")
+public class AddStaffHandler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
@@ -22,12 +22,12 @@ public class UpdateStaffHandler extends HttpServlet {
         StaffDao staffDao = db.getStaffDao();
 
         Staff staff = new Staff();
-        staff.setStaffId(Integer.parseInt(req.getParameter("staffId")));
         staff.setStaffName(req.getParameter("staff_name"));
         staff.setPassword(req.getParameter("password"));
         staff.setPhoneNum(new Integer(req.getParameter("phone_num")));
         staff.setEmail(req.getParameter("email"));
         staff.setPosition(req.getParameter("position"));
+        staff.setStatus("Active");
         staff.setAddress(req.getParameter("address"));
         staff.setCity(req.getParameter("city"));
         staff.setPostcode(req.getParameter("postcode"));
@@ -35,10 +35,10 @@ public class UpdateStaffHandler extends HttpServlet {
         staff.setCountry(req.getParameter("country"));
 
         try {
-            staffDao.UpdateStaff(staff);
+            staffDao.addStaff(staff);
             resp.sendRedirect(req.getContextPath() + "/ShowStaffInfo");
         } catch (SQLException e) {
-            System.out.println("Failed to update a staff");
+            System.out.println("Failed to create staff");
         }
     }
 }

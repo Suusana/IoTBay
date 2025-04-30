@@ -1,4 +1,4 @@
-package com.controller;
+package com.controller.UserAccessController;
 
 import com.bean.Customer;
 import com.dao.CustomerDao;

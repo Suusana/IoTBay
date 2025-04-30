@@ -1,26 +1,16 @@
-package com.controller;
+package com.controller.ProductController;
 
-import com.dao.StaffDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import com.dao.ProductDao;
-import com.dao.DBManager;
-import com.bean.Product;
 
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.List;
-
-import com.dao.DBConnector;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
 
 
 @WebServlet("/DeleteProduct")

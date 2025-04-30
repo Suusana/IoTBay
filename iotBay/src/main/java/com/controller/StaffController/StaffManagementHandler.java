@@ -1,4 +1,4 @@
-package com.controller;
+package com.controller.StaffController;
 
 import com.bean.Staff;
 import com.dao.DBManager;

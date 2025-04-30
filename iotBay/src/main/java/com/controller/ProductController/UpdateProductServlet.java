@@ -1,7 +1,6 @@
-package com.controller;
+package com.controller.ProductController;
 
 import com.bean.Product;
-import com.bean.Staff;
 import com.dao.DBManager;
 import com.dao.ProductDao;
 import jakarta.servlet.ServletException;
