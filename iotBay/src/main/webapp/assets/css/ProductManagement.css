@@ -1,0 +1,54 @@
+button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 700;
+    height: 20px;
+    width: 30px;
+    color: #fff;
+    padding: 3% 6%;
+    background-color: #B88E2F;
+}
+button:hover {
+    cursor: pointer;
+    background-color: #a67224;
+}
+.search-box{
+    border: 1px solid #B88E2F;
+    border-radius: 13px;
+    width: 30%;
+    padding: 3px 10px;
+    margin: 10px 0px;
+    div{
+        display: flex;
+    }
+    label{
+        border: 1px solid #B88E2F;
+        width: 80%;
+    }
+    button{
+        width: 10%;
+        font-size: xx-small;
+        margin-left:5px;
+    }
+}
+.add-product-box{
+    border: 1px solid #B88E2F;
+    border-radius: 13px;
+    width: 30%;
+    padding: 0px 10px;
+    margin: 10px 0px;
+    form{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content: center;
+    }
+    button{
+        font-size: small;
+        width: 30%;
+        margin-right: 30%;
+    }
+
+}
