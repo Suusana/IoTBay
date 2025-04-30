@@ -7,44 +7,13 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.bean.Customer" %>
-<%@ page import="com.enums.Status" %>
 <html>
 <%
-    // Using JavaBeans (Customer)
-    Customer customer = (Customer) session.getAttribute("registeredUser");
-    Boolean loggedIn = (Boolean) session.getAttribute("loggedIn");
+    Customer customer = (Customer) session.getAttribute("loggedInUser");
 
-    // In case no session is set (to avoid the email: unknown issue)
-    // create a temporary Customer using the submitted form data
-    if (customer == null) {
-        String firstName = request.getParameter("firstName");
-        String email = request.getParameter("email");
-
-        if (firstName != null || email != null) {
-            customer = new Customer();
-            customer.setFirstName(firstName);
-            customer.setEmail(email);
-            session.setAttribute("registeredUser", customer);
-        }
-    }
-
-    // Set default values if null session or fields are missing
-    String displayName = Status.GUEST.getStatus();
-    String displayEmail = "unknown";
-
-    if (customer != null) {
-        if (customer.getEmail() != null && !customer.getEmail().isEmpty()) {
-            displayEmail = customer.getEmail();
-            // Use email prefix as name if firstName is missing
-            if ((customer.getFirstName() == null || customer.getFirstName().isEmpty()) && displayEmail.contains("@")) {
-                displayName = displayEmail.substring(0, displayEmail.indexOf("@"));
-            }
-        }
-        if (customer.getFirstName() != null && !customer.getFirstName().isEmpty()) {
-            displayName = customer.getFirstName();
-        }
-    }
-
+    // Capitalise first character of name
+    String firstName = customer.getFirstName();
+    firstName = firstName.substring(0, 1).toUpperCase() + firstName.substring(1);
 %>
 <head>
     <title>Welcome</title>
@@ -55,18 +24,14 @@
 <div class="welcome-card">
     <!-- Banner Image -->
     <img src="../assets/img/Logo.png" alt="Welcome Banner" class="banner-img">
+
     <!-- Welcome Message -->
-    <h1>Welcome, <%= displayName %>!</h1>
-    <p>Your email: <strong><%= displayEmail %></strong></p>
-    <p class="description">We're excited to have you join IoTBay. Start exploring now!</p>
-<%--    <p>Will jump to the homepage within 3 seconds.</p>--%>
+    <h1>Welcome, <%= firstName %>!</h1>
+    <p>Your email: <strong><%= customer.getEmail() %></strong></p>
+    <p class="description">We're excited to have you join IoTBay <br> Start exploring now!</p>
+
     <!-- Go to Main Page -->
     <a href="main.jsp"><button class="style1">Go to Main Page</button></a>
 </div>
-<%--<script>--%>
-<%--    setTimeout(()=>{--%>
-<%--        window.location.href = "main.jsp";--%>
-<%--    },3000)--%>
-<%--</script>--%>
 </body>
 </html>
