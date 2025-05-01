@@ -10,7 +10,8 @@
 
 <h2>Create a New Order</h2>
 
-<form action="createOrder" method="post">
+<!-- ✅ 表单提交路径统一加 contextPath -->
+<form action="<%= request.getContextPath() %>/createOrder" method="post">
   <input type="hidden" name="action" value="create">
 
   <table border="1">

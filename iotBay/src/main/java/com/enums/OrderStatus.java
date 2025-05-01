@@ -1,11 +1,11 @@
 package com.enums;
 
 public enum OrderStatus {
-    PENDING(0, "Pending"),
-    CONFIRMED(1, "Confirmed"),
-    SHIPPED(2, "Shipped"),
-    DELIVERED(3, "Delivered"),
-    CANCELLED(4, "Cancelled");
+    Pending(0, "Pending"),
+    Confirmed(1, "Confirmed"),
+    Shipped(2, "Shipped"),
+    Delivered(3, "Delivered"),
+    Cancelled(4, "Cancelled");
 
     private int code;
     private String status;

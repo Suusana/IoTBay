@@ -11,7 +11,7 @@
 <h2>My Orders</h2>
 
 <!-- 🔍 搜索框：按订单号 -->
-<form action="viewOrder" method="get">
+<form action="<%= request.getContextPath() %>/viewOrder" method="get">
   <label for="orderId">Search by Order ID:</label>
   <input type="text" id="orderId" name="orderId" placeholder="Enter Order ID">
   <input type="submit" value="Search by ID">
@@ -20,7 +20,7 @@
 <br>
 
 <!-- 🔍 搜索框：按日期 -->
-<form action="viewOrder" method="get">
+<form action="<%= request.getContextPath() %>/viewOrder" method="get">
   <label for="orderDate">Search by Date:</label>
   <input type="date" id="orderDate" name="orderDate">
   <input type="submit" value="Search by Date">
@@ -56,8 +56,8 @@
   %>
   <tr>
     <td>
-      <!-- 点击订单号也可进入详情 -->
-      <a href="viewOrderDetails?orderId=<%= order.getOrderId() %>">
+      <!-- 点击订单号跳转详情页 -->
+      <a href="<%= request.getContextPath() %>/viewOrderDetails?orderId=<%= order.getOrderId() %>">
         <%= order.getOrderId() %>
       </a>
     </td>
@@ -80,8 +80,8 @@
       %>
     </td>
     <td>
-      <!-- 🔍 只能进入详情页，不能直接 manage -->
-      <a href="viewOrderDetails?orderId=<%= order.getOrderId() %>">Details</a>
+      <!-- 🔍 进入订单详情 -->
+      <a href="<%= request.getContextPath() %>/viewOrderDetails?orderId=<%= order.getOrderId() %>">Details</a>
     </td>
   </tr>
   <%

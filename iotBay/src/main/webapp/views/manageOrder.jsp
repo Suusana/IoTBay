@@ -38,7 +38,7 @@
 %>
 
 <!-- 🛠 修改数量 / 提交 / 取消 -->
-<form action="orderAction" method="post">
+<form action="<%= request.getContextPath() %>/orderAction" method="post">
   <input type="hidden" name="orderId" value="<%= order.getOrderId() %>">
 
   <h3>Update Product Quantities:</h3>
@@ -88,7 +88,7 @@
 %>
 
 <br><br>
-<a href="viewOrder">Back to Order List</a>
+<a href="<%= request.getContextPath() %>/viewOrder">Back to Order List</a>
 
 <%
 } else {

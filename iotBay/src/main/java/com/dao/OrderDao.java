@@ -12,13 +12,16 @@ import java.util.List;
 
 public class OrderDao {
     private final Connection connection;
+
     public OrderDao(Connection connection) {
         this.connection = connection;
     }
 
     public List<Order> findOrderByCustomerId(int customerId) throws SQLException {
         List<Order> orders = new ArrayList<>();
-        PreparedStatement preparedStatement = connection.prepareStatement("select * from orders where user_id=?");
+        PreparedStatement preparedStatement = connection.prepareStatement(
+                "SELECT * FROM \"Order\" WHERE user_id=?"
+        );
         preparedStatement.setInt(1, customerId);
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
@@ -29,9 +32,10 @@ public class OrderDao {
         return orders;
     }
 
-//OrderID primaryKey 1:1
     public Order findOrderByOrderId(int orderId, int customerId) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("select * from orders where order_id=? AND user_id=?");
+        PreparedStatement preparedStatement = connection.prepareStatement(
+                "SELECT * FROM \"Order\" WHERE order_id=? AND user_id=?"
+        );
         preparedStatement.setInt(1, orderId);
         preparedStatement.setInt(2, customerId);
         ResultSet resultSet = preparedStatement.executeQuery();
@@ -46,7 +50,9 @@ public class OrderDao {
 
     public List<Order> findOrderByDate(java.sql.Date date, int customerId) throws SQLException {
         List<Order> orders = new ArrayList<>();
-        PreparedStatement preparedStatement = connection.prepareStatement("select * from orders where create_date=? AND user_id=?");
+        PreparedStatement preparedStatement = connection.prepareStatement(
+                "SELECT * FROM \"Order\" WHERE create_date=? AND user_id=?"
+        );
         preparedStatement.setDate(1, new java.sql.Date(date.getTime()));
         preparedStatement.setInt(2, customerId);
         ResultSet resultSet = preparedStatement.executeQuery();
@@ -55,6 +61,18 @@ public class OrderDao {
         }
         resultSet.close();
         preparedStatement.close();
+        return orders;
+    }
+
+    public List<Order> findAllOrders() throws SQLException {
+        List<Order> orders = new ArrayList<>();
+        String sql = "SELECT * FROM \"Order\"";
+        try (PreparedStatement stmt = connection.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                orders.add(mapOrder(rs));
+            }
+        }
         return orders;
     }
 
@@ -67,6 +85,4 @@ public class OrderDao {
         order.setProductIds(new Integer[0]); // 可根据需要加载产品列表
         return order;
     }
-
-
 }

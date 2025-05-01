@@ -60,7 +60,7 @@
 <%
   if ("Saved".equals(order.getOrderStatus().toString())) {
 %>
-<form action="manageOrder" method="get" style="display:inline;">
+<form action="<%= request.getContextPath() %>/manageOrder" method="get" style="display:inline;">
   <input type="hidden" name="orderId" value="<%= order.getOrderId() %>">
   <input type="submit" value="Manage This Order">
 </form>
@@ -69,7 +69,7 @@
 %>
 
 <br><br>
-<a href="viewOrder">Back to Order List</a>
+<a href="<%= request.getContextPath() %>/viewOrder">Back to Order List</a>
 
 <%
 } else {
