@@ -31,7 +31,7 @@
     <p class="description">We're excited to have you join IoTBay <br> Start exploring now!</p>
 
     <!-- Go to Main Page -->
-    <a href="main.jsp"><button class="style1">Go to Main Page</button></a>
+    <a href="/home"><button class="style1">Go to Main Page</button></a>
 </div>
 </body>
 </html>
