@@ -20,7 +20,7 @@ public class OrderDao {
 
     public List<Order> findOrderByCustomerId(int customerId) throws SQLException {
         List<Order> orders = new ArrayList<>();
-        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM \"Order\" WHERE user_id=? ORDER BY create_date DESC");
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM \"Order\" WHERE user_id=? ORDER BY order_id");
 
         preparedStatement.setInt(1, customerId);
         ResultSet resultSet = preparedStatement.executeQuery();
