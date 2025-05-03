@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.bean.Order" %>
+<%@ page import="com.bean.Product" %>
+<%@ page import="java.util.List" %>
 
 <html>
 <head>
@@ -37,27 +39,27 @@
   if ("Saved".equals(order.getOrderStatus().toString())) {
 %>
 
-<!-- 🛠 修改数量 / 提交 / 取消 -->
+<!-- 🛠 修改商品数量、提交订单、取消订单 -->
 <form action="<%= request.getContextPath() %>/orderAction" method="post">
   <input type="hidden" name="orderId" value="<%= order.getOrderId() %>">
 
   <h3>Update Product Quantities:</h3>
-
   <table border="1">
     <tr>
-      <th>Product ID</th>
+      <th>Product</th>
       <th>Quantity</th>
     </tr>
 
     <%
-      Integer[] productIds = order.getProductIds();
-      if (productIds != null && productIds.length > 0) {
-        for (Integer productId : productIds) {
+      List<Product> productList = order.getProducts();
+      if (productList != null && !productList.isEmpty()) {
+        for (Product product : productList) {
+          int productId = product.getProductId();
     %>
     <tr>
-      <td><%= productId %></td>
+      <td><%= product.getProductName() %> (ID: <%= productId %>)</td>
       <td>
-        <input type="number" name="quantity_<%= productId %>" value="1" min="0" style="width: 60px; text-align: center;">
+        <input type="number" name="quantity_<%= productId %>" value="<%= product.getQuantity() %>" min="0" style="width: 60px; text-align: center;">
       </td>
     </tr>
     <%
@@ -71,7 +73,6 @@
   </table>
 
   <br>
-
   <button type="submit" name="action" value="update">Save Update</button>
   <button type="submit" name="action" value="submit">Final Submission</button>
   <button type="submit" name="action" value="cancel">Cancel Order</button>
@@ -80,9 +81,7 @@
 <%
 } else {
 %>
-
 <p>This order is <strong><%= order.getOrderStatus() %></strong> and cannot be modified.</p>
-
 <%
   }
 %>

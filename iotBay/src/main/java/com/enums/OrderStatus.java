@@ -5,7 +5,8 @@ public enum OrderStatus {
     Confirmed(1, "Confirmed"),
     Shipped(2, "Shipped"),
     Delivered(3, "Delivered"),
-    Cancelled(4, "Cancelled");
+    Cancelled(4, "Cancelled"),
+    Saved(5, "Saved");
 
     private int code;
     private String status;

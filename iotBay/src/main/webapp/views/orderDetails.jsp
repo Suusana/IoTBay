@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.bean.Order" %>
+<%@ page import="com.bean.Product" %>
+<%@ page import="java.util.List" %>
 
 <html>
 <head>
@@ -10,15 +12,24 @@
 <h2>Order Details</h2>
 
 <%
+  String error = (String) session.getAttribute("error");
+  if (error != null) {
+%>
+<p style="color: red;"><%= error.replaceAll("\n", "<br>") %></p>
+<%
+    session.removeAttribute("error");
+  }
+%>
+
+
+<%
   Order order = (Order) request.getAttribute("order");
   if (order != null) {
+    List<Product> products = order.getProducts();
+    Product product = (products != null && !products.isEmpty()) ? products.get(0) : null;
 %>
 
 <table border="1">
-  <tr>
-    <th>Order ID</th>
-    <td><%= order.getOrderId() %></td>
-  </tr>
   <tr>
     <th>Create Date</th>
     <td><%= order.getCreateDate() %></td>
@@ -29,38 +40,33 @@
   </tr>
   <tr>
     <th>Buyer</th>
-    <td><%= order.getBuyer() != null ? order.getBuyer().getFirstName() : "N/A" %></td>
+    <td><%= order.getBuyer() != null ? order.getBuyer().getFirstName() : "Guest" %></td>
   </tr>
   <tr>
-    <th>Products</th>
+    <th>Product</th>
     <td>
-      <ul>
-        <%
-          Integer[] productIds = order.getProductIds();
-          if (productIds != null && productIds.length > 0) {
-            for (Integer productId : productIds) {
-        %>
-        <li>Product ID: <%= productId %></li>
-        <%
-          }
-        } else {
-        %>
-        <li>No products found.</li>
-        <%
-          }
-        %>
-      </ul>
+      <%
+        if (product != null) {
+      %>
+      <p>Name: <%= product.getProductName() %></p>
+      <p>ID: <%= product.getProductId() %></p>
+      <p>Price: $<%= product.getPrice() %></p>
+      <p>Quantity: <%= product.getQuantity() %></p>
+      <%
+      } else {
+      %>
+      No product found.
+      <%
+        }
+      %>
     </td>
   </tr>
 </table>
 
-<br>
-
-<!-- ✅ 仅当状态为 Saved 时显示 Manage 按钮 -->
 <%
   if ("Saved".equals(order.getOrderStatus().toString())) {
 %>
-<form action="<%= request.getContextPath() %>/manageOrder" method="get" style="display:inline;">
+<form action="<%= request.getContextPath() %>/manageOrder" method="get">
   <input type="hidden" name="orderId" value="<%= order.getOrderId() %>">
   <input type="submit" value="Manage This Order">
 </form>

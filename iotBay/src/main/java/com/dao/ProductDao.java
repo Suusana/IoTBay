@@ -145,4 +145,26 @@ public class ProductDao {
         preparedStatement.setInt(1, productId);
         preparedStatement.executeUpdate();
     }
+
+    public Product findProductById(int productId) throws SQLException {
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Product WHERE product_id = ?");
+        stmt.setInt(1, productId);
+        ResultSet rs = stmt.executeQuery();
+
+        Product product = null;
+        if (rs.next()) {
+            product = new Product();
+            product.setProductId(rs.getInt("product_id"));
+            product.setProductName(rs.getString("product_name"));
+            product.setPrice(rs.getDouble("price"));
+            product.setQuantity(rs.getInt("quantity"));
+        }
+
+        rs.close();
+        stmt.close();
+        return product;
+    }
+
+
+
 }

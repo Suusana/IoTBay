@@ -33,4 +33,8 @@ public class DBManager {
         }
         return staffDao;
     }
+
+    public Connection getConnection() {
+        return connection;
+    }
 }

@@ -40,49 +40,26 @@
 
 <!-- 📋 展示订单列表 -->
 <%
-  List<Order> orderList = (List<Order>) request.getAttribute("orderList");
-  if (orderList != null && !orderList.isEmpty()) {
+  List<Order> orders = (List<Order>) request.getAttribute("orders"); // ✅ 改这里
+  if (orders != null && !orders.isEmpty()) {
 %>
 <table border="1">
   <tr>
     <th>Order ID</th>
-    <th>Create Date</th>
+    <th style="width:180px;">Create Date</th>
     <th>Status</th>
-    <th>Product IDs</th>
-    <th>Actions</th>
   </tr>
   <%
-    for (Order order : orderList) {
+    for (Order order : orders) {
   %>
   <tr>
     <td>
-      <!-- 点击订单号跳转详情页 -->
       <a href="<%= request.getContextPath() %>/viewOrderDetails?orderId=<%= order.getOrderId() %>">
         <%= order.getOrderId() %>
       </a>
     </td>
     <td><%= order.getCreateDate() %></td>
     <td><%= order.getOrderStatus() %></td>
-    <td>
-      <%
-        Integer[] productIds = order.getProductIds();
-        if (productIds != null && productIds.length > 0) {
-          for (int i = 0; i < productIds.length; i++) {
-      %>
-      <%= productIds[i] %><%= (i < productIds.length - 1) ? ", " : "" %>
-      <%
-        }
-      } else {
-      %>
-      No products.
-      <%
-        }
-      %>
-    </td>
-    <td>
-      <!-- 🔍 进入订单详情 -->
-      <a href="<%= request.getContextPath() %>/viewOrderDetails?orderId=<%= order.getOrderId() %>">Details</a>
-    </td>
   </tr>
   <%
     }
