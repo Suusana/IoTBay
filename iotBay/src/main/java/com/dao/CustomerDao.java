@@ -38,3 +38,32 @@ public class CustomerDao {
         preparedStatement.execute();
     }
 
+    // Read user for login
+    public Customer getUser(String email, String password) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM USER WHERE email = ? AND password = ?");
+        preparedStatement.setString(1, email);
+        preparedStatement.setString(2, password);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        Customer customer = null;
+
+        if (resultSet.next()) {
+            customer = new Customer();
+            customer.setUserId(resultSet.getLong("user_id"));
+            customer.setUsername(resultSet.getString("username"));
+            customer.setPassword(resultSet.getString("password"));
+            customer.setFirstName(resultSet.getString("first_name"));
+            customer.setLastName(resultSet.getString("last_name"));
+            customer.setPhone(resultSet.getLong("phone"));
+            customer.setEmail(resultSet.getString("email"));
+            customer.setStatus(resultSet.getString("status"));
+            customer.setAddress(resultSet.getString("address"));
+            customer.setCity(resultSet.getString("city"));
+            customer.setState(resultSet.getString("state"));
+            customer.setPostcode(resultSet.getInt("postcode"));
+            customer.setCountry(resultSet.getString("country"));
+//            customer.setHistory(Arrays.asList(resultSet.getString("history").split(",")));
+        }
+        return customer;
+    }
+    
+}
