@@ -4,7 +4,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 80vh;
+    height: 100vh;
     text-align: center;
 }
 
@@ -25,7 +25,6 @@
 
 .highlight-box{
     text-align: center;
-    margin-top: 40px;
     width: 40%;
 }
 
@@ -42,7 +41,7 @@
     font-size: 25px;
     font-weight: 500;
     color:#000000;
-    margin-bottom: 30px;
+    margin-top: 30px;
 }
 
 .button{
@@ -53,8 +52,7 @@
     border-radius: 5px;
     width: 150px;
     font-size: 1rem;
-    margin: 10px;
-    margin-top: 50px;
+    margin: 20px 10px;
     cursor: pointer;
 }
 
@@ -63,10 +61,15 @@
     color: black;
 }
 
-.button-logout {
-    margin-right: 10px;
+.logout-options {
+    display: flex;
 }
 
-
-
-
+.content-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    width: 100%;
+}
