@@ -63,7 +63,7 @@
         </div>
         <div class="search-box-category">
             <h3>Search by Category</h3>
-            <form action="<%= request.getContextPath() %>/GetByCategory" method="get">
+            <form action="<%= request.getContextPath() %>/GetByCategory" method="get" target="_blank">
                 <button type="submit" name="categoryId" value="1">Smart Home</button>
                 <button type="submit" name="categoryId" value="2">Health & Fitness</button>
                 <button type="submit" name="categoryId" value="3">Security Devices</button>

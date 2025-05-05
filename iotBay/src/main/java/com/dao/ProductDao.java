@@ -139,12 +139,26 @@ public class ProductDao {
 //                                            ('Energy & Utilities'),
 //                                            ('Networking & Hubs');
 
-    public void getProductByCategory(int categoryId) throws SQLException {
+    public List<Product> getProductByCategory(int categoryId) throws SQLException {
         PreparedStatement preparedstatement = connection.prepareStatement("select * from product where category_id=?");
         preparedstatement.setInt(1,categoryId);
-        preparedstatement.executeQuery();
 
+        List<Product> products= new ArrayList<>();
+        ResultSet rs = preparedstatement.executeQuery();
+        while(rs.next()) {
+            Product product = new Product();
+            product.setProductId(rs.getInt("product_id"));
+            product.setProductName(rs.getString("product_name"));
+            product.setQuantity(rs.getInt("quantity"));
+            product.setPrice(rs.getDouble("price"));
+            product.setDescription(rs.getString("description"));
+            product.setImage(rs.getString("image"));
+            products.add(product);
+        }
+        rs.close();
+        preparedstatement.close();
 
+        return products;
     }
     //Product Update - staff only
     public void updateProduct(Product product) throws SQLException {
