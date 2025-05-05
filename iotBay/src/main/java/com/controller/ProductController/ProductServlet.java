@@ -17,15 +17,14 @@ import java.util.List;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-
+//This is for views/shop.jsp page. It shows list of device record to customers
 @WebServlet("/productServlet")
 public class ProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            //change the dp path to -> "jdbc:sqlite:/absolute/path/to/your/database.db"
-            HttpSession session = req.getSession();
-            DBManager db = (DBManager) session.getAttribute("db");
+            HttpSession session = req.getSession(); //detect current HTTP session
+            DBManager db = (DBManager) session.getAttribute("db"); //able to use productdao
             ProductDao pd = db.getProductDao();
 
             List<Product> allProducts = pd.getAllProducts();
@@ -35,6 +34,7 @@ public class ProductServlet extends HttpServlet {
             System.out.println("Fetched products: " + allProducts.size()); //To check whether this code runs
 
         } catch (SQLException e) {
+            System.out.println("Failed to load products");
             throw new ServletException(e);
         }
     }

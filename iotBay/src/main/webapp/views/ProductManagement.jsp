@@ -54,9 +54,9 @@
         <h2>Search Products</h2>
         <div class="search-box-name">
             <h3>Search by Name</h3>
-            <form action="<%= request.getContextPath() %>/GetByProductName" method="get">
-                <label for="search">
-                    <input type="search" id="search" name="search" />
+            <form action="<%= request.getContextPath() %>/GetByProductName" method="get" target="_blank">
+                <label for="productName">
+                    <input type="search" id="productName" name="productName" />
                 </label>
                 <button>Search</button>
             </form>

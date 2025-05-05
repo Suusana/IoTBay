@@ -96,10 +96,28 @@ public class ProductDao {
         // return product;
     }
 
-    public void getProductByName(String productName) throws SQLException {
+    public Product getProductByName(String productName) throws SQLException {
         PreparedStatement preparedstatement = connection.prepareStatement("select * from product where product_name=?");
         preparedstatement.setString(1,productName);
-        preparedstatement.executeQuery();
+        //ResultSet : access data rows from the result table
+        ResultSet rs = preparedstatement.executeQuery(); //executeQuery is for SELECT statement
+        //use preparedstatement.executeUpdate(); for insert, update, delete
+        if(rs.next()){
+            Product product = new Product();
+            product.setProductId(rs.getInt("product_id"));
+            product.setProductName(rs.getString("product_name"));
+            product.setQuantity(rs.getInt("quantity"));
+            product.setPrice(rs.getDouble("price"));
+            product.setDescription(rs.getString("description"));
+            product.setImage(rs.getString("image"));
+            int categoryId = rs.getInt("category_id");
+            Category category = new Category();
+            category.setCategoryId(categoryId);
+            product.setCategory(category);
+
+            return product;
+        }
+        return null;
     }
 //    create table Category
 //            (
@@ -121,10 +139,12 @@ public class ProductDao {
 //                                            ('Energy & Utilities'),
 //                                            ('Networking & Hubs');
 
-    public void getProductByCategoryId(int categoryId) throws SQLException {
+    public void getProductByCategory(int categoryId) throws SQLException {
         PreparedStatement preparedstatement = connection.prepareStatement("select * from product where category_id=?");
         preparedstatement.setInt(1,categoryId);
         preparedstatement.executeQuery();
+
+
     }
     //Product Update - staff only
     public void updateProduct(Product product) throws SQLException {
