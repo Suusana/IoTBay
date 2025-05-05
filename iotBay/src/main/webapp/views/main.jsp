@@ -49,7 +49,7 @@
             <i class="fa-solid fa-circle-user fa-2x"></i>
             <span><%= customer.getFirstName() != null ? customer.getFirstName() : Status.GUEST.getStatus()%></span>
         </a>
-        <a href="">
+        <a href="<%=request.getContextPath()%>/GetByProductNameToCustomer">
             <i class="fa-solid fa-magnifying-glass fa-2x"></i>
             <span>Search</span>
         </a>

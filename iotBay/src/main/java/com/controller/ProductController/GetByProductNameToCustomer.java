@@ -13,10 +13,9 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/GetByProductName")
-public class GetByProductName extends HttpServlet {
-
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException{
+@WebServlet("/GetByProductNameToCustomer")
+public class GetByProductNameToCustomer extends HttpServlet {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try{
             HttpSession session = req.getSession();
             DBManager db = (DBManager) session.getAttribute("db");
@@ -26,10 +25,10 @@ public class GetByProductName extends HttpServlet {
             Product product = productDao.getProductByName(productName);
             if (product != null) {
                 req.setAttribute("product", product);
-                req.getRequestDispatcher("/views/AdminProductSearchResult.jsp").forward(req, resp);
+                req.getRequestDispatcher("/views/Search.jsp").forward(req, resp);
             } else{
                 req.setAttribute("message", "404 NotFound");
-                req.getRequestDispatcher("/views/AdminProductSearchResult.jsp").forward(req,resp);
+                req.getRequestDispatcher("/views/Search.jsp").forward(req,resp);
             }
 
         } catch(SQLException | IOException e){
@@ -37,6 +36,6 @@ public class GetByProductName extends HttpServlet {
             throw new ServletException(e);
         }
 
+
     }
 }
-
