@@ -54,16 +54,16 @@
         <h2>Search Products</h2>
         <div class="search-box-name">
             <h3>Search by Name</h3>
-            <form action="<%= request.getContextPath() %>/GetByProductName" method="get">
-                <label for="search">
-                    <input type="search" id="search" name="search" />
+            <form action="<%= request.getContextPath() %>/GetByProductName" method="get" target="_blank">
+                <label for="productName">
+                    <input type="search" id="productName" name="productName" />
                 </label>
                 <button>Search</button>
             </form>
         </div>
         <div class="search-box-category">
             <h3>Search by Category</h3>
-            <form action="<%= request.getContextPath() %>/GetByCategory" method="get">
+            <form action="<%= request.getContextPath() %>/GetByCategory" method="get" target="_blank">
                 <button type="submit" name="categoryId" value="1">Smart Home</button>
                 <button type="submit" name="categoryId" value="2">Health & Fitness</button>
                 <button type="submit" name="categoryId" value="3">Security Devices</button>
