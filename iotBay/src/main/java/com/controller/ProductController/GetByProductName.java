@@ -1,6 +1,8 @@
 package com.controller.ProductController;
 
+import com.bean.Category;
 import com.bean.Product;
+import com.dao.CategoryDao;
 import com.dao.DBManager;
 import com.dao.ProductDao;
 import jakarta.servlet.ServletException;
@@ -31,6 +33,7 @@ public class GetByProductName extends HttpServlet {
                 req.setAttribute("message", "404 NotFound");
                 req.getRequestDispatcher("/views/AdminProductSearchResult.jsp").forward(req,resp);
             }
+
 
         } catch(SQLException | IOException e){
             System.out.println("Failed to load a product");
