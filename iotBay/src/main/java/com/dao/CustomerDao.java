@@ -65,5 +65,30 @@ public class CustomerDao {
         }
         return customer;
     }
-    
+
+    // Read user
+    public Customer getUserById(Long userId) throws SQLException {
+        PreparedStatement preparedStatement =  connection.prepareStatement("SELECT * FROM User WHERE user_id = ?");
+        preparedStatement.setLong(1, userId);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        Customer customer = null;
+
+        if (resultSet.next()) {
+            customer = new Customer();
+            customer.setUserId(resultSet.getLong("user_id"));
+            customer.setUsername(resultSet.getString("username"));
+            customer.setPassword(resultSet.getString("password"));
+            customer.setFirstName(resultSet.getString("first_name"));
+            customer.setLastName(resultSet.getString("last_name"));
+            customer.setPhone(resultSet.getLong("phone"));
+            customer.setEmail(resultSet.getString("email"));
+            customer.setStatus(resultSet.getString("status"));
+            customer.setAddress(resultSet.getString("address"));
+            customer.setCity(resultSet.getString("city"));
+            customer.setState(resultSet.getString("state"));
+            customer.setPostcode(resultSet.getInt("postcode"));
+            customer.setCountry(resultSet.getString("country"));
+        }
+        return customer;
+    }
 }

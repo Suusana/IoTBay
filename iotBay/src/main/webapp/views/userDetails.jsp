@@ -1,23 +1,27 @@
 <%@ page import="com.bean.Customer" %>
 <%@ page import="com.enums.Status" %>
+<%@ page import="com.util.Utils" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>User Details</title>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/base.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/HeaderAndFooter.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/userDetails.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <%
     Customer customer = new Customer();
     if (session.getAttribute("loggedInUser") != null){
         customer = (Customer)session.getAttribute("loggedInUser");
     } else {
-        customer.setUsername(Status.GUEST.getStatus());
+        session.setAttribute("errorMessage", "Please login to view your profile");
+        response.sendRedirect("/views/login.jsp");
     }
 %>
 <body>
 <%--Header--%>
-<div class="header">
+<div class="header" style="border-bottom: 1px solid #a7a7a7">
     <!-- Logo -->
     <a href="<%=request.getContextPath()%>/home">
         <img src="<%=request.getContextPath()%>/assets/img/Logo.png" alt="IotBay Logo">
@@ -32,11 +36,11 @@
 
     <!-- icon menu -->
     <menu class="icon">
-        <a href="">
+        <a href="/ViewUserDetailsServlet" style="color: #ff8400;">
             <i class="fa-solid fa-circle-user fa-2x"></i>
             <span><%= customer.getFirstName() != null ? customer.getFirstName() : Status.GUEST.getStatus()%></span>
         </a>
-        <a href="">
+        <a href="/GetByProductNameToCustomer">
             <i class="fa-solid fa-magnifying-glass fa-2x"></i>
             <span>Search</span>
         </a>
@@ -52,6 +56,69 @@
     </menu>
 </div>
 
+<main>
+    <h1>Your Details</h1>
+    <div class="details-display">
+        <div class="form-row">
+            <div class="field">
+                <label>Username</label>
+                <span><%=customer.getUsername()%></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="field">
+                <label>First Name</label>
+                <span><%=customer.getFirstName()%></span>
+            </div>
+            <div class="field">
+                <label>Last Name</label>
+                <span><%=customer.getLastName()%></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="field">
+                <label>Email Address</label>
+                <span><%=customer.getEmail()%></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="field">
+                <label>Phone Number</label>
+                <span><%=Utils.formatPhoneNumber(customer.getPhone())%></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="field">
+                <label>Address</label>
+                <span><%=customer.getAddress()%></span>
+            </div>
+            <div class="field">
+                <label>City</label>
+                <span><%=customer.getCity()%></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="field">
+                <label>State</label>
+                <span><%=customer.getState()%></span>
+            </div>
+            <div class="field">
+                <label>Postcode</label>
+                <span><%=customer.getPostcode()%></span>
+            </div>
+            <div class="field">
+                <label>Country</label>
+                <span><%=customer.getCountry()%></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="account-buttons">
+        <a href="/EditDetailsServlet" class="button edit-button">Edit Details</a>
+        <a href="/ViewAccountHistoryServlet" class="button view-button">View Account History</a>
+        <a href="/views/deleteAccount.jsp" class="button delete-button">Delete Account</a>
+    </div>
+</main>
 
 
 <!-- footer -->

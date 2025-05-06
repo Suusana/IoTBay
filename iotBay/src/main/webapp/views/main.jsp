@@ -45,7 +45,7 @@
 
     <!-- icon menu -->
     <menu class="icon">
-        <a href="">
+        <a href="/ViewUserDetailsServlet">
             <i class="fa-solid fa-circle-user fa-2x"></i>
             <span><%= customer.getFirstName() != null ? customer.getFirstName() : Status.GUEST.getStatus()%></span>
         </a>
