@@ -19,7 +19,7 @@
 <body>
 <div class="header" style="border-bottom: 1px solid #a7a7a7">
     <!-- Logo -->
-    <a href="./main.jsp">
+    <a href="/home">
         <img src="../assets/img/Logo.png" alt="IotBay Logo">
     </a>
 </div>
@@ -60,8 +60,8 @@
         </div>
         <div class="section">
             <h6>Links</h6>
-            <a href=""><span>Home</span></a>
-            <a href=""><span>Shop</span></a>
+            <a href="/home"><span>Home</span></a>
+            <a href="/productServlet"><span>Shop</span></a>
             <a href=""><span>Order</span></a>
             <a href=""><span>Category</span></a>
         </div>
