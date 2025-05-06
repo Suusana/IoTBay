@@ -56,6 +56,8 @@
       <br>
       Category ID:<input type="number" name="categoryId" value="<%=categoryID%>"/>
       <p>Category :<%=product.getCategory().getCategory()%></p>
+      Image:<input type="text" name="image" value="<%=product.getImage()%>"/>
+
       <button type="submit">Update</button>
     </form>
   </div>

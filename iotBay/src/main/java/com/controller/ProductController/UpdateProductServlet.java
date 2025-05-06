@@ -47,6 +47,7 @@ public class UpdateProductServlet extends HttpServlet {
             product.setCategory(category);
 
             pd.updateProduct(product);
+
             resp.sendRedirect(req.getContextPath() + "/ProductManagementServlet");
         } catch (SQLException e) {
             System.out.println("Failed to update a Product");
