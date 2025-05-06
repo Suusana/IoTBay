@@ -10,6 +10,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.bean.Product" %>
 <%@ page import="com.bean.Category" %>
+
 <html>
   <%
     List<Product> allProducts = (List<Product>) request.getAttribute("allProducts");
@@ -34,7 +35,7 @@
     <h5><%= product.getProductName() %></h5>
     <p><%= product.getDescription() %></p>
     <span>$<%= product.getPrice() %></span>
-    <h5><%= product.getCategory()%></h5>
+    <h5>Category: <%= product.getCategory().getCategory()%></h5>
 
   <div class="update-product-info">
     <h4>Update Product Info</h4>
@@ -44,6 +45,19 @@
       Price: <input type="text" name="price" value="<%= product.getPrice() %>">
       Quantity: <input type="number" name="quantity" value="<%= product.getQuantity() %>">
       Description: <textarea name="description"><%= product.getDescription() %></textarea>
+      Image: <input type="text" name="image" value="<%=product.getImage()%>" />
+      <%
+        //product.getCategory -> receives category obj
+        /*
+          product.getCategory() -> returns the obj addr not the string (Category name)
+          product db stores categoryID / product class stores category obj
+        * */
+        Category category = new Category();
+        category = product.getCategory();
+        int categoryID = category.getCategoryId();
+      %>
+      Category ID:<input type="number" name="categoryId" value="<%=categoryID%>"/>
+      <p>Category :<%=product.getCategory().getCategory()%></p>
       <button type="submit">Update</button>
     </form>
   </div>

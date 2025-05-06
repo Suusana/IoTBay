@@ -33,4 +33,17 @@ public class CategoryDao {
         }
         return list;
     }
+    public Category getCategoryById(int categoryId) throws SQLException {
+        PreparedStatement ps = connection.prepareStatement("select * from Category where category_id=?");
+        ps.setInt(1, categoryId);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) { //re.nex()) instead of rs != null bc rs still exists even though there is no row
+            Category category = new Category();
+            category.setCategoryId(rs.getInt("category_id"));
+            category.setCategory(rs.getString("category"));
+            return category;
+        }
+        return null;
+    }
 }

@@ -38,7 +38,7 @@
         <i class="fa-solid fa-user-tie fa-lg"></i>
         <span>Staff Management</span>
     </a>
-    <a href=".+" class="current">
+    <a href="<%= request.getContextPath() %>/ProductManagementServlet" class="current">
         <i class="fa-solid fa-user-tie fa-lg"></i>
         <span>Product Management</span>
     </a>
@@ -104,7 +104,7 @@
         <h5><%= product.getProductName() %></h5>
         <p><%= product.getDescription() %></p>
         <span>$<%= product.getPrice() %></span>
-        <h5><%= product.getCategory()%></h5>
+        <h5>Category: <%= product.getCategory().getCategory()%></h5>
         <div class="update-product-info">
             <h4>Update Product Info</h4>
             <form action="<%= request.getContextPath() %>/UpdateProductServlet" method="post">
@@ -112,7 +112,21 @@
                 Name: <input type="text" name="productName" value="<%= product.getProductName() %>">
                 Price: <input type="text" name="price" value="<%= product.getPrice() %>">
                 Quantity: <input type="number" name="quantity" value="<%= product.getQuantity() %>">
+                <br>
                 Description: <textarea name="description"><%= product.getDescription() %></textarea>
+                <br>
+                <%
+                    //product.getCategory -> receives category obj
+        /*
+          product.getCategory() -> returns the obj addr not the string (Category name)
+          product db stores categoryID / product class stores category obj
+        * */
+                    Category category = new Category();
+                    category = product.getCategory();
+                    int categoryID = category.getCategoryId();
+                %>
+                Category ID:<input type="number" name="categoryId" value="<%=categoryID%>"/>
+                <p>Category :<%=product.getCategory().getCategory()%></p>
                 <button type="submit">Update</button>
             </form>
         </div>
