@@ -1,0 +1,52 @@
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    min-height: 700px;
+    background-color: #FFF3E3;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 100px;
+}
+
+.details-display {
+    display: flex;
+    flex-direction: column;
+    max-width: 620px;
+    gap: 10px;
+    padding: 30px;
+    font-size: 1rem;
+    background-color: white;
+    margin-bottom: 40px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 8px 10px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+}
+
+.field span {
+    border-bottom: 1px solid #B88E2F;
+}
+
+.field label {
+    font-weight: bold;
+    width: 180px;
+}
