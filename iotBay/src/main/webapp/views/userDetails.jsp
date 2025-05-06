@@ -110,6 +110,13 @@
                 <label>Country</label>
                 <span><%=customer.getCountry()%></span>
             </div>
+        </div>
+    </div>
+
+    <div class="account-buttons">
+        <a href="/EditDetailsServlet" class="button edit-button">Edit Details</a>
+        <a href="/ViewAccountHistoryServlet" class="button view-button">View Account History</a>
+        <a href="/views/deleteAccount.jsp" class="button delete-button">Delete Account</a>
     </div>
 </main>
 
