@@ -6,9 +6,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class CustomerDao {
     private final Connection connection;
@@ -31,10 +28,8 @@ public class CustomerDao {
         preparedStatement.setString(8, customer.getAddress());
         preparedStatement.setString(9, customer.getState());
         preparedStatement.setString(10, customer.getCity());
-        preparedStatement.setLong(11, customer.getPostcode());
+        preparedStatement.setInt(11, customer.getPostcode());
         preparedStatement.setString(12, customer.getCountry());
-        // add history to db
-//        preparedStatement.setString(13, customer.getHistory().toString());
         preparedStatement.execute();
     }
 
@@ -69,7 +64,7 @@ public class CustomerDao {
     // Read user
     public Customer getUserById(Integer userId) throws SQLException {
         PreparedStatement preparedStatement =  connection.prepareStatement("SELECT * FROM User WHERE user_id = ?");
-        preparedStatement.setLong(1, userId);
+        preparedStatement.setInt(1, userId);
         ResultSet resultSet = preparedStatement.executeQuery();
         Customer customer = null;
 
@@ -92,6 +87,25 @@ public class CustomerDao {
         return customer;
     }
 
+    // Update User
+    public void updateUser(Customer oldCustomer, Customer newCustomer) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("UPDATE USER SET username = ?, first_name = ?," +
+                " last_name = ?, password = ?, email = ?, phone = ?, status = ?, address = ?, state = ?, city = ?, postcode = ?," +
+                " country = ? WHERE user_id = ?");
+        preparedStatement.setString(1, newCustomer.getUsername());
+        preparedStatement.setString(2, newCustomer.getFirstName());
+        preparedStatement.setString(3, newCustomer.getLastName());
+        preparedStatement.setString(4, newCustomer.getPassword());
+        preparedStatement.setString(5, newCustomer.getEmail());
+        preparedStatement.setLong(6, newCustomer.getPhone());
+        preparedStatement.setString(7, newCustomer.getStatus());
+        preparedStatement.setString(8, newCustomer.getAddress());
+        preparedStatement.setString(9, newCustomer.getState());
+        preparedStatement.setString(10, newCustomer.getCity());
+        preparedStatement.setInt(11, newCustomer.getPostcode());
+        preparedStatement.setString(12, newCustomer.getCountry());
+        preparedStatement.execute();
+    }
 
     // Delete User
     public void deleteUser(Customer customer) throws SQLException {
