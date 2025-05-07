@@ -79,14 +79,14 @@ img{
     height: 200px;
 }
 
-.deletedMssg{
+.deletedMssg {
     width: 50px;
     height: 30px;
     background-color: #B88E2F;
-    color:white;
+    color: white;
     border-radius: 5px;
     animation: fadeout 1s ease-out;
-
+}
 @keyframes fadeout {
     from{
         opacity: 100%;
