@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: yunseo
-  Date: 06/05/2025
-  Time: 8:52 AM
+  Date: 07/05/2025
+  Time: 3:38 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -20,13 +20,13 @@
     customer.setUsername(Status.GUEST.getStatus());
   }
 
-  List<Product> allProducts = (List<Product>) request.getAttribute("allProducts");
+
   List<Category> categories = (List<Category>) request.getAttribute("categories");
 
   //from Servlet GetByProductNameTOCustomer
-  Product product = (Product) request.getAttribute("product");
+  List<Product> allProducts = (List<Product>) request.getAttribute("products");
   String message = (String) request.getAttribute("message");
-  Boolean searched = (Boolean) request.getAttribute("searched");
+
 %>
 <head>
   <title>Shop</title>
@@ -34,7 +34,6 @@
   <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/HeaderAndFooter.css">
   <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/main.css">
   <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/ProductManagement.css">
-  <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/search.css">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -78,48 +77,20 @@
 
 <!-- main body -->
 <main>
-  <div class="search-box">
-    <h1>Search Products</h1>
-    <div class="search-box-name">
-      <h3>Search by Name</h3>
-      <form action="<%= request.getContextPath() %>/GetByProductNameToCustomer" method="get">
-        <label for="productName">
-          <input type="search" id="productName" name="productName" required />
-        </label>
-        <button>Search</button>
-      </form>
-    </div>
-    <div class="search-box-category">
-      <h3>Search by Category</h3>
-      <form action="<%= request.getContextPath() %>/GetByCategoryToCustomer" method="get" target="_blank">
-        <button type="submit" name="categoryId" value="1">Smart Home</button>
-        <button type="submit" name="categoryId" value="2">Health & Fitness</button>
-        <button type="submit" name="categoryId" value="3">Security Devices</button>
-        <button type="submit" name="categoryId" value="4">Industrial Devices</button>
-        <button type="submit" name="categoryId" value="5">Wearables</button>
-        <button type="submit" name="categoryId" value="6">Agriculture & Environment</button>
-        <button type="submit" name="categoryId" value="7">Automotive & Transport</button>
-        <button type="submit" name="categoryId" value="8">Smart Appliances</button>
-        <button type="submit" name="categoryId" value="9">Energy & Utilities</button>
-        <button type="submit" name="categoryId" value="10">Networking & Hubs</button>
-      </form>
-    </div>
-  </div>
-  <br>
-  <div class="search-name-result">
-    <h1>Product</h1>
-      <% if (product != null) { %>
-      <a class="shop_product">
-        <img src="<%= request.getContextPath() %>/assets/img/<%= product.getImage() %>" alt="Device">
-        <h3><%= product.getProductName() %></h3>
-        <p>About: <%= product.getDescription() %></p>
-        <h5>Price: $<%= product.getPrice() %></h5>
-        <h5>Category: <%= product.getCategory().getCategory()%></h5>
-      </a>
-      <%} else {%>
-      <h2><%=message%></h2>
-      <%}%>
-  </div>
+  <h2>Product List</h2>
+  <% if (allProducts != null && !allProducts.isEmpty()) {
+    for (Product product : allProducts) { %>
+  <a class="shop_product">
+    <img src="<%= request.getContextPath() %>/assets/img/<%= product.getImage() %>" alt="Device">
+    <h5><%= product.getProductName() %></h5>
+    <p><%= product.getDescription() %></p>
+    <span>$<%= product.getPrice() %></span>
+    <h5>Category: <%= product.getCategory().getCategory()%></h5>
+  </a>
+  <% }
+  } else { %>
+  <p>No products available right now.</p> <!--this will appear when there is an servlet connection error or nothing to show --->
+  <% } %>
 
 </main>
 

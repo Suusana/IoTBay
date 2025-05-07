@@ -23,14 +23,17 @@ public class GetByProductNameToCustomer extends HttpServlet {
 
             String productName = req.getParameter("productName");
             Product product = productDao.getProductByName(productName);
+
             if (product != null) {
                 req.setAttribute("product", product);
+               // req.setAttribute("searched", true );
                 req.getRequestDispatcher("/views/Search.jsp").forward(req, resp);
-            } else{
-                req.setAttribute("message", "404 NotFound");
+            }else{
+                req.setAttribute("message", "No product found");
+               // req.setAttribute("searched", false);
                 req.getRequestDispatcher("/views/Search.jsp").forward(req,resp);
             }
-
+           // req.setAttribute("searched", true );
         } catch(SQLException | IOException e){
             System.out.println("Failed to load a product");
             throw new ServletException(e);
