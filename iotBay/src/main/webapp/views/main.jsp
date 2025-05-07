@@ -84,7 +84,7 @@
         List<Product> productList = (List<Product>) request.getAttribute("productList");
         for (Product product:productList) {
     %>
-                <a href="" class="card">
+                <a href="<%= request.getContextPath()%>/ProductDetailServlet?id=<%=product.getProductId()%>" class="card">
                     <img src="<%=request.getContextPath()%>/assets/img/<%=product.getImage()%>" alt="Device">
                     <h5><%=product.getProductName()%></h5>
                     <p><%=product.getDescription()%></p>

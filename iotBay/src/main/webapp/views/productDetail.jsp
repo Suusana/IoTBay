@@ -1,51 +1,46 @@
-<%--
+<%@ page import="com.bean.Customer" %>
+<%@ page import="com.enums.Status" %>
+<%@ page import="com.bean.Product" %><%--
   Created by IntelliJ IDEA.
-  User: yunseo
-  Date: 19/04/2025
-  Time: 2:38 PM
+  User: Susana
+  Date: 5/7/2025
+  Time: 16:55
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="com.bean.Customer" %>
-<%@ page import="com.enums.Status" %>
-<%@ page import="com.bean.Product" %>
-<%@ page import="java.util.List" %>
 <html>
 <%
     Customer customer = new Customer();
-    if (session.getAttribute("registeredUser")!=null){
-        customer = (Customer)session.getAttribute("registeredUser");
-    }else {
+    if (session.getAttribute("loggedInUser") != null) {
+        customer = (Customer) session.getAttribute("loggedInUser");
+    } else {
         customer.setUsername(Status.GUEST.getStatus());
-    }    List<Product> allProducts = (List<Product>) request.getAttribute("allProducts");
+    }
 %>
 <head>
-    <title>Shop</title>
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/base.css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/HeaderAndFooter.css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/main.css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/shop.css">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/base.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/HeaderAndFooter.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/productDetail.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-
 <body>
-<!-- header -->
 <div class="header">
     <!-- Logo -->
-    <a href="./main.jsp">
-        <img src="<%= request.getContextPath() %>/assets/img/Logo.png" alt="IotBay Logo">
+    <a href="<%=request.getContextPath()%>/home">
+        <img src="<%=request.getContextPath()%>/assets/img/Logo.png" alt="IotBay Logo">
     </a>
     <!-- menu -->
     <menu>
-        <a href="<%= request.getContextPath() %>/views/main.jsp"><span>Home</span></a>
-        <a href="productServlet"><span class="selected">Shop</span></a> <!-- change here -->
-        <a href=""><span>Order</span></a>
+        <a href="<%=request.getContextPath()%>/home"><span class="selected">Home</span></a>
+        <a href="<%= request.getContextPath() %>/productServlet"><span>Shop</span></a>
+        <a href="<%= request.getContextPath() %>/viewOrder"><span>Order</span></a>
         <a href=""><span>Category</span></a>
     </menu>
 
     <!-- icon menu -->
     <menu class="icon">
-        <a href="">
+        <a href="<%=request.getContextPath()%>/ViewUserDetailsServlet">
             <i class="fa-solid fa-circle-user fa-2x"></i>
             <span><%= customer.getFirstName() != null ? customer.getFirstName() : Status.GUEST.getStatus()%></span>
         </a>
@@ -65,25 +60,25 @@
     </menu>
 </div>
 
-<!-- main body -->
-<main>
+<%
+    Product product = (Product) request.getAttribute("product");
+%>
+<div class="product-container">
+    <img src="<%=request.getContextPath()%>/assets/img/<%= product.getImage()%>" alt="Product Image" class="product-image">
 
-    <% if (allProducts != null && !allProducts.isEmpty()) {
-        for (Product product : allProducts) { %>
-    <a href="<%= request.getContextPath()%>/ProductDetailServlet?id=<%=product.getProductId()%>" class="shop_product">
-        <img src="<%= request.getContextPath() %>/assets/img/<%= product.getImage() %>" alt="Device">
-        <h5><%= product.getProductName() %></h5>
-        <p><%= product.getDescription() %></p>
-        <span>$<%= product.getPrice() %></span>
-    </a>
-    <% }
-    } else { %>
-    <p>No products available right now.</p>
-    <% } %>
-</main>
+    <div class="product-info">
+        <h1><%= product.getProductName()%></h1>
+        <p class="price">$ <%=product.getPrice()%></p>
+        <p><%= product.getDescription()%></p>
 
-<!-- footer -->
- <div class="footer">
+        <div class="actions">
+            <button class="buy-btn">Buy Now</button>
+            <button class="cart-btn">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
     <hr>
     <div>
         <div class="section">
@@ -126,8 +121,5 @@
     <hr>
     <p>©2025. IoTBay Group 4 All Right Reserved</p>
 </div>
-
-
 </body>
-
 </html>
