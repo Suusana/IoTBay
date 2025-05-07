@@ -24,23 +24,23 @@ public class LoginServlet extends HttpServlet {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
 
+        System.out.println("the email is" + email);
+        System.out.println("the password is" + password);
+
         try {
             Customer customer = customerDao.getUser(email, password);
 
             if (customer == null) {
                 session.setAttribute("errorMessage", "Incorrect Email or Password");
-                resp.sendRedirect("/views/login.jsp");
+                resp.sendRedirect(req.getContextPath()+"/views/login.jsp");
             } else {
                 session.removeAttribute("errorMessage");
                 session.setAttribute("loggedInUser", customer);
-                resp.sendRedirect("/home");
+                resp.sendRedirect(req.getContextPath()+"/home");
             }
-
         } catch (SQLException e) {
             System.out.println("Can't find customer in database");
             e.printStackTrace();
         }
-
-
     }
 }

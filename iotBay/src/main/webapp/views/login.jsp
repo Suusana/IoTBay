@@ -28,7 +28,7 @@
     <div class="title"><h2>Login</h2></div>
 
     <%--Login Form--%>
-    <form action="/LoginServlet" method="post">
+    <form action="<%= request.getContextPath() %>/LoginServlet" method="post">
         <label for="email">Email Address</label>
         <input id="email" name="email" type="text" placeholder="Email@site.com" required/>
 

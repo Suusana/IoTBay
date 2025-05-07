@@ -17,7 +17,6 @@ import java.util.ArrayList;
 
 @WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
@@ -51,6 +50,6 @@ public class RegisterServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        resp.sendRedirect("/views/welcome.jsp");
+        resp.sendRedirect(req.getContextPath()+"/views/welcome.jsp");
     }
 }
