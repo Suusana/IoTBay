@@ -25,16 +25,15 @@ public class ViewUserDetailsServlet extends HttpServlet {
 
         if (customer == null) {
             session.setAttribute("errorMessage", "Please login to view your profile");
-            resp.sendRedirect("/views/login.jsp");
+            resp.sendRedirect(req.getContextPath()+"/views/login.jsp");
             return;
         }
-
         Customer updatedCustomer;
         try {
             // update customer to latest data from database before displaying
             updatedCustomer = customerDao.getUserById(customer.getUserId());
             session.setAttribute("loggedInUser",  updatedCustomer);
-            resp.sendRedirect("/views/userDetails.jsp");
+            resp.sendRedirect(req.getContextPath()+"/views/userDetails.jsp");
         } catch (SQLException e) {
             System.out.println("Couldn't retrieve user");
             throw new RuntimeException(e);
