@@ -2,23 +2,26 @@ package com.bean;
 
 import com.enums.OrderStatus;
 
-import java.util.Date;
 import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+
 public class Order implements Serializable {
     private Integer orderId;
     private Date createDate;
     private OrderStatus orderStatus;
-    private Integer[] productIds;
+    private List<Product> products; // ✅ 代替 productIds
     private Customer buyer;
 
     public Order() {
     }
 
-    public Order(Integer orderId, Date createDate, OrderStatus orderStatus, Integer[] productIds, Customer buyer) {
+    public Order(Integer orderId, Date createDate, OrderStatus orderStatus,
+                 List<Product> products, Customer buyer) {
         this.orderId = orderId;
         this.createDate = createDate;
         this.orderStatus = orderStatus;
-        this.productIds = productIds;
+        this.products = products;
         this.buyer = buyer;
     }
 
@@ -46,12 +49,12 @@ public class Order implements Serializable {
         this.orderStatus = orderStatus;
     }
 
-    public Integer[] getProductIds() {
-        return productIds;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setProductIds(Integer[] productIds) {
-        this.productIds = productIds;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     public Customer getBuyer() {

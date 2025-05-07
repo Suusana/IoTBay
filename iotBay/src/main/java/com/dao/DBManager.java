@@ -43,4 +43,8 @@ public class DBManager {
         }
         return categoryDao;
     }
+
+    public Connection getConnection() {
+        return connection;
+    }
 }
