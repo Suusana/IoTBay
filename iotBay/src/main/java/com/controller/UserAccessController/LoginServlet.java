@@ -21,11 +21,14 @@ public class LoginServlet extends HttpServlet {
         DBManager db =  (DBManager) session.getAttribute("db");
         CustomerDao customerDao = db.getCustomerDao();
 
-        String email = req.getParameter("email");
+        String email = req.getParameter("email").trim();
         String password = req.getParameter("password");
 
-        System.out.println("the email is" + email);
-        System.out.println("the password is" + password);
+        if (email.isEmpty() || password.isEmpty()) {
+            session.setAttribute("errorMessage", "Email and Password are required");
+            resp.sendRedirect(req.getContextPath() + "/views/login.jsp");
+            return;
+        }
 
         try {
             Customer customer = customerDao.getUser(email, password);
