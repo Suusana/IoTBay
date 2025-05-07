@@ -2,12 +2,8 @@ package com.dao;
 
 import com.bean.Customer;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class CustomerDao {
@@ -33,14 +29,12 @@ public class CustomerDao {
         preparedStatement.setString(10, customer.getCity());
         preparedStatement.setLong(11, customer.getPostcode());
         preparedStatement.setString(12, customer.getCountry());
-        // add history to db
-//        preparedStatement.setString(13, customer.getHistory().toString());
         preparedStatement.execute();
     }
 
     // Read user for login
     public Customer getUser(String email, String password) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM USER WHERE email = ? AND password = ?");
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM User WHERE email = ? AND password = ?");
         preparedStatement.setString(1, email);
         preparedStatement.setString(2, password);
         ResultSet resultSet = preparedStatement.executeQuery();
@@ -59,15 +53,16 @@ public class CustomerDao {
 
     // Delete User
     public void deleteUser(Customer customer) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM USER WHERE user_id = ?");
-        preparedStatement.setLong(1, customer.getUserId());
+        PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM User WHERE user_id = ?");
+        preparedStatement.setInt(1, customer.getUserId());
         preparedStatement.executeUpdate();
     }
 
     // Update Customer
     public void updateCustomer(Customer customer) throws SQLException {
         PreparedStatement ps = connection.prepareStatement(
-                "UPDATE User SET username=?, first_name=?, last_name=?, password=?, email=?, phone=?, address=?, state=?, city=?, postcode=?, country=? WHERE user_id=?"
+                "UPDATE User SET username=?, first_name=?, last_name=?, password=?, email=?, phone=?, address=?, " +
+                        "state=?, city=?, postcode=?, country=? WHERE user_id=?"
         );
         ps.setString(1, customer.getUsername());
         ps.setString(2, customer.getFirstName());
