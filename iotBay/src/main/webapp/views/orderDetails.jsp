@@ -50,8 +50,9 @@
       %>
       <p>Name: <%= product.getProductName() %></p>
       <p>ID: <%= product.getProductId() %></p>
-      <p>Price: $<%= product.getPrice() %></p>
+      <p>Price (each): $<%= product.getPrice() %></p>
       <p>Quantity: <%= product.getQuantity() %></p>
+      <p><strong>Total: $<%= String.format("%.2f", product.getPrice() * product.getQuantity()) %></strong></p>
       <%
       } else {
       %>

@@ -48,14 +48,14 @@ public class OrderAction extends HttpServlet {
                     boolean hasError = false;
                     StringBuilder errorMsg = new StringBuilder();
 
-                    ProductDao productDao = new ProductDao(connection); // 🔄 确保使用最新库存
+                    ProductDao productDao = new ProductDao(connection);
 
                     for (Product product : order.getProducts()) {
                         int productId = product.getProductId();
 
-                        // ⛳ 正确方式：重新查数据库获取库存
+                        // getProductFreshQuantity
                         Product freshProduct = productDao.findProductById(productId);
-                        int availableStock = freshProduct.getQuantity();  // ✅ 正确库存值
+                        int availableStock = freshProduct.getQuantity();
 
                         String quantityParam = request.getParameter("quantity_" + productId);
                         if (quantityParam != null && !quantityParam.isEmpty()) {
@@ -69,8 +69,7 @@ public class OrderAction extends HttpServlet {
                                         .append(availableStock)
                                         .append(").\n");
                             } else {
-                                orderDao.updateOrderQuantity(order.getOrderId(), newQuantity); // ✅ 数据库更新
-                                System.out.println("✔ Updated quantity for product " + productId + " to: " + newQuantity);
+                                orderDao.updateOrderQuantity(order.getOrderId(), newQuantity);
                             }
                         } else {
                             System.out.println("⚠ Missing quantity param for product " + productId);

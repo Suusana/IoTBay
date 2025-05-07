@@ -30,12 +30,12 @@ public class ViewOrderDetails extends HttpServlet {
 
         if (orderIdParam != null) {
             try {
-                // 从 session 中获取 dbManager 和连接
+                // Get DBManager from session
                 HttpSession session = request.getSession();
                 DBManager dbManager = (DBManager) session.getAttribute("db");
                 Connection connection = dbManager.getConnection();
 
-                OrderDao orderDao = new OrderDao(connection);  // ✅ 传入有效连接
+                OrderDao orderDao = new OrderDao(connection);
 
                 int orderId = Integer.parseInt(orderIdParam);
                 Order order = orderDao.findOrderByOrderId(orderId);

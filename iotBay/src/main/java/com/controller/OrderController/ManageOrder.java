@@ -22,7 +22,7 @@ public class ManageOrder extends HttpServlet {
         try {
             int orderId = Integer.parseInt(orderIdParam);
 
-            // ✅ 从 session 获取 DBManager 和连接
+            // get DBManager connection from session
             HttpSession session = request.getSession();
             DBManager dbManager = (DBManager) session.getAttribute("db");
             Connection connection = dbManager.getConnection();

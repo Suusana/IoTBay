@@ -10,7 +10,7 @@
 
 <h2>Create a New Order</h2>
 
-<!-- ✅ 表单提交路径统一加 contextPath -->
+<!-- 其实还不知道要写什么 -->
 <form action="<%= request.getContextPath() %>/createOrder" method="post">
   <input type="hidden" name="action" value="create">
 

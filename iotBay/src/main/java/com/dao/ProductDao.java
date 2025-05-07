@@ -146,6 +146,7 @@ public class ProductDao {
         preparedStatement.executeUpdate();
     }
 
+    //FIndProductByID
     public Product findProductById(int productId) throws SQLException {
         PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Product WHERE product_id = ?");
         stmt.setInt(1, productId);

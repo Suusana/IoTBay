@@ -16,7 +16,7 @@
   if (order != null) {
 %>
 
-<!-- 🧾 显示订单基本信息 -->
+<!-- display order information -->
 <table border="1">
   <tr>
     <th>Order ID</th>
@@ -35,11 +35,11 @@
 <br>
 
 <%
-  // 只允许修改 "Saved" 状态的订单
+  // only "saved" can be change
   if ("Saved".equals(order.getOrderStatus().toString())) {
 %>
 
-<!-- 🛠 修改商品数量、提交订单、取消订单 -->
+<!--change quantity, final submit and cancel -->
 <form action="<%= request.getContextPath() %>/orderAction" method="post">
   <input type="hidden" name="orderId" value="<%= order.getOrderId() %>">
 

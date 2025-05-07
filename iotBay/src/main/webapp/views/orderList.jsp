@@ -10,7 +10,7 @@
 
 <h2>My Orders</h2>
 
-<!-- 🔍 搜索框：按订单号 -->
+<!-- search by orderID -->
 <form action="<%= request.getContextPath() %>/viewOrder" method="get">
   <label for="orderId">Search by Order ID:</label>
   <input type="text" id="orderId" name="orderId" placeholder="Enter Order ID">
@@ -19,7 +19,7 @@
 
 <br>
 
-<!-- 🔍 搜索框：按日期 -->
+<!-- search by orderDate -->
 <form action="<%= request.getContextPath() %>/viewOrder" method="get">
   <label for="orderDate">Search by Date:</label>
   <input type="date" id="orderDate" name="orderDate">
@@ -28,7 +28,6 @@
 
 <br>
 
-<!-- 🛑 显示提示消息（如果有） -->
 <%
   String message = (String) request.getAttribute("message");
   if (message != null) {
@@ -38,9 +37,9 @@
   }
 %>
 
-<!-- 📋 展示订单列表 -->
+<!--display order List-->
 <%
-  List<Order> orders = (List<Order>) request.getAttribute("orders"); // ✅ 改这里
+  List<Order> orders = (List<Order>) request.getAttribute("orders");
   if (orders != null && !orders.isEmpty()) {
 %>
 <table border="1">

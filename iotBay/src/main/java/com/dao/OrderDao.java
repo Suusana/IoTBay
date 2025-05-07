@@ -4,10 +4,7 @@ import com.bean.Order;
 import com.bean.Product;
 import com.enums.OrderStatus;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +14,36 @@ public class OrderDao {
     public OrderDao(Connection connection) {
         this.connection = connection;
     }
+
+    public void saveOrder(Order order, int userId) throws SQLException {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        String sql = "INSERT INTO \"Order\" (create_date, order_status, user_id, product_id, quantity) " +
+                "VALUES (?, ?, ?, ?, ?)";
+
+        stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+        stmt.setTimestamp(1, new java.sql.Timestamp(order.getCreateDate().getTime()));
+        stmt.setString(2, order.getOrderStatus().name());
+        stmt.setInt(3, userId);
+
+        // since 1:1 now, get the first product from the list
+        Product product = order.getProducts().get(0);
+        stmt.setInt(4, product.getProductId());
+        stmt.setInt(5, product.getQuantity());
+
+        stmt.executeUpdate();
+
+        rs = stmt.getGeneratedKeys();
+        if (rs.next()) {
+            order.setOrderId(rs.getInt(1));
+        }
+
+        if (rs != null) rs.close();
+        if (stmt != null) stmt.close();
+    }
+
 
     public List<Order> findOrderByCustomerId(int customerId) throws SQLException {
         List<Order> orders = new ArrayList<>();
@@ -143,19 +170,17 @@ public class OrderDao {
         order.setOrderId(rs.getInt("order_id"));
         order.setCreateDate(rs.getTimestamp("create_date"));
         order.setOrderStatus(OrderStatus.valueOf(rs.getString("order_status")));
-        order.setBuyer(null); // 可根据需要加载 Customer 对象
 
         List<Product> products = new ArrayList<>();
         ProductDao productDao = new ProductDao(connection);
 
         Product product = productDao.findProductById(rs.getInt("product_id"));
         if (product != null) {
-            // ✅ 从 Order 表中读取数量，设置到 product 对象
             product.setQuantity(rs.getInt("quantity"));
             products.add(product);
         }
 
-        order.setProducts(products); // ✅ 一个订单一个商品
+        order.setProducts(products);
 
         return order;
     }
