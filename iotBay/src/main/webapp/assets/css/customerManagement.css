@@ -1,0 +1,196 @@
+
+table {
+    border-collapse: collapse;
+    width: 80%;
+    table-layout: fixed;
+    margin: 20px 0;
+    text-align: center;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #a67224;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+th:nth-child(1), td:nth-child(1) {
+    width: 5%;
+}
+
+th:nth-child(2), td:nth-child(2) {
+    width: 10%;
+}
+
+th:nth-child(3), td:nth-child(3) {
+    width: 20%;
+}
+
+th:nth-child(4), td:nth-child(4) {
+    width: 10%;
+}
+
+th:nth-child(5), td:nth-child(5) {
+    width: 20%;
+}
+
+th:nth-child(6), td:nth-child(6) {
+    width: 10%;
+}
+
+thead {
+    background-color: #fce38a;
+}
+
+button {
+    padding: 10px;
+    width: 75px;
+    background-color: #f7f48b;
+    border-radius: 10px;
+}
+
+button:hover{
+    cursor: pointer;
+    background-color: #fecea8;
+}
+
+.delete{
+    background-color: #f38181;
+}
+
+.delete:hover{
+    background-color: #ff2e63;
+}
+
+.update{
+    margin: 0 10px;
+    padding: 10px;
+    background-color: #ffcef3;
+}
+
+.update:hover{
+    background-color: #edb1f1;
+}
+
+.active{
+    background-color: #6ef3d6;
+}
+
+.active:hover{
+    background-color: #10ddc2;
+}
+
+.inactive{
+    color: white;
+    background-color: #e84545;
+}
+
+.inactive:hover{
+    background-color: #e23e57;
+}
+
+.top-bar {
+    margin: 20px 0;
+}
+
+.top-bar form{
+    display: inline-block;
+}
+
+.search-input {
+    width: 250px;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+}
+
+.search-button {
+    width: 100px;
+    padding: 9px 15px;
+    background-color: #4CAF50;
+    color: white;
+}
+
+.search-button:hover {
+    background-color: #45a049;
+}
+
+.search-form{
+    margin-right: 48%;
+}
+
+.create-button {
+    width: 120px;
+    padding: 10px 0;
+    background-color: #2196F3;
+    color: white;
+    border-radius: 4px;
+}
+
+.create-button:hover {
+    background-color: #0b7dda;
+}
+
+.pagination {
+    margin-top: 20px;
+    padding: 10px 0;
+}
+
+.pagination span {
+    margin-right: 50%;
+}
+
+.pagination form {
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.pagination button{
+    width: 100px;
+    background-color: #e6a4b4;
+    color: white;
+    font-weight: bolder;
+}
+
+.pagination button:hover{
+    background-color: #c86b85;
+}
+
+form {
+    display: inline-block;
+}
+
+
+.customer-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 40px auto;
+    width: 100%;
+}
+
+.customer-form input, .customer-form select {
+    margin: 10px 0;
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.customer-form button {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    width: 160px;
+    font-size: 14px;
+}
+
+.customer-form button:hover {
+    background-color: #0b7dda;
+    cursor: pointer;
+}
