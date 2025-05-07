@@ -11,6 +11,7 @@
 <%@ page import="com.bean.Product" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.bean.Category" %>
+<%@ page import="com.util.Utils" %>
 <html>
 <%
     Customer customer = new Customer();
@@ -47,7 +48,7 @@
     <menu class="icon">
         <a href="<%=request.getContextPath()%>/ViewUserDetailsServlet">
             <i class="fa-solid fa-circle-user fa-2x"></i>
-            <span><%= customer.getFirstName() != null ? customer.getFirstName() : Status.GUEST.getStatus()%></span>
+            <span><%= customer.getFirstName() != null ? Utils.capitaliseFirst(customer.getFirstName()) : Status.GUEST.getStatus()%></span>
         </a>
         <a href="<%=request.getContextPath()%>/GetByProductNameToCustomer">
             <i class="fa-solid fa-magnifying-glass fa-2x"></i>
@@ -137,9 +138,9 @@
         </div>
         <div class="section">
             <h6>Links</h6>
-            <a href=""><span>Home</span></a>
-            <a href=""><span>Shop</span></a>
-            <a href=""><span>Order</span></a>
+            <a href="<%=request.getContextPath()%>/home"><span>Home</span></a>
+            <a href="<%=request.getContextPath()%>/productServlet"><span>Shop</span></a>
+            <a href="<%=request.getContextPath()%>/viewOrder"><span>Order</span></a>
             <a href=""><span>Category</span></a>
         </div>
         <div class="section">
