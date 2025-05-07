@@ -91,4 +91,12 @@ public class CustomerDao {
         }
         return customer;
     }
+
+
+    // Delete User
+    public void deleteUser(Customer customer) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM USER WHERE user_id = ?");
+        preparedStatement.setLong(1, customer.getUserId());
+        preparedStatement.executeUpdate();
+    }
 }
