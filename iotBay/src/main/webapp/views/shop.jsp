@@ -39,8 +39,6 @@
     <menu>
         <a href="<%= request.getContextPath() %>/views/main.jsp"><span>Home</span></a>
         <a href="productServlet"><span class="selected">Shop</span></a> <!-- change here -->
-
-       <!-- <a href="shop.jsp"><span class="selected">Shop</span></a>-->
         <a href=""><span>Order</span></a>
         <a href=""><span>Category</span></a>
     </menu>
@@ -51,23 +49,25 @@
             <i class="fa-solid fa-circle-user fa-2x"></i>
             <span><%= customer.getFirstName() != null ? customer.getFirstName() : Status.GUEST.getStatus()%></span>
         </a>
-        <a href="">
+        <a href="<%=request.getContextPath()%>/GetByProductNameToCustomer">
             <i class="fa-solid fa-magnifying-glass fa-2x"></i>
             <span>Search</span>
         </a>
-        <a href="./cart.jsp">
+        <a href="<%=request.getContextPath()%>/views/cart.jsp">
             <i class="fa-solid fa-cart-shopping fa-2x"></i>
             <span>Cart</span>
         </a>
-        <a href="logout.jsp">
+        <a href="<%=request.getContextPath()%>/views/logout.jsp">
             <i class="fa-solid fa-right-from-bracket fa-2x"></i>
             <span>Log Out</span>
         </a>
 
     </menu>
 </div>
+
 <!-- main body -->
 <main>
+
     <% if (allProducts != null && !allProducts.isEmpty()) {
         for (Product product : allProducts) { %>
     <a class="shop_product">

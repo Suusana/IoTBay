@@ -10,6 +10,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.bean.Product" %>
 <%@ page import="com.bean.Category" %>
+<%@ page import="java.util.stream.Stream" %>
 <html>
 <%
     List<Product> allProducts = (List<Product>) request.getAttribute("allProducts");
@@ -38,7 +39,7 @@
         <i class="fa-solid fa-user-tie fa-lg"></i>
         <span>Staff Management</span>
     </a>
-    <a href=".+" class="current">
+    <a href="<%= request.getContextPath() %>/ProductManagementServlet" class="current">
         <i class="fa-solid fa-user-tie fa-lg"></i>
         <span>Product Management</span>
     </a>
@@ -54,16 +55,16 @@
         <h2>Search Products</h2>
         <div class="search-box-name">
             <h3>Search by Name</h3>
-            <form action="<%= request.getContextPath() %>/GetByProductName" method="get">
-                <label for="search">
-                    <input type="search" id="search" name="search" />
+            <form action="<%= request.getContextPath() %>/GetByProductName" method="get" target="_blank">
+                <label for="productName">
+                    <input type="search" id="productName" name="productName" />
                 </label>
                 <button>Search</button>
             </form>
         </div>
         <div class="search-box-category">
             <h3>Search by Category</h3>
-            <form action="<%= request.getContextPath() %>/GetByCategory" method="get">
+            <form action="<%= request.getContextPath() %>/GetByCategory" method="get" target="_blank">
                 <button type="submit" name="categoryId" value="1">Smart Home</button>
                 <button type="submit" name="categoryId" value="2">Health & Fitness</button>
                 <button type="submit" name="categoryId" value="3">Security Devices</button>
@@ -81,18 +82,12 @@
     <div class="add-product-box">
         <h2>Add New Product</h2>
         <form action="<%= request.getContextPath() %>/AddNewProduct" method="post">
-            <label for="productName">
-                Name: <input type="text" name="productName">
-            </label>
-            <label for="price">
-                Price: <input type="text" name="price">
-            </label>
-            <label for="quantity">
-                Quantity: <input type="number" name="quantity">
-            </label>
-            <label for="description">
-                Description: <textarea name="description"></textarea>
-            </label>
+            <label>Name: <input type="text" name="productName" required></label>
+            <label>Price: <input type="text" name="price" required></label>
+            <label>Quantity: <input type="number" name="quantity" required></label>
+            <label>Description: <textarea name="description"></textarea></label>
+            <label>Category ID:<input type="number" name="categoryId" required/></label>
+            <label>Image:<input type="text" name="image" value=""/></label>
             <button type="submit">Add New Product</button>
         </form>
     </div>
@@ -104,7 +99,7 @@
         <h5><%= product.getProductName() %></h5>
         <p><%= product.getDescription() %></p>
         <span>$<%= product.getPrice() %></span>
-        <h5><%= product.getCategory()%></h5>
+        <h5>Category: <%= product.getCategory().getCategory()%></h5>
         <div class="update-product-info">
             <h4>Update Product Info</h4>
             <form action="<%= request.getContextPath() %>/UpdateProductServlet" method="post">
@@ -112,17 +107,43 @@
                 Name: <input type="text" name="productName" value="<%= product.getProductName() %>">
                 Price: <input type="text" name="price" value="<%= product.getPrice() %>">
                 Quantity: <input type="number" name="quantity" value="<%= product.getQuantity() %>">
+                <br>
                 Description: <textarea name="description"><%= product.getDescription() %></textarea>
+                <br>
+                <%
+                    //product.getCategory -> receives category obj
+        /*
+          product.getCategory() -> returns the obj addr not the string (Category name)
+          product db stores categoryID / product class stores category obj
+        * */
+                    Category category = new Category();
+                    category = product.getCategory();
+                    int categoryID = category.getCategoryId();
+                %>
+                Category ID:<input type="number" name="categoryId" value="<%=categoryID%>"/>
+                <p>Category :<%=product.getCategory().getCategory()%></p>
+                Image:<input type="text" name="image" value="<%=product.getImage()%>"/>
                 <button type="submit">Update</button>
             </form>
         </div>
-
+        <!-- delete test
+     ('Capacitive Touch Sensor Module v2.0', 30, 18.90, 'Capacitive touch sensor module used for detecting touch input in Arduino, Raspberry Pi, and interactive projects.', 'Touch Sensor.png', 1),
+        -->
         <div class="delete-product">
-            <form action="<%= request.getContextPath() %>/DeleteProduct" method="post" onsubmit="return confirm('Are you sure you want to delete this product?');">
+            <form action="<%= request.getContextPath() %>/DeleteProduct" method="post" onsubmit="return confirm('Are you sure you want to delete it permanently remove this product?')">
                 <input type="hidden" name="productId" value="<%= product.getProductId() %>">
                 <button type="submit">Delete</button>
             </form>
         </div>
+        <%
+        String deletedMssg = (String) session.getAttribute("deletedSuccess");
+        if(deletedMssg !=null){%>
+        <div class="deletedMssg">
+            <%=deletedMssg%>
+        </div>
+        <%
+            session.removeAttribute("deletedSuccess");
+        }%>
     </a>
     <% }
     } else { %>
@@ -130,11 +151,5 @@
     <% } %>
 </div> <!--This is end of the .main-content div -->
 
-
-</body>
-</html>
-
-
-</div>
 </body>
 </html>

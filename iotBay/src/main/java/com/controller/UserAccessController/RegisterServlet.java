@@ -20,8 +20,8 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        DBManager db =  (DBManager) req.getSession().getAttribute("db");
         HttpSession session = req.getSession();
+        DBManager db =  (DBManager) session.getAttribute("db");
         CustomerDao customerDao = db.getCustomerDao();
 
         String firstName = req.getParameter("firstName");
@@ -35,12 +35,12 @@ public class RegisterServlet extends HttpServlet {
         Integer postalCode = Integer.valueOf(req.getParameter("postalCode"));
         String country = req.getParameter("country");
         String address;
-        if (req.getParameter("unit") != null) {
+        if (!req.getParameter("unit").isEmpty()) {
             address = req.getParameter("unit") + " " + req.getParameter("street");
         } else {
             address = req.getParameter("street");
         }
-        String status = Status.REGISTERED.getStatus();
+        String status = "active";
 
         Customer customer = new Customer(username, password, firstName, lastName, phoneNumber, email, status, address,
                 city, state, postalCode, country, new ArrayList<>());

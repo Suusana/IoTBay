@@ -1,0 +1,100 @@
+body {
+    height: 100vh;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 900px;
+    background-color: #FFF3E3;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 100px;
+}
+
+.details-display {
+    display: flex;
+    flex-direction: column;
+    max-width: 700px;
+    gap: 10px;
+    padding: 30px;
+    font-size: 1rem;
+    background-color: white;
+    margin-bottom: 40px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 8px 10px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+}
+
+.field span {
+    border-bottom: 1px solid #B88E2F;
+    margin-right: 10%;
+}
+
+.field label {
+    font-weight: bold;
+    width: 190px;
+}
+
+.account-buttons {
+    margin: 20px 0;
+}
+
+.button {
+    border-radius: 10px;
+    padding: 20px 40px;
+    text-align: center;
+    font-size: 18px;
+    margin: 3px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+
+.edit-button {
+    background-color: #FFA94D;
+    border: #ff8400 solid 2px;
+}
+
+.edit-button:hover {
+    background-color: #ff8400;
+}
+
+.view-button {
+    background-color: #ffff31;
+    border: #fbec5d solid 2px;
+}
+
+.view-button:hover {
+    background-color: #fbec5d;
+}
+
+.delete-button {
+    background-color: #FF504D;
+    border: #E64845 solid 2px;
+}
+
+.delete-button:hover {
+    background-color: #E64845;
+}
+
+
+

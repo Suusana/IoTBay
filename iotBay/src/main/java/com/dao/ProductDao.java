@@ -3,6 +3,7 @@ package com.dao;
 import com.bean.Category;
 import com.bean.Product;
 
+import java.nio.file.FileSystemNotFoundException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -72,6 +73,8 @@ public class ProductDao {
         List<Product> products = new ArrayList<>();
         PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM product");
         ResultSet ProductTable = preparedStatement.executeQuery();
+
+        CategoryDao cd = new CategoryDao(connection);
         while(ProductTable.next()) {
          Product product = new Product();
          product.setProductId(ProductTable.getInt("product_id"));
@@ -81,25 +84,59 @@ public class ProductDao {
          product.setDescription(ProductTable.getString("description"));
          product.setImage(ProductTable.getString("image"));
           int categoryId = ProductTable.getInt("category_id");
-          Category category = new Category();
-          category.setCategoryId(categoryId);
+          Category category = cd.getCategoryById(categoryId);
           product.setCategory(category);
-         products.add(product);
+         products.add(product); //add to List
         }
         return products;
     }
 
-    public void getProductById(int productID) throws SQLException {
+    public Product getProductById(int productID) throws SQLException {
         PreparedStatement preparedstatement = connection.prepareStatement("select * from product where product_id=?");
         preparedstatement.setInt(1,productID);
-        preparedstatement.executeQuery();
-        // return product;
+        ResultSet rs = preparedstatement.executeQuery();
+
+        CategoryDao cd = new CategoryDao(connection);
+        Product product = new Product();
+
+        if(rs.next()) {
+            product.setProductId(productID);
+            product.setProductName(rs.getString("product_name"));
+            product.setPrice(rs.getDouble("price"));
+            product.setQuantity(rs.getInt("quantity"));
+            product.setDescription(rs.getString("description"));
+            product.setImage(rs.getString("image"));
+            int categoryId = rs.getInt("category_id");
+            Category category = cd.getCategoryById(categoryId);
+            product.setCategory(category);
+            return product;
+        }
+        return null;
     }
 
-    public void getProductByName(String productName) throws SQLException {
+    public Product getProductByName(String productName) throws SQLException {
         PreparedStatement preparedstatement = connection.prepareStatement("select * from product where product_name=?");
         preparedstatement.setString(1,productName);
-        preparedstatement.executeQuery();
+        //ResultSet : access data rows from the result table
+        ResultSet rs = preparedstatement.executeQuery(); //executeQuery is for SELECT statement
+        //use preparedstatement.executeUpdate(); for insert, update, delete
+        if(rs.next()){
+            Product product = new Product();
+            product.setProductId(rs.getInt("product_id"));
+            product.setProductName(rs.getString("product_name"));
+            product.setQuantity(rs.getInt("quantity"));
+            product.setPrice(rs.getDouble("price"));
+            product.setDescription(rs.getString("description"));
+            product.setImage(rs.getString("image"));
+            int categoryId = rs.getInt("category_id");
+
+            CategoryDao cd = new CategoryDao(connection);
+            Category category = cd.getCategoryById(categoryId);
+            product.setCategory(category);
+
+            return product;
+        }
+        return null;
     }
 //    create table Category
 //            (
@@ -121,51 +158,83 @@ public class ProductDao {
 //                                            ('Energy & Utilities'),
 //                                            ('Networking & Hubs');
 
-    public void getProductByCategoryId(int categoryId) throws SQLException {
+    public List<Product> getProductByCategory(int categoryId) throws SQLException {
         PreparedStatement preparedstatement = connection.prepareStatement("select * from product where category_id=?");
         preparedstatement.setInt(1,categoryId);
-        preparedstatement.executeQuery();
+
+        List<Product> products= new ArrayList<>();
+        ResultSet rs = preparedstatement.executeQuery();
+
+        while(rs.next()) {
+            Product product = new Product();
+            product.setProductId(rs.getInt("product_id"));
+            product.setProductName(rs.getString("product_name"));
+            product.setQuantity(rs.getInt("quantity"));
+            product.setPrice(rs.getDouble("price"));
+            product.setDescription(rs.getString("description"));
+            product.setImage(rs.getString("image"));
+
+            CategoryDao cd = new CategoryDao(connection);
+            Category category = cd.getCategoryById(categoryId);
+            product.setCategory(category);
+            products.add(product);
+        }
+        //rs.close();
+        //preparedstatement.close();
+
+        return products;
     }
     //Product Update - staff only
     public void updateProduct(Product product) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Product SET price = ? productName=? category_id=? quantity=? image=? description=? category_id=? WHERE product_id = ?");
-        preparedStatement.setInt(1, product.getProductId());
-        preparedStatement.setDouble(2,product.getPrice());
-        preparedStatement.setString(3, product.getProductName());
+        PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Product SET price = ?, product_name=?, category_id=? ,quantity=? ,image=? ,description=? WHERE product_id = ?");
+
+        preparedStatement.setDouble(1,product.getPrice());
+        preparedStatement.setString(2, product.getProductName());
+        preparedStatement.setInt(3,product.getCategory().getCategoryId());
         preparedStatement.setInt(4,product.getQuantity());
         preparedStatement.setString(5,product.getImage());
         preparedStatement.setString(6,product.getDescription());
-        preparedStatement.setInt(7,product.getCategory().getCategoryId());
+
+        preparedStatement.setInt(7, product.getProductId());
         preparedStatement.executeUpdate();
+
+        System.out.println("Update product: " + product.getProductName());
     }
 
     //Product Delete - staff only
-    public void deleteProduct(int productId) throws SQLException {
+    public void deleteProduct(Product product) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("delete from product where product_id = ?");
-        preparedStatement.setInt(1, productId);
+        preparedStatement.setInt(1, product.getProductId());
         preparedStatement.executeUpdate();
     }
 
-    //FIndProductByID
-    public Product findProductById(int productId) throws SQLException {
-        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Product WHERE product_id = ?");
-        stmt.setInt(1, productId);
-        ResultSet rs = stmt.executeQuery();
-
-        Product product = null;
-        if (rs.next()) {
-            product = new Product();
+    // get the last product
+    public Product getLastProduct() throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("select * from product order by product_id desc limit 1");
+        ResultSet rs = preparedStatement.executeQuery();
+        Product product = new Product();
+        if(rs.next()) {
             product.setProductId(rs.getInt("product_id"));
             product.setProductName(rs.getString("product_name"));
-            product.setPrice(rs.getDouble("price"));
-            product.setQuantity(rs.getInt("quantity"));
+            product.setDescription(rs.getString("description"));
+            product.setImage(rs.getString("image"));
         }
-
-        rs.close();
-        stmt.close();
         return product;
     }
 
-
-
+    public List<Product> getEightProducts() throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("select * from product limit 8");
+        List<Product> products = new ArrayList<>();
+        ResultSet rs = preparedStatement.executeQuery();
+        while(rs.next()) {
+            Product product = new Product();
+            product.setProductId(rs.getInt("product_id"));
+            product.setProductName(rs.getString("product_name"));
+            product.setDescription(rs.getString("description"));
+            product.setImage(rs.getString("image"));
+            product.setPrice(rs.getDouble("price"));
+            products.add(product);
+        }
+        return products;
+    }
 }

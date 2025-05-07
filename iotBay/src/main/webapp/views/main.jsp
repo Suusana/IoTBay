@@ -8,20 +8,23 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.bean.Customer" %>
 <%@ page import="com.enums.Status" %>
+<%@ page import="com.bean.Product" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.bean.Category" %>
 <html>
 <%
     Customer customer = new Customer();
-    if (session.getAttribute("registeredUser")!=null){
-        customer = (Customer)session.getAttribute("registeredUser");
-    }else {
+    if (session.getAttribute("loggedInUser") != null){
+        customer = (Customer)session.getAttribute("loggedInUser");
+    } else {
         customer.setUsername(Status.GUEST.getStatus());
     }
 %>
 <head>
     <title>Main</title>
-    <link rel="stylesheet" href="../assets/css/base.css">
-    <link rel="stylesheet" href="../assets/css/HeaderAndFooter.css">
-    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/base.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/HeaderAndFooter.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
@@ -29,12 +32,12 @@
 <!-- header -->
 <div class="header">
     <!-- Logo -->
-    <a href="./main.jsp">
-        <img src="../assets/img/Logo.png" alt="IotBay Logo">
+    <a href="<%=request.getContextPath()%>/home">
+        <img src="<%=request.getContextPath()%>/assets/img/Logo.png" alt="IotBay Logo">
     </a>
     <!-- menu -->
     <menu>
-        <a href=""><span class="selected">Home</span></a>
+        <a href="<%=request.getContextPath()%>/home"><span class="selected">Home</span></a>
         <a href="<%= request.getContextPath() %>/productServlet"><span>Shop</span></a>
         <a href="<%= request.getContextPath() %>/viewOrder"><span>Order</span></a>
         <a href=""><span>Category</span></a>
@@ -42,19 +45,19 @@
 
     <!-- icon menu -->
     <menu class="icon">
-        <a href="">
+        <a href="/ViewUserDetailsServlet">
             <i class="fa-solid fa-circle-user fa-2x"></i>
             <span><%= customer.getFirstName() != null ? customer.getFirstName() : Status.GUEST.getStatus()%></span>
         </a>
-        <a href="">
+        <a href="<%=request.getContextPath()%>/GetByProductNameToCustomer">
             <i class="fa-solid fa-magnifying-glass fa-2x"></i>
             <span>Search</span>
         </a>
-        <a href="./cart.jsp">
+        <a href="<%=request.getContextPath()%>/views/cart.jsp">
             <i class="fa-solid fa-cart-shopping fa-2x"></i>
             <span>Cart</span>
         </a>
-        <a href="logout.jsp">
+        <a href="<%=request.getContextPath()%>/views/logout.jsp">
             <i class="fa-solid fa-right-from-bracket fa-2x"></i>
             <span>Log Out</span>
         </a>
@@ -62,34 +65,38 @@
     </menu>
 </div>
 <!-- main body -->
+<%
+    Product banner = (Product) request.getAttribute("banner");
+%>
 <div class="mainBody">
     <div class="banner">
-        <img src="../assets/img/example.jpg" alt="Banner Img">
+        <img src="<%=request.getContextPath()%>/assets/img/<%=banner.getImage()%>" alt="Banner Img">
         <div class="intro">
             <h5>New Arrival</h5>
-            <p>Discover Our New Collection</p>
-            <span>This is a new Iot Device. This is a new Iot Device.This is a new Iot DeviceThis is a new Iot DeviceThis is
-          a new Iot Device</span>
+            <p><%=banner.getProductName()%></p>
+            <span><%=banner.getDescription()%></span>
             <br><button class="style1">Buy Now</button>
         </div>
     </div>
-
     <h5 class="title">Our Products</h5>
         <div class="Products">
     <%
-        for (int i = 0; i < 8; i++) {
+        List<Product> productList = (List<Product>) request.getAttribute("productList");
+        for (Product product:productList) {
     %>
                 <a href="" class="card">
-                    <img src="../assets/img/example.jpg" alt="Device">
-                    <h5>IOT Device</h5>
-                    <p>This is an Introduction. This is an IntroductionThis is an Introduction. This is an Introduction</p>
-                    <span>$1500.00</span>
+                    <img src="<%=request.getContextPath()%>/assets/img/<%=product.getImage()%>" alt="Device">
+                    <h5><%=product.getProductName()%></h5>
+                    <p><%=product.getDescription()%></p>
+                    <span>$<%=product.getPrice()%></span>
                 </a>
     <%
         }
     %>
         </div>
-    <a href=""><button class="style1">Show More</button></a>
+    <a href="<%=request.getContextPath()%>/productServlet">
+        <button class="style1">Show More</button>
+    </a>
 
     <div class="orderIntro">
         <div>
@@ -99,24 +106,25 @@
                 <button>Go to Order</button>
             </a>
         </div>
-        <img src="../assets/img/example.jpg">
+        <img src="<%=request.getContextPath()%>/assets/img/orders-post.jpg">
     </div>
 
     <h5 class="title">Categories</h5>
     <div class="categories">
     <%
-        for (int i = 0; i < 3; i++) {
+        List<Category> categories = (List<Category>) request.getAttribute("categories");
+        for (Category category :categories) {
     %>
         <a href="" class="category">
-            <img src="../assets/img/example.jpg" alt="Category">
-            <br><span>Category <%=i%></span>
+            <img src="<%=request.getContextPath()%>/assets/img/category<%=category.getCategoryId()%>.png" alt="Category">
+            <br><span><%=category.getCategory()%></span>
         </a>
     <%
         }
     %>
 
 </div>
-    <a href="shop.jsp"><button class="style1">Show More</button></a>
+    <a href=""><button class="style1">Show More</button></a>
 </div>
 
 <!-- footer -->

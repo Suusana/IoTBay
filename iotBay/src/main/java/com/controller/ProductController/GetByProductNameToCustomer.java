@@ -11,32 +11,31 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import java.util.List;
-import java.sql.Connection;
-
-@WebServlet("/ProductManagementServlet")
-public class ProductManagementServlet extends HttpServlet {
-    @Override
+@WebServlet("/GetByProductNameToCustomer")
+public class GetByProductNameToCustomer extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try{
-          //  Connection connection = DriverManager.getConnection("jdbc:sqlite:/Users/yunseo/.SmartTomcat/IoTBay/IoTBay/IoTBayDB.db");
-            //ProductDao productDao = new ProductDao(connection);
-
             HttpSession session = req.getSession();
             DBManager db = (DBManager) session.getAttribute("db");
             ProductDao productDao = db.getProductDao();
 
-            List<Product> allProducts = productDao.getAllProducts();
-            req.setAttribute("allProducts", allProducts); // set to request
-            req.getRequestDispatcher("/views/ProductManagement.jsp").forward(req, resp); // forward to JSP
+            String productName = req.getParameter("productName");
+            Product product = productDao.getProductByName(productName);
+            if (product != null) {
+                req.setAttribute("product", product);
+                req.getRequestDispatcher("/views/Search.jsp").forward(req, resp);
+            } else{
+                req.setAttribute("message", "404 NotFound");
+                req.getRequestDispatcher("/views/Search.jsp").forward(req,resp);
+            }
 
-            System.out.println("Fetched products: " + allProducts.size()); //To check whether this code runs
-
-        } catch (SQLException e) {
+        } catch(SQLException | IOException e){
+            System.out.println("Failed to load a product");
             throw new ServletException(e);
         }
+
+
     }
 }

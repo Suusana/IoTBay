@@ -21,7 +21,7 @@
             <a href="./views/register.jsp">
                 <button class="button button-register">Register</button>
             </a>
-            <a href="./views/main.jsp">
+            <a href="<%= request.getContextPath()%>/home">
                 <button class="button button-register">Continue as a Guest</button>
             </a>
         </div>

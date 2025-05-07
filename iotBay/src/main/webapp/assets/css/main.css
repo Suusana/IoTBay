@@ -191,3 +191,9 @@ button:hover{
     margin-bottom: 20px;
     border-radius: 25px;
 }
+
+.mainBody .Products h5{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

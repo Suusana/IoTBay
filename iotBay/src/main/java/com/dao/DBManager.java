@@ -1,5 +1,7 @@
 package com.dao;
 
+import com.bean.Category;
+
 import java.sql.*;
 
 public class DBManager {
@@ -8,6 +10,7 @@ public class DBManager {
     private CustomerDao customerDao;
     private ProductDao productDao;
     private StaffDao staffDao;
+    private CategoryDao categoryDao;
 
     public DBManager(Connection connection) throws SQLException {
         this.connection = connection;
@@ -34,7 +37,10 @@ public class DBManager {
         return staffDao;
     }
 
-    public Connection getConnection() {
-        return connection;
+    public CategoryDao getCategoryDao() {
+        if (categoryDao == null) {
+            categoryDao = new CategoryDao(connection);
+        }
+        return categoryDao;
     }
 }
