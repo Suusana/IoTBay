@@ -105,30 +105,30 @@ public class OrderDao {
     }
 
 
-    public List<Product> findProductsByOrderId(int orderId) throws SQLException {
-        List<Product> products = new ArrayList<>();
-        String sql = "SELECT p.product_id, p.product_name, p.price " +
-                "FROM Product p " +
-                "JOIN OrderProduct op ON p.product_id = op.product_id " +
-                "WHERE op.order_id = ?";
-
-        PreparedStatement stmt = connection.prepareStatement(sql);
-        stmt.setInt(1, orderId);
-        ResultSet rs = stmt.executeQuery();
-
-        while (rs.next()) {
-            Product product = new Product();
-            product.setProductId(rs.getInt("product_id"));
-            product.setProductName(rs.getString("product_name"));
-            product.setPrice(rs.getDouble("price"));
-            products.add(product);
-        }
-
-        rs.close();
-        stmt.close();
-
-        return products;
-    }
+//    public List<Product> findProductsByOrderId(int orderId) throws SQLException {
+//        List<Product> products = new ArrayList<>();
+//        String sql = "SELECT p.product_id, p.product_name, p.price " +
+//                "FROM Product p " +
+//                "JOIN OrderProduct op ON p.product_id = op.product_id " +
+//                "WHERE op.order_id = ?";
+//
+//        PreparedStatement stmt = connection.prepareStatement(sql);
+//        stmt.setInt(1, orderId);
+//        ResultSet rs = stmt.executeQuery();
+//
+//        while (rs.next()) {
+//            Product product = new Product();
+//            product.setProductId(rs.getInt("product_id"));
+//            product.setProductName(rs.getString("product_name"));
+//            product.setPrice(rs.getDouble("price"));
+//            products.add(product);
+//        }
+//
+//        rs.close();
+//        stmt.close();
+//
+//        return products;
+//    }
 
     public void updateOrderStatus(int orderId, OrderStatus newStatus) throws SQLException {
 
@@ -148,21 +148,18 @@ public class OrderDao {
         stmt.close();
     }
 
-    public int findOrderQuantity(int orderId) throws SQLException {
-        PreparedStatement stmt = connection.prepareStatement("SELECT quantity FROM \"Order\" WHERE order_id = ?");
-        stmt.setInt(1, orderId);
-        ResultSet rs = stmt.executeQuery();
-        int quantity = 0;
-        if (rs.next()) {
-            quantity = rs.getInt("quantity");
-        }
-        rs.close();
-        stmt.close();
-        return quantity;
-    }
-
-
-
+//    public int findOrderQuantity(int orderId) throws SQLException {
+//        PreparedStatement stmt = connection.prepareStatement("SELECT quantity FROM \"Order\" WHERE order_id = ?");
+//        stmt.setInt(1, orderId);
+//        ResultSet rs = stmt.executeQuery();
+//        int quantity = 0;
+//        if (rs.next()) {
+//            quantity = rs.getInt("quantity");
+//        }
+//        rs.close();
+//        stmt.close();
+//        return quantity;
+//    }
 
 
     private Order mapOrder(ResultSet rs) throws SQLException {
