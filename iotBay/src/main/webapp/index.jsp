@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <html>
 <head>
-    <title>Landing page</title>
+    <title>Landing Page</title>
     <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="assets/css/HeaderAndFooter.css">
     <link rel="stylesheet" href="assets/css/landing.css">
@@ -19,10 +19,10 @@
                 <button class="button button-login">Login</button>
             </a>
             <a href="./views/register.jsp">
-                <button class="button button-register">Register</button>
+                <button class="button">Register</button>
             </a>
             <a href="<%= request.getContextPath()%>/home">
-                <button class="button button-register">Continue as a Guest</button>
+                <button class="button">Continue as a Guest</button>
             </a>
         </div>
     </main>  

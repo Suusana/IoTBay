@@ -38,7 +38,7 @@
     <menu class="icon">
         <a href="<%=request.getContextPath()%>/ViewUserDetailsServlet" style="color: #ff8400;">
             <i class="fa-solid fa-circle-user fa-2x"></i>
-            <span><%= customer.getFirstName() != null ? customer.getFirstName() : Status.GUEST.getStatus()%></span>
+            <span><%= Utils.capitaliseFirst(customer.getFirstName()) %></span>
         </a>
         <a href="<%=request.getContextPath()%>/GetByProductNameToCustomer">
             <i class="fa-solid fa-magnifying-glass fa-2x"></i>
