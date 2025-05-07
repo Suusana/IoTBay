@@ -34,8 +34,8 @@ public class OrderDao {
         stmt.setInt(5, product.getQuantity());
 
         stmt.executeUpdate();
-
         rs = stmt.getGeneratedKeys();
+
         if (rs.next()) {
             order.setOrderId(rs.getInt(1));
         }
@@ -76,7 +76,6 @@ public class OrderDao {
 
     public List<Order> searchOrderByDate(String dateStr, int userId) throws SQLException {
         List<Order> orders = new ArrayList<>();
-
         PreparedStatement stmt = connection.prepareStatement("SELECT * FROM \"Order\" WHERE user_id = ? AND DATE(create_date) = ? ORDER BY create_date DESC");
 
         stmt.setInt(1, userId);
@@ -141,6 +140,7 @@ public class OrderDao {
     }
 
     public void updateOrderQuantity(int orderId, int quantity) throws SQLException {
+
         PreparedStatement stmt = connection.prepareStatement("UPDATE \"Order\" SET quantity = ? WHERE order_id = ?");
         stmt.setInt(1, quantity);
         stmt.setInt(2, orderId);
