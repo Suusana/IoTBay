@@ -48,19 +48,23 @@
     <th>Order ID</th>
     <th style="width:180px;">Create Date</th>
     <th>Status</th>
+    <th>Action</th>
   </tr>
   <%
     for (Order order : orders) {
   %>
   <tr>
-    <td>
-      <a class="btn-gold" href="<%= request.getContextPath() %>/viewOrderDetails?orderId=<%= order.getOrderId() %>">
-        <%= order.getOrderId() %>
-      </a>
-    </td>
-    <td><%= order.getCreateDate() %></td>
-    <td><%= order.getOrderStatus() %></td>
-  </tr>
+  <td><%= order.getOrderId() %></td>
+  <td><%= order.getCreateDate() %></td>
+  <td><%= order.getOrderStatus() %></td>
+  <td>
+    <form action="<%= request.getContextPath() %>/viewOrderDetails" method="get">
+      <input type="hidden" name="orderId" value="<%= order.getOrderId() %>">
+      <button type="submit" class="btn-gold">View</button>
+    </form>
+  </td>
+</tr>
+
   <%
     }
   %>
