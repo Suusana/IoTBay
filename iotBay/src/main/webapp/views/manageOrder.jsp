@@ -58,7 +58,8 @@
     <tr>
       <td><%= product.getProductName() %> (ID: <%= productId %>)</td>
       <td>
-        <input type="number" name="quantity_<%= productId %>" value="<%= product.getQuantity() %>" min="0"
+        <!--quantity must > 0-->
+        <input type="number" name="quantity_<%= productId %>" value="<%= product.getQuantity() %>" min="1"
                style="width: 60px; text-align: center;">
       </td>
     </tr>
