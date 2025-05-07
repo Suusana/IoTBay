@@ -18,16 +18,13 @@ public class Customer implements Serializable {
     private String state;
     private Integer postcode;
     private String country;
-    private List<String> history;
 
     public Customer() {
     }
 
-    public Customer(Integer userId, String username, String password, String firstName,
-                    String lastName, Long phone, String email, String status,
-                    String address, String city, String state, Integer postcode,
-                    String country, List<String> history) {
-        this.userId = userId;
+    // New User - database autogenerate userId
+    public Customer(String username, String password, String firstName, String lastName, Long phone, String email,
+                    String status, String address, String city, String state, Integer postcode, String country) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
@@ -40,7 +37,14 @@ public class Customer implements Serializable {
         this.state = state;
         this.postcode = postcode;
         this.country = country;
-        this.history = history;
+    }
+
+    // From Database
+    public Customer(Integer userId, String username, String password, String firstName, String lastName, Long phone,
+                    String email, String status, String address, String city, String state, Integer postcode,
+                    String country) {
+        this(username, password, firstName, lastName, phone, email, status, address, city, state, postcode, country);
+        this.userId = userId;
     }
 
     public Integer getUserId() {
@@ -145,13 +149,5 @@ public class Customer implements Serializable {
 
     public void setCountry(String country) {
         this.country = country;
-    }
-
-    public List<String> getHistory() {
-        return history;
-    }
-
-    public void setHistory(List<String> history) {
-        this.history = history;
     }
 }
