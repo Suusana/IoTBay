@@ -1,5 +1,6 @@
 package com.controller.ProductController;
 
+import com.bean.Product;
 import com.dao.DBManager;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -25,9 +26,11 @@ public class DeleteProductHandler extends HttpServlet {
             ProductDao pd = db.getProductDao();
 
             int productId = Integer.parseInt(req.getParameter("productId"));
-            pd.deleteProduct(productId);
+            Product product = pd.getProductById(productId);
 
-            resp.sendRedirect(req.getContextPath() +"ProductManagement.jsp");
+            pd.deleteProduct(product);
+            session.setAttribute("deletedSuccess", "Product deleted successfully");
+            resp.sendRedirect(req.getContextPath() +"/ProductManagementServlet");
         } catch (SQLException e) {
             System.out.println("Failed to delete product");
         }

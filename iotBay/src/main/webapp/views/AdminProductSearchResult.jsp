@@ -62,12 +62,12 @@
     </form>
   </div>
 
-  <div class="delete-product">
-    <form action="<%= request.getContextPath() %>/DeleteProduct" method="post" onsubmit="return confirm('Are you sure you want to delete this product?');">
-      <input type="hidden" name="productId" value="<%= product.getProductId() %>">
-      <button type="submit">Delete</button>
-    </form>
-  </div>
+    <div class="delete-product">
+      <form action="<%= request.getContextPath() %>/DeleteProduct" method="post" onsubmit="return confirm('Are you sure you want to delete it permanently remove this product?')">
+        <input type="hidden" name="productId" value="<%= product.getProductId() %>">
+        <button type="submit">Delete</button>
+      </form>
+    </div>
   </a>
 <%} else {%>
   <h2><%=message%></h2>
