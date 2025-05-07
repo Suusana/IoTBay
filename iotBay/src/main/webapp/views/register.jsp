@@ -27,7 +27,7 @@
 
 <main>
     <h1>Register</h1>
-    <form action="/RegisterServlet" method="post">
+    <form action="<%= request.getContextPath()%>/RegisterServlet" method="post">
         <h4>Personal Information</h4>
         <div class="container">
             <div>
