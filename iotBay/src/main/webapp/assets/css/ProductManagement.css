@@ -87,6 +87,7 @@ img{
     border-radius: 5px;
     animation: fadeout 1s ease-out;
 
+}
 @keyframes fadeout {
     from{
         opacity: 100%;
