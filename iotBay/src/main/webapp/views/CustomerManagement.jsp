@@ -6,6 +6,7 @@
     <title>Customer Management</title>
     <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="stylesheet" href="../assets/css/sideBar.css">
+    <link rel="stylesheet" href="../assets/css/customerManagement.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
@@ -35,25 +36,22 @@
 
     <!-- Crate customer -->
     <h2>Create New Customer</h2>
-    <form action="CreateCustomer" method="post">
+    <form class="customer-form" action="<%=request.getContextPath()%>/AddCustomer" method="post">
 
-        <input type="text" name="firstName" placeholder="First Name" required />
-        <input type="text" name="lastName" placeholder="Last Name" required />
-        <input type="text" name="email" placeholder="Email" required />
-        <input type="text" name="phone" placeholder="Phone" required />
-        <input type="text" name="address" placeholder="Address" required />
-        <input type="text" name="city" placeholder="City" />
-        <input type="text" name="state" placeholder="State" />
-        <input type="text" name="postcode" placeholder="Postcode" />
-        <input type="text" name="country" placeholder="Country" />
+        <input type="text" name="name" placeholder="Full Name" required>
+        <input type="email" name="email" placeholder="Email" required>
 
-        <select name="status">
-            <option value="active">Active</option>
-            <option value="inactive">Inactive</option>
+        <select name="type" required>
+
+            <option value="">Select Type</option>
+            <option value="Company">Company</option>
+            <option value="Individual">Individual</option>
+
         </select>
 
-        <button type="submit">Create</button>
+        <input type="text" name="address" placeholder="Address" required>
 
+        <button type="submit">Create Customer</button>
     </form>
 
     <!-- Search Customer -->
