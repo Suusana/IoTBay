@@ -237,4 +237,24 @@ public class ProductDao {
         }
         return products;
     }
+
+    public Product findProductById(int productId) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("select * from product where product_id = ?");
+        preparedStatement.setInt(1,productId);
+        ResultSet rs = preparedStatement.executeQuery();
+
+        Product product = null;
+        if(rs.next()) {
+            product = new Product();
+            product.setProductId(rs.getInt("product_id"));
+            product.setProductName(rs.getString("product_name"));
+            product.setDescription(rs.getString("description"));
+            product.setImage(rs.getString("image"));
+            product.setPrice(rs.getDouble("price"));
+            product.setQuantity(rs.getInt("quantity"));
+        }
+        rs.close();
+        preparedStatement.close();
+        return product;
+    }
 }
