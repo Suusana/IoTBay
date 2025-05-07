@@ -10,6 +10,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.bean.Product" %>
 <%@ page import="com.bean.Category" %>
+<%@ page import="java.util.stream.Stream" %>
 <html>
 <%
     List<Product> allProducts = (List<Product>) request.getAttribute("allProducts");
@@ -131,13 +132,24 @@
                 <button type="submit">Update</button>
             </form>
         </div>
-
+        <!-- delete test
+     ('Capacitive Touch Sensor Module v2.0', 30, 18.90, 'Capacitive touch sensor module used for detecting touch input in Arduino, Raspberry Pi, and interactive projects.', 'Touch Sensor.png', 1),
+        -->
         <div class="delete-product">
-            <form action="<%= request.getContextPath() %>/DeleteProduct" method="post" onsubmit="return confirm('Are you sure you want to delete this product?');">
+            <form action="<%= request.getContextPath() %>/DeleteProduct" method="post" onsubmit="return confirm('Are you sure you want to delete it permanently remove this product?')">
                 <input type="hidden" name="productId" value="<%= product.getProductId() %>">
                 <button type="submit">Delete</button>
             </form>
         </div>
+        <%
+        String deletedMssg = (String) session.getAttribute("deletedSuccess");
+        if(deletedMssg !=null){%>
+        <div class="deletedMssg">
+            <%=deletedMssg%>
+        </div>
+        <%
+            session.removeAttribute("deletedSuccess");
+        }%>
     </a>
     <% }
     } else { %>
@@ -145,11 +157,5 @@
     <% } %>
 </div> <!--This is end of the .main-content div -->
 
-
-</body>
-</html>
-
-
-</div>
 </body>
 </html>

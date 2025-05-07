@@ -202,9 +202,9 @@ public class ProductDao {
     }
 
     //Product Delete - staff only
-    public void deleteProduct(int productId) throws SQLException {
+    public void deleteProduct(Product product) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("delete from product where product_id = ?");
-        preparedStatement.setInt(1, productId);
+        preparedStatement.setInt(1, product.getProductId());
         preparedStatement.executeUpdate();
     }
 
