@@ -1,6 +1,5 @@
 main{
+  min-height:100vh;
   display:flex;
-  flex-direction: column-reverse;
-  justify-content: center;
-  height:100vh;
+  flex-direction: column;
 }
