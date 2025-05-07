@@ -1,0 +1,68 @@
+.title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #B88E2F;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.orderTable {
+    width: 90%;
+    margin: 0 auto 30px auto;
+    border-collapse: collapse;
+    background-color: #F4F5F7;
+    border: 1px solid #B88E2F;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.orderTable th, .orderTable td {
+    border: 1px solid #ddd;
+    padding: 12px 20px;
+    text-align: left;
+    font-size: 16px;
+}
+
+.orderTable th {
+    background-color: #FFF3E3;
+    color: #B88E2F;
+    font-weight: 700;
+}
+
+.errorMsg {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    white-space: pre-line;
+    margin-bottom: 20px;
+}
+
+.btn-gold {
+    background-color: #F4B860;
+    color: white;
+    padding: 8px 16px;
+    font-weight: 700;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+    margin: 5px 0;
+    transition: background-color 0.3s ease;
+}
+
+.btn-gold:hover {
+    background-color: #a67224;
+    color: white;
+    cursor: pointer;
+}
+
+.input-field {
+    padding: 6px 10px;
+    border: 1px solid #B88E2F;
+    border-radius: 4px;
+    font-size: 14px;
+    margin: 0 5px;
+}
+
+.center {
+    text-align: center;
+}

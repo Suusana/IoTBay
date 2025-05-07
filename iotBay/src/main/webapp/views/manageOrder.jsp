@@ -6,10 +6,11 @@
 <html>
 <head>
   <title>Manage Order</title>
+  <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/OrderStyle.css">
 </head>
 <body>
 
-<h2>Manage Your Order</h2>
+<h2 class="title">Manage Your Order</h2>
 
 <%
   Order order = (Order) request.getAttribute("order");
@@ -17,7 +18,7 @@
 %>
 
 <!-- display order information -->
-<table border="1">
+<table class="orderTable">
   <tr>
     <th>Order ID</th>
     <td><%= order.getOrderId() %></td>
@@ -35,16 +36,14 @@
 <br>
 
 <%
-  // only "saved" can be change
   if ("Saved".equals(order.getOrderStatus().toString())) {
 %>
 
-<!--change quantity, final submit and cancel -->
 <form action="<%= request.getContextPath() %>/orderAction" method="post">
   <input type="hidden" name="orderId" value="<%= order.getOrderId() %>">
 
-  <h3>Update Product Quantities:</h3>
-  <table border="1">
+  <h3 style="text-align: center; color: #B88E2F;">Update Product Quantities:</h3>
+  <table class="orderTable">
     <tr>
       <th>Product</th>
       <th>Quantity</th>
@@ -59,7 +58,8 @@
     <tr>
       <td><%= product.getProductName() %> (ID: <%= productId %>)</td>
       <td>
-        <input type="number" name="quantity_<%= productId %>" value="<%= product.getQuantity() %>" min="0" style="width: 60px; text-align: center;">
+        <input type="number" name="quantity_<%= productId %>" value="<%= product.getQuantity() %>" min="0"
+               style="width: 60px; text-align: center;">
       </td>
     </tr>
     <%
@@ -72,27 +72,30 @@
     %>
   </table>
 
-  <br>
-  <button type="submit" name="action" value="update">Save Update</button>
-  <button type="submit" name="action" value="submit">Final Submission</button>
-  <button type="submit" name="action" value="cancel">Cancel Order</button>
+  <div style="text-align: center; margin-top: 20px;">
+    <button type="submit" name="action" value="update" class="btn-gold" style="margin: 5px;">Save Update</button>
+    <button type="submit" name="action" value="submit" class="btn-gold" style="margin: 5px;">Final Submission</button>
+    <button type="submit" name="action" value="cancel" class="btn-gold" style="margin: 5px;">Cancel Order</button>
+  </div>
 </form>
 
 <%
 } else {
 %>
-<p>This order is <strong><%= order.getOrderStatus() %></strong> and cannot be modified.</p>
+<p class="center">This order is <strong><%= order.getOrderStatus() %></strong> and cannot be modified.</p>
 <%
   }
 %>
 
-<br><br>
-<a href="<%= request.getContextPath() %>/viewOrder">Back to Order List</a>
+<br>
+<div style="text-align: center;">
+  <a href="<%= request.getContextPath() %>/viewOrder" class="btn-gold">Back to Order List</a>
+</div>
 
 <%
 } else {
 %>
-<p>No order information available.</p>
+<p class="center">No order information available.</p>
 <%
   }
 %>

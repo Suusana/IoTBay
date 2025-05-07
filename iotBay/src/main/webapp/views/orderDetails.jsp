@@ -6,16 +6,17 @@
 <html>
 <head>
   <title>Order Details</title>
+  <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/OrderStyle.css">
 </head>
 <body>
 
-<h2>Order Details</h2>
+<h2 class="title">Order Details</h2>
 
 <%
   String error = (String) session.getAttribute("error");
   if (error != null) {
 %>
-<p style="color: red;"><%= error.replaceAll("\n", "<br>") %></p>
+<div class="errorMsg"><%= error.replaceAll("\n", "<br>") %></div>
 <%
     session.removeAttribute("error");
   }
@@ -29,7 +30,7 @@
     Product product = (products != null && !products.isEmpty()) ? products.get(0) : null;
 %>
 
-<table border="1">
+<table class="orderTable">
   <tr>
     <th>Create Date</th>
     <td><%= order.getCreateDate() %></td>
@@ -64,19 +65,20 @@
   </tr>
 </table>
 
-<%
-  if ("Saved".equals(order.getOrderStatus().toString())) {
-%>
-<form action="<%= request.getContextPath() %>/manageOrder" method="get">
-  <input type="hidden" name="orderId" value="<%= order.getOrderId() %>">
-  <input type="submit" value="Manage This Order">
-</form>
-<%
-  }
-%>
+<div style="text-align: center; margin-top: 30px;">
+  <%
+    if ("Saved".equals(order.getOrderStatus().toString())) {
+  %>
+  <form action="<%= request.getContextPath() %>/manageOrder" method="get" style="display: inline-block; margin-right: 10px;">
+    <input type="hidden" name="orderId" value="<%= order.getOrderId() %>">
+    <input type="submit" value="Manage This Order" class="btn-gold">
+  </form>
+  <%
+    }
+  %>
 
-<br><br>
-<a href="<%= request.getContextPath() %>/viewOrder">Back to Order List</a>
+  <a href="<%= request.getContextPath() %>/viewOrder" class="btn-gold" style="display: inline-block;">Back to Order List</a>
+</div>
 
 <%
 } else {

@@ -5,25 +5,26 @@
 <html>
 <head>
   <title>Order List</title>
+  <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/OrderStyle.css">
 </head>
 <body>
 
-<h2>My Orders</h2>
+<h2 class="title">My Orders</h2>
 
 <!-- search by orderID -->
-<form action="<%= request.getContextPath() %>/viewOrder" method="get">
+<form action="<%= request.getContextPath() %>/viewOrder" method="get" style="text-align:center;">
   <label for="orderId">Search by Order ID:</label>
-  <input type="text" id="orderId" name="orderId" placeholder="Enter Order ID">
-  <input type="submit" value="Search by ID">
+  <input type="text" id="orderId" name="orderId" placeholder="Enter Order ID" class="input-field">
+  <input type="submit" value="Search by ID" class="btn-gold">
 </form>
 
 <br>
 
 <!-- search by orderDate -->
-<form action="<%= request.getContextPath() %>/viewOrder" method="get">
+<form action="<%= request.getContextPath() %>/viewOrder" method="get" style="text-align:center;">
   <label for="orderDate">Search by Date:</label>
-  <input type="date" id="orderDate" name="orderDate">
-  <input type="submit" value="Search by Date">
+  <input type="date" id="orderDate" name="orderDate" class="input-field">
+  <input type="submit" value="Search by Date" class="btn-gold">
 </form>
 
 <br>
@@ -32,17 +33,17 @@
   String message = (String) request.getAttribute("message");
   if (message != null) {
 %>
-<p style="color:red;"><%= message %></p>
+<div class="errorMsg"><%= message.replaceAll("\n", "<br>") %></div>
 <%
   }
 %>
 
-<!--display order List-->
+<!-- display order List -->
 <%
   List<Order> orders = (List<Order>) request.getAttribute("orders");
   if (orders != null && !orders.isEmpty()) {
 %>
-<table border="1">
+<table class="orderTable">
   <tr>
     <th>Order ID</th>
     <th style="width:180px;">Create Date</th>
@@ -53,7 +54,7 @@
   %>
   <tr>
     <td>
-      <a href="<%= request.getContextPath() %>/viewOrderDetails?orderId=<%= order.getOrderId() %>">
+      <a class="btn-gold" href="<%= request.getContextPath() %>/viewOrderDetails?orderId=<%= order.getOrderId() %>">
         <%= order.getOrderId() %>
       </a>
     </td>
@@ -67,7 +68,7 @@
 <%
 } else {
 %>
-<p>No matching orders found.</p>
+<p class="center">No matching orders found.</p>
 <%
   }
 %>
