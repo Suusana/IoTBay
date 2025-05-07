@@ -48,7 +48,7 @@ public class CustomerDao {
 
         if (resultSet.next()) {
             customer = new Customer();
-            customer.setUserId(resultSet.getLong("user_id"));
+            customer.setUserId(resultSet.getInt("user_id"));
             customer.setUsername(resultSet.getString("username"));
             customer.setPassword(resultSet.getString("password"));
             customer.setFirstName(resultSet.getString("first_name"));
@@ -67,7 +67,7 @@ public class CustomerDao {
     }
 
     // Read user
-    public Customer getUserById(Long userId) throws SQLException {
+    public Customer getUserById(Integer userId) throws SQLException {
         PreparedStatement preparedStatement =  connection.prepareStatement("SELECT * FROM User WHERE user_id = ?");
         preparedStatement.setLong(1, userId);
         ResultSet resultSet = preparedStatement.executeQuery();
@@ -75,7 +75,7 @@ public class CustomerDao {
 
         if (resultSet.next()) {
             customer = new Customer();
-            customer.setUserId(resultSet.getLong("user_id"));
+            customer.setUserId(resultSet.getInt("user_id"));
             customer.setUsername(resultSet.getString("username"));
             customer.setPassword(resultSet.getString("password"));
             customer.setFirstName(resultSet.getString("first_name"));

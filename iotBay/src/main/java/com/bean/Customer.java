@@ -1,10 +1,11 @@
 package com.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Customer implements Serializable {
-    private long userId;
+    private Integer userId;
     private String username;
     private String password;
     private String firstName;
@@ -22,10 +23,11 @@ public class Customer implements Serializable {
     public Customer() {
     }
 
-    // New Customer
-    public Customer(String username, String password, String firstName, String lastName, Long phone,
-                    String email, String status, String address, String city, String state, Integer postcode,
-                    String country,  List<String> history) {
+    public Customer(Integer userId, String username, String password, String firstName,
+                    String lastName, Long phone, String email, String status,
+                    String address, String city, String state, Integer postcode,
+                    String country, List<String> history) {
+        this.userId = userId;
         this.username = username;
         this.password = password;
         this.firstName = firstName;
@@ -41,19 +43,11 @@ public class Customer implements Serializable {
         this.history = history;
     }
 
-    // From Database
-    public Customer(long userId, String username, String password, String firstName, String lastName, Long phone,
-                    String email, String status, String address, String city, String state, Integer postcode,
-                    String country, List<String>  history) {
-        this(username, password, firstName, lastName, phone, email, status, address, city, state, postcode, country, history);
-        this.userId = userId;
-    }
-
-    public long getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 

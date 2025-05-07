@@ -41,8 +41,20 @@ public class RegisterServlet extends HttpServlet {
         }
         String status = "active";
 
-        Customer customer = new Customer(username, password, firstName, lastName, phoneNumber, email, status, address,
-                city, state, postalCode, country, new ArrayList<>());
+        Customer customer = new Customer();
+        customer.setUsername(username);
+        customer.setPassword(password);
+        customer.setFirstName(firstName);
+        customer.setLastName(lastName);
+        customer.setPhone(phoneNumber);
+        customer.setEmail(email);
+        customer.setStatus(status);
+        customer.setAddress(address);
+        customer.setCity(city);
+        customer.setState(state);
+        customer.setPostcode(postalCode);
+        customer.setCountry(country);
+
         session.setAttribute("loggedInUser", customer);
         try {
             customerDao.addUser(customer);
