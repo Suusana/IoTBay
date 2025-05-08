@@ -3,6 +3,7 @@ package com.controller.CustomerController;
 import com.bean.Customer;
 import com.dao.CustomerDao;
 import com.dao.DBManager;
+import com.dao.DBConnector;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -19,6 +20,14 @@ public class AddCustomerHandler extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         DBManager db = (DBManager) session.getAttribute("db");
+
+         if (db == null) {
+            DBConnector connector = new DBConnector();
+            Connection conn = connector.getConnection();
+            db = new DBManager(conn);
+            session.setAttribute("db", db);
+        }
+        
         CustomerDao customerDao = db.getCustomerDao();
 
         Customer customer = new Customer();
@@ -31,7 +40,8 @@ public class AddCustomerHandler extends HttpServlet {
             customerDao.addUser(customer);
             resp.sendRedirect(req.getContextPath() + "/ShowCustomerInfo");
         } catch (SQLException e) {
-            System.out.println("Failed to create customer: " + e.getMessage());
+            e.printStackTrace();
+            resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Database error: " + e.getMessage());
         }
     }
 }
