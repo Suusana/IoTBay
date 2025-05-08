@@ -9,7 +9,7 @@ table {
 th, td {
     padding: 12px;
     border: 1px solid #a67224;
-    white-space: nowrap;
+    /*white-space: nowrap;*/
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -66,7 +66,12 @@ button:hover{
 .delete:hover{
     background-color: #ff2e63;
 }
-
+div.delete {
+    width: 75px;
+    border-radius: 10px;
+    margin-top: 10px;
+    justify-self: center;
+}
 .update{
     margin: 0 10px;
     padding: 10px;
@@ -75,4 +80,9 @@ button:hover{
 
 .update:hover{
     background-color: #edb1f1;
+}
+td.operation{
+    width:100%;
+    height:100%;
+
 }

@@ -15,7 +15,6 @@
     List<Product> allProducts = (List<Product>) request.getAttribute("products");
     List<Category> categories = (List<Category>) request.getAttribute("categories");
 
-
     String message = (String) request.getAttribute("message");
 %>
 <head>
