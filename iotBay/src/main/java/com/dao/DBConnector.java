@@ -12,7 +12,7 @@ public class DBConnector {
         try {
             Class.forName("org.sqlite.JDBC");
 
-            String url = "jdbc:sqlite:/Users/suinlee/Desktop/apache-tomcat-10.1.39/webapps/ROOT/IoTBayDB.db";
+            String url = "jdbc:sqlite:/apache-tomcat-10.1.39/webapps/ROOT/IoTBayDB.db";
             connection = DriverManager.getConnection(url);
             connection.setAutoCommit(true);
             System.out.println("✅ Connected to database");
