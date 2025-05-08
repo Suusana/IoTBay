@@ -59,19 +59,33 @@ button:hover{
     background-color: #fecea8;
 }
 
+.button{
+    padding: 10px;
+    width: 75px;
+    background-color: #f7f48b;
+    border-radius: 10px;
+}
+.button:hover{
+    background-color: #ff2e63;
+}
+
 .delete{
     background-color: #f38181;
+    border-radius: 10px;
 }
 
 .delete:hover{
     background-color: #ff2e63;
 }
-div.delete {
+/*
+.delete {
     width: 75px;
     border-radius: 10px;
     margin-top: 10px;
     justify-self: center;
 }
+*/
+
 .update{
     margin: 0 10px;
     padding: 10px;
@@ -81,8 +95,9 @@ div.delete {
 .update:hover{
     background-color: #edb1f1;
 }
-td.operation{
-    width:100%;
-    height:100%;
 
+.operation{
+    form{
+    margin: 5px 0px;
+    }
 }

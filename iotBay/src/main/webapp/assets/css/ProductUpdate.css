@@ -1,0 +1,25 @@
+form{
+    display: flex;
+    flex-direction: column;
+
+    button {
+        margin: 35px 18% 0 18%;
+        padding: 10px 25px;
+        border-radius: 8px;
+        width:100px;
+    }
+
+
+}
+label{
+    font-size:18px;
+    margin-bottom: 10px;
+}
+button{
+    color: black;
+    background-color: #ffcef3;
+}
+button:hover{
+    background-color: #edb1f1;
+    cursor: pointer;
+}

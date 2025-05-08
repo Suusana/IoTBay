@@ -11,7 +11,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Product Details</title>
+    <title>Product Detail Update</title>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/base.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/sideBar.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/StaffDetail.css">
@@ -28,7 +28,7 @@
         <i class="fa-solid fa-user fa-lg"></i>
         <span>Customer Management</span>
     </a>
-    <a href="<%= request.getContextPath() %>/ShowStaffInfo" class="current">
+    <a href="<%= request.getContextPath() %>/ShowStaffInfo">
         <i class="fa-solid fa-user-tie fa-lg"></i>
         <span>Staff Management</span>
     </a>
@@ -82,10 +82,11 @@
         </div>
     </div>
 
-    <button class="back-button" onclick="history.back()">Back to Product Management</button>
+    <a href="<%= request.getContextPath() %>/ProductManagementServlet">
+        <button class="back-button">Back to Product Management</button>
+    </a>
 </div>
 
 
 </body>
 </html>
-

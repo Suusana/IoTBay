@@ -17,6 +17,20 @@ import java.sql.SQLException;
 
 @WebServlet("/UpdateProductServlet")
 public class UpdateProductServlet extends HttpServlet {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        DBManager db = (DBManager) session.getAttribute("db");
+        ProductDao productDao = db.getProductDao();
+
+        Integer productId = Integer.parseInt(req.getParameter("productId"));
+        try {
+            Product product = productDao.getProductById(productId);
+            req.setAttribute("product", product);
+            req.getRequestDispatcher( "/views/AdminProductUpdate.jsp").forward(req, resp);
+        } catch (SQLException e) {
+            System.out.println("Cannot get the product");
+        }
+    }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
