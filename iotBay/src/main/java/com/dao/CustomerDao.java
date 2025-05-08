@@ -5,6 +5,7 @@ import com.bean.Customer;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Statement;
 
 public class CustomerDao {
     private final Connection connection;
