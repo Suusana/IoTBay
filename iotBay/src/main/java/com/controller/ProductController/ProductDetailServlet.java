@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 @WebServlet("/ProductDetailServlet")
-public class ProductDeatilServlet extends HttpServlet {
+public class ProductDetailServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
@@ -31,3 +31,4 @@ public class ProductDeatilServlet extends HttpServlet {
         }
     }
 }
+

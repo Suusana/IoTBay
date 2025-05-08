@@ -9,7 +9,7 @@ table {
 th, td {
     padding: 12px;
     border: 1px solid #a67224;
-    /*white-space: nowrap;*/
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
