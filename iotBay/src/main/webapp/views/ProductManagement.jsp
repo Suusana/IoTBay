@@ -57,7 +57,7 @@
             <h3>Search by Name</h3>
             <form action="<%= request.getContextPath() %>/GetByProductName" method="get" target="_blank">
                 <label for="productName">
-                    <input type="search" id="productName" name="productName" />
+                    <input type="search" id="productName" name="productName"/>
                 </label>
                 <button>Search</button>
             </form>
@@ -65,16 +65,19 @@
         <div class="search-box-category">
             <h3>Search by Category</h3>
             <form action="<%= request.getContextPath() %>/GetByCategory" method="get" target="_blank">
-                <button type="submit" name="categoryId" value="1">Smart Home</button>
-                <button type="submit" name="categoryId" value="2">Health & Fitness</button>
-                <button type="submit" name="categoryId" value="3">Security Devices</button>
-                <button type="submit" name="categoryId" value="4">Industrial Devices</button>
-                <button type="submit" name="categoryId" value="5">Wearables</button>
-                <button type="submit" name="categoryId" value="6">Agriculture & Environment</button>
-                <button type="submit" name="categoryId" value="7">Automotive & Transport</button>
-                <button type="submit" name="categoryId" value="8">Smart Appliances</button>
-                <button type="submit" name="categoryId" value="9">Energy & Utilities</button>
-                <button type="submit" name="categoryId" value="10">Networking & Hubs</button>
+                <select>
+                    <option disabled>Please select a category</option>
+                    <option name="categoryId" value="1">Smart Home</option>
+                    <option name="categoryId" value="2">Health & Fitness</option>
+                    <option name="categoryId" value="3">Security Devices</option>
+                    <option name="categoryId" value="4">Industrial Devices</option>
+                    <option name="categoryId" value="5">Wearables</option>
+                    <option name="categoryId" value="6">Agriculture & Environment</option>
+                    <option name="categoryId" value="7">Automotive & Transport</option>
+                    <option name="categoryId" value="8">Smart Appliances</option>
+                    <option name="categoryId" value="9">Energy & Utilities</option>
+                    <option name="categoryId" value="10">Networking & Hubs</option>
+                </select>
             </form>
         </div>
 
@@ -91,64 +94,109 @@
             <button type="submit">Add New Product</button>
         </form>
     </div>
+
+
     <h2>Product List</h2>
-    <% if (allProducts != null && !allProducts.isEmpty()) {
-        for (Product product : allProducts) { %>
-    <a class="shop_product">
-        <img src="<%= request.getContextPath() %>/assets/img/<%= product.getImage() %>" alt="Device">
-        <h5><%= product.getProductName() %></h5>
-        <p><%= product.getDescription() %></p>
-        <span>$<%= product.getPrice() %></span>
-        <h5>Category: <%= product.getCategory().getCategory()%></h5>
-        <div class="update-product-info">
-            <h4>Update Product Info</h4>
-            <form action="<%= request.getContextPath() %>/UpdateProductServlet" method="post">
-                <input type="hidden" name="productId" value="<%= product.getProductId() %>">
-                Name: <input type="text" name="productName" value="<%= product.getProductName() %>">
-                Price: <input type="text" name="price" value="<%= product.getPrice() %>">
-                Quantity: <input type="number" name="quantity" value="<%= product.getQuantity() %>">
-                <br>
-                Description: <textarea name="description"><%= product.getDescription() %></textarea>
-                <br>
-                <%
-                    //product.getCategory -> receives category obj
-        /*
-          product.getCategory() -> returns the obj addr not the string (Category name)
-          product db stores categoryID / product class stores category obj
-        * */
-                    Category category = new Category();
-                    category = product.getCategory();
-                    int categoryID = category.getCategoryId();
-                %>
-                Category ID:<input type="number" name="categoryId" value="<%=categoryID%>"/>
-                <p>Category :<%=product.getCategory().getCategory()%></p>
-                Image:<input type="text" name="image" value="<%=product.getImage()%>"/>
-                <button type="submit">Update</button>
-            </form>
-        </div>
-        <!-- delete test
-     ('Capacitive Touch Sensor Module v2.0', 30, 18.90, 'Capacitive touch sensor module used for detecting touch input in Arduino, Raspberry Pi, and interactive projects.', 'Touch Sensor.png', 1),
-        -->
-        <div class="delete-product">
-            <form action="<%= request.getContextPath() %>/DeleteProduct" method="post" onsubmit="return confirm('Are you sure you want to delete it permanently remove this product?')">
-                <input type="hidden" name="productId" value="<%= product.getProductId() %>">
-                <button type="submit">Delete</button>
-            </form>
-        </div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Description</th>
+            <th>Image</th>
+            <th>Operation</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <% if (allProducts != null && !allProducts.isEmpty()) {
+            for (Product product : allProducts) { %>
+        <tr>
+            <td><%= product.getProductId()%>
+            </td>
+            <td><%= product.getProductName()%>
+            </td>
+            <td><%= product.getPrice()%>
+            </td>
+            <td><%= product.getQuantity()%>
+            </td>
+            <td><%= product.getDescription()%>
+            </td>
+            <td><img src="<%= request.getContextPath() %>/assets/img/<%= product.getImage() %>" alt="Device">
+            </td>
+            <td>
+                <button type="submit" name="view" value="view">View</button>
+                <button type="submit" name="update" class="update" value="update">Update</button>
+                <button type="submit" onclick="return confirm('Are you sure you want to delete this staff?');"
+                        class="delete" >Delete</button>
+            </td>
+        </tr>
         <%
-        String deletedMssg = (String) session.getAttribute("deletedSuccess");
-        if(deletedMssg !=null){%>
-        <div class="deletedMssg">
-            <%=deletedMssg%>
-        </div>
-        <%
-            session.removeAttribute("deletedSuccess");
-        }%>
-    </a>
-    <% }
-    } else { %>
-    <p>No products available right now.</p> <!--this will appear when there is an servlet connection error or nothing to show --->
-    <% } %>
+                }
+            }
+        %>
+        </tbody>
+    </table>
+
+
+    <%--    <a class="shop_product">--%>
+
+    <%--        <h5><%= product.getProductName() %></h5>--%>
+    <%--        <p><%= product.getDescription() %></p>--%>
+    <%--        <span>$<%= product.getPrice() %></span>--%>
+    <%--        <h5>Category: <%= product.getCategory().getCategory()%></h5>--%>
+    <%--        <div class="update-product-info">--%>
+    <%--            <h4>Update Product Info</h4>--%>
+    <%--            <form action="<%= request.getContextPath() %>/UpdateProductServlet" method="post">--%>
+    <%--                <input type="hidden" name="productId" value="<%= product.getProductId() %>">--%>
+    <%--                Name: <input type="text" name="productName" value="<%= product.getProductName() %>">--%>
+    <%--                Price: <input type="text" name="price" value="<%= product.getPrice() %>">--%>
+    <%--                Quantity: <input type="number" name="quantity" value="<%= product.getQuantity() %>">--%>
+    <%--                <br>--%>
+    <%--                Description: <textarea name="description"><%= product.getDescription() %></textarea>--%>
+    <%--                <br>--%>
+    <%--                <%--%>
+    <%--                    //product.getCategory -> receives category obj--%>
+    <%--        /*--%>
+    <%--          product.getCategory() -> returns the obj addr not the string (Category name)--%>
+    <%--          product db stores categoryID / product class stores category obj--%>
+    <%--        * */--%>
+    <%--                    Category category = new Category();--%>
+    <%--                    category = product.getCategory();--%>
+    <%--                    int categoryID = category.getCategoryId();--%>
+    <%--                %>--%>
+    <%--                Category ID:<input type="number" name="categoryId" value="<%=categoryID%>"/>--%>
+    <%--                <p>Category :<%=product.getCategory().getCategory()%></p>--%>
+    <%--                Image:<input type="text" name="image" value="<%=product.getImage()%>"/>--%>
+    <%--                <button type="submit">Update</button>--%>
+    <%--            </form>--%>
+    <%--        </div>--%>
+    <%--        <!-- delete test--%>
+    <%--     ('Capacitive Touch Sensor Module v2.0', 30, 18.90, 'Capacitive touch sensor module used for detecting touch input in Arduino, Raspberry Pi, and interactive projects.', 'Touch Sensor.png', 1),--%>
+    <%--        -->--%>
+    <%--        <div class="delete-product">--%>
+    <%--            <form action="<%= request.getContextPath() %>/DeleteProduct" method="post" onsubmit="return confirm('Are you sure you want to delete it permanently remove this product?')">--%>
+    <%--                <input type="hidden" name="productId" value="<%= product.getProductId() %>">--%>
+    <%--                <button type="submit">Delete</button>--%>
+    <%--            </form>--%>
+    <%--        </div>--%>
+    <%--        <%--%>
+    <%--        String deletedMssg = (String) session.getAttribute("deletedSuccess");--%>
+    <%--        if(deletedMssg !=null){%>--%>
+    <%--        <div class="deletedMssg">--%>
+    <%--            <%=deletedMssg%>--%>
+    <%--        </div>--%>
+    <%--        <%--%>
+    <%--            session.removeAttribute("deletedSuccess");--%>
+    <%--        }%>--%>
+    <%--    </a>--%>
+    <%--    <% }--%>
+    <%--    } else { %>--%>
+    <%--    <p>No products available right now.</p> <!--this will appear when there is an servlet connection error or nothing to show --->--%>
+    <%--    <% } %>--%>
 </div> <!--This is end of the .main-content div -->
 
 </body>

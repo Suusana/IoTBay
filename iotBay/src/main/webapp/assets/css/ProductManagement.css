@@ -1,99 +1,78 @@
-
-button{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 15px;
-    font-weight: 700;
-    height: 20px;
-    width: 30px;
-    color: #fff;
-    padding: 3% 6%;
-    background-color: #B88E2F;
-}
-button:hover {
-    cursor: pointer;
-    background-color: #a67224;
-}
-.search-box{
-    border-top: 1px solid #B88E2F;
-    border-bottom: 1px solid #B88E2F;
-
-    width: 70%;
-    padding: 3px 10px;
-    margin: 10px 0px;
-    form{
-        display: flex;
-    }
-    label{
-        border: 1px solid #B88E2F;
-        width: 80%;
-    }
-    button{
-        width: 10%;
-        font-size: xx-small;
-        margin-left:5px;
-    }
-}
-.add-product-box{
-    border-top: 1px solid #B88E2F;
-    border-bottom: 1px solid #B88E2F;
-    width: 70%;
-    padding: 0px 10px;
-    margin: 10px 0px;
-    form{
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        justify-content: center;
-    }
-    button{
-        font-size: small;
-        width: 25%;
-        margin-right: 30%;
-    }
-
-}
-.search-box-category{
-    form{
-        display: flex;
-        flex-wrap: wrap;
-    }
-    button{
-        margin-top: 3px;
-    }
-}
-.update-product-info{
-    border: 1px solid #B88E2F;
-    border-radius: 10px;
-    width: 400px;
+table {
+    border-collapse: collapse;
+    width: 80%;
+    table-layout: fixed;
+    margin: 20px 0;
+    text-align: center;
 }
 
-.main-content {
-    margin-left: 18%;
-    padding: 30px;
-    width: 100%;
+th, td {
+    padding: 12px;
+    border: 1px solid #a67224;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
+
+th:nth-child(1), td:nth-child(1) {
+    width: 5%;
+}
+
+th:nth-child(2), td:nth-child(2) {
+    width: 20%;
+}
+
+th:nth-child(3), td:nth-child(3) {
+    width: 10%;
+}
+
+th:nth-child(4), td:nth-child(4) {
+    width: 10%;
+}
+
+th:nth-child(5), td:nth-child(5) {
+    width: 20%;
+}
+
+th:nth-child(6), td:nth-child(6) {
+    width: 10%;
+}
+
+thead {
+    background-color: #fce38a;
+}
+
 img{
-    width: 200px;
-    height: 200px;
+    width: 100px;
+    height: 100px;
 }
 
-.deletedMssg{
-    width: 50px;
-    height: 30px;
-    background-color: #B88E2F;
-    color:white;
-    border-radius: 5px;
-    animation: fadeout 1s ease-out;
-
+button {
+    padding: 10px;
+    width: 75px;
+    background-color: #f7f48b;
+    border-radius: 10px;
 }
-@keyframes fadeout {
-    from{
-        opacity: 100%;
-    }
-    to{
-        opacity: 0;
-        display: none;
-    }
+
+button:hover{
+    cursor: pointer;
+    background-color: #fecea8;
+}
+
+.delete{
+    background-color: #f38181;
+}
+
+.delete:hover{
+    background-color: #ff2e63;
+}
+
+.update{
+    margin: 0 10px;
+    padding: 10px;
+    background-color: #ffcef3;
+}
+
+.update:hover{
+    background-color: #edb1f1;
 }

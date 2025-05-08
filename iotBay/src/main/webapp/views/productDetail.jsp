@@ -1,36 +1,30 @@
-<%--
+<%@ page import="com.bean.Customer" %>
+<%@ page import="com.enums.Status" %>
+<%@ page import="com.bean.Product" %><%--
   Created by IntelliJ IDEA.
-  User: yunseo
-  Date: 19/03/2025
-  Time: 2:09 PM
+  User: Susana
+  Date: 5/7/2025
+  Time: 16:55
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="com.bean.Customer" %>
-<%@ page import="com.enums.Status" %>
-<%@ page import="com.bean.Product" %>
-<%@ page import="java.util.List" %>
-<%@ page import="com.bean.Category" %>
-<%@ page import="com.util.Utils" %>
 <html>
 <%
     Customer customer = new Customer();
-    if (session.getAttribute("loggedInUser") != null){
-        customer = (Customer)session.getAttribute("loggedInUser");
+    if (session.getAttribute("loggedInUser") != null) {
+        customer = (Customer) session.getAttribute("loggedInUser");
     } else {
         customer.setUsername(Status.GUEST.getStatus());
     }
 %>
 <head>
-    <title>Main</title>
+    <title>Product Details</title>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/base.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/HeaderAndFooter.css">
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/main.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/productDetail.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-
 <body>
-<!-- header -->
 <div class="header">
     <!-- Logo -->
     <a href="<%=request.getContextPath()%>/home">
@@ -48,7 +42,7 @@
     <menu class="icon">
         <a href="<%=request.getContextPath()%>/ViewUserDetailsServlet">
             <i class="fa-solid fa-circle-user fa-2x"></i>
-            <span><%= customer.getFirstName() != null ? Utils.capitaliseFirst(customer.getFirstName()) : Status.GUEST.getStatus()%></span>
+            <span><%= customer.getFirstName() != null ? customer.getFirstName() : Status.GUEST.getStatus()%></span>
         </a>
         <a href="<%=request.getContextPath()%>/GetByProductNameToCustomer">
             <i class="fa-solid fa-magnifying-glass fa-2x"></i>
@@ -65,70 +59,33 @@
 
     </menu>
 </div>
-<!-- main body -->
+
 <%
-    Product banner = (Product) request.getAttribute("banner");
+    Product product = (Product) request.getAttribute("product");
 %>
-<div class="mainBody">
-    <div class="banner">
-        <img src="<%=request.getContextPath()%>/assets/img/<%=banner.getImage()%>" alt="Banner Img">
-        <div class="intro">
-            <h5>New Arrival</h5>
-            <p><%=banner.getProductName()%></p>
-            <span><%=banner.getDescription()%></span>
-            <br><button class="style1">Buy Now</button>
-        </div>
-    </div>
-    <h5 class="title">Our Products</h5>
-        <div class="Products">
-    <%
-        List<Product> productList = (List<Product>) request.getAttribute("productList");
-        for (Product product:productList) {
-    %>
-                <a href="<%= request.getContextPath()%>/ProductDetailServlet?id=<%=product.getProductId()%>" class="card">
-                    <img src="<%=request.getContextPath()%>/assets/img/<%=product.getImage()%>" alt="Device">
-                    <h5><%=product.getProductName()%></h5>
-                    <p><%=product.getDescription()%></p>
-                    <span>$<%=product.getPrice()%></span>
-                </a>
-    <%
-        }
-    %>
-        </div>
-    <a href="<%=request.getContextPath()%>/productServlet">
-        <button class="style1">Show More</button>
-    </a>
+<div class="product-container">
+    <img src="<%=request.getContextPath()%>/assets/img/<%= product.getImage()%>" alt="Product Image" class="product-image">
 
-    <div class="orderIntro">
-        <div>
-            <h5>Want to manage your orders?</h5>
-            <p>Manage all of your orders and track your purchases easily.</p>
-            <a href="">
-                <button>Go to Order</button>
-            </a>
-        </div>
-        <img src="<%=request.getContextPath()%>/assets/img/orders-post.jpg">
+    <div class="product-info">
+        <h1><%= product.getProductName()%></h1>
+        <p class="price">$ <%=product.getPrice()%></p>
+        <p><%= product.getDescription()%></p>
+
+        <div class="actions">
+        <form action="<%= request.getContextPath() %>/createOrder" method="post">
+            <input type="hidden" name="productId" value="<%= product.getProductId() %>" />
+
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" value="1" min="1" style="width: 60px;">
+
+            <button type="submit" name="action" value="Submit" class="buy-btn">Buy Now</button>
+            <button type="submit" name="action" value="Save" class="cart-btn">Add to Cart</button>
+        </form>
     </div>
 
-    <h5 class="title">Categories</h5>
-    <div class="categories">
-    <%
-        List<Category> categories = (List<Category>) request.getAttribute("categories");
-        for (Category category :categories) {
-    %>
-        <a href="" class="category">
-            <img src="<%=request.getContextPath()%>/assets/img/category<%=category.getCategoryId()%>.png" alt="Category">
-            <br><span><%=category.getCategory()%></span>
-        </a>
-    <%
-        }
-    %>
-
-</div>
-    <a href=""><button class="style1">Show More</button></a>
+    </div>
 </div>
 
-<!-- footer -->
 <div class="footer">
     <hr>
     <div>
@@ -138,9 +95,9 @@
         </div>
         <div class="section">
             <h6>Links</h6>
-            <a href="<%=request.getContextPath()%>/home"><span>Home</span></a>
-            <a href="<%=request.getContextPath()%>/productServlet"><span>Shop</span></a>
-            <a href="<%=request.getContextPath()%>/viewOrder"><span>Order</span></a>
+            <a href=""><span>Home</span></a>
+            <a href=""><span>Shop</span></a>
+            <a href=""><span>Order</span></a>
             <a href=""><span>Category</span></a>
         </div>
         <div class="section">
@@ -173,5 +130,4 @@
     <p>©2025. IoTBay Group 4 All Right Reserved</p>
 </div>
 </body>
-
 </html>

@@ -17,10 +17,6 @@ h1 {
     margin-bottom: 20px;
 }
 
-p {
-    font-size: 100px;
-}
-
 .details-display {
     display: flex;
     flex-direction: column;

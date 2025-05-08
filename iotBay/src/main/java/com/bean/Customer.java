@@ -1,10 +1,11 @@
 package com.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Customer implements Serializable {
-    private long userId;
+    private Integer userId;
     private String username;
     private String password;
     private String firstName;
@@ -17,15 +18,13 @@ public class Customer implements Serializable {
     private String state;
     private Integer postcode;
     private String country;
-    private List<String> history;
 
     public Customer() {
     }
 
-    // New Customer
-    public Customer(String username, String password, String firstName, String lastName, Long phone,
-                    String email, String status, String address, String city, String state, Integer postcode,
-                    String country,  List<String> history) {
+    // New User - database autogenerate userId
+    public Customer(String username, String password, String firstName, String lastName, Long phone, String email,
+                    String status, String address, String city, String state, Integer postcode, String country) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
@@ -38,22 +37,21 @@ public class Customer implements Serializable {
         this.state = state;
         this.postcode = postcode;
         this.country = country;
-        this.history = history;
     }
 
     // From Database
-    public Customer(long userId, String username, String password, String firstName, String lastName, Long phone,
+    public Customer(Integer userId, String username, String password, String firstName, String lastName, Long phone,
                     String email, String status, String address, String city, String state, Integer postcode,
-                    String country, List<String>  history) {
-        this(username, password, firstName, lastName, phone, email, status, address, city, state, postcode, country, history);
+                    String country) {
+        this(username, password, firstName, lastName, phone, email, status, address, city, state, postcode, country);
         this.userId = userId;
     }
 
-    public long getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
@@ -151,13 +149,5 @@ public class Customer implements Serializable {
 
     public void setCountry(String country) {
         this.country = country;
-    }
-
-    public List<String> getHistory() {
-        return history;
-    }
-
-    public void setHistory(List<String> history) {
-        this.history = history;
     }
 }

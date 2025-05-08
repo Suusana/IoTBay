@@ -18,6 +18,6 @@ public class LogoutServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         session.removeAttribute("loggedInUser");
-        resp.sendRedirect("/index.jsp");
+        resp.sendRedirect(req.getContextPath()+"/index.jsp");
     }
 }

@@ -13,8 +13,8 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/ViewUserDetailsServlet")
-public class ViewUserDetailsServlet extends HttpServlet {
+@WebServlet("/EditUserDetailsServlet")
+public class EditUserDetailsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -24,16 +24,17 @@ public class ViewUserDetailsServlet extends HttpServlet {
         Customer customer = (Customer) session.getAttribute("loggedInUser");
 
         if (customer == null) {
-            session.setAttribute("errorMessage", "Please login to view your profile");
+            session.setAttribute("errorMessage", "Please login to edit your profile");
             resp.sendRedirect(req.getContextPath()+"/views/login.jsp");
             return;
         }
+
         Customer updatedCustomer;
         try {
             // update customer to latest data from database before displaying
             updatedCustomer = customerDao.getUserById(customer.getUserId());
             session.setAttribute("loggedInUser",  updatedCustomer);
-            resp.sendRedirect(req.getContextPath()+"/views/userDetails.jsp");
+            resp.sendRedirect(req.getContextPath()+"/views/editUserDetails.jsp");
         } catch (SQLException e) {
             System.out.println("Couldn't retrieve user");
             throw new RuntimeException(e);
