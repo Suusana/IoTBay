@@ -127,11 +127,15 @@
             </td>
             <td><img src="<%= request.getContextPath() %>/assets/img/<%= product.getImage() %>" alt="Device">
             </td>
-            <td>
-                <button type="submit" name="view" value="view">View</button>
-                <button type="submit" name="update" class="update" value="update">Update</button>
-                <button type="submit" onclick="return confirm('Are you sure you want to delete this staff?');"
-                        class="delete" >Delete</button>
+            <td class="operation">
+                <a href="AdminProductDetailView.jsp" target="_blank"><button type="submit" name="view" value="view">View</button></a>
+                <a href="AdminProductUpdate.jsp" target="_blank"><button type="submit" name="update" class="update" value="update">Update</button></a>
+                <div class="delete">
+                    <form action="<%= request.getContextPath() %>/DeleteProduct" method="post" onsubmit="return confirm('Are you sure you want to delete it permanently remove this product?')">
+                        <input type="hidden" name="productId" value="<%= product.getProductId() %>">
+                        <button class="delete" type="submit">Delete</button>
+                    </form>
+                </div>
             </td>
         </tr>
         <%
