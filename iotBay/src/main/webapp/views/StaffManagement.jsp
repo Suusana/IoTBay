@@ -23,7 +23,7 @@
         <i class="fa-solid fa-house fa-lg"></i>
         <span>Dashboard</span>
     </a>
-    <a href="./CustomerManagement.jsp">
+    <a href="<%= request.getContextPath() %>/ShowCustomerInfo">
         <i class="fa-solid fa-user fa-lg"></i>
         <span>Customer Management</span>
     </a>

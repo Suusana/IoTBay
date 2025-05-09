@@ -4,9 +4,9 @@
 <html>
 <head>
     <title>Customer Management</title>
-    <link rel="stylesheet" href="../assets/css/base.css">
-    <link rel="stylesheet" href="../assets/css/sideBar.css">
-    <link rel="stylesheet" href="../assets/css/customerManagement.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/base.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/sideBar.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/staffManagement.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
@@ -17,11 +17,11 @@
         <i class="fa-solid fa-house fa-lg"></i>
         <span>Dashboard</span>
     </a>
-    <a href="./CustomerManagement.jsp" class="current">
+    <a href="<%= request.getContextPath() %>/ShowCustomerInfo" class="current">
         <i class="fa-solid fa-user fa-lg"></i>
         <span>Customer Management</span>
     </a>
-    <a href="./StaffManagement.jsp">
+    <a href="<%= request.getContextPath() %>/ShowStaffInfo">
         <i class="fa-solid fa-user-tie fa-lg"></i>
         <span>Staff Management</span>
     </a>
@@ -31,41 +31,56 @@
     </a>
 </div>
 
+<%
+    List<Customer> customerList = (List<Customer>) request.getAttribute("customerList");
+
+//    showing the pagination
+    int totalPages = (Integer) request.getAttribute("customerTotalPage");
+    int totalRecords = (Integer) request.getAttribute("customerTotalRecords");
+    int currentPage = (Integer) request.getAttribute("customerCurrentPage");
+    String query = (String) request.getAttribute("query");
+    if (query == null) {
+        query = "";
+    }
+%>
+
 <div class="main-content">
     <h1>Customer Management</h1>
 
-    <!-- Crate customer -->
-    <h2>Create New Customer</h2>
-    <form class="customer-form" action="<%=request.getContextPath()%>/AddCustomer" method="post">
+<%--    <!-- Crate customer -->--%>
+<%--    <h2>Create New Customer</h2>--%>
+<%--    <form class="customer-form" action="<%=request.getContextPath()%>/AddCustomer" method="post">--%>
 
-        <input type="text" name="name" placeholder="Full Name" required>
-        <input type="email" name="email" placeholder="Email" required>
+<%--        <input type="text" name="name" placeholder="Full Name" required>--%>
+<%--        <input type="email" name="email" placeholder="Email" required>--%>
 
-        <select name="type" required>
+<%--        <select name="type" required>--%>
+<%--            <option value="">Select Type</option>--%>
+<%--            <option value="Company">Company</option>--%>
+<%--            <option value="Individual">Individual</option>--%>
+<%--        </select>--%>
 
-            <option value="">Select Type</option>
-            <option value="Company">Company</option>
-            <option value="Individual">Individual</option>
+<%--        <input type="text" name="address" placeholder="Address" required>--%>
 
-        </select>
-
-        <input type="text" name="address" placeholder="Address" required>
-
-        <button type="submit">Create Customer</button>
-    </form>
+<%--        <button type="submit">Create Customer</button>--%>
+<%--    </form>--%>
 
     <!-- Search Customer -->
-    <h2>Search Customer</h2>
-    <form action="SearchCustomer" method="get">
-        <input type="text" name="keyword" placeholder="Enter name or status" />
-        <button type="submit">Search</button>
-    </form>
+    <div class="top-bar">
+        <%--        searh for a staff --%>
+        <form action="<%= request.getContextPath() %>/ShowCustomerInfo" method="get" class="search-form">
+            <input type="text" name="query" placeholder="Search by Name or Position" class="search-input"
+                   value="<%= (request.getAttribute("query") != null) ? (String)request.getAttribute("query") : "" %>">
+            <button type="submit" class="search-button">Search</button>
+        </form>
+        <form action="<%= request.getContextPath() %>/views/CreateCustomer.jsp" method="post">
+            <button type="submit" class="create-button">+ Create Customer</button>
+        </form>
+    </div>
 
     <!-- List customers -->
-    <h2>Customer List</h2>
-
-    <table border="1">
-
+    <table>
+        <thead>
         <tr>
             <th>ID</th>
             <th>Name</th>
@@ -75,10 +90,9 @@
             <th>Status</th>
             <th>Actions</th>
         </tr>
+        </thead>
 
         <%
-            List<Customer> customerList = (List<Customer>) request.getAttribute("customerList");
-
             if (customerList != null) {
                 for (Customer customer : customerList) {
         %>
@@ -88,11 +102,31 @@
             <td><%= customer.getEmail() %></td>
             <td><%= customer.getPhone() %></td>
             <td><%= customer.getAddress() %>, <%= customer.getCity() %>, <%= customer.getState() %> <%= customer.getPostcode() %>, <%= customer.getCountry() %></td>
-            <td><%= customer.getStatus() %></td>
             <td>
-                <a href="UpdateCustomer?id=<%= customer.getUserId() %>">Edit</a> |
-                <a href="DeleteCustomer?id=<%= customer.getUserId() %>" onclick="return confirm('Delete this customer?')">Delete</a> |
-                <a href="ToggleCustomerStatus?id=<%= customer.getUserId() %>">Toggle Status</a>
+                <form action="<%= request.getContextPath() %>/toggleCustomerStatus" method="post">
+                    <input type="hidden" name="customerId" value="<%= customer.getUserId() %>">
+                    <input type="hidden" name="currentPage" value="<%= currentPage %>">
+                    <input type="hidden" name="query" value="<%= query %>">
+                    <button type="submit" name="status" value="<%= customer.getStatus() %>"
+                            class="<%= "Active".equals(customer.getStatus()) ? "active" : "inactive" %>">
+                        <%= customer.getStatus() %>
+                    </button>
+                </form>
+            </td>
+            <td>
+                <form action="<%=request.getContextPath()%>/showCustomer" method="post">
+                    <input type="hidden" name="customerId" value="<%=customer.getUserId()%>">
+                    <button type="submit" name="view" value="view">View</button>
+                </form>
+                <form action="<%=request.getContextPath()%>/showCustomer" method="post">
+                    <input type="hidden" name="customerId" value="<%=customer.getUserId()%>">
+                    <button type="submit" name="update" class="update" value="update">Update</button>
+                </form>
+                <form action="<%=request.getContextPath()%>/DeleteCustomer" method="get">
+                    <input type="hidden" name="customerId" value="<%=customer.getUserId()%>">
+                    <button type="submit" onclick="return confirm('Are you sure you want to delete this staff?');"
+                            class="delete" >Delete</button>
+                </form>
             </td>
         </tr>
 
@@ -110,7 +144,25 @@
         <% } %>
 
     </table>
+
+    <div class="pagination">
+        <span>Total <%= totalRecords %> records & Total <%= totalPages%> Pages</span>
+
+        <form action="<%= request.getContextPath() %>/ShowCustomerInfo" method="get">
+            <input type="hidden" name="page" value="<%=currentPage - 1 %>">
+            <input type="hidden" name="query" value="<%= query %>">
+            <button type="submit" <%= (currentPage == 1) ? "disabled" : "" %> >Previous</button>
+        </form>
+
+        <form action="<%= request.getContextPath() %>/ShowCustomerInfo" method="get">
+            <input type="hidden" name="page" value="<%= currentPage + 1 %>">
+            <input type="hidden" name="query" value="<%= query %>">
+            <button type="submit" <%= (currentPage >= totalPages) ? "disabled" : "" %> >Next</button>
+        </form>
+    </div>
 </div>
+
+
 
 </body>
 

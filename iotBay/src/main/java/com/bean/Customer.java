@@ -11,6 +11,7 @@ public class Customer implements Serializable {
     private String firstName;
     private String lastName;
     private Long phone;
+    private String Type;
     private String email;
     private String status;
     private String address;
@@ -23,13 +24,18 @@ public class Customer implements Serializable {
     }
 
     // New User - database autogenerate userId
-    public Customer(String username, String password, String firstName, String lastName, Long phone, String email,
-                    String status, String address, String city, String state, Integer postcode, String country) {
+
+
+    public Customer(Integer userId, String username, String password, String firstName,
+                    String lastName, Long phone, String type, String email, String status,
+                    String address, String city, String state, Integer postcode, String country) {
+        this.userId = userId;
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
+        Type = type;
         this.email = email;
         this.status = status;
         this.address = address;
@@ -37,14 +43,6 @@ public class Customer implements Serializable {
         this.state = state;
         this.postcode = postcode;
         this.country = country;
-    }
-
-    // From Database
-    public Customer(Integer userId, String username, String password, String firstName, String lastName, Long phone,
-                    String email, String status, String address, String city, String state, Integer postcode,
-                    String country) {
-        this(username, password, firstName, lastName, phone, email, status, address, city, state, postcode, country);
-        this.userId = userId;
     }
 
     public Integer getUserId() {
@@ -93,6 +91,14 @@ public class Customer implements Serializable {
 
     public void setPhone(Long phone) {
         this.phone = phone;
+    }
+
+    public String getType() {
+        return Type;
+    }
+
+    public void setType(String type) {
+        Type = type;
     }
 
     public String getEmail() {

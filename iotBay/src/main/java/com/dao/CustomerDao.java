@@ -17,7 +17,7 @@ public class CustomerDao {
     // Create user
     public void addUser(Customer customer) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO User (username, first_name, last_name, " +
-                "password, email, phone, status, address, state, city, postcode, country) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                "password, email, phone, status, address, state, city, postcode, country,`type`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         preparedStatement.setString(1, customer.getUsername());
         preparedStatement.setString(2, customer.getFirstName());
         preparedStatement.setString(3, customer.getLastName());
@@ -30,6 +30,7 @@ public class CustomerDao {
         preparedStatement.setString(10, customer.getCity());
         preparedStatement.setLong(11, customer.getPostcode());
         preparedStatement.setString(12, customer.getCountry());
+        preparedStatement.setString(13, customer.getType());
         preparedStatement.execute();
     }
 
@@ -63,7 +64,7 @@ public class CustomerDao {
     public void updateCustomer(Customer customer) throws SQLException {
         PreparedStatement ps = connection.prepareStatement(
                 "UPDATE User SET username=?, first_name=?, last_name=?, password=?, email=?, phone=?, address=?, " +
-                        "state=?, city=?, postcode=?, country=? WHERE user_id=?"
+                        "state=?, city=?, postcode=?, country=?, `type`=? WHERE user_id=?"
         );
         ps.setString(1, customer.getUsername());
         ps.setString(2, customer.getFirstName());
@@ -76,15 +77,15 @@ public class CustomerDao {
         ps.setString(9, customer.getCity());
         ps.setInt(10, customer.getPostcode());
         ps.setString(11, customer.getCountry());
-        ps.setInt(12, customer.getUserId());
+        ps.setString(12, customer.getType());
+        ps.setInt(13, customer.getUserId());
         ps.executeUpdate();
     }
 
     // Set user status to Active/ Inactive
-    public void setStatusById(int id, int statusFlag) throws SQLException {
-        String status = statusFlag == 1 ? "Active" : "Inactive";
+    public void setStatusById(int id, int status) throws SQLException {
         PreparedStatement ps = connection.prepareStatement("UPDATE User SET status = ? WHERE user_id = ?");
-        ps.setString(1, status);
+        ps.setInt(1, status);
         ps.setInt(2, id);
         ps.executeUpdate();
     }
@@ -92,7 +93,7 @@ public class CustomerDao {
     // Get customers for current page
     public List<Customer> getCustomerByPage(int page) throws SQLException {
         int offset = (page - 1) * 7;
-        PreparedStatement ps = connection.prepareStatement("SELECT * FROM User ORDER BY user_id LIMIT 7 OFFSET ?");
+        PreparedStatement ps = connection.prepareStatement("select * from User limit ?,7");
         ps.setInt(1, offset);
         ResultSet rs = ps.executeQuery();
         return mapCustomerList(rs);
@@ -101,7 +102,7 @@ public class CustomerDao {
     // Search customers by name or email
     public List<Customer> getCustomerByNameOrEmailByPage(String query, int page) throws SQLException {
         int offset = (page - 1) * 7;
-        String sql = "SELECT * FROM User WHERE first_name LIKE ? OR last_name LIKE ? OR email LIKE ? ORDER BY user_id LIMIT 7 OFFSET ?";
+        String sql = "SELECT * FROM User WHERE first_name LIKE ? OR last_name LIKE ? OR email LIKE ? LIMIT ?,7";
         PreparedStatement ps = connection.prepareStatement(sql);
         String wildcard = "%" + query + "%";
         ps.setString(1, wildcard);
@@ -138,6 +139,7 @@ public class CustomerDao {
         Customer customer = null;
         if (rs.next()) {
             customer = new Customer();
+            int num = rs.getInt("status");
             customer.setUserId(rs.getInt("user_id"));
             customer.setUsername(rs.getString("username"));
             customer.setPassword(rs.getString("password"));
@@ -145,7 +147,8 @@ public class CustomerDao {
             customer.setLastName(rs.getString("last_name"));
             customer.setPhone(rs.getLong("phone"));
             customer.setEmail(rs.getString("email"));
-            customer.setStatus(rs.getString("status"));
+            customer.setStatus(num==1?"Active":"Inactive");
+            customer.setType(rs.getString("type"));
             customer.setAddress(rs.getString("address"));
             customer.setCity(rs.getString("city"));
             customer.setState(rs.getString("state"));
@@ -160,6 +163,7 @@ public class CustomerDao {
         List<Customer> list = new ArrayList<>();
         while (rs.next()) {
             Customer customer = new Customer();
+            int num = rs.getInt("status");
             customer.setUserId(rs.getInt("user_id"));
             customer.setUsername(rs.getString("username"));
             customer.setPassword(rs.getString("password"));
@@ -167,7 +171,8 @@ public class CustomerDao {
             customer.setLastName(rs.getString("last_name"));
             customer.setPhone(rs.getLong("phone"));
             customer.setEmail(rs.getString("email"));
-            customer.setStatus(rs.getString("status"));
+            customer.setStatus(num==1?"Active":"Inactive");
+            customer.setType(rs.getString("type"));
             customer.setAddress(rs.getString("address"));
             customer.setCity(rs.getString("city"));
             customer.setState(rs.getString("state"));

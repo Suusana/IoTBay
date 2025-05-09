@@ -21,32 +21,28 @@ public class AddCustomerHandler extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         DBManager db = (DBManager) session.getAttribute("db");
-
-        if (db == null) {
-            DBConnector connector = new DBConnector();
-            Connection conn = connector.getConnection();
-
-            if (conn == null) {
-                throw new ServletException("XX. DBConnector returned null connection. Check DB path or SQLite driver.");
-            }
-
-            //db = new DBManager(conn);
-            session.setAttribute("db", db);
-        }
-
         CustomerDao customerDao = db.getCustomerDao();
 
+
         Customer customer = new Customer();
-        customer.setUsername(req.getParameter("name"));
+        customer.setUsername(req.getParameter("username"));
+        customer.setPassword(req.getParameter("password"));
+        customer.setFirstName(req.getParameter("firstName"));
+        customer.setLastName(req.getParameter("lastName"));
+        customer.setPhone(Long.parseLong(req.getParameter("phone_num")));
+        customer.setType(req.getParameter("type"));
         customer.setEmail(req.getParameter("email"));
-        customer.setStatus("Active");
         customer.setAddress(req.getParameter("address"));
+        customer.setCity(req.getParameter("city"));
+        customer.setPostcode(Integer.parseInt(req.getParameter("postcode")));
+        customer.setState(req.getParameter("state"));
+        customer.setCountry(req.getParameter("country"));
+        customer.setStatus("Active");
 
         try {
             customerDao.addUser(customer);
             resp.sendRedirect(req.getContextPath() + "/ShowCustomerInfo");
         } catch (SQLException e) {
-            e.printStackTrace();
             resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Database error: " + e.getMessage());
         }
     }

@@ -27,7 +27,8 @@ public class UpdateCustomerHandler extends HttpServlet {
         customer.setPassword(req.getParameter("password"));
         customer.setFirstName(req.getParameter("firstName"));
         customer.setLastName(req.getParameter("lastName"));
-        customer.setPhone(Long.parseLong(req.getParameter("phone")));
+        customer.setPhone(Long.parseLong(req.getParameter("phone_num")));
+        customer.setType(req.getParameter("type"));
         customer.setEmail(req.getParameter("email"));
         customer.setAddress(req.getParameter("address"));
         customer.setCity(req.getParameter("city"));

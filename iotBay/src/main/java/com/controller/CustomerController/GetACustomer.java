@@ -34,7 +34,7 @@ public class GetACustomer extends HttpServlet {
 
         String view = req.getParameter("view");
         if (view != null) {
-            req.getRequestDispatcher("views/CustomerDetails.jsp").forward(req, resp);
+            req.getRequestDispatcher("views/CustomerDetail.jsp").forward(req, resp);
         } else {
             req.getRequestDispatcher("views/UpdateCustomer.jsp").forward(req, resp);
         }

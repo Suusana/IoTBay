@@ -20,42 +20,27 @@ public class UpdateUserDetailsServlet extends HttpServlet {
         HttpSession session = req.getSession();
         DBManager db =  (DBManager) session.getAttribute("db");
         CustomerDao customerDao = db.getCustomerDao();
-        Customer currentCustomer = (Customer) session.getAttribute("loggedInUser");
 
-        String username = req.getParameter("username");
-        String password = req.getParameter("password");
-        String confirmPassword = req.getParameter("confirmPassword");
-        // if password field is empty, keep password as is
-        // else check if password and confirmPassword match before updating
-        if (password == null || confirmPassword == null || password.trim().isEmpty() || confirmPassword.trim().isEmpty()) {
-            password = currentCustomer.getPassword();
-        } else if (!password.equals(confirmPassword)) {
-            session.setAttribute("errorMessage", "Passwords do not match");
-            resp.sendRedirect(req.getContextPath()+"/views/editUserDetails.jsp");
-            return;
-        }
-        String firstName = req.getParameter("firstName");
-        String lastName = req.getParameter("lastName");
-        Long phone = Long.valueOf(req.getParameter("phone"));
-        String email = req.getParameter("email");
-        String address = req.getParameter("address");
-        String city = req.getParameter("city");
-        String state = req.getParameter("state");
-        Integer postcode = Integer.valueOf(req.getParameter("postcode"));
-        String country = req.getParameter("country");
-
-        Customer updatedCustomer = new Customer(username, password, firstName, lastName, phone, email, currentCustomer.getStatus(),
-                address, city, state, postcode, country);
-        updatedCustomer.setUserId(currentCustomer.getUserId());
+        Customer customer = new Customer();
+        customer.setUsername(req.getParameter("username"));
+        customer.setPassword(req.getParameter("password"));
+        customer.setFirstName(req.getParameter("firstName"));
+        customer.setLastName(req.getParameter("lastname"));
+        customer.setPhone(Long.valueOf(req.getParameter("phone_num")));
+        customer.setEmail(req.getParameter("email"));
+        customer.setAddress(req.getParameter("address"));
+        customer.setCity(req.getParameter("city"));
+        customer.setState(req.getParameter("state"));
+        customer.setPostcode(Integer.valueOf(req.getParameter("postcode")));
+        customer.setCountry(req.getParameter("country"));
+        customer.setType(req.getParameter("type"));
+        customer.setUserId(Integer.valueOf(req.getParameter("customerId")));
 
         try {
-            customerDao.updateCustomer(updatedCustomer);
-            session.setAttribute("loggedInUser", updatedCustomer);
+            customerDao.updateCustomer(customer);
             resp.sendRedirect(req.getContextPath()+"/ViewUserDetailsServlet");
         } catch (SQLException e) {
             System.out.println("Could not update user");
-            e.printStackTrace();
         }
-
     }
 }
