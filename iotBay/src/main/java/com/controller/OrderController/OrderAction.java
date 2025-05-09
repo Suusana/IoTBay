@@ -63,7 +63,7 @@ public class OrderAction extends HttpServlet {
 
                             if (newQuantity > availableStock) {
                                 hasError = true;
-                                errorMsg.append("❌ Quantity for product ID ")
+                                errorMsg.append("Quantity for product ID ")
                                         .append(productId)
                                         .append(" exceeds available stock (")
                                         .append(availableStock)
@@ -72,7 +72,7 @@ public class OrderAction extends HttpServlet {
                                 orderDao.updateOrderQuantity(order.getOrderId(), newQuantity);
                             }
                         } else {
-                            System.out.println("⚠ Missing quantity param for product " + productId);
+                            System.out.println("Missing quantity param for product " + productId);
                         }
                     }
 
