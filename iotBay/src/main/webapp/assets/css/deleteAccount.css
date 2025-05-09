@@ -16,7 +16,7 @@ h1 {
     border-bottom: 3px solid #B88E2F;
 }
 
-.delete-box {
+.delete-box, .logs-box {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -64,4 +64,20 @@ h1 {
 
 .no-button:hover {
     background-color: #E64845;
+}
+
+/*styling for viewAccessLogs*/
+table {
+    width: 90%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #B88E2F;
+}
+
+tr:hover {
+    background-color: #FFF3E3;
 }
