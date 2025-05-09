@@ -58,10 +58,16 @@
             <i class="fa-solid fa-cart-shopping fa-2x"></i>
             <span>Cart</span>
         </a>
+        <%
+            if (session.getAttribute("loggedInUser") != null) {
+        %>
         <a href="<%=request.getContextPath()%>/views/logout.jsp">
             <i class="fa-solid fa-right-from-bracket fa-2x"></i>
             <span>Log Out</span>
         </a>
+        <%
+            }
+        %>
 
     </menu>
 </div>

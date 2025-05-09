@@ -16,7 +16,7 @@
         customer = (Customer)session.getAttribute("loggedInUser");
     } else {
         session.setAttribute("errorMessage", "Please login to view your profile");
-        response.sendRedirect("request.getContextPath()/views/login.jsp");
+        response.sendRedirect(request.getContextPath()+"/views/login.jsp");
     }
 %>
 <body>
@@ -115,7 +115,7 @@
 
     <div class="account-buttons">
         <a href="<%=request.getContextPath()%>/EditUserDetailsServlet" class="button edit-button">Edit Details</a>
-        <a href="<%=request.getContextPath()%>/ViewAccountHistoryServlet" class="button view-button">View Account History</a>
+        <a href="<%=request.getContextPath()%>/ViewAccessLogsServlet" class="button view-button">View Account History</a>
         <a href="<%=request.getContextPath()%>/views/deleteAccount.jsp" class="button delete-button">Delete Account</a>
     </div>
 </main>

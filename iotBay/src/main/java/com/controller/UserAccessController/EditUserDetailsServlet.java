@@ -25,7 +25,7 @@ public class EditUserDetailsServlet extends HttpServlet {
 
         if (customer == null) {
             session.setAttribute("errorMessage", "Please login to edit your profile");
-            resp.sendRedirect(req.getContextPath()+"/views/login.jsp");
+            resp.sendRedirect(req.getContextPath()+"/login.jsp");
             return;
         }
 

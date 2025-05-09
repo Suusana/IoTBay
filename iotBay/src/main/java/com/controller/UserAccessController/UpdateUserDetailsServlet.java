@@ -20,9 +20,20 @@ public class UpdateUserDetailsServlet extends HttpServlet {
         HttpSession session = req.getSession();
         DBManager db =  (DBManager) session.getAttribute("db");
         CustomerDao customerDao = db.getCustomerDao();
+        Customer currentCustomer = (Customer) session.getAttribute("loggedInUser");
 
         String username = req.getParameter("username");
         String password = req.getParameter("password");
+        String confirmPassword = req.getParameter("confirmPassword");
+        // if password field is empty, keep password as is
+        // else check if password and confirmPassword match before updating
+        if (password == null || confirmPassword == null || password.trim().isEmpty() || confirmPassword.trim().isEmpty()) {
+            password = currentCustomer.getPassword();
+        } else if (!password.equals(confirmPassword)) {
+            session.setAttribute("errorMessage", "Passwords do not match");
+            resp.sendRedirect(req.getContextPath()+"/views/editUserDetails.jsp");
+            return;
+        }
         String firstName = req.getParameter("firstName");
         String lastName = req.getParameter("lastName");
         Long phone = Long.valueOf(req.getParameter("phone"));
@@ -33,14 +44,13 @@ public class UpdateUserDetailsServlet extends HttpServlet {
         Integer postcode = Integer.valueOf(req.getParameter("postcode"));
         String country = req.getParameter("country");
 
-        Customer currentCustomer = (Customer) session.getAttribute("loggedInUser");
-        Customer newCustomer = new Customer(username, password, firstName, lastName, phone, email, currentCustomer.getStatus(),
+        Customer updatedCustomer = new Customer(username, password, firstName, lastName, phone, email, currentCustomer.getStatus(),
                 address, city, state, postcode, country);
-        newCustomer.setUserId(currentCustomer.getUserId());
+        updatedCustomer.setUserId(currentCustomer.getUserId());
 
         try {
-            customerDao.updateCustomer(newCustomer);
-            session.setAttribute("loggedInUser", newCustomer);
+            customerDao.updateCustomer(updatedCustomer);
+            session.setAttribute("loggedInUser", updatedCustomer);
             resp.sendRedirect(req.getContextPath()+"/ViewUserDetailsServlet");
         } catch (SQLException e) {
             System.out.println("Could not update user");

@@ -11,11 +11,12 @@
 <%@ page import="com.bean.Product" %>
 <%@ page import="com.bean.Category" %>
 <%@ page import="java.util.List" %>
+<%@ page import="com.util.Utils" %>
 <html>
 <%
   Customer customer = new Customer();
-  if (session.getAttribute("registeredUser")!=null){
-    customer = (Customer)session.getAttribute("registeredUser");
+  if (session.getAttribute("loggedInUser")!=null){
+    customer = (Customer)session.getAttribute("loggedInUser");
   }else {
     customer.setUsername(Status.GUEST.getStatus());
   }
@@ -59,7 +60,7 @@
   <menu class="icon">
     <a href="">
       <i class="fa-solid fa-circle-user fa-2x"></i>
-      <span><%= customer.getFirstName() != null ? customer.getFirstName() : Status.GUEST.getStatus()%></span>
+      <span><%= customer.getFirstName() != null ? Utils.capitaliseFirst(customer.getFirstName()) : Status.GUEST.getStatus()%></span>
     </a>
     <a href="<%=request.getContextPath()%>/GetByProductNameToCustomer">
       <i class="fa-solid fa-magnifying-glass fa-2x selected"></i>
