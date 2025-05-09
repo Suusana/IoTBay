@@ -65,7 +65,7 @@
         <div class="search-box-category">
             <h3>Search by Category</h3>
             <form action="<%= request.getContextPath() %>/GetByCategory" method="get" target="_blank">
-                <select>
+                <select name="categoryId">
                     <option disabled>Please select a category</option>
                     <option name="categoryId" value="1">Smart Home</option>
                     <option name="categoryId" value="2">Health & Fitness</option>
@@ -78,7 +78,9 @@
                     <option name="categoryId" value="9">Energy & Utilities</option>
                     <option name="categoryId" value="10">Networking & Hubs</option>
                 </select>
+                <button type="submit">Search</button>
             </form>
+
         </div>
 
     </div>
