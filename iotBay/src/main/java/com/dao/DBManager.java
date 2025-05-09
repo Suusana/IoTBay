@@ -11,6 +11,7 @@ public class DBManager {
     private ProductDao productDao;
     private StaffDao staffDao;
     private CategoryDao categoryDao;
+    private UserAccessLogDao userAccessLogDao;
 
     public DBManager(Connection connection) throws SQLException {
         this.connection = connection;
@@ -42,6 +43,13 @@ public class DBManager {
             categoryDao = new CategoryDao(connection);
         }
         return categoryDao;
+    }
+
+    public UserAccessLogDao getUserAccessLogDao() {
+        if (userAccessLogDao == null) {
+            userAccessLogDao = new UserAccessLogDao(connection);
+        }
+        return userAccessLogDao;
     }
 
     public Connection getConnection() {
