@@ -24,7 +24,7 @@ public class CreateOrder extends HttpServlet {
         HttpSession session = request.getSession();
         int userId;
 
-        // ✅ 获取 userId（guest 或登录）
+        // get userID from session
         Customer customer = (Customer) session.getAttribute("loggedInUser");
         if (customer == null) {
             if (session.getAttribute("guestId") == null) {
@@ -37,12 +37,10 @@ public class CreateOrder extends HttpServlet {
         }
 
         try {
-            // ✅ 获取参数
             int productId = Integer.parseInt(request.getParameter("productId"));
             int quantity = Integer.parseInt(request.getParameter("quantity"));
             String action = request.getParameter("action");
 
-            // ✅ 非法数量处理
             if (quantity <= 0) {
                 request.setAttribute("error", "Quantity must be greater than 0.");
                 forwardBackToProduct(request, response, productId, quantity);
@@ -65,12 +63,11 @@ public class CreateOrder extends HttpServlet {
                 return;
             }
 
-            // ✅ 设置订单状态
+            //only two buttons
             OrderStatus status = "Submit".equalsIgnoreCase(action)
                     ? OrderStatus.Confirmed
                     : OrderStatus.Saved;
 
-            // ✅ 构建订单对象
             Order order = new Order();
             order.setOrderStatus(status);
             order.setCreateDate(new Timestamp(System.currentTimeMillis()));
@@ -86,7 +83,7 @@ public class CreateOrder extends HttpServlet {
             OrderDao orderDao = new OrderDao(db.getConnection());
             orderDao.saveOrder(order, userId);
 
-            // ✅ 提交时更新库存
+            // update stock
             if (status == OrderStatus.Confirmed) {
                 int newStock = stock - quantity;
                 db.getProductDao().updateProductQuantity(productId, newStock);
@@ -96,11 +93,12 @@ public class CreateOrder extends HttpServlet {
 
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect(request.getContextPath() + "/productServlet");
+            response.sendRedirect(request.getContextPath() + "/main.jsp");
         }
     }
 
-    // ✅ 转发回 productDetail 页面（含错误和回显数量）
+    // if stock is less than the quantity which the user wants, jump back to ProductDetails
+    //also mention the available stock
     private void forwardBackToProduct(HttpServletRequest request, HttpServletResponse response, int productId, int quantity)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -109,7 +107,7 @@ public class CreateOrder extends HttpServlet {
             Product product = db.getProductDao().findProductById(productId);
             if (product != null) {
                 request.setAttribute("product", product);
-                request.setAttribute("quantity", quantity); // ✅ 回显数量
+                request.setAttribute("quantity", quantity);
             }
         } catch (Exception e) {
             e.printStackTrace();

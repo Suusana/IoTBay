@@ -85,10 +85,10 @@ public class OrderAction extends HttpServlet {
 
 
                 case "submit":
-                    // 1. 更新订单状态
+                    // update the order's status
                     orderDao.updateOrderStatus(orderId, OrderStatus.Confirmed);
 
-                    // 2. 扣减产品库存（✅ 使用已有的 productDao）
+                    // using productDao to update productQuantity
                     for (Product product : order.getProducts()) {
                         int productId = product.getProductId();
                         int orderQuantity = product.getQuantity();
