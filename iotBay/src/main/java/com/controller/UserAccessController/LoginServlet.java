@@ -3,6 +3,7 @@ package com.controller.UserAccessController;
 import com.bean.Customer;
 import com.dao.CustomerDao;
 import com.dao.DBManager;
+import com.dao.UserAccessLogDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -37,12 +38,20 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("errorMessage", "Incorrect Email or Password");
                 resp.sendRedirect(req.getContextPath()+"/views/login.jsp");
             } else {
+                // Add user to session
                 session.removeAttribute("errorMessage");
                 session.setAttribute("loggedInUser", customer);
+                session.setAttribute("userType", "customer");
+
+                // Log login time
+                UserAccessLogDao userAccessLogDao = db.getUserAccessLogDao();
+                int userAccessLogId = userAccessLogDao.logLogin(customer.getUserId(), "customer");
+                session.setAttribute("userAccessLogId", userAccessLogId);
+
                 resp.sendRedirect(req.getContextPath()+"/home");
             }
         } catch (SQLException e) {
-            System.out.println("Can't find customer in database");
+            System.out.println("Can't retrieve customer from database");
             e.printStackTrace();
         }
     }
