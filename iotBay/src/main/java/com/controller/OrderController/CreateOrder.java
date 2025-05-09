@@ -24,7 +24,7 @@ public class CreateOrder extends HttpServlet {
         HttpSession session = request.getSession();
         int userId;
 
-        // get customer ID
+        // ✅ 获取 userId（guest 或登录）
         Customer customer = (Customer) session.getAttribute("loggedInUser");
         if (customer == null) {
             if (session.getAttribute("guestId") == null) {
@@ -33,46 +33,87 @@ public class CreateOrder extends HttpServlet {
             }
             userId = (int) session.getAttribute("guestId");
         } else {
-            userId = (int) customer.getUserId();
+            userId = customer.getUserId();
         }
 
         try {
+            // ✅ 获取参数
             int productId = Integer.parseInt(request.getParameter("productId"));
             int quantity = Integer.parseInt(request.getParameter("quantity"));
             String action = request.getParameter("action");
 
+            // ✅ 非法数量处理
             if (quantity <= 0) {
-                throw new IllegalArgumentException("Quantity must be greater than 0.");
+                request.setAttribute("error", "Quantity must be greater than 0.");
+                forwardBackToProduct(request, response, productId, quantity);
+                return;
             }
 
-            // set order's status
+            DBManager db = (DBManager) session.getAttribute("db");
+            Product product = db.getProductDao().findProductById(productId);
+
+            if (product == null) {
+                request.setAttribute("error", "Product not found.");
+                response.sendRedirect(request.getContextPath() + "/productServlet");
+                return;
+            }
+
+            int stock = product.getQuantity();
+            if (quantity > stock) {
+                request.setAttribute("error", "Not enough stock. Only " + stock + " item(s) available.");
+                forwardBackToProduct(request, response, productId, quantity);
+                return;
+            }
+
+            // ✅ 设置订单状态
             OrderStatus status = "Submit".equalsIgnoreCase(action)
                     ? OrderStatus.Confirmed
                     : OrderStatus.Saved;
 
+            // ✅ 构建订单对象
             Order order = new Order();
             order.setOrderStatus(status);
             order.setCreateDate(new Timestamp(System.currentTimeMillis()));
 
-            Product product = new Product();
-            product.setProductId(productId);
-            product.setQuantity(quantity);
+            Product orderedProduct = new Product();
+            orderedProduct.setProductId(productId);
+            orderedProduct.setQuantity(quantity);
 
             List<Product> productList = new ArrayList<>();
-            productList.add(product);
+            productList.add(orderedProduct);
             order.setProducts(productList);
 
-            DBManager db = (DBManager) session.getAttribute("db");
             OrderDao orderDao = new OrderDao(db.getConnection());
             orderDao.saveOrder(order, userId);
 
-            // jump to viewOrder when success
+            // ✅ 提交时更新库存
+            if (status == OrderStatus.Confirmed) {
+                int newStock = stock - quantity;
+                db.getProductDao().updateProductQuantity(productId, newStock);
+            }
+
             response.sendRedirect(request.getContextPath() + "/viewOrder");
 
         } catch (Exception e) {
             e.printStackTrace();
-            session.setAttribute("error", "⚠ Failed to create order: " + e.getMessage());
             response.sendRedirect(request.getContextPath() + "/productServlet");
         }
+    }
+
+    // ✅ 转发回 productDetail 页面（含错误和回显数量）
+    private void forwardBackToProduct(HttpServletRequest request, HttpServletResponse response, int productId, int quantity)
+            throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        DBManager db = (DBManager) session.getAttribute("db");
+        try {
+            Product product = db.getProductDao().findProductById(productId);
+            if (product != null) {
+                request.setAttribute("product", product);
+                request.setAttribute("quantity", quantity); // ✅ 回显数量
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        request.getRequestDispatcher("/views/productDetail.jsp").forward(request, response);
     }
 }

@@ -71,6 +71,23 @@
         <p class="price">$ <%=product.getPrice()%></p>
         <p><%= product.getDescription()%></p>
 
+        <!--display err msg-->
+        <%
+            String error = (String) request.getAttribute("error");
+            if (error != null) {
+        %>
+        <div style="color: red; font-weight: bold;"><%= error %></div>
+        <%
+            }
+            int quantityVal = 1;
+            if (request.getAttribute("quantity") != null) {
+                quantityVal = Integer.parseInt(request.getAttribute("quantity").toString());
+            }
+        %>
+        <input type="number" name="quantity" value="<%= quantityVal %>" min="1" />
+
+
+
         <div class="actions">
         <form action="<%= request.getContextPath() %>/createOrder" method="post">
             <input type="hidden" name="productId" value="<%= product.getProductId() %>" />

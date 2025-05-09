@@ -43,12 +43,12 @@ public class OrderAction extends HttpServlet {
                 return;
             }
 
+            ProductDao productDao = new ProductDao(connection);
+
             switch (action) {
                 case "update":
                     boolean hasError = false;
                     StringBuilder errorMsg = new StringBuilder();
-
-                    ProductDao productDao = new ProductDao(connection);
 
                     for (Product product : order.getProducts()) {
                         int productId = product.getProductId();
@@ -85,9 +85,26 @@ public class OrderAction extends HttpServlet {
 
 
                 case "submit":
+                    // 1. 更新订单状态
                     orderDao.updateOrderStatus(orderId, OrderStatus.Confirmed);
+
+                    // 2. 扣减产品库存（✅ 使用已有的 productDao）
+                    for (Product product : order.getProducts()) {
+                        int productId = product.getProductId();
+                        int orderQuantity = product.getQuantity();
+
+                        Product dbProduct = productDao.findProductById(productId);
+                        int currentStock = dbProduct.getQuantity();
+
+                        int updatedStock = currentStock - orderQuantity;
+                        if (updatedStock < 0) updatedStock = 0;
+
+                        productDao.updateProductQuantity(productId, updatedStock);
+                    }
+
                     response.sendRedirect("viewOrderDetails?orderId=" + orderId);
                     break;
+
 
                 case "cancel":
                     orderDao.updateOrderStatus(orderId, OrderStatus.Cancelled);

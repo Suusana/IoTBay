@@ -257,4 +257,12 @@ public class ProductDao {
         preparedStatement.close();
         return product;
     }
+
+    public void updateProductQuantity(int productId, int quantity) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("update product set quantity = ? where product_id = ?");
+        preparedStatement.setInt(1,quantity);
+        preparedStatement.setInt(2,productId);
+        preparedStatement.executeUpdate();
+        preparedStatement.close();
+    }
 }

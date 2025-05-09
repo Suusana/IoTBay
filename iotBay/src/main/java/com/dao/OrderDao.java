@@ -5,6 +5,9 @@ import com.bean.Product;
 import com.enums.OrderStatus;
 
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,33 +19,31 @@ public class OrderDao {
     }
 
     public void saveOrder(Order order, int userId) throws SQLException {
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-
         String sql = "INSERT INTO \"Order\" (create_date, order_status, user_id, product_id, quantity) " +
                 "VALUES (?, ?, ?, ?, ?)";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        String now = LocalDateTime.now()
+                .withSecond(0)
+                .withNano(0)
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
-        stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        preparedStatement.setString(1, now);
+        preparedStatement.setString(2, order.getOrderStatus().toString());
+        preparedStatement.setInt(3, userId);
 
-        stmt.setTimestamp(1, new java.sql.Timestamp(order.getCreateDate().getTime()));
-        stmt.setString(2, order.getOrderStatus().name());
-        stmt.setInt(3, userId);
-
-        // since 1:1 now, get the first product from the list
         Product product = order.getProducts().get(0);
-        stmt.setInt(4, product.getProductId());
-        stmt.setInt(5, product.getQuantity());
+        preparedStatement.setInt(4, product.getProductId());
+        preparedStatement.setInt(5, product.getQuantity());
+        preparedStatement.executeUpdate();
 
-        stmt.executeUpdate();
-        rs = stmt.getGeneratedKeys();
-
-        if (rs.next()) {
-            order.setOrderId(rs.getInt(1));
+        ResultSet resultSet = preparedStatement.getGeneratedKeys();
+        if (resultSet.next()) {
+            order.setOrderId(resultSet.getInt(1));
         }
-
-        if (rs != null) rs.close();
-        if (stmt != null) stmt.close();
+        resultSet.close();
+        preparedStatement.close();
     }
+
 
 
     public List<Order> findOrderByCustomerId(int customerId) throws SQLException {
@@ -76,18 +77,26 @@ public class OrderDao {
 
     public List<Order> searchOrderByDate(String dateStr, int userId) throws SQLException {
         List<Order> orders = new ArrayList<>();
-        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM \"Order\" WHERE user_id = ? AND DATE(create_date) = ? ORDER BY create_date DESC");
 
-        stmt.setInt(1, userId);
-        stmt.setString(2, dateStr);
-        ResultSet rs = stmt.executeQuery();
+        LocalDate date = LocalDate.parse(dateStr);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-        while (rs.next()) {
-            orders.add(mapOrder(rs));
+        String start = date.atStartOfDay().format(formatter);
+        String end = date.plusDays(1).atStartOfDay().format(formatter);
+
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM \"Order\" WHERE user_id = ? AND create_date >= ? AND create_date < ? ORDER BY create_date DESC");
+
+        preparedStatement.setInt(1, userId);
+        preparedStatement.setString(2, start);
+        preparedStatement.setString(3, end);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            orders.add(mapOrder(resultSet));
         }
 
-        rs.close();
-        stmt.close();
+        resultSet.close();
+        preparedStatement.close();
         return orders;
     }
 
@@ -102,32 +111,6 @@ public class OrderDao {
         }
         return order;
     }
-
-
-//    public List<Product> findProductsByOrderId(int orderId) throws SQLException {
-//        List<Product> products = new ArrayList<>();
-//        String sql = "SELECT p.product_id, p.product_name, p.price " +
-//                "FROM Product p " +
-//                "JOIN OrderProduct op ON p.product_id = op.product_id " +
-//                "WHERE op.order_id = ?";
-//
-//        PreparedStatement stmt = connection.prepareStatement(sql);
-//        stmt.setInt(1, orderId);
-//        ResultSet rs = stmt.executeQuery();
-//
-//        while (rs.next()) {
-//            Product product = new Product();
-//            product.setProductId(rs.getInt("product_id"));
-//            product.setProductName(rs.getString("product_name"));
-//            product.setPrice(rs.getDouble("price"));
-//            products.add(product);
-//        }
-//
-//        rs.close();
-//        stmt.close();
-//
-//        return products;
-//    }
 
     public void updateOrderStatus(int orderId, OrderStatus newStatus) throws SQLException {
 
@@ -147,19 +130,6 @@ public class OrderDao {
         stmt.executeUpdate();
         stmt.close();
     }
-
-//    public int findOrderQuantity(int orderId) throws SQLException {
-//        PreparedStatement stmt = connection.prepareStatement("SELECT quantity FROM \"Order\" WHERE order_id = ?");
-//        stmt.setInt(1, orderId);
-//        ResultSet rs = stmt.executeQuery();
-//        int quantity = 0;
-//        if (rs.next()) {
-//            quantity = rs.getInt("quantity");
-//        }
-//        rs.close();
-//        stmt.close();
-//        return quantity;
-//    }
 
 
     private Order mapOrder(ResultSet rs) throws SQLException {
