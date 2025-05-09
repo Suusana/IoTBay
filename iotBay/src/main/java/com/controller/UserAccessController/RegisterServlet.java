@@ -54,6 +54,7 @@ public class RegisterServlet extends HttpServlet {
         customer.setState(state);
         customer.setPostcode(postalCode);
         customer.setCountry(country);
+        customer.setType("Individual");
 
         try {
             customerDao.addUser(customer);
