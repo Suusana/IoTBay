@@ -24,6 +24,3 @@ main div{
     grid-template-rows: repeat(auto-fit, 370px);
     gap:20px;
 }
-button{
-
-}
