@@ -85,6 +85,6 @@ public class UserAccessLog implements Serializable {
 
 //        ZonedDateTime zonedLogoutTime = logoutTime.atZone(ZoneId.of("UTC")).withZoneSameInstant(ZoneId.systemDefault());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-        return loginTime.format(formatter);
+        return logoutTime.format(formatter);
     }
 }
