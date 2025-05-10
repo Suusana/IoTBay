@@ -21,6 +21,7 @@
             <th>Amount</th>
             <th>Date</th>
             <th>Status</th>
+            <th>Actions</th>
         </tr>
         <%
             for (Payment p : payments) {
@@ -33,6 +34,16 @@
             <td><%= p.getAmount() %></td>
             <td><%= p.getPaymentDate() %></td>
             <td><%= p.getStatus() %></td>
+            <td>
+                <a href="<%= request.getContextPath() %>/EditPayment?paymentId=<%= p.getPaymentId() %>">Edit</a> |
+                <form action="<%= request.getContextPath() %>/DeletePayment" method="post" style="display:inline;">
+                    <input type="hidden" name="paymentId" value="<%= p.getPaymentId() %>">
+                    <input type="hidden" name="orderId" value="<%= p.getOrderId() %>">
+                    <button type="submit" onclick="return confirm('Are you sure you want to delete this payment?');">
+                        Delete
+                    </button>
+                </form>
+            </td>
         </tr>
         <% } %>
     </table>
@@ -41,7 +52,6 @@
     <% } %>
 
     <br>
-    <a href="<%=request.getContextPath()%>/views/Payment.jsp">Back to Payment Form</a>
-
+    <a href="<%= request.getContextPath() %>/views/Payment.jsp">Back to Payment Form</a>
 </body>
 </html>
