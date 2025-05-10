@@ -8,6 +8,7 @@ public class DBManager {
     private final Connection connection;
 
     private CustomerDao customerDao;
+    private PaymentDao paymentDao;
     private ProductDao productDao;
     private StaffDao staffDao;
     private CategoryDao categoryDao;
@@ -22,6 +23,13 @@ public class DBManager {
             customerDao = new CustomerDao(connection);
         }
         return customerDao;
+    }
+
+    public PaymentDao getPaymentDao(){
+        if (paymentDao == null) {
+            paymentDao = new PaymentDao(connection);
+        }
+        return paymentDao;
     }
 
     public ProductDao getProductDao() {
