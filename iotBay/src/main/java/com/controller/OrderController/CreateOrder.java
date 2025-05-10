@@ -93,7 +93,7 @@ public class CreateOrder extends HttpServlet {
 
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect(request.getContextPath() + "/main.jsp");
+            response.sendRedirect(request.getContextPath() + "/views/main.jsp");
         }
     }
 

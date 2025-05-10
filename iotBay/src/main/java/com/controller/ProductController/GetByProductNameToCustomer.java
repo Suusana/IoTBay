@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 @WebServlet("/GetByProductNameToCustomer")
 public class GetByProductNameToCustomer extends HttpServlet {
@@ -22,19 +23,20 @@ public class GetByProductNameToCustomer extends HttpServlet {
             ProductDao productDao = db.getProductDao();
 
             String productName = req.getParameter("productName");
-            Product product = productDao.getProductByName(productName);
+            List<Product> searchAllProducts = productDao.getProductByNameLike(productName);
+//            if (product != null) {
+//                req.setAttribute("product", product);
+//                req.getRequestDispatcher("/views/AdminProductSearchResult.jsp").forward(req, resp);
+//            } else{
+//                req.setAttribute("message", "404 NotFound");
+//                req.getRequestDispatcher("/views/AdminProductSearchResult.jsp").forward(req,resp);
+//            }
+            req.setAttribute("searchAllProducts", searchAllProducts); // set to request
+            req.getRequestDispatcher("/views/Search.jsp").forward(req, resp); // forward to JSP
+            System.out.println("Fetched products: " + searchAllProducts.size()); //To check whether this code runs
 
-            if (product != null) {
-                req.setAttribute("product", product);
-               // req.setAttribute("searched", true );
-                req.getRequestDispatcher("/views/Search.jsp").forward(req, resp);
-            }else{
-                req.setAttribute("message", "No product found");
-               // req.setAttribute("searched", false);
-                req.getRequestDispatcher("/views/Search.jsp").forward(req,resp);
-            }
-           // req.setAttribute("searched", true );
         } catch(SQLException | IOException e){
+            req.setAttribute("error", "Not Found");
             System.out.println("Failed to load a product");
             throw new ServletException(e);
         }

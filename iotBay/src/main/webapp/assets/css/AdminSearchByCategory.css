@@ -1,0 +1,33 @@
+body{
+    display: flex;
+    flex-direction: column;
+    h2{
+        align-self: center;;
+    }
+    align-content: center;
+}
+.list{
+    padding: 30px 100px;
+    margin-bottom: 50px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,300px);
+    grid-template-rows: repeat(auto-fit, auto);
+    gap:20px;
+    a{
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        border-radius: 12px;
+        padding:20px;
+    }
+
+}
+
+.update-product-info{
+    padding-bottom: 5px;
+    margin-bottom:5px;
+    border-top:1px solid #f5f38c;
+    border-bottom:1px solid #f5f38c;
+    form{
+        display:flex;
+        flex-direction: column;
+    }
+}

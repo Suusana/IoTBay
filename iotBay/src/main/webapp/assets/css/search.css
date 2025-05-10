@@ -1,5 +1,89 @@
+table {
+  border-collapse: collapse;
+  width: 80%;
+  table-layout: fixed;
+  margin: 20px 0;
+  text-align: center;
+}
+
+th, td {
+  padding: 12px;
+  border: 1px solid #a67224;
+  /*
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+   */
+}
+
+th:nth-child(1), td:nth-child(1) {
+  width: 5%;
+}
+
+th:nth-child(2), td:nth-child(2) {
+  width: 20%;
+}
+
+th:nth-child(3), td:nth-child(3) {
+  width: 10%;
+}
+
+th:nth-child(4), td:nth-child(4) {
+  width: 10%;
+}
+
+th:nth-child(5), td:nth-child(5) {
+  width: 12%;
+
+}
+
+th:nth-child(6), td:nth-child(6) {
+  width: 20%;
+}
+
+thead {
+  background-color: #fce38a;
+}
+
+img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  margin:0;
+}
+
+button {
+  padding: 10px;
+  width: 75px;
+  background-color: #f7f48b;
+  border-radius: 10px;
+}
+
+button:hover{
+  cursor: pointer;
+  background-color: #fecea8;
+}
+
 main{
   min-height:100vh;
   display:flex;
   flex-direction: column;
+  margin-left:100px;
+}
+.search-box-name{
+  margin-bottom:10px;
+}
+.search-box-category form{
+  margin-top:10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,100px);
+  grid-template-rows: repeat(auto-fit, 50px);
+  gap:20px;
+
+ }
+.search-box-category button{
+  width: 100px;
+  height: 50px;
+
 }
