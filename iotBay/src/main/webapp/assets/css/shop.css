@@ -5,9 +5,11 @@ main{
     grid-template-columns: repeat(auto-fit,300px);
     grid-template-rows: repeat(auto-fit, 370px);
     gap:20px;
+
 }
 .shop_product{
     box-sizing: border-box;
+    margin-bottom: 20px;
     img{
         margin-bottom: 2%;
         width: 100%;

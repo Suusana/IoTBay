@@ -1,0 +1,29 @@
+/*
+a class="shop_product">
+    <img src="<%= request.getContextPath() %>/assets/img/<%= product.getImage() %>" alt="Device">
+    <h5><%= product.getProductName() %></h5>
+    <p><%= product.getDescription() %></p>
+    <span>$<%= product.getPrice() %></span>
+    <h5>Category: <%= product.getCategory().getCategory()%></h5>
+  </a>
+*/
+main{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    h2{
+        align-self: center;
+    }
+}
+
+main div{
+    padding: 30px 100px;
+    margin-bottom: 50px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,300px);
+    grid-template-rows: repeat(auto-fit, 370px);
+    gap:20px;
+}
+button{
+
+}

@@ -97,7 +97,6 @@
         </form>
     </div>
 
-
     <h2>Product List</h2>
 
     <table>

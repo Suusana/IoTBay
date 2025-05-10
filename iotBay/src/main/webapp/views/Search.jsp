@@ -21,20 +21,14 @@
     customer.setUsername(Status.GUEST.getStatus());
   }
 
-  List<Product> allProducts = (List<Product>) request.getAttribute("allProducts");
-  List<Category> categories = (List<Category>) request.getAttribute("categories");
-
-  //from Servlet GetByProductNameTOCustomer
-  Product product = (Product) request.getAttribute("product");
+  List<Product> searchAllProducts = (List<Product>) request.getAttribute("searchAllProducts");
   String message = (String) request.getAttribute("message");
-  Boolean searched = (Boolean) request.getAttribute("searched");
 %>
 <head>
   <title>Shop</title>
   <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/base.css">
   <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/HeaderAndFooter.css">
   <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/main.css">
-  <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/ProductManagement.css">
   <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/search.css">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -109,17 +103,50 @@
   <br>
   <div class="search-name-result">
     <h1>Product</h1>
-      <% if (product != null) { %>
-      <a class="shop_product">
-        <img src="<%= request.getContextPath() %>/assets/img/<%= product.getImage() %>" alt="Device">
-        <h3><%= product.getProductName() %></h3>
-        <p>About: <%= product.getDescription() %></p>
-        <h5>Price: $<%= product.getPrice() %></h5>
-        <h5>Category: <%= product.getCategory().getCategory()%></h5>
-      </a>
-      <%} else {%>
-      <h2><%=message%></h2>
+    <table>
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Category</th>
+        <th>Image</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+
+      <% if (searchAllProducts != null && !searchAllProducts.isEmpty()) {
+        for (Product product : searchAllProducts) { %>
+      <tr>
+        <td><%= product.getProductId()%>
+        </td>
+        <td><%= product.getProductName()%>
+        </td>
+        <td><%= product.getPrice()%>
+        </td>
+        <td><%= product.getQuantity()%>
+        </td>
+        <td><%= product.getCategory().getCategory()%>
+        </td>
+        <td><img src="<%= request.getContextPath() %>/assets/img/<%= product.getImage() %>" alt="Device">
+        </td>
+        <td>
+          <%= product.getDescription()%>
+
+        </td>
+      </tr>
+      <%
+        }
+      }else if (message != null ){
+      %> <h3>Error: <%=message%></h3>
+      <%}else{%>
+      <h3>No result</h3>
       <%}%>
+      </tbody>
+    </table>
+
   </div>
 
 </main>
