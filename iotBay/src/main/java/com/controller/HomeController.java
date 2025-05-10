@@ -4,6 +4,7 @@ import com.bean.Category;
 import com.bean.Product;
 import com.dao.CategoryDao;
 import com.dao.DBManager;
+import com.dao.DBConnector;
 import com.dao.ProductDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -21,6 +22,16 @@ public class HomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
+
+        if (session.getAttribute("db") == null){
+            try {
+                DBConnector connector = new DBConnector();
+                DBManager dbManager = new DBManager(connector.getConnection());
+                session.setAttribute("db", dbManager);
+            } catch (SQLException e){
+                throw new ServletException("Failed to connect DB", e);
+            }
+        }
         DBManager db = (DBManager) session.getAttribute("db");
         ProductDao productDao = db.getProductDao();
         CategoryDao categoryDao = db.getCategoryDao();

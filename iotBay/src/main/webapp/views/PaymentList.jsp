@@ -18,8 +18,9 @@
             <th>Order ID</th>
             <th>Method</th>
             <th>Card Holder</th>
+            <th>Card Number</th>
             <th>Amount</th>
-            <th>Date</th>
+            <th>Payment Date</th>
             <th>Status</th>
             <th>Actions</th>
         </tr>
@@ -31,6 +32,7 @@
             <td><%= p.getOrderId() %></td>
             <td><%= p.getMethod() %></td>
             <td><%= p.getCardHolder() %></td>
+            <td><%= p.getCardNumber() %></td>  <!-- Masked card number -->
             <td><%= p.getAmount() %></td>
             <td><%= p.getPaymentDate() %></td>
             <td><%= p.getStatus() %></td>
