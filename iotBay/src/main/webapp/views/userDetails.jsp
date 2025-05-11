@@ -30,7 +30,7 @@
     <menu>
         <a href="<%=request.getContextPath()%>/home"><span class="selected">Home</span></a>
         <a href="<%= request.getContextPath() %>/productServlet"><span>Shop</span></a>
-        <a href=""><span>Order</span></a>
+        <a href="<%= request.getContextPath() %>/viewOrder"><span>Order</span></a>
         <a href=""><span>Category</span></a>
     </menu>
 
@@ -133,7 +133,7 @@
             <h6>Links</h6>
             <a href="<%=request.getContextPath()%>/home"><span>Home</span></a>
             <a href="<%=request.getContextPath()%>/productServlet"><span>Shop</span></a>
-            <a href=""><span>Order</span></a>
+            <a href="<%=request.getContextPath()%>/viewOrder"><span>Order</span></a>
             <a href=""><span>Category</span></a>
         </div>
         <div class="section">

@@ -82,7 +82,7 @@ tr:hover {
     background-color: #FFF3E3;
 }
 
-form {
+.date-search {
     width: 100%;
     display: flex;
     justify-content: center;

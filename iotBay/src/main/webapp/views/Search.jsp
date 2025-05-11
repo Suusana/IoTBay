@@ -25,7 +25,7 @@
   String message = (String) request.getAttribute("message");
 %>
 <head>
-  <title>Shop</title>
+  <title>Search</title>
   <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/base.css">
   <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/HeaderAndFooter.css">
   <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/main.css">
@@ -45,7 +45,7 @@
   <menu>
     <a href="<%=request.getContextPath()%>/home"><span>Home</span></a>
     <a href="<%= request.getContextPath() %>/productServlet"><span>Shop</span></a>
-    <a href=""><span>Order</span></a>
+    <a href="<%= request.getContextPath() %>/viewOrder"><span>Order</span></a>
     <a href=""><span>Category</span></a>
   </menu>
 
@@ -161,9 +161,9 @@
     </div>
     <div class="section">
       <h6>Links</h6>
-      <a href=""><span>Home</span></a>
-      <a href=""><span>Shop</span></a>
-      <a href=""><span>Order</span></a>
+      <a href="<%= request.getContextPath()%>/home"><span>Home</span></a>
+      <a href="<%= request.getContextPath()%>/productServlet"><span>Shop</span></a>
+      <a href="<%= request.getContextPath() %>/viewOrder"><span>Order</span></a>
       <a href=""><span>Category</span></a>
     </div>
     <div class="section">

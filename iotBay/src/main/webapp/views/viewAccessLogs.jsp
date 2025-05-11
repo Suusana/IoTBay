@@ -24,7 +24,7 @@
         <h1>Account Access Logs</h1>
 
         <h3>Search by date</h3>
-        <form method="get" action="<%=request.getContextPath()%>/SearchAccessLogsServlet">
+        <form class="date-search" method="get" action="<%=request.getContextPath()%>/SearchAccessLogsServlet">
             <label for="startDate">From: </label>
             <input type="date" id="startDate" name="startDate" value="<%=startDate%>" max="<%=java.time.LocalDate.now()%>">
 
