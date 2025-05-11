@@ -24,15 +24,19 @@ public class ViewUserDetailsServlet extends HttpServlet {
         DBManager db =  (DBManager) session.getAttribute("db");
         CustomerDao customerDao = db.getCustomerDao();
         StaffDao staffDao = db.getStaffDao();
+        String userType = (String) session.getAttribute("userType");
 
         Customer customer = null;
         Staff staff = null;
-        if (session.getAttribute("userType").equals("customer")) {
+        if (userType == null) {
+            session.setAttribute("errorMessage", "Please login to edit your profile");
+            resp.sendRedirect(req.getContextPath()+"/views/login.jsp");
+            return;
+        } else if (userType.equals("customer")) {
             customer = (Customer) session.getAttribute("loggedInUser");
-        } else if (session.getAttribute("userType").equals("staff")) {
+        } else if (userType.equals("staff")) {
             staff = (Staff) session.getAttribute("loggedInUser");
         }
-
 
         if (customer != null) {
             Customer updatedCustomer;
