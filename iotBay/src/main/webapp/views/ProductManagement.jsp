@@ -43,7 +43,7 @@
         <i class="fa-solid fa-user-tie fa-lg"></i>
         <span>Product Management</span>
     </a>
-    <a href="#">
+    <a href="<%=request.getContextPath()%>/views/logout.jsp">
         <i class="fa-solid fa-right-from-bracket fa-lg"></i>
         <span>Logout</span>
     </a>
