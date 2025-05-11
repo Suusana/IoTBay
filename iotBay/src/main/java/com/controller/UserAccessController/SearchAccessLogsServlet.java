@@ -1,6 +1,7 @@
 package com.controller.UserAccessController;
 
 import com.bean.Customer;
+import com.bean.Staff;
 import com.bean.UserAccessLog;
 import com.dao.DBManager;
 import com.dao.UserAccessLogDao;
@@ -25,7 +26,6 @@ public class SearchAccessLogsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         DBManager db =  (DBManager) session.getAttribute("db");
-        Customer customer = (Customer) session.getAttribute("loggedInUser");
         String userType =  (String) session.getAttribute("userType");
         UserAccessLogDao userAccessLogDao = db.getUserAccessLogDao();
 
@@ -34,10 +34,28 @@ public class SearchAccessLogsServlet extends HttpServlet {
 
         System.out.println("Received date parameters: start=" + startDateStr + ", end=" + endDateStr);
 
+        if (session.getAttribute("loggedInUser") == null || userType == null) {
+            req.setAttribute("errorMessage", "Please login to search your access logs");
+            req.getRequestDispatcher(req.getContextPath() + "/views/viewAccessLogs.jsp").forward(req, resp);
+            return;
+        }
+
+        Customer customer;
+        Staff staff;
+        int userId = 0;
+        if (userType.equalsIgnoreCase("customer")) {
+            customer = (Customer) session.getAttribute("loggedInUser");
+            userId = customer.getUserId();
+
+        } else if (userType.equalsIgnoreCase("staff")) {
+            staff = (Staff) session.getAttribute("loggedInUser");
+            userId = staff.getStaffId();
+        }
+
         // shows all logs if no dates selected
         if ((startDateStr == null || startDateStr.isEmpty()) && (endDateStr == null || endDateStr.isEmpty())) {
             try {
-                LinkedList<UserAccessLog> userAccessLogs = userAccessLogDao.getLogsByUser(customer.getUserId(), userType);
+                LinkedList<UserAccessLog> userAccessLogs = userAccessLogDao.getLogsByUser(userId, userType);
                 req.setAttribute("accessLogs", userAccessLogs);
                 req.getRequestDispatcher(req.getContextPath() + "/views/viewAccessLogs.jsp").forward(req, resp);
                 return;
@@ -81,7 +99,7 @@ public class SearchAccessLogsServlet extends HttpServlet {
 
         LinkedList<UserAccessLog> filteredAccessLogs = null;
         try {
-            filteredAccessLogs = userAccessLogDao.getLogsBetweenDate(customer.getUserId(), userType, startTimestamp, endTimestamp);
+            filteredAccessLogs = userAccessLogDao.getLogsBetweenDate(userId, userType, startTimestamp, endTimestamp);
             req.setAttribute("accessLogs", filteredAccessLogs);
             req.setAttribute("startDate", startDateStr);
             req.setAttribute("endDate", endDateStr);
