@@ -1,5 +1,6 @@
 package com.dao;
 
+import com.bean.Customer;
 import com.bean.Staff;
 
 import java.sql.Connection;
@@ -143,6 +144,34 @@ public class StaffDao {
             staff.setCountry(resultSet.getString("country"));
         }
         return staff;
+    }
+
+    // Read staff for login
+    public Staff getStaffForLogin(String email, String password) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Staff WHERE email = ? AND password = ?");
+        preparedStatement.setString(1, email);
+        preparedStatement.setString(2, password);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        Staff staff = null;
+
+        if (resultSet.next()) {
+            staff = new Staff();
+            staff.setStaffId(resultSet.getInt("staff_id"));
+            staff.setStaffName(resultSet.getString("staff_name")); // change to first and last later
+            staff.setPassword(resultSet.getString("password"));
+            staff.setPhoneNum(resultSet.getInt("phone_num"));
+            staff.setEmail(resultSet.getString("email"));
+            staff.setPosition(resultSet.getString("position"));
+            staff.setStatus(resultSet.getString("status"));
+            staff.setAddress(resultSet.getString("address"));
+            staff.setCity(resultSet.getString("city"));
+            staff.setPostcode(resultSet.getString("postcode"));
+            staff.setState(resultSet.getString("state"));
+            staff.setCountry(resultSet.getString("country"));
+
+        }
+        return staff;
+
     }
 
     //    update a staff
