@@ -1,8 +1,10 @@
 package com.controller.UserAccessController;
 
 import com.bean.Customer;
+import com.bean.Staff;
 import com.dao.CustomerDao;
 import com.dao.DBManager;
+import com.dao.StaffDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -20,17 +22,45 @@ public class DeleteUserAccountServlet extends HttpServlet {
         HttpSession session = req.getSession();
         DBManager db =  (DBManager) session.getAttribute("db");
         CustomerDao customerDao = db.getCustomerDao();
-        Customer customer = (Customer) session.getAttribute("loggedInUser");
+        StaffDao staffDao = db.getStaffDao();
+        String userType = (String) session.getAttribute("userType");
 
-        try {
-            customerDao.deleteUser(customer);
-            session.removeAttribute("loggedInUser");
-            resp.sendRedirect(req.getContextPath()+"/index.jsp");
-        } catch (SQLException e) {
-            session.setAttribute("error", "Couldn't delete user account");
-            resp.sendRedirect(req.getContextPath()+"/deleteAccount.jsp");
-            System.out.println("User could not be deleted");
-            throw new RuntimeException(e);
+        if (session.getAttribute("loggedInUser") == null || userType == null) {
+            session.setAttribute("errorMessage", "Please login before trying to delete your account");
+            resp.sendRedirect(req.getContextPath()+"/views/login.jsp");
+            return;
         }
+
+        Customer customer;
+        Staff staff;
+        if (userType.equalsIgnoreCase("customer")) {
+            customer = (Customer) session.getAttribute("loggedInUser");
+
+            try {
+                customerDao.deleteUser(customer);
+                session.removeAttribute("loggedInUser");
+                resp.sendRedirect(req.getContextPath()+"/index.jsp");
+            } catch (SQLException e) {
+                session.setAttribute("errorMessage", "Couldn't delete customer account");
+                resp.sendRedirect(req.getContextPath()+"/deleteAccount.jsp");
+                System.out.println("Customer could not be deleted");
+                throw new RuntimeException(e);
+            }
+
+        } else if (userType.equalsIgnoreCase("staff")) {
+            staff = (Staff) session.getAttribute("loggedInUser");
+
+            try {
+                staffDao.deleteStaffById(staff.getStaffId());
+                session.removeAttribute("loggedInUser");
+                resp.sendRedirect(req.getContextPath()+"/index.jsp");
+            } catch (SQLException e) {
+                session.setAttribute("errorMessage", "Couldn't delete staff account");
+                resp.sendRedirect(req.getContextPath()+"/deleteAccount.jsp");
+                System.out.println("Staff could not be deleted");
+                throw new RuntimeException(e);
+            }
+        }
+
     }
 }
