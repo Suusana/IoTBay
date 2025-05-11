@@ -1,8 +1,10 @@
 package com.controller.UserAccessController;
 
 import com.bean.Customer;
+import com.bean.Staff;
 import com.dao.CustomerDao;
 import com.dao.DBManager;
+import com.dao.StaffDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -21,25 +23,46 @@ public class ViewUserDetailsServlet extends HttpServlet {
         HttpSession session = req.getSession();
         DBManager db =  (DBManager) session.getAttribute("db");
         CustomerDao customerDao = db.getCustomerDao();
-        Customer customer = (Customer) session.getAttribute("loggedInUser");
+        StaffDao staffDao = db.getStaffDao();
 
-        if (customer == null) {
-            session.setAttribute("errorMessage", "Please login to view your profile");
-            resp.sendRedirect(req.getContextPath()+"/views/login.jsp");
-            return;
-        }
-        Customer updatedCustomer;
-        try {
-            // update customer to latest data from database before displaying
-            updatedCustomer = customerDao.getUserById(customer.getUserId());
-            session.setAttribute("loggedInUser",  updatedCustomer);
-            resp.sendRedirect(req.getContextPath()+"/views/userDetails.jsp");
-        } catch (SQLException e) {
-            System.out.println("Couldn't retrieve user");
-            throw new RuntimeException(e);
+        Customer customer = null;
+        Staff staff = null;
+        if (session.getAttribute("userType").equals("customer")) {
+            customer = (Customer) session.getAttribute("loggedInUser");
+        } else if (session.getAttribute("userType").equals("staff")) {
+            staff = (Staff) session.getAttribute("loggedInUser");
         }
 
 
+        if (customer != null) {
+            Customer updatedCustomer;
+            try {
+                // update customer to latest data from database before displaying
+                updatedCustomer = customerDao.getUserById(customer.getUserId());
+                session.setAttribute("loggedInUser",  updatedCustomer);
+                resp.sendRedirect(req.getContextPath()+"/views/userDetails.jsp");
+                return;
+            } catch (SQLException e) {
+                System.out.println("Couldn't retrieve user");
+                throw new RuntimeException(e);
+            }
+        } else if (staff != null) {
+            Staff updatedStaff;
+            try {
+                // update staff to latest data from database before displaying
+                updatedStaff = staffDao.getStaffById(staff.getStaffId());
+                session.setAttribute("loggedInUser",  updatedStaff);
+                resp.sendRedirect(req.getContextPath()+"/views/staffPersonalDetails.jsp");
+                return;
+            } catch (SQLException e) {
+                System.out.println("Couldn't retrieve user");
+                throw new RuntimeException(e);
+            }
+        }
+
+        // if both customer and staff is null - no user logged in
+        session.setAttribute("errorMessage", "Please login to view your profile");
+        resp.sendRedirect(req.getContextPath()+"/views/login.jsp");
     }
 
 }
