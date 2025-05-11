@@ -65,13 +65,14 @@ public class CreateOrder extends HttpServlet {
             List<Product> productList = new ArrayList<>();
             productList.add(orderedProduct);
             order.setProducts(productList);
+            order.setQuantity(quantity);
 
             if (status == OrderStatus.Saved) {
                 orderDao.saveOrder(order, customer.getUserId());
                 response.sendRedirect(request.getContextPath() + "/viewOrder");
             } else{
                 request.setAttribute("product", product);
-//                request.setAttribute("orderId", order);
+                request.setAttribute("order", order);
                 request.getRequestDispatcher("/views/Payment.jsp").forward(request, response);
             }
 

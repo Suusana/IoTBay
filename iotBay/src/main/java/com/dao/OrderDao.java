@@ -20,7 +20,7 @@ public class OrderDao {
 
     public void saveOrder(Order order, int userId) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO `Order`" +
-                " (create_date, order_status, user_id, product_id) VALUES (?, ?, ?, ?)");
+                " (create_date, order_status, user_id, product_id, quantity) VALUES (?, ?, ?, ?, ?)");
         String now = LocalDateTime.now()
                 .withSecond(0)
                 .withNano(0)
@@ -32,6 +32,7 @@ public class OrderDao {
 
         Product product = order.getProducts().get(0);
         preparedStatement.setInt(4, product.getProductId());
+        preparedStatement.setInt(5, product.getQuantity());
         preparedStatement.executeUpdate();
     }
 
@@ -46,6 +47,7 @@ public class OrderDao {
             order.setOrderId(rs.getInt("order_id"));
             order.setCreateDate(rs.getTimestamp("create_date"));
             order.setOrderStatus(OrderStatus.valueOf(rs.getString("order_status")));
+            order.setQuantity(rs.getInt("quantity"));
             orders.add(order);
         }
         return orders;
@@ -62,6 +64,7 @@ public class OrderDao {
             order.setOrderId(rs.getInt("order_id"));
             order.setCreateDate(rs.getTimestamp("create_date"));
             order.setOrderStatus(OrderStatus.valueOf(rs.getString("order_status")));
+            order.setQuantity(rs.getInt("quantity"));
         }
 
         return order;
@@ -88,6 +91,7 @@ public class OrderDao {
             order.setOrderId(rs.getInt("order_id"));
             order.setCreateDate(rs.getTimestamp("create_date"));
             order.setOrderStatus(OrderStatus.valueOf(rs.getString("order_status")));
+            order.setQuantity(rs.getInt("quantity"));
             orders.add(order);
         }
         return orders;
@@ -103,6 +107,7 @@ public class OrderDao {
             order.setOrderId(rs.getInt("order_id"));
             order.setCreateDate(rs.getTimestamp("create_date"));
             order.setOrderStatus(OrderStatus.valueOf(rs.getString("order_status")));
+            order.setQuantity(rs.getInt("quantity"));
         }
         return order;
     }
@@ -119,7 +124,7 @@ public class OrderDao {
 
     public void updateOrderQuantity(int orderId, int quantity) throws SQLException {
 
-        PreparedStatement stmt = connection.prepareStatement("UPDATE \"Order\" SET quantity = ? WHERE order_id = ?");
+        PreparedStatement stmt = connection.prepareStatement("UPDATE `Order` SET quantity = ? WHERE order_id = ?");
         stmt.setInt(1, quantity);
         stmt.setInt(2, orderId);
         stmt.executeUpdate();
@@ -127,7 +132,7 @@ public class OrderDao {
     }
 
     public int getProductIdByOrderId(int orderId) throws SQLException {
-        PreparedStatement ps = connection.prepareStatement("select product_id from`Order` WHERE order_id = ?");
+        PreparedStatement ps = connection.prepareStatement("select product_id from `Order` WHERE order_id = ?");
         ps.setInt(1, orderId);
         ResultSet rs = ps.executeQuery();
         return rs.getInt("product_id");

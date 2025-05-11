@@ -22,8 +22,8 @@
     }
 
     Product product = (Product) request.getAttribute("product");
-    int quantity = Integer.parseInt(request.getParameter("quantity"));
     Order order = (Order) request.getAttribute("order");
+    int quantity = order.getQuantity();
 %>
 
 <body>

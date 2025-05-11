@@ -15,6 +15,8 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet("/orderAction")
 public class OrderAction extends HttpServlet {
@@ -26,30 +28,21 @@ public class OrderAction extends HttpServlet {
         OrderDao orderDao = db.getOrderDao();
         ProductDao productDao = db.getProductDao();
 
-
-
         String action = request.getParameter("action");
         int orderId = Integer.parseInt(request.getParameter("orderId"));
 
         try {
             Order order = orderDao.findOrderByOrderId(orderId);
-
-            if (order == null) {
-                response.sendError(HttpServletResponse.SC_NOT_FOUND, "Order not found.");
-                return;
-            }
-
-            if (!"Saved".equals(order.getOrderStatus().name())) {
-                response.sendError(HttpServletResponse.SC_FORBIDDEN, "Only Saved orders can be modified.");
-                return;
-            }
-
+            int prodId = orderDao.getProductIdByOrderId(orderId);
+            Product prod = productDao.getProductById(prodId);
+            List<Product> list = new ArrayList<>();
+            list.add(prod);
+            order.setProducts(list);
 
             switch (action) {
                 case "update":
                     boolean hasError = false;
                     StringBuilder errorMsg = new StringBuilder();
-
                     for (Product product : order.getProducts()) {
                         int productId = product.getProductId();
 
@@ -91,15 +84,7 @@ public class OrderAction extends HttpServlet {
                     // using productDao to update productQuantity
                     for (Product product : order.getProducts()) {
                         int productId = product.getProductId();
-                        int orderQuantity = product.getQuantity();
-
-                        Product dbProduct = productDao.getProductById(productId);
-                        int currentStock = dbProduct.getQuantity();
-
-                        int updatedStock = currentStock - orderQuantity;
-                        if (updatedStock < 0) updatedStock = 0;
-
-                        productDao.updateProductQuantity(productId, updatedStock);
+                        productDao.updateProductQuantity(productId, order.getQuantity());
                     }
 
                     response.sendRedirect("viewOrderDetails?orderId=" + orderId);
@@ -112,12 +97,12 @@ public class OrderAction extends HttpServlet {
                     break;
 
                 default:
-                    response.sendRedirect("viewOrder");
+                    response.sendRedirect("/viewOrder");
                     break;
             }
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect("viewOrder");
+            response.sendRedirect("/viewOrder");
         }
     }
 }

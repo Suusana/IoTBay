@@ -42,6 +42,7 @@ public class AddPaymentsServlet extends HttpServlet {
             Customer customer = (Customer) session.getAttribute("loggedInUser");
 
             Product product = productDao.getProductById(productId);
+
             Order order = new Order();
             order.setOrderStatus(OrderStatus.Confirmed);
             order.setCreateDate(new Timestamp(System.currentTimeMillis()));

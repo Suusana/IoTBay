@@ -11,17 +11,19 @@ public class Order implements Serializable {
     private Date createDate;
     private OrderStatus orderStatus;
     private List<Product> products;
+    private Integer quantity;
     private Customer buyer;
 
     public Order() {
     }
 
     public Order(Integer orderId, Date createDate, OrderStatus orderStatus,
-                 List<Product> products, Customer buyer) {
+                 List<Product> products, Integer quantity, Customer buyer) {
         this.orderId = orderId;
         this.createDate = createDate;
         this.orderStatus = orderStatus;
         this.products = products;
+        this.quantity = quantity;
         this.buyer = buyer;
     }
 
@@ -63,5 +65,13 @@ public class Order implements Serializable {
 
     public void setBuyer(Customer buyer) {
         this.buyer = buyer;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 }
