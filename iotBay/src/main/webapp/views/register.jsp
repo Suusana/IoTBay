@@ -27,7 +27,18 @@
 
 <main>
     <h1>Register</h1>
-    <form action="<%= request.getContextPath()%>/RegisterServlet" method="post">
+    <form id="registerForm" action="<%= request.getContextPath()%>/RegisterServlet" method="post">
+        <div class="container" style="align-items: center;">
+            <div>
+                <label for="userType">Choose your Role:</label>
+            </div>
+            <div>
+                <select id="userType" name="userType" required>
+                    <option value="customer">Customer</option>
+                    <option value="staff">Staff</option>
+                </select>
+            </div>
+        </div>
         <h4>Personal Information</h4>
         <div class="container">
             <div>
@@ -121,9 +132,9 @@
         </div>
         <div class="section">
             <h6>Links</h6>
-            <a href=""><span>Home</span></a>
-            <a href=""><span>Shop</span></a>
-            <a href=""><span>Order</span></a>
+            <a href="<%=request.getContextPath()%>/home"><span>Home</span></a>
+            <a href="<%=request.getContextPath()%>/productServlet"><span>Shop</span></a>
+            <a href="<%=request.getContextPath()%>/viewOrder"><span>Order</span></a>
             <a href=""><span>Category</span></a>
         </div>
         <div class="section">
