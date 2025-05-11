@@ -8,10 +8,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.bean.Customer" %>
 <%@ page import="com.util.Utils" %>
+<%@ page import="com.bean.Staff" %>
 
 <html>
 <%
-    Customer customer = (Customer) session.getAttribute("loggedInUser");
+    String userType = (String) session.getAttribute("userType");
+    Customer customer = null;
+    Staff staff = null;
+
+    if (userType.equalsIgnoreCase("customer")) {
+        customer = (Customer) session.getAttribute("loggedInUser");
+    } else if (userType.equalsIgnoreCase("staff")) {
+        staff = (Staff) session.getAttribute("loggedInUser");
+    }
 %>
 <head>
     <title>Welcome</title>
@@ -23,13 +32,26 @@
     <!-- Banner Image -->
     <img src="../assets/img/Logo.png" alt="Welcome Banner" class="banner-img">
 
-    <!-- Welcome Message -->
+    <!-- Welcome Message dependent on userType -->
+    <%
+        if (customer != null) {
+    %>
     <h1>Welcome, <%= Utils.capitaliseFirst(customer.getFirstName()) %>!</h1>
     <p>Your email: <strong><%= customer.getEmail() %></strong></p>
     <p class="description">We're excited to have you join IoTBay <br> Start exploring now!</p>
-
     <!-- Go to Main Page -->
-    <a href="/home"><button class="style1">Go to Main Page</button></a>
+    <a href=<%=request.getContextPath()%>"/home"><button class="style1">Go to Main Page</button></a>
+    <%
+        } else if (staff != null) {
+    %>
+    <h1>Welcome, <%=staff.getStaffName()%>!</h1>
+    <p class="description">Welcome to the IoTBay System <br> Continue to the Product Management Page</p>
+    <!-- Go to Product Management Page -->
+    <a href=<%=request.getContextPath()%>"/ProductManagementServlet"><button class="style1">Go to Product Management</button></a>
+    <%
+        }
+    %>
+
 </div>
 </body>
 </html>
