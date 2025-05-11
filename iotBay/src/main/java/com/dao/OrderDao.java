@@ -19,30 +19,32 @@ public class OrderDao {
     }
 
     public void saveOrder(Order order, int userId) throws SQLException {
-        String sql = "INSERT INTO \"Order\" (create_date, order_status, user_id, product_id, quantity) " +
-                "VALUES (?, ?, ?, ?, ?)";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        String now = LocalDateTime.now()
-                .withSecond(0)
-                .withNano(0)
-                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        String sql = "INSERT INTO \"Order\" (create_date, order_status, user_id, product_id, quantity) VALUES (?, ?, ?, ?, ?)";
 
-        preparedStatement.setString(1, now);
-        preparedStatement.setString(2, order.getOrderStatus().toString());
-        preparedStatement.setInt(3, userId);
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            String now = LocalDateTime.now()
+                    .withSecond(0)
+                    .withNano(0)
+                    .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
-        Product product = order.getProducts().get(0);
-        preparedStatement.setInt(4, product.getProductId());
-        preparedStatement.setInt(5, product.getQuantity());
-        preparedStatement.executeUpdate();
+            preparedStatement.setString(1, now);
+            preparedStatement.setString(2, order.getOrderStatus().toString());
+            preparedStatement.setInt(3, userId);
 
-        ResultSet resultSet = preparedStatement.getGeneratedKeys();
-        if (resultSet.next()) {
-            order.setOrderId(resultSet.getInt(1));
+            Product product = order.getProducts().get(0);
+            preparedStatement.setInt(4, product.getProductId());
+            preparedStatement.setInt(5, product.getQuantity());
+
+            preparedStatement.executeUpdate();
+
+            try (ResultSet resultSet = preparedStatement.getGeneratedKeys()) {
+                if (resultSet.next()) {
+                    order.setOrderId(resultSet.getInt(1));
+                }
+            }
         }
-        resultSet.close();
-        preparedStatement.close();
     }
+
 
 
 
