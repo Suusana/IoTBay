@@ -26,12 +26,6 @@
         <label for="expiryDate">Expiry Date:</label><br>
         <input type="date" id="expiryDate" name="expiryDate" required><br><br>
 
-        <label for="amount">Amount:</label><br>
-        <input type="text" id="amount" name="amount" required><br><br>
-
-        <label for="paymentDate">Payment Date:</label><br>
-        <input type="date" id="paymentDate" name="paymentDate" required><br><br>
-
         <button type="submit">Submit Payment</button>
     </form>
 </body>

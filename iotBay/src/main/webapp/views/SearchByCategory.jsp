@@ -20,13 +20,10 @@
     customer.setUsername(Status.GUEST.getStatus());
   }
 
-
-  List<Category> categories = (List<Category>) request.getAttribute("categories");
-
   //from Servlet GetByProductNameTOCustomer
   List<Product> allProducts = (List<Product>) request.getAttribute("products");
   String message = (String) request.getAttribute("message");
-
+  String category = (String) request.getAttribute("category");
 %>
 <head>
   <title>Shop</title>
@@ -34,6 +31,7 @@
   <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/HeaderAndFooter.css">
   <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/main.css">
   <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/ProductManagement.css">
+  <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/searchByCategory.css">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -77,7 +75,8 @@
 
 <!-- main body -->
 <main>
-  <h2>Product List</h2>
+  <h2><%=category%> Product List</h2>
+  <div>
   <% if (allProducts != null && !allProducts.isEmpty()) {
     for (Product product : allProducts) { %>
   <a class="shop_product">
@@ -91,7 +90,7 @@
   } else { %>
   <p>No products available right now.</p> <!--this will appear when there is an servlet connection error or nothing to show --->
   <% } %>
-
+  </div>
 </main>
 
 <!-- footer -->
@@ -138,8 +137,6 @@
   <hr>
   <p>©2025. IoTBay Group 4 All Right Reserved</p>
 </div>
-
-
 </body>
 
 </html>

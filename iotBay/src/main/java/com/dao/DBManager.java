@@ -25,6 +25,15 @@ public class DBManager {
         return customerDao;
     }
 
+    private InvoiceDao invoiceDao;
+
+    public InvoiceDao getInvoiceDao() {
+        if (invoiceDao == null) {
+            invoiceDao = new InvoiceDao(connection);
+        }
+        return invoiceDao;
+    }
+
     public PaymentDao getPaymentDao(){
         if (paymentDao == null) {
             paymentDao = new PaymentDao(connection);

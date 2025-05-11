@@ -54,5 +54,23 @@ public class PaymentDao {
         return payments;
     }
 
-    // If necessary, add update() and delete() method later
+    public void update(Payment payment) throws SQLException {
+        String sql = "UPDATE payments SET method = ?, card_holder = ?, amount = ?, status = ? WHERE payment_id = ?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, payment.getMethod());
+            ps.setString(2, payment.getCardHolder());
+            ps.setBigDecimal(3, payment.getAmount());
+            ps.setString(4, payment.getStatus());
+            ps.setInt(5, payment.getPaymentId());
+            ps.executeUpdate();
+        }
+    }
+
+    public void delete(int paymentId) throws SQLException {
+        String sql = "DELETE FROM payments WHERE payment_id = ?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, paymentId);
+            ps.executeUpdate();
+        }
+    }
 }

@@ -138,6 +138,28 @@ public class ProductDao {
         }
         return null;
     }
+
+    public List<Product> getProductByNameLike(String userInput) throws SQLException {
+        List<Product> products = new ArrayList<>();
+        PreparedStatement preparedstatement = connection.prepareStatement("select * from product where product_name LIKE ?");
+        preparedstatement.setString(1,"%"+userInput+"%");
+        ResultSet rs = preparedstatement.executeQuery();
+        CategoryDao cd = new CategoryDao(connection);
+        while(rs.next()) {
+            Product product = new Product();
+            product.setProductId(rs.getInt("product_id"));
+            product.setProductName(rs.getString("product_name"));
+            product.setQuantity(rs.getInt("quantity"));
+            product.setPrice(rs.getDouble("price"));
+            product.setDescription(rs.getString("description"));
+            product.setImage(rs.getString("image"));
+            int categoryId = rs.getInt("category_id");
+            Category category = cd.getCategoryById(categoryId);
+            product.setCategory(category);
+            products.add(product);
+        }
+        return products;
+    }
 //    create table Category
 //            (
 //                    category_id integer      not null

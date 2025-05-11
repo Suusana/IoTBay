@@ -83,3 +83,17 @@ button:hover{
     margin: 5px 0px;
     }
 }
+.add-product-box form{
+    width: 300px;
+    height:auto;
+    display:flex;
+    flex-direction: column;
+    position:relative;
+
+}
+.add-product-box button{
+    width:130px;
+    position:absolute;
+    right:0px;
+    bottom:0px;
+}

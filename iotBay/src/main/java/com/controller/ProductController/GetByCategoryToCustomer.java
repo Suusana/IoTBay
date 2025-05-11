@@ -1,6 +1,8 @@
 package com.controller.ProductController;
 
+import com.bean.Category;
 import com.bean.Product;
+import com.dao.CategoryDao;
 import com.dao.DBManager;
 import com.dao.ProductDao;
 import jakarta.servlet.ServletException;
@@ -24,13 +26,17 @@ public class GetByCategoryToCustomer extends HttpServlet {
 
             int categoryId = Integer.parseInt(req.getParameter("categoryId"));
             List<Product> products= productDao.getProductByCategory(categoryId);
+            CategoryDao cd = db.getCategoryDao();
+            Category category = cd.getCategoryById(categoryId);
 
 
             if (products != null) {
                 req.setAttribute("products", products);
+                req.setAttribute("category", category.getCategory());
                 req.getRequestDispatcher("/views/SearchByCategory.jsp").forward(req, resp);
             } else {
                 req.setAttribute("message", "404 NotFound");
+                req.setAttribute("category", category.getCategory());
                 req.getRequestDispatcher("/views/SearchByCategory.jsp").forward(req, resp);
             }
 
