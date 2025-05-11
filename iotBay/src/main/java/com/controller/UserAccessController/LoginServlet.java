@@ -1,8 +1,10 @@
 package com.controller.UserAccessController;
 
 import com.bean.Customer;
+import com.bean.Staff;
 import com.dao.CustomerDao;
 import com.dao.DBManager;
+import com.dao.StaffDao;
 import com.dao.UserAccessLogDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -21,6 +23,7 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = req.getSession();
         DBManager db =  (DBManager) session.getAttribute("db");
         CustomerDao customerDao = db.getCustomerDao();
+        StaffDao staffDao = db.getStaffDao();
 
         String email = req.getParameter("email").trim();
         String password = req.getParameter("password");
@@ -31,13 +34,11 @@ public class LoginServlet extends HttpServlet {
             return;
         }
 
+        // first check input against customer database
         try {
             Customer customer = customerDao.getUser(email, password);
 
-            if (customer == null) {
-                session.setAttribute("errorMessage", "Incorrect Email or Password");
-                resp.sendRedirect(req.getContextPath()+"/views/login.jsp");
-            } else {
+            if (customer != null) {
                 // Add user to session
                 session.removeAttribute("errorMessage");
                 session.setAttribute("loggedInUser", customer);
@@ -48,11 +49,42 @@ public class LoginServlet extends HttpServlet {
                 int userAccessLogId = userAccessLogDao.logLogin(customer.getUserId(), "customer");
                 session.setAttribute("userAccessLogId", userAccessLogId);
 
-                resp.sendRedirect(req.getContextPath()+"/home");
+                resp.sendRedirect(req.getContextPath() + "/home");
+                return;
             }
         } catch (SQLException e) {
             System.out.println("Can't retrieve customer from database");
             e.printStackTrace();
         }
+
+        // if not in customer database, check in staff database
+        try {
+            Staff staff = staffDao.getStaffForLogin(email, password);
+
+            if  (staff != null) {
+                // Add user to session
+                session.removeAttribute("errorMessage");
+                session.setAttribute("loggedInUser", staff);
+                session.setAttribute("userType", "staff");
+
+                // Log login time
+                UserAccessLogDao userAccessLogDao = db.getUserAccessLogDao();
+                int userAccessLogId = userAccessLogDao.logLogin(staff.getStaffId(), "staff");
+                session.setAttribute("userAccessLogId", userAccessLogId);
+
+                resp.sendRedirect(req.getContextPath() + "/ProductManagementServlet");
+                return;
+            }
+        } catch (SQLException e) {
+            System.out.println("Can't retrieve staff from database");
+            e.printStackTrace();
+        }
+
+        // if login matches neither customer nor staff
+        session.setAttribute("errorMessage", "Incorrect Email or Password");
+        resp.sendRedirect(req.getContextPath() + "/views/login.jsp");
+
     }
+
+
 }
