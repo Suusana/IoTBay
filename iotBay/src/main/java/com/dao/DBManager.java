@@ -13,6 +13,7 @@ public class DBManager {
     private StaffDao staffDao;
     private CategoryDao categoryDao;
     private UserAccessLogDao userAccessLogDao;
+    private OrderDao orderDao;
 
     public DBManager(Connection connection) throws SQLException {
         this.connection = connection;
@@ -69,7 +70,10 @@ public class DBManager {
         return userAccessLogDao;
     }
 
-    public Connection getConnection() {
-        return connection;
+    public OrderDao getOrderDao() {
+        if (orderDao == null) {
+            orderDao = new OrderDao(connection);
+        }
+        return orderDao;
     }
 }

@@ -1,10 +1,9 @@
 package com.controller.PaymentController;
 
-import com.bean.Invoice;
+import com.bean.*;
 import com.bean.Payment;
-import com.dao.DBManager;
-import com.dao.InvoiceDao;
-import com.dao.PaymentDao;
+import com.dao.*;
+import com.enums.OrderStatus;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -16,6 +15,9 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet("/AddPayment")
 public class AddPaymentsServlet extends HttpServlet {
@@ -24,34 +26,37 @@ public class AddPaymentsServlet extends HttpServlet {
         HttpSession session = req.getSession();
         DBManager db = (DBManager) session.getAttribute("db");
         PaymentDao pd = db.getPaymentDao();
-        InvoiceDao invoiceDao = db.getInvoiceDao();
+        ProductDao productDao = db.getProductDao();
+        OrderDao orderDao = db.getOrderDao();
 
         Payment payment = new Payment();
-
-        int orderId = Integer.parseInt(req.getParameter("orderId"));
-        String method = req.getParameter("method");
-        String cardHolder = req.getParameter("cardHolder");
-        String cardNumber = req.getParameter("cardNumber");
-        Date expiryDate = Date.valueOf(req.getParameter("expiryDate"));
-        Date paymentDate = new Date(System.currentTimeMillis());
-        String status = "Saved";
-
-        payment.setOrderId(orderId);
-        payment.setMethod(method);
-        payment.setCardHolder(cardHolder);
-        payment.setCardNumber(cardNumber);
-        payment.setExpiryDate(expiryDate);
-        payment.setPaymentDate(paymentDate);
-        payment.setStatus(status);
+        payment.setMethod(req.getParameter("paymentMethod"));
+        payment.setAccountName(req.getParameter("accountName"));
+        payment.setBSB(Integer.valueOf(req.getParameter("bsb")));
+        payment.setAccountNum(Integer.valueOf(req.getParameter("accountNumber")));
 
         try {
-            Invoice invoice = invoiceDao.findInvoiceByOrderId(orderId);
-            if (invoice != null) {
-                payment.setAmount(BigDecimal.valueOf(invoice.getTotalPrice()));
-            }
+            int productId = Integer.parseInt(req.getParameter("productId"));
+//            int orderId = Integer.parseInt(req.getParameter("orderId"));
+            int quantity = Integer.parseInt(req.getParameter("quantity"));
+            Customer customer = (Customer) session.getAttribute("loggedInUser");
 
-            pd.save(payment);
-            resp.sendRedirect(req.getContextPath() + "/ViewPayments?orderId=" + payment.getOrderId());
+            Product product = productDao.getProductById(productId);
+            Order order = new Order();
+            order.setOrderStatus(OrderStatus.Confirmed);
+            order.setCreateDate(new Timestamp(System.currentTimeMillis()));
+
+            Product orderedProduct = new Product();
+            orderedProduct.setProductId(product.getProductId());
+            orderedProduct.setQuantity(quantity);
+
+            List<Product> productList = new ArrayList<>();
+            productList.add(orderedProduct);
+            order.setProducts(productList);
+
+//            pd.save(payment, customer.getUserId(), orderId);
+            productDao.updateProductQuantity(productId, quantity);
+            orderDao.saveOrder(order, customer.getUserId());
         } catch (SQLException e) {
             e.printStackTrace();
             resp.sendRedirect(req.getContextPath() + "/views/PaymentError.jsp");

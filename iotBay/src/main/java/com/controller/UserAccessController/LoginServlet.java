@@ -52,7 +52,6 @@ public class LoginServlet extends HttpServlet {
             }
         } catch (SQLException e) {
             System.out.println("Can't retrieve customer from database");
-            e.printStackTrace();
         }
     }
 }

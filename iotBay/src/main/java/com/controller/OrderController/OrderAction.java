@@ -21,14 +21,15 @@ public class OrderAction extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        DBManager db = (DBManager) session.getAttribute("db");
+        OrderDao orderDao = db.getOrderDao();
+        ProductDao productDao = db.getProductDao();
+
+
 
         String action = request.getParameter("action");
         int orderId = Integer.parseInt(request.getParameter("orderId"));
-
-        HttpSession session = request.getSession();
-        DBManager dbManager = (DBManager) session.getAttribute("db");
-        Connection connection = dbManager.getConnection();
-        OrderDao orderDao = new OrderDao(connection);
 
         try {
             Order order = orderDao.findOrderByOrderId(orderId);
@@ -43,7 +44,6 @@ public class OrderAction extends HttpServlet {
                 return;
             }
 
-            ProductDao productDao = new ProductDao(connection);
 
             switch (action) {
                 case "update":
@@ -54,7 +54,7 @@ public class OrderAction extends HttpServlet {
                         int productId = product.getProductId();
 
                         // getProductFreshQuantity
-                        Product freshProduct = productDao.findProductById(productId);
+                        Product freshProduct = productDao.getProductById(productId);
                         int availableStock = freshProduct.getQuantity();
 
                         String quantityParam = request.getParameter("quantity_" + productId);
@@ -93,7 +93,7 @@ public class OrderAction extends HttpServlet {
                         int productId = product.getProductId();
                         int orderQuantity = product.getQuantity();
 
-                        Product dbProduct = productDao.findProductById(productId);
+                        Product dbProduct = productDao.getProductById(productId);
                         int currentStock = dbProduct.getQuantity();
 
                         int updatedStock = currentStock - orderQuantity;

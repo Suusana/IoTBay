@@ -10,7 +10,7 @@ public class Order implements Serializable {
     private Integer orderId;
     private Date createDate;
     private OrderStatus orderStatus;
-    private List<Product> products; // ✅ 代替 productIds
+    private List<Product> products;
     private Customer buyer;
 
     public Order() {

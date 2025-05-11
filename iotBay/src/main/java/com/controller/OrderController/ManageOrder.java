@@ -16,6 +16,9 @@ public class ManageOrder extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        DBManager db = (DBManager) session.getAttribute("db");
+        OrderDao orderDao = db.getOrderDao();
 
         String orderIdParam = request.getParameter("orderId");
 
@@ -23,11 +26,6 @@ public class ManageOrder extends HttpServlet {
             int orderId = Integer.parseInt(orderIdParam);
 
             // get DBManager connection from session
-            HttpSession session = request.getSession();
-            DBManager dbManager = (DBManager) session.getAttribute("db");
-            Connection connection = dbManager.getConnection();
-            OrderDao orderDao = new OrderDao(connection);
-
             Order order = orderDao.findOrderByOrderId(orderId);
 
             if (order != null) {

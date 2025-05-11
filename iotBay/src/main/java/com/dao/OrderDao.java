@@ -19,9 +19,8 @@ public class OrderDao {
     }
 
     public void saveOrder(Order order, int userId) throws SQLException {
-        String sql = "INSERT INTO \"Order\" (create_date, order_status, user_id, product_id, quantity) " +
-                "VALUES (?, ?, ?, ?, ?)";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO `Order`" +
+                " (create_date, order_status, user_id, product_id) VALUES (?, ?, ?, ?)");
         String now = LocalDateTime.now()
                 .withSecond(0)
                 .withNano(0)
@@ -33,45 +32,38 @@ public class OrderDao {
 
         Product product = order.getProducts().get(0);
         preparedStatement.setInt(4, product.getProductId());
-        preparedStatement.setInt(5, product.getQuantity());
         preparedStatement.executeUpdate();
-
-        ResultSet resultSet = preparedStatement.getGeneratedKeys();
-        if (resultSet.next()) {
-            order.setOrderId(resultSet.getInt(1));
-        }
-        resultSet.close();
-        preparedStatement.close();
     }
 
-
-
-    public List<Order> findOrderByCustomerId(int customerId) throws SQLException {
+    public List<Order> getOrdersByUserId(int customerId) throws SQLException {
         List<Order> orders = new ArrayList<>();
-        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM \"Order\" WHERE user_id=? ORDER BY order_id");
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM `Order` WHERE user_id=?");
 
         preparedStatement.setInt(1, customerId);
-        ResultSet resultSet = preparedStatement.executeQuery();
-        while (resultSet.next()) {
-            orders.add(mapOrder(resultSet));
+        ResultSet rs = preparedStatement.executeQuery();
+        while (rs.next()) {
+            Order order = new Order();
+            order.setOrderId(rs.getInt("order_id"));
+            order.setCreateDate(rs.getTimestamp("create_date"));
+            order.setOrderStatus(OrderStatus.valueOf(rs.getString("order_status")));
+            orders.add(order);
         }
-        resultSet.close();
-        preparedStatement.close();
         return orders;
     }
 
     public Order searchOrderByOrderId(int orderId, int customerId) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM \"Order\" WHERE order_id=? AND user_id=?");
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM `Order` WHERE order_id=? AND user_id=?");
 
         preparedStatement.setInt(1, orderId);
         preparedStatement.setInt(2, customerId);
-        ResultSet resultSet = preparedStatement.executeQuery();
-        Order order = null;
-        if (resultSet.next()) {
-            order = mapOrder(resultSet);
+        ResultSet rs = preparedStatement.executeQuery();
+        Order order = new Order();
+        if (rs.next()) {
+            order.setOrderId(rs.getInt("order_id"));
+            order.setCreateDate(rs.getTimestamp("create_date"));
+            order.setOrderStatus(OrderStatus.valueOf(rs.getString("order_status")));
         }
-        resultSet.close();
-        preparedStatement.close();
+
         return order;
     }
 
@@ -84,30 +76,33 @@ public class OrderDao {
         String start = date.atStartOfDay().format(formatter);
         String end = date.plusDays(1).atStartOfDay().format(formatter);
 
-        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM \"Order\" WHERE user_id = ? AND create_date >= ? AND create_date < ? ORDER BY create_date DESC");
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM `Order` WHERE user_id = ? AND create_date >= ? AND create_date < ? ORDER BY create_date DESC");
 
         preparedStatement.setInt(1, userId);
         preparedStatement.setString(2, start);
         preparedStatement.setString(3, end);
 
-        ResultSet resultSet = preparedStatement.executeQuery();
-        while (resultSet.next()) {
-            orders.add(mapOrder(resultSet));
+        ResultSet rs = preparedStatement.executeQuery();
+        while (rs.next()) {
+            Order order = new Order();
+            order.setOrderId(rs.getInt("order_id"));
+            order.setCreateDate(rs.getTimestamp("create_date"));
+            order.setOrderStatus(OrderStatus.valueOf(rs.getString("order_status")));
+            orders.add(order);
         }
-
-        resultSet.close();
-        preparedStatement.close();
         return orders;
     }
 
 
     public Order findOrderByOrderId(int orderId) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM \"Order\" WHERE order_id=?");
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM `Order` where order_id=?");
         preparedStatement.setInt(1, orderId);
-        ResultSet resultSet = preparedStatement.executeQuery();
-        Order order = null;
-        if(resultSet.next()) {
-            order = mapOrder(resultSet);
+        ResultSet rs = preparedStatement.executeQuery();
+        Order order = new Order();
+        if(rs.next()) {
+            order.setOrderId(rs.getInt("order_id"));
+            order.setCreateDate(rs.getTimestamp("create_date"));
+            order.setOrderStatus(OrderStatus.valueOf(rs.getString("order_status")));
         }
         return order;
     }
@@ -131,25 +126,10 @@ public class OrderDao {
         stmt.close();
     }
 
-
-    private Order mapOrder(ResultSet rs) throws SQLException {
-        Order order = new Order();
-        order.setOrderId(rs.getInt("order_id"));
-        order.setCreateDate(rs.getTimestamp("create_date"));
-        order.setOrderStatus(OrderStatus.valueOf(rs.getString("order_status")));
-
-        List<Product> products = new ArrayList<>();
-        ProductDao productDao = new ProductDao(connection);
-
-        Product product = productDao.findProductById(rs.getInt("product_id"));
-        if (product != null) {
-            product.setQuantity(rs.getInt("quantity"));
-            products.add(product);
-        }
-
-        order.setProducts(products);
-
-        return order;
+    public int getProductIdByOrderId(int orderId) throws SQLException {
+        PreparedStatement ps = connection.prepareStatement("select product_id from`Order` WHERE order_id = ?");
+        ps.setInt(1, orderId);
+        ResultSet rs = ps.executeQuery();
+        return rs.getInt("product_id");
     }
-
 }

@@ -24,12 +24,12 @@ public class ViewPaymentsServlet extends HttpServlet {
         DBManager db = (DBManager) session.getAttribute("db");
         PaymentDao dao = db.getPaymentDao();
 
-        try {
-            List<Payment> payments = dao.getPaymentsByOrderId(orderId);
-            req.setAttribute("payments", payments);
-            req.getRequestDispatcher("/views/PaymentList.jsp").forward(req, resp);
-        } catch (SQLException e) {
-            throw new ServletException("Error retrieving payments", e);
-        }
+//        try {
+////            List<Payment> payments = dao.getPaymentsByOrderId(orderId);
+////            req.setAttribute("payments", payments);
+//            req.getRequestDispatcher("/views/PaymentList.jsp").forward(req, resp);
+//        } catch (SQLException e) {
+//            throw new ServletException("Error retrieving payments", e);
+//        }
     }
 }
