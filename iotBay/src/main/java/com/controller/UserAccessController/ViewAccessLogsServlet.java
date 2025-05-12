@@ -3,9 +3,7 @@ package com.controller.UserAccessController;
 import com.bean.Customer;
 import com.bean.Staff;
 import com.bean.UserAccessLog;
-import com.dao.CustomerDao;
 import com.dao.DBManager;
-import com.dao.StaffDao;
 import com.dao.UserAccessLogDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -29,8 +27,8 @@ public class ViewAccessLogsServlet extends HttpServlet {
         UserAccessLogDao userAccessLogDao = db.getUserAccessLogDao();
 
         if (userType == null) {
-            session.setAttribute("errorMessage", "Please login before accessing account history");
-            resp.sendRedirect(req.getContextPath()+"/views/login.jsp");
+            req.setAttribute("errorMessage", "Please login before accessing account history");
+            req.getRequestDispatcher(req.getContextPath()+"/views/login.jsp").forward(req, resp);
             return;
         }
 
@@ -52,7 +50,7 @@ public class ViewAccessLogsServlet extends HttpServlet {
         } else if (userType.equalsIgnoreCase("Staff")) {
             staff = (Staff) session.getAttribute("loggedInUser");
 
-            LinkedList<UserAccessLog> accessLogs = null;
+            LinkedList<UserAccessLog> accessLogs;
             try {
                 accessLogs = userAccessLogDao.getLogsByUser(staff.getStaffId(), userType);
                 req.setAttribute("accessLogs", accessLogs);

@@ -11,14 +11,6 @@
 
 <%
     String userType = (String) session.getAttribute("userType");
-//    Customer customer = null;
-//    Staff staff = null;
-//
-//    if (userType.equalsIgnoreCase("customer")) {
-//        customer = (Customer) session.getAttribute("loggedInUser");
-//    } else if (userType.equalsIgnoreCase("staff")) {
-//        staff = (Staff) session.getAttribute("loggedInUser");
-//    }
 %>
 
 <body>
@@ -41,11 +33,11 @@
                 <%
                     if (userType.equalsIgnoreCase("customer")) {
                 %>
-                <button class="button" onclick="window.location.href='/home'">No</button>
+                <button class="button" onclick="window.location.href='<%=request.getContextPath()%>/home'">No</button>
                 <%
                     } else if (userType.equalsIgnoreCase("staff")) {
                 %>
-                <button class="button" onclick="window.location.href='/ProductManagementServlet'">No</button>
+                <button class="button" onclick="window.location.href='<%=request.getContextPath()%>/ProductManagementServlet'">No</button>
                 <%
                     }
                 %>

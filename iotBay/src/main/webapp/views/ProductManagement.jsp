@@ -11,6 +11,7 @@
 <%@ page import="com.bean.Product" %>
 <%@ page import="com.bean.Category" %>
 <%@ page import="java.util.stream.Stream" %>
+<%@ page import="com.bean.Staff" %>
 <html>
 <%
     List<Product> allProducts = (List<Product>) request.getAttribute("allProducts");
@@ -25,13 +26,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
+<%
+    Staff staff = (Staff) session.getAttribute("loggedInUser");
+%>
 <div class="sideBar">
     <h2>Admin Panel</h2>
-    <a href="./AdminDashboard.jsp">
-        <i class="fa-solid fa-house fa-lg"></i>
-        <span>Dashboard</span>
-    </a>
-    <a href="./CustomerManagement.jsp">
+    <h4>Current Staff: <%= staff.getStaffName()%></h4>
+    <a href="<%= request.getContextPath() %>/ShowCustomerInfo">
         <i class="fa-solid fa-user fa-lg"></i>
         <span>Customer Management</span>
     </a>
@@ -158,64 +159,7 @@
         %>
         </tbody>
     </table>
-
-
-    <%--    <a class="shop_product">--%>
-
-    <%--        <h5><%= product.getProductName() %></h5>--%>
-    <%--        <p><%= product.getDescription() %></p>--%>
-    <%--        <span>$<%= product.getPrice() %></span>--%>
-    <%--        <h5>Category: <%= product.getCategory().getCategory()%></h5>--%>
-    <%--        <div class="update-product-info">--%>
-    <%--            <h4>Update Product Info</h4>--%>
-    <%--            <form action="<%= request.getContextPath() %>/UpdateProductServlet" method="post">--%>
-    <%--                <input type="hidden" name="productId" value="<%= product.getProductId() %>">--%>
-    <%--                Name: <input type="text" name="productName" value="<%= product.getProductName() %>">--%>
-    <%--                Price: <input type="text" name="price" value="<%= product.getPrice() %>">--%>
-    <%--                Quantity: <input type="number" name="quantity" value="<%= product.getQuantity() %>">--%>
-    <%--                <br>--%>
-    <%--                Description: <textarea name="description"><%= product.getDescription() %></textarea>--%>
-    <%--                <br>--%>
-    <%--                <%--%>
-    <%--                    //product.getCategory -> receives category obj--%>
-    <%--        /*--%>
-    <%--          product.getCategory() -> returns the obj addr not the string (Category name)--%>
-    <%--          product db stores categoryID / product class stores category obj--%>
-    <%--        * */--%>
-    <%--                    Category category = new Category();--%>
-    <%--                    category = product.getCategory();--%>
-    <%--                    int categoryID = category.getCategoryId();--%>
-    <%--                %>--%>
-    <%--                Category ID:<input type="number" name="categoryId" value="<%=categoryID%>"/>--%>
-    <%--                <p>Category :<%=product.getCategory().getCategory()%></p>--%>
-    <%--                Image:<input type="text" name="image" value="<%=product.getImage()%>"/>--%>
-    <%--                <button type="submit">Update</button>--%>
-    <%--            </form>--%>
-    <%--        </div>--%>
-    <%--        <!-- delete test--%>
-    <%--     ('Capacitive Touch Sensor Module v2.0', 30, 18.90, 'Capacitive touch sensor module used for detecting touch input in Arduino, Raspberry Pi, and interactive projects.', 'Touch Sensor.png', 1),--%>
-    <%--        -->--%>
-    <%--        <div class="delete-product">--%>
-    <%--            <form action="<%= request.getContextPath() %>/DeleteProduct" method="post" onsubmit="return confirm('Are you sure you want to delete it permanently remove this product?')">--%>
-    <%--                <input type="hidden" name="productId" value="<%= product.getProductId() %>">--%>
-    <%--                <button type="submit">Delete</button>--%>
-    <%--            </form>--%>
-    <%--        </div>--%>
-    <%--        <%--%>
-    <%--        String deletedMssg = (String) session.getAttribute("deletedSuccess");--%>
-    <%--        if(deletedMssg !=null){%>--%>
-    <%--        <div class="deletedMssg">--%>
-    <%--            <%=deletedMssg%>--%>
-    <%--        </div>--%>
-    <%--        <%--%>
-    <%--            session.removeAttribute("deletedSuccess");--%>
-    <%--        }%>--%>
-    <%--    </a>--%>
-    <%--    <% }--%>
-    <%--    } else { %>--%>
-    <%--    <p>No products available right now.</p> <!--this will appear when there is an servlet connection error or nothing to show --->--%>
-    <%--    <% } %>--%>
-</div> <!--This is end of the .main-content div -->
+</div>
 
 </body>
 </html>

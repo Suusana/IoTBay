@@ -1,13 +1,14 @@
 <%@ page import="com.enums.State" %>
 <%@ page import="com.bean.Staff" %>
+<%@ page import="java.util.Map" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <%
     Staff staff = new Staff();
-    if (session.getAttribute("loggedInUser") != null){
-        staff = (Staff)session.getAttribute("loggedInUser");
+    if (session.getAttribute("loggedInUser") != null) {
+        staff = (Staff) session.getAttribute("loggedInUser");
     } else {
-        response.sendRedirect(request.getContextPath()+"/views/login.jsp");
+        response.sendRedirect(request.getContextPath() + "/views/login.jsp");
     }
 %>
 <head>
@@ -33,7 +34,8 @@
                 </div>
             </div>
             <div class="form-row">
-                <p style="font-size: 14px;">To update your password fill in both password fields. Otherwise, leave blank.</p>
+                <p style="font-size: 14px;">To update your password fill in both password fields. Otherwise, leave
+                    blank.</p>
             </div>
             <div class="form-row">
                 <%
@@ -72,7 +74,7 @@
             <div class="form-row">
                 <div class="field">
                     <label for="postcode">Postcode</label>
-                   <input id="postcode" name="postcode" type="number" required value="<%=staff.getPostcode()%>">
+                    <input id="postcode" name="postcode" type="number" required value="<%=staff.getPostcode()%>">
                 </div>
                 <div class="field">
                     <label for="country">Country</label>
@@ -83,7 +85,8 @@
                 <div class="field state-label">
                     <label for="state">State</label>
                     <select id="state" name="state">
-                        <option><%=staff.getState()%></option>
+                        <option><%=staff.getState()%>
+                        </option>
                         <%
                             for (State state : State.values()) {
                         %>
@@ -96,9 +99,25 @@
                     </select>
                 </div>
             </div>
+            <%
+                // display list of all errors after update details attempt
+                Map<String, String> errors = (Map<String, String>) request.getAttribute("errors");
+
+                if (errors != null) {
+            %>
+            <span class="errors">Could not update details:</span><br>
+            <%
+                for (Map.Entry<String, String> entry : errors.entrySet()) {
+            %>
+            <span class="errors"><%=entry.getValue()%>!</span><br>
+            <%
+                    }
+                }
+            %>
             <div class="update-options">
                 <button class="button" type="submit">Update</button>
-                <a href="<%=request.getContextPath()%>/ViewUserDetailsServlet" class="visibleLink">Return without editing?</a>
+                <a href="<%=request.getContextPath()%>/ViewUserDetailsServlet" class="visibleLink">Return without
+                    editing?</a>
             </div>
         </form>
     </div>

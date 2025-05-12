@@ -67,7 +67,7 @@ public class SearchAccessLogsServlet extends HttpServlet {
         // error if only one date is set
         if (startDateStr == null || startDateStr.isEmpty() || endDateStr == null || endDateStr.isEmpty()) {
             req.setAttribute("errorMessage", "Both start and end dates are required");
-            req.getRequestDispatcher(req.getContextPath() + "/views/viewAccessLogs.jsp").forward(req, resp);
+            req.getRequestDispatcher("/views/viewAccessLogs.jsp").forward(req, resp);
             return;
         }
 
@@ -103,7 +103,7 @@ public class SearchAccessLogsServlet extends HttpServlet {
             req.setAttribute("accessLogs", filteredAccessLogs);
             req.setAttribute("startDate", startDateStr);
             req.setAttribute("endDate", endDateStr);
-            req.getRequestDispatcher(req.getContextPath() + "/views/viewAccessLogs.jsp").forward(req, resp);
+            req.getRequestDispatcher("/views/viewAccessLogs.jsp").forward(req, resp);
         } catch (SQLException e) {
             System.out.println("Could not retrieve access logs by date from database");
             e.printStackTrace();

@@ -68,3 +68,9 @@ menu a:hover {
     font-weight: 900;
     color: #000;
 }
+
+.selected{
+    color: #ff8400;
+    font-weight: 900;
+    text-decoration: underline;
+}

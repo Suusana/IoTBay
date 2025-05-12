@@ -202,6 +202,17 @@ public class StaffDao {
         ps.executeUpdate();
     }
 
+    public boolean emailExists(String email) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT 1 FROM Staff WHERE email = ?");
+        try {
+            preparedStatement.setString(1, email);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            return resultSet.next(); // true if email exists in table
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     // delete a staff
     public void deleteStaffById(int staffId) throws SQLException {
         PreparedStatement ps = connection.prepareStatement("delete from Staff where staff_id=?");

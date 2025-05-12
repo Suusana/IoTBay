@@ -21,10 +21,7 @@
 <body>
 <div class="sideBar">
     <h2>Admin Panel</h2>
-    <a href="./AdminDashboard.jsp">
-        <i class="fa-solid fa-house fa-lg"></i>
-        <span>Dashboard</span>
-    </a>
+    <h4>Current Staff: <%= staff.getStaffName()%></h4>
     <a href="<%= request.getContextPath() %>/ShowCustomerInfo">
         <i class="fa-solid fa-user fa-lg"></i>
         <span>Customer Management</span>
@@ -54,8 +51,9 @@
         <div class="details-display">
             <div class="form-row">
                 <%
-                    String staffFName = staff.getStaffName().split(" ")[0];
-                    String staffLName = staff.getStaffName().split(" ")[1];
+                    String[] nameParts = staff.getStaffName().trim().split(" ");
+                    String staffFName = nameParts[0];
+                    String staffLName = nameParts[1];
                 %>
                 <div class="field">
                     <label>First Name</label>

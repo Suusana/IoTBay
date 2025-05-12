@@ -18,13 +18,14 @@ public class CustomerDao {
     public void addUser(Customer customer) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO User (username, first_name, last_name, " +
                 "password, email, phone, status, address, state, city, postcode, country,`type`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        int status = customer.getStatus()=="Active"?1:0;
         preparedStatement.setString(1, customer.getUsername());
         preparedStatement.setString(2, customer.getFirstName());
         preparedStatement.setString(3, customer.getLastName());
         preparedStatement.setString(4, customer.getPassword());
         preparedStatement.setString(5, customer.getEmail());
         preparedStatement.setLong(6, customer.getPhone());
-        preparedStatement.setString(7, customer.getStatus());
+        preparedStatement.setInt(7, status);
         preparedStatement.setString(8, customer.getAddress());
         preparedStatement.setString(9, customer.getState());
         preparedStatement.setString(10, customer.getCity());
@@ -134,6 +135,17 @@ public class CustomerDao {
         return rs.getInt(1);
     }
 
+    public boolean emailExists(String email) throws SQLException {
+        PreparedStatement preparedStatement =  connection.prepareStatement("SELECT 1 FROM User WHERE email = ?");
+        try {
+            preparedStatement.setString(1, email);
+            ResultSet resultSet =  preparedStatement.executeQuery();
+            return resultSet.next(); // true if matching email exists
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     // Map a ResultSet to a single Customer object
     private Customer mapCustomer(ResultSet rs) throws SQLException {
         Customer customer = null;
@@ -181,5 +193,25 @@ public class CustomerDao {
             list.add(customer);
         }
         return list;
+    }
+
+    // usered for anonymous user creation
+    public void setUser(Customer customer) throws SQLException {
+        PreparedStatement ps = connection.prepareStatement("INSERT INTO User " +
+                "(username, first_name, last_name, type, email, password) VALUES (?, ?, ?, ?, ?, ?)");
+        ps.setString(1, customer.getUsername());
+        ps.setString(2, customer.getFirstName());
+        ps.setString(3, customer.getLastName());
+        ps.setString(4, customer.getType());
+        ps.setString(5, customer.getEmail());
+        ps.setString(6, customer.getPassword());
+        ps.executeUpdate();
+    }
+
+    // get the last user
+    public Customer getLastUser() throws SQLException {
+        PreparedStatement ps = connection.prepareStatement("select * from User order by user_id desc");
+        ResultSet rs = ps.executeQuery();
+        return mapCustomer(rs);
     }
 }

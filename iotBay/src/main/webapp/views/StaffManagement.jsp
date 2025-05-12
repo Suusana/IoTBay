@@ -17,12 +17,12 @@
 </head>
 
 <body>
+<%
+    Staff _staff = (Staff) session.getAttribute("loggedInUser");
+%>
 <div class="sideBar">
     <h2>Admin Panel</h2>
-    <a href="<%= request.getContextPath() %>/views/AdminDashboard.jsp">
-        <i class="fa-solid fa-house fa-lg"></i>
-        <span>Dashboard</span>
-    </a>
+    <h4>Current Staff: <%= _staff.getStaffName()%></h4>
     <a href="<%= request.getContextPath() %>/ShowCustomerInfo">
         <i class="fa-solid fa-user fa-lg"></i>
         <span>Customer Management</span>
@@ -31,7 +31,15 @@
         <i class="fa-solid fa-user-tie fa-lg"></i>
         <span>Staff Management</span>
     </a>
-    <a href="#">
+    <a href="<%= request.getContextPath() %>/ProductManagementServlet">
+        <i class="fa-solid fa-user-tie fa-lg"></i>
+        <span>Product Management</span>
+    </a>
+    <a href="<%=request.getContextPath()%>/ViewUserDetailsServlet">
+        <i class="fa-solid fa-user-tie fa-lg"></i>
+        <span>My Details Management</span>
+    </a>
+    <a href="<%=request.getContextPath()%>/views/logout.jsp">
         <i class="fa-solid fa-right-from-bracket fa-lg"></i>
         <span>Logout</span>
     </a>

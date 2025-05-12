@@ -40,14 +40,14 @@
     <p>Your email: <strong><%= customer.getEmail() %></strong></p>
     <p class="description">We're excited to have you join IoTBay <br> Start exploring now!</p>
     <!-- Go to Main Page -->
-    <a href=<%=request.getContextPath()%>"/home"><button class="style1">Go to Main Page</button></a>
+    <a href="<%=request.getContextPath()%>/home"><button class="style1">Go to Main Page</button></a>
     <%
         } else if (staff != null) {
     %>
     <h1>Welcome, <%=staff.getStaffName()%>!</h1>
     <p class="description">Welcome to the IoTBay System <br> Continue to the Product Management Page</p>
     <!-- Go to Product Management Page -->
-    <a href=<%=request.getContextPath()%>"/ProductManagementServlet"><button class="style1">Go to Product Management</button></a>
+    <a href="<%=request.getContextPath()%>/ProductManagementServlet"><button class="style1">Go to Product Management</button></a>
     <%
         }
     %>

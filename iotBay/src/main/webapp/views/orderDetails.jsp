@@ -21,7 +21,6 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/OrderStyle.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/base.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/HeaderAndFooter.css">
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
@@ -33,11 +32,12 @@
     </a>
     <!-- menu -->
     <menu>
-        <a href="<%=request.getContextPath()%>/home"><span>Home</span></a>
+        <a href="<%= request.getContextPath()%>/home"><span>Home</span></a>
         <a href="<%= request.getContextPath() %>/productServlet"><span>Shop</span></a>
         <a href="<%= request.getContextPath() %>/viewOrder"><span class="selected">Order</span></a>
-        <a href=""><span>Category</span></a>
+        <a href="#"><span>Category</span></a>
     </menu>
+
     <!-- icon menu -->
     <menu class="icon">
         <a href="<%=request.getContextPath()%>/ViewUserDetailsServlet">
@@ -48,15 +48,20 @@
             <i class="fa-solid fa-magnifying-glass fa-2x"></i>
             <span>Search</span>
         </a>
-        <a href="<%=request.getContextPath()%>/views/cart.jsp">
+        <a href="#">
             <i class="fa-solid fa-cart-shopping fa-2x"></i>
             <span>Cart</span>
         </a>
+        <%
+            if (session.getAttribute("loggedInUser") != null) {
+        %>
         <a href="<%=request.getContextPath()%>/views/logout.jsp">
             <i class="fa-solid fa-right-from-bracket fa-2x"></i>
             <span>Log Out</span>
         </a>
-
+        <%
+            }
+        %>
     </menu>
 </div>
 
@@ -173,7 +178,7 @@
             <a href="<%=request.getContextPath()%>/home"><span>Home</span></a>
             <a href="<%=request.getContextPath()%>/productServlet"><span>Shop</span></a>
             <a href="<%=request.getContextPath()%>/viewOrder"><span>Order</span></a>
-            <a href=""><span>Category</span></a>
+            <a href="#"><span>Category</span></a>
         </div>
         <div class="section">
             <h6>Contact Us</h6>

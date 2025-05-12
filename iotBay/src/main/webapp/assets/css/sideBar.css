@@ -12,6 +12,11 @@
     margin-bottom: 5%;
 }
 
+.sideBar h4{
+    text-align: center;
+    color: #a67224;
+}
+
 .sideBar a {
     display: block;
     padding: 15px 20px;
