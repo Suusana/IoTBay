@@ -11,14 +11,6 @@
 
 <%
     String userType = (String) session.getAttribute("userType");
-//    Customer customer = null;
-//    Staff staff = null;
-//
-//    if (userType.equalsIgnoreCase("customer")) {
-//        customer = (Customer) session.getAttribute("loggedInUser");
-//    } else if (userType.equalsIgnoreCase("staff")) {
-//        staff = (Staff) session.getAttribute("loggedInUser");
-//    }
 %>
 
 <body>

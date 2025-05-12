@@ -14,11 +14,12 @@
 <html>
 <%
     Customer customer = new Customer();
-    if (session.getAttribute("loggedInUser")!=null){
-        customer = (Customer)session.getAttribute("loggedInUser");
-    }else {
+    if (session.getAttribute("loggedInUser") != null) {
+        customer = (Customer) session.getAttribute("loggedInUser");
+    } else {
         customer.setUsername(Status.GUEST.getStatus());
-    }    List<Product> allProducts = (List<Product>) request.getAttribute("allProducts");
+    }
+    List<Product> allProducts = (List<Product>) request.getAttribute("allProducts");
 %>
 <head>
     <title>Shop</title>
@@ -33,15 +34,15 @@
 <!-- header -->
 <div class="header">
     <!-- Logo -->
-    <a href="./main.jsp">
-        <img src="<%= request.getContextPath() %>/assets/img/Logo.png" alt="IotBay Logo">
+    <a href="<%=request.getContextPath()%>/home">
+        <img src="<%=request.getContextPath()%>/assets/img/Logo.png" alt="IotBay Logo">
     </a>
     <!-- menu -->
     <menu>
-        <a href="<%= request.getContextPath() %>/home"><span>Home</span></a>
-        <a href="<%=request.getContextPath()%>/productServlet"><span class="selected">Shop</span></a> <!-- change here -->
-        <a href="<%=request.getContextPath()%>/viewOrder"><span>Order</span></a>
-        <a href=""><span>Category</span></a>
+        <a href="<%= request.getContextPath()%>/home"><span class="selected">Home</span></a>
+        <a href="<%= request.getContextPath() %>/productServlet"><span>Shop</span></a>
+        <a href="<%= request.getContextPath() %>/viewOrder"><span>Order</span></a>
+        <a href="#"><span>Category</span></a>
     </menu>
 
     <!-- icon menu -->
@@ -54,15 +55,20 @@
             <i class="fa-solid fa-magnifying-glass fa-2x"></i>
             <span>Search</span>
         </a>
-        <a href="<%=request.getContextPath()%>/views/cart.jsp">
+        <a href="#">
             <i class="fa-solid fa-cart-shopping fa-2x"></i>
             <span>Cart</span>
         </a>
+        <%
+            if (session.getAttribute("loggedInUser") != null) {
+        %>
         <a href="<%=request.getContextPath()%>/views/logout.jsp">
             <i class="fa-solid fa-right-from-bracket fa-2x"></i>
             <span>Log Out</span>
         </a>
-
+        <%
+            }
+        %>
     </menu>
 </div>
 
@@ -73,8 +79,10 @@
         for (Product product : allProducts) { %>
     <a href="<%= request.getContextPath()%>/ProductDetailServlet?id=<%=product.getProductId()%>" class="shop_product">
         <img src="<%= request.getContextPath() %>/assets/img/<%= product.getImage() %>" alt="Device">
-        <h5><%= product.getProductName() %></h5>
-        <p><%= product.getDescription() %></p>
+        <h5><%= product.getProductName() %>
+        </h5>
+        <p><%= product.getDescription() %>
+        </p>
         <span>$<%= product.getPrice() %></span>
     </a>
     <% }
@@ -84,7 +92,7 @@
 </main>
 
 <!-- footer -->
- <div class="footer">
+<div class="footer">
     <hr>
     <div>
         <div class="section">
@@ -96,7 +104,7 @@
             <a href="<%=request.getContextPath()%>/home"><span>Home</span></a>
             <a href="<%=request.getContextPath()%>/productServlet"><span>Shop</span></a>
             <a href="<%=request.getContextPath()%>/viewOrder"><span>Order</span></a>
-            <a href=""><span>Category</span></a>
+            <a href="#"><span>Category</span></a>
         </div>
         <div class="section">
             <h6>Contact Us</h6>
@@ -127,8 +135,5 @@
     <hr>
     <p>©2025. IoTBay Group 4 All Right Reserved</p>
 </div>
-
-
 </body>
-
 </html>

@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.bean.Customer" %>
+<%@ page import="com.bean.Staff" %>
 <html>
 <head>
     <title>Customer Management</title>
@@ -11,13 +12,13 @@
 </head>
 <body>
 
+<%
+    Staff staff = (Staff) session.getAttribute("loggedInUser");
+%>
 <div class="sideBar">
     <h2>Admin Panel</h2>
-    <a href="./AdminDashboard.jsp">
-        <i class="fa-solid fa-house fa-lg"></i>
-        <span>Dashboard</span>
-    </a>
-    <a href="<%= request.getContextPath() %>/ShowCustomerInfo" class="current">
+    <h4>Current Staff: <%= staff.getStaffName()%></h4>
+    <a href="<%= request.getContextPath() %>/ShowCustomerInfo">
         <i class="fa-solid fa-user fa-lg"></i>
         <span>Customer Management</span>
     </a>
@@ -25,7 +26,15 @@
         <i class="fa-solid fa-user-tie fa-lg"></i>
         <span>Staff Management</span>
     </a>
-    <a href="#">
+    <a href="<%= request.getContextPath() %>/ProductManagementServlet" class="current">
+        <i class="fa-solid fa-user-tie fa-lg"></i>
+        <span>Product Management</span>
+    </a>
+    <a href="<%=request.getContextPath()%>/ViewUserDetailsServlet">
+        <i class="fa-solid fa-user-tie fa-lg"></i>
+        <span>My Details Management</span>
+    </a>
+    <a href="<%=request.getContextPath()%>/views/logout.jsp">
         <i class="fa-solid fa-right-from-bracket fa-lg"></i>
         <span>Logout</span>
     </a>

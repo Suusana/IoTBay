@@ -49,7 +49,7 @@ public class LoginServlet extends HttpServlet {
                 int userAccessLogId = userAccessLogDao.logLogin(customer.getUserId(), "customer");
                 session.setAttribute("userAccessLogId", userAccessLogId);
 
-                resp.sendRedirect(req.getContextPath() + "/home");
+                resp.sendRedirect("views/welcome.jsp");
                 return;
             }
         } catch (SQLException e) {
@@ -71,7 +71,7 @@ public class LoginServlet extends HttpServlet {
                 int userAccessLogId = userAccessLogDao.logLogin(staff.getStaffId(), "staff");
                 session.setAttribute("userAccessLogId", userAccessLogId);
 
-                resp.sendRedirect(req.getContextPath() + "/ProductManagementServlet");
+                resp.sendRedirect("views/welcome.jsp");
                 return;
             }
         } catch (SQLException e) {

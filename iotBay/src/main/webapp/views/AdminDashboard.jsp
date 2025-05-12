@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.bean.Staff" %><%--
   Created by IntelliJ IDEA.
   User: Susana
   Date: 4/25/2025
@@ -15,12 +15,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
+<%
+    Staff staff = (Staff) session.getAttribute("loggedInUser");
+%>
 <div class="sideBar">
     <h2>Admin Panel</h2>
-    <a href="./AdminDashboard.jsp" class="current">
-        <i class="fa-solid fa-house fa-lg"></i>
-        <span>Dashboard</span>
-    </a>
+    <h4>Current Staff: <%= staff.getStaffName()%></h4>
     <a href="<%= request.getContextPath() %>/ShowCustomerInfo">
         <i class="fa-solid fa-user fa-lg"></i>
         <span>Customer Management</span>
@@ -29,11 +29,15 @@
         <i class="fa-solid fa-user-tie fa-lg"></i>
         <span>Staff Management</span>
     </a>
-    <a href="<%= request.getContextPath() %>/ProductManagementServlet">
+    <a href="<%= request.getContextPath() %>/ProductManagementServlet" class="current">
         <i class="fa-solid fa-user-tie fa-lg"></i>
         <span>Product Management</span>
     </a>
-    <a href="#">
+    <a href="<%=request.getContextPath()%>/ViewUserDetailsServlet">
+        <i class="fa-solid fa-user-tie fa-lg"></i>
+        <span>My Details Management</span>
+    </a>
+    <a href="<%=request.getContextPath()%>/views/logout.jsp">
         <i class="fa-solid fa-right-from-bracket fa-lg"></i>
         <span>Logout</span>
     </a>

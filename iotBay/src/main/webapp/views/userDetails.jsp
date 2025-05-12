@@ -21,38 +21,43 @@
 %>
 <body>
 <%--Header--%>
-<div class="header" style="border-bottom: 1px solid #a7a7a7">
+<div class="header">
     <!-- Logo -->
     <a href="<%=request.getContextPath()%>/home">
         <img src="<%=request.getContextPath()%>/assets/img/Logo.png" alt="IotBay Logo">
     </a>
     <!-- menu -->
     <menu>
-        <a href="<%=request.getContextPath()%>/home"><span class="selected">Home</span></a>
+        <a href="<%= request.getContextPath()%>/home"><span class="selected">Home</span></a>
         <a href="<%= request.getContextPath() %>/productServlet"><span>Shop</span></a>
         <a href="<%= request.getContextPath() %>/viewOrder"><span>Order</span></a>
-        <a href=""><span>Category</span></a>
+        <a href="#"><span>Category</span></a>
     </menu>
 
     <!-- icon menu -->
     <menu class="icon">
-        <a href="<%=request.getContextPath()%>/ViewUserDetailsServlet" style="color: #ff8400;">
+        <a href="<%=request.getContextPath()%>/ViewUserDetailsServlet">
             <i class="fa-solid fa-circle-user fa-2x"></i>
-            <span><%= Utils.capitaliseFirst(customer.getFirstName()) %></span>
+            <span><%= customer.getFirstName() != null ? Utils.capitaliseFirst(customer.getFirstName()) : Status.GUEST.getStatus()%></span>
         </a>
         <a href="<%=request.getContextPath()%>/GetByProductNameToCustomer">
             <i class="fa-solid fa-magnifying-glass fa-2x"></i>
             <span>Search</span>
         </a>
-        <a href="<%=request.getContextPath()%>/views/cart.jsp">
+        <a href="#">
             <i class="fa-solid fa-cart-shopping fa-2x"></i>
             <span>Cart</span>
         </a>
+        <%
+            if (session.getAttribute("loggedInUser") != null) {
+        %>
         <a href="<%=request.getContextPath()%>/views/logout.jsp">
             <i class="fa-solid fa-right-from-bracket fa-2x"></i>
             <span>Log Out</span>
         </a>
-
+        <%
+            }
+        %>
     </menu>
 </div>
 

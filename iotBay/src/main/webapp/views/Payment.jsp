@@ -34,10 +34,10 @@
     </a>
     <!-- menu -->
     <menu>
-        <a href="<%=request.getContextPath()%>/home"><span class="selected">Home</span></a>
+        <a href="<%= request.getContextPath()%>/home"><span class="selected">Home</span></a>
         <a href="<%= request.getContextPath() %>/productServlet"><span>Shop</span></a>
         <a href="<%= request.getContextPath() %>/viewOrder"><span>Order</span></a>
-        <a href=""><span>Category</span></a>
+        <a href="#"><span>Category</span></a>
     </menu>
 
     <!-- icon menu -->
@@ -50,7 +50,7 @@
             <i class="fa-solid fa-magnifying-glass fa-2x"></i>
             <span>Search</span>
         </a>
-        <a href="<%=request.getContextPath()%>/views/cart.jsp">
+        <a href="#">
             <i class="fa-solid fa-cart-shopping fa-2x"></i>
             <span>Cart</span>
         </a>
@@ -64,7 +64,6 @@
         <%
             }
         %>
-
     </menu>
 </div>
 
