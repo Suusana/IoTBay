@@ -182,4 +182,20 @@ public class CustomerDao {
         }
         return list;
     }
+
+    public void setUser(Customer customer) throws SQLException {
+        PreparedStatement ps = connection.prepareStatement("INSERT INTO User " +
+                "(username, first_name, last_name, type) VALUES (?, ?, ?, ?)");
+        ps.setString(1, customer.getUsername());
+        ps.setString(2, customer.getFirstName());
+        ps.setString(3, customer.getLastName());
+        ps.setString(4, customer.getType());
+        ps.executeUpdate();
+    }
+
+    public Customer getLastUser() throws SQLException {
+        PreparedStatement ps = connection.prepareStatement("select * from User order by user_id desc");
+        ResultSet rs = ps.executeQuery();
+        return mapCustomer(rs);
+    }
 }
