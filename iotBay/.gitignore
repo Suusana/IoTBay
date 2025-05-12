@@ -39,3 +39,4 @@ build/
 
 #Ignore workspace.xml
 .idea/workspace.xml
+.idea/dataSources.xml
