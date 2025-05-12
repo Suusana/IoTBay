@@ -1,5 +1,6 @@
 <%@ page import="com.enums.State" %>
 <%@ page import="com.bean.Staff" %>
+<%@ page import="java.util.Map" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <%
@@ -98,6 +99,21 @@
                     </select>
                 </div>
             </div>
+            <%
+                // display list of all errors after update details attempt
+                Map<String, String> errors = (Map<String, String>) request.getAttribute("errors");
+
+                if (errors != null) {
+            %>
+            <span class="errors">Could not update details:</span><br>
+            <%
+                for (Map.Entry<String, String> entry : errors.entrySet()) {
+            %>
+            <span class="errors"><%=entry.getValue()%>!</span><br>
+            <%
+                    }
+                }
+            %>
             <div class="update-options">
                 <button class="button" type="submit">Update</button>
                 <a href="<%=request.getContextPath()%>/ViewUserDetailsServlet" class="visibleLink">Return without

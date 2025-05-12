@@ -5,6 +5,7 @@ import com.bean.Staff;
 import com.dao.CustomerDao;
 import com.dao.DBManager;
 import com.dao.StaffDao;
+import com.util.Utils;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -14,6 +15,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Map;
 
 @WebServlet("/UpdateUserDetailsServlet")
 public class UpdateUserDetailsServlet extends HttpServlet {
@@ -31,6 +33,59 @@ public class UpdateUserDetailsServlet extends HttpServlet {
             return;
         }
 
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
+        String confirmPassword = req.getParameter("confirmPassword");
+        String firstName = req.getParameter("firstName");
+        String lastName = req.getParameter("lastName");
+        String email = req.getParameter("email");
+        long phoneNumber = -1;
+        try {
+            phoneNumber = Long.parseLong(req.getParameter("phone"));
+        } catch (NumberFormatException e) {
+            req.setAttribute("errorMessage", "Phone number must be a valid number");
+        }
+        String address = req.getParameter("address");
+        String city = req.getParameter("city");
+        int postcode = -1;
+        try {
+            postcode = Integer.parseInt(req.getParameter("postcode"));
+        } catch (NumberFormatException e) {
+            req.setAttribute("errorMessage", "Postcode must be a valid number");
+        }
+        String country = req.getParameter("country");
+        String state = req.getParameter("state");
+
+        // check submitted input for errors
+        Map<String, String> errors = Utils.validateUserInput(firstName, lastName, email, password, confirmPassword,
+                phoneNumber, state, city, postcode, country, address, true);
+
+        // check if email is unique - ignore if input is user's current email
+        Object user = session.getAttribute("loggedInUser");
+        String currentEmail = (userType.equals("customer") ? ((Customer) user).getEmail() : ((Staff) user).getEmail());
+        try {
+            boolean isSameEmail = email.equalsIgnoreCase(currentEmail);
+            if (!isSameEmail && (customerDao.emailExists(email) || staffDao.emailExists(email))) {
+                errors.put("errorMessage", "Email is already registered to an account");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error checking for staffs duplicate email in registration");
+            throw new RuntimeException(e);
+        }
+
+        // if any errors, display and don't let edit process
+        if (!errors.isEmpty()) {
+            req.setAttribute("errors", errors);
+            if (userType.equals("customer")) {
+                req.getRequestDispatcher("/views/editUserDetails.jsp").forward(req, resp);
+                return;
+            } else if (userType.equals("staff")) {
+                req.getRequestDispatcher("/views/editStaffPersonalDetails.jsp").forward(req, resp);
+                return;
+            }
+            return;
+        }
+
         Customer currentCustomer;
         Staff currentStaff;
         // update if customer
@@ -38,32 +93,26 @@ public class UpdateUserDetailsServlet extends HttpServlet {
             currentCustomer = (Customer) session.getAttribute("loggedInUser");
 
             Customer customer = new Customer();
-            customer.setUsername(req.getParameter("username"));
-            String password = req.getParameter("password");
-            String confirmPassword = req.getParameter("confirmPassword");
-            // if password field is empty, keep password as is
-            // else check if password and confirmPassword match before updating
-            if (password == null || confirmPassword == null || password.trim().isEmpty() || confirmPassword.trim().isEmpty()) {
-                customer.setPassword(currentCustomer.getPassword());
-            } else if (!password.equals(confirmPassword)) {
-                session.setAttribute("errorMessage", "Passwords do not match");
-                resp.sendRedirect(req.getContextPath()+"/views/editUserDetails.jsp");
-                return;
-            } else {
-                customer.setPassword(password);
-            }
-            customer.setFirstName(req.getParameter("firstName"));
-            customer.setLastName(req.getParameter("lastName"));
-            customer.setPhone(Long.valueOf(req.getParameter("phone")));
-            customer.setEmail(req.getParameter("email"));
-            customer.setAddress(req.getParameter("address"));
-            customer.setCity(req.getParameter("city"));
-            customer.setState(req.getParameter("state"));
-            customer.setPostcode(Integer.valueOf(req.getParameter("postcode")));
-            customer.setCountry(req.getParameter("country"));
+            customer.setUsername(username);
+            customer.setFirstName(firstName);
+            customer.setLastName(lastName);
+            customer.setPhone(phoneNumber);
+            customer.setEmail(email);
+            customer.setAddress(address);
+            customer.setCity(city);
+            customer.setState(state);
+            customer.setPostcode(postcode);
+            customer.setCountry(country);
             // set unchangeable values from old details
             customer.setType(currentCustomer.getType());
             customer.setUserId(currentCustomer.getUserId());
+
+            // update password if valid input provided
+            if (password != null && !password.trim().isEmpty()) {
+                customer.setPassword(password);
+            } else {
+                customer.setPassword(currentCustomer.getPassword());
+            }
 
             try {
                 customerDao.updateCustomer(customer);
@@ -78,32 +127,26 @@ public class UpdateUserDetailsServlet extends HttpServlet {
             currentStaff = (Staff) session.getAttribute("loggedInUser");
 
             Staff staff = new Staff();
-            String staffName = req.getParameter("firstName") + " " + req.getParameter("lastName");
+            String staffName = firstName + " "  + lastName;
             staff.setStaffName(staffName);
-            String password = req.getParameter("password");
-            String confirmPassword = req.getParameter("confirmPassword");
-            // if password field is empty, keep password as is
-            // else check if password and confirmPassword match before updating
-            if (password == null || confirmPassword == null || password.trim().isEmpty() || confirmPassword.trim().isEmpty()) {
-                staff.setPassword(currentStaff.getPassword());
-            } else if (!password.equals(confirmPassword)) {
-                session.setAttribute("errorMessage", "Passwords do not match");
-                resp.sendRedirect(req.getContextPath()+"/views/editStaffPersonalDetails.jsp");
-                return;
-            } else {
-                staff.setPassword(password);
-            }
-            staff.setPhoneNum(Integer.valueOf(req.getParameter("phone")));
-            staff.setEmail(req.getParameter("email"));
-            staff.setAddress(req.getParameter("address"));
-            staff.setCity(req.getParameter("city"));
-            staff.setPostcode(req.getParameter("postcode"));
-            staff.setState(req.getParameter("state"));
-            staff.setCountry(req.getParameter("country"));
+            staff.setPhoneNum((int) phoneNumber);
+            staff.setEmail(email);
+            staff.setAddress(address);
+            staff.setCity(city);
+            staff.setPostcode(String.valueOf(postcode));
+            staff.setState(state);
+            staff.setCountry(country);
             // set unchangeable values from old staff details
             staff.setStaffId(currentStaff.getStaffId());
             staff.setPosition(currentStaff.getPosition());
             staff.setStatus("Active");
+
+            // update password if valid input provided
+            if (password != null && !password.trim().isEmpty()) {
+                staff.setPassword(password);
+            } else {
+                staff.setPassword(currentStaff.getPassword());
+            }
 
             try {
                 staffDao.UpdateStaff(staff);

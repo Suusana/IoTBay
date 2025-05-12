@@ -51,8 +51,9 @@
         <div class="details-display">
             <div class="form-row">
                 <%
-                    String staffFName = staff.getStaffName().split(" ")[0];
-                    String staffLName = staff.getStaffName().split(" ")[1];
+                    String[] nameParts = staff.getStaffName().trim().split(" ");
+                    String staffFName = nameParts[0];
+                    String staffLName = nameParts[1];
                 %>
                 <div class="field">
                     <label>First Name</label>
