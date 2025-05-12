@@ -18,13 +18,14 @@ public class CustomerDao {
     public void addUser(Customer customer) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO User (username, first_name, last_name, " +
                 "password, email, phone, status, address, state, city, postcode, country,`type`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        int status = customer.getStatus()=="Active"?1:0;
         preparedStatement.setString(1, customer.getUsername());
         preparedStatement.setString(2, customer.getFirstName());
         preparedStatement.setString(3, customer.getLastName());
         preparedStatement.setString(4, customer.getPassword());
         preparedStatement.setString(5, customer.getEmail());
         preparedStatement.setLong(6, customer.getPhone());
-        preparedStatement.setString(7, customer.getStatus());
+        preparedStatement.setInt(7, status);
         preparedStatement.setString(8, customer.getAddress());
         preparedStatement.setString(9, customer.getState());
         preparedStatement.setString(10, customer.getCity());
@@ -183,6 +184,7 @@ public class CustomerDao {
         return list;
     }
 
+    // usered for anonymous user creation
     public void setUser(Customer customer) throws SQLException {
         PreparedStatement ps = connection.prepareStatement("INSERT INTO User " +
                 "(username, first_name, last_name, type, email, password) VALUES (?, ?, ?, ?, ?, ?)");
@@ -195,6 +197,7 @@ public class CustomerDao {
         ps.executeUpdate();
     }
 
+    // get the last user
     public Customer getLastUser() throws SQLException {
         PreparedStatement ps = connection.prepareStatement("select * from User order by user_id desc");
         ResultSet rs = ps.executeQuery();
