@@ -29,6 +29,7 @@
 <div class="sideBar">
     <h2>Admin Panel</h2>
     <h4>Current Staff: <%= staff.getStaffName()%></h4>
+
     <a href="<%= request.getContextPath() %>/ShowCustomerInfo">
         <i class="fa-solid fa-user fa-lg"></i>
         <span>Customer Management</span>

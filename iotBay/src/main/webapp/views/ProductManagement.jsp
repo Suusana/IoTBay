@@ -91,13 +91,13 @@
     </div>
     <div class="add-product-box">
         <h2>Add New Product</h2>
-        <form action="<%= request.getContextPath() %>/AddNewProduct" method="post">
+        <form action="<%= request.getContextPath() %>/AddNewProduct" method="post" enctype="multipart/form-data">
             <label>Name: <input type="text" name="productName" required></label>
             <label>Price: <input type="text" name="price" required></label>
             <label>Quantity: <input type="number" name="quantity" required></label>
             <label>Description: <textarea name="description"></textarea></label>
             <label>Category ID:<input type="number" name="categoryId" required/></label>
-            <label>Image:<input type="text" name="image" value=""/></label>
+            <label>Image:<input type="file" name="image" value=""/></label>
             <button type="submit">Add New Product</button>
         </form>
     </div>
