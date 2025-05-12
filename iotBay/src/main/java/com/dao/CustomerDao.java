@@ -135,6 +135,17 @@ public class CustomerDao {
         return rs.getInt(1);
     }
 
+    public boolean emailExists(String email) throws SQLException {
+        PreparedStatement preparedStatement =  connection.prepareStatement("SELECT 1 FROM User WHERE email = ?");
+        try {
+            preparedStatement.setString(1, email);
+            ResultSet resultSet =  preparedStatement.executeQuery();
+            return resultSet.next(); // true if matching email exists
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     // Map a ResultSet to a single Customer object
     private Customer mapCustomer(ResultSet rs) throws SQLException {
         Customer customer = null;

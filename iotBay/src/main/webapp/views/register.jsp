@@ -7,7 +7,24 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.enums.State" %>
+<%@ page import="java.util.Map" %>
 
+<%
+    // retrieve any errors from servlet upon submission
+    Map<String, String> errors = (Map<String, String>) request.getAttribute("errors");
+
+    // retrieve previously submitted input to repopulate fields - users don't have to fill fields in again
+    String firstName = (request.getParameter("firstName") != null) ? request.getParameter("firstName") : "";
+    String lastName = (request.getParameter("lastName") != null) ? request.getParameter("lastName") : "";
+    String email = (request.getParameter("email") != null) ? request.getParameter("email") : "";
+    String phoneNumber = (request.getParameter("phoneNumber") != null) ? request.getParameter("phoneNumber") : "";
+    String street = (request.getParameter("street") != null) ? request.getParameter("street") : "";
+    String unit = (request.getParameter("unit") != null) ? request.getParameter("unit") : "";
+    String city = (request.getParameter("city") != null) ? request.getParameter("city") : "";
+    String selectedState = (request.getParameter("state") != null) ? request.getParameter("state") : "";
+    String postalCode = (request.getParameter("postalCode") != null) ? request.getParameter("postalCode") : "";
+    String country = (request.getParameter("country") != null) ? request.getParameter("country") : "";
+%>
 <html>
 <head>
     <title>Register</title>
@@ -20,7 +37,7 @@
 <body>
 <header class="header">
     <!-- Logo -->
-    <a href="./main.jsp">
+    <a href="<%=request.getContextPath()%>/home">
         <img src="../assets/img/Logo.png" alt="IotBay Logo">
     </a>
 </header>
@@ -34,8 +51,8 @@
             </div>
             <div>
                 <select id="userType" name="userType" required>
-                    <option value="customer">Customer</option>
-                    <option value="staff">Staff</option>
+                    <option value="customer" <%="customer".equalsIgnoreCase(request.getParameter("userType")) ? "selected" : ""%>>Customer</option>
+                    <option value="staff" <%="staff".equalsIgnoreCase(request.getParameter("userType")) ? "selected" : ""%>>Staff</option>
                 </select>
             </div>
         </div>
@@ -43,21 +60,33 @@
         <div class="container">
             <div>
                 <label for="firstName">First Name</label><br>
-                <input id="firstName" name="firstName" type="text" required placeholder="First Name"/>
+                <input id="firstName" name="firstName" type="text" required placeholder="First Name" value="<%=firstName%>"/>
+                <% if (errors != null && errors.get("firstName") != null) { %>
+                <span class="errorText"><%=errors.get("firstName")%></span>
+                <% } %>
             </div>
             <div>
                 <label for="lastName">Last Name</label><br>
-                <input id="lastName" name="lastName" type="text" required placeholder="Last Name"/>
+                <input id="lastName" name="lastName" type="text" required placeholder="Last Name" value="<%=lastName%>"/>
+                <% if (errors != null && errors.get("lastName") != null) { %>
+                <span class="errorText"><%=errors.get("lastName")%></span>
+                <% } %>
             </div>
         </div>
         <div class="container">
             <div>
                 <label for="email">Email</label><br>
-                <input id="email" name="email" type="email" required placeholder="Email@site.com"/>
+                <input id="email" name="email" type="email" required placeholder="Email@site.com" value="<%=email%>"/>
+                <% if (errors != null && errors.get("email") != null) { %>
+                <span class="errorText"><%=errors.get("email")%></span>
+                <% } %>
             </div>
             <div>
                 <label for="phoneNumber">Phone Number</label><br>
-                <input id="phoneNumber" name="phoneNumber" type="tel" required placeholder="e.g 0412 345 678"/>
+                <input id="phoneNumber" name="phoneNumber" type="tel" required placeholder="e.g 0412 345 678" value="<%=phoneNumber%>"/>
+                <% if (errors != null && errors.get("phoneNumber") != null) { %>
+                <span class="errorText"><%=errors.get("phoneNumber")%></span>
+                <% } %>
             </div>
         </div>
         <div class="container">
@@ -65,6 +94,9 @@
                 <label for="password">Password</label><br>
                 <input id="password" name="password" type="password" required minlength="6"
                        placeholder="Enter your password"/>
+                <% if (errors != null && errors.get("password") != null) { %>
+                <span class="errorText"><%=errors.get("password")%></span>
+                <% } %>
             </div>
             <div>
                 <label for="ConfirmPassword">Confirm Password</label><br>
@@ -78,15 +110,21 @@
             <div class="container">
                 <div>
                     <label for="Street">Street</label><br>
-                    <input id="Street" name="street" type="text" required placeholder="Street address">
+                    <input id="Street" name="street" type="text" required placeholder="Street address" value="<%=street%>">
+                    <% if (errors != null && errors.get("address") != null) { %>
+                    <span class="errorText"><%=errors.get("address")%></span>
+                    <% } %>
                 </div>
                 <div>
                     <label for="Unit">Unit</label><br>
-                    <input id="Unit" name="unit" type="text" placeholder="Unit, building, floor etc">
+                    <input id="Unit" name="unit" type="text" placeholder="Unit, building, floor etc" value="<%=unit%>">
                 </div>
                 <div>
                     <label for="city">City</label><br>
-                    <input id="city" name="city" type="text" required placeholder="City">
+                    <input id="city" name="city" type="text" required placeholder="City" value="<%=city%>">
+                    <% if (errors != null && errors.get("city") != null) { %>
+                    <span class="errorText"><%=errors.get("city")%></span>
+                    <% } %>
                 </div>
 
             </div>
@@ -97,28 +135,48 @@
                         <option selected disabled>Choose a state</option>
                         <%
                             for (State s : State.values()) {
+                                boolean isSelected = s.getName().equalsIgnoreCase(selectedState);
                         %>
-                        <option value= <%=s.getName()%>>
+                        <option value="<%=s.getName()%>" <%=isSelected ? "selected" : ""%>>
                             <%=s.getName()%>
                         </option>
                         <%
                             }
                         %>
                     </select>
+                    <% if (errors != null && errors.get("state") != null) { %>
+                    <span class="errorText"><%=errors.get("state")%></span>
+                    <% } %>
                 </div>
                 <div>
                     <label for="postalCode">Postal Code</label><br>
-                    <input id="postalCode" name="postalCode" type="text" required placeholder="Postal Code">
+                    <input id="postalCode" name="postalCode" type="text" required placeholder="Postal Code" value="<%=postalCode%>">
+                    <% if (errors != null && errors.get("postcode") != null) { %>
+                    <span class="errorText"><%=errors.get("postcode")%></span>
+                    <% } %>
                 </div>
                 <div>
                     <label for="country">Country</label><br>
-                    <input id="country" name="country" type="text" required placeholder="Country">
+                    <input id="country" name="country" type="text" required placeholder="Country" value="<%=country%>">
+                    <% if (errors != null && errors.get("country") != null) { %>
+                    <span class="errorText"><%=errors.get("country")%></span>
+                    <% } %>
                 </div>
             </div>
         </div>
+        <div class="container">
+        <%
+            // check for final general input errors
+            String errorMessage = (String) request.getAttribute("errorMessage");
+
+            if (errorMessage != null) {
+        %>
+        <span class="errorText"><%=errorMessage%></span>
+        <% } %>
+        </div>
         <div class="buttons">
             <button type="submit">Register</button><br>
-            <a href="./login.jsp" class="visibleLink">Already have an account?</a>
+            <a href="/views/login.jsp" class="visibleLink">Already have an account?</a>
         </div>
     </form>
 </main>

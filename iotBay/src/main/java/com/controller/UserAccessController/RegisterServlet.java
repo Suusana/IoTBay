@@ -7,6 +7,7 @@ import com.dao.DBManager;
 import com.dao.StaffDao;
 import com.dao.UserAccessLogDao;
 import com.enums.Status;
+import com.util.Utils;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -17,6 +18,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Map;
 
 @WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
@@ -31,10 +33,21 @@ public class RegisterServlet extends HttpServlet {
         String lastName = req.getParameter("lastName");
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        Long phoneNumber = Long.valueOf(req.getParameter("phoneNumber"));
+        String confirmPassword = req.getParameter("ConfirmPassword");
+        long phoneNumber = -1;
+        try {
+            phoneNumber = Long.parseLong(req.getParameter("phoneNumber"));
+        } catch (NumberFormatException e) {
+            req.setAttribute("errorMessage", "Phone number must be a valid number");
+        }
         String state = req.getParameter("state");
         String city = req.getParameter("city");
-        Integer postalCode = Integer.valueOf(req.getParameter("postalCode"));
+        int postalCode = -1;
+        try {
+            postalCode = Integer.parseInt(req.getParameter("postalCode"));
+        } catch (NumberFormatException e) {
+            req.setAttribute("errorMessage", "Postcode must be a valid number");
+        }
         String country = req.getParameter("country");
         String address;
         if (!req.getParameter("unit").isEmpty()) {
@@ -43,6 +56,27 @@ public class RegisterServlet extends HttpServlet {
             address = req.getParameter("street");
         }
         String status = "1";
+
+        // validate input and return errors
+        Map<String, String> errors = Utils.validateUserInput(firstName, lastName, email, password, confirmPassword, phoneNumber,
+                state, city, postalCode, country, address, false);
+
+        // check if email is unique
+        try {
+            if (customerDao.emailExists(email) || staffDao.emailExists(email)) {
+                errors.put("email", "An account with this email already exists");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error checking for duplicate email in registration");
+            throw new RuntimeException(e);
+        }
+
+        // if any errors exist, display and don't register user
+        if (!errors.isEmpty() || req.getAttribute("errorMessage") != null) {
+            req.setAttribute("errors", errors);
+            req.getRequestDispatcher("/views/register.jsp").forward(req, resp);
+            return;
+        }
 
         if (req.getParameter("userType").equalsIgnoreCase("customer")) {
             String username = email.split("@")[0];
@@ -67,6 +101,7 @@ public class RegisterServlet extends HttpServlet {
                 Customer customerWithId = customerDao.getUser(email, password);
                 session.setAttribute("loggedInUser", customerWithId);
                 session.setAttribute("userType", "customer");
+                session.removeAttribute("errorMessage");
 
                 UserAccessLogDao userAccessLogDao = db.getUserAccessLogDao();
                 int userAccessLogId = userAccessLogDao.logLogin(customerWithId.getUserId(), "customer");
@@ -97,6 +132,7 @@ public class RegisterServlet extends HttpServlet {
                 Staff staffWithId = staffDao.getStaffForLogin(email, password);
                 session.setAttribute("loggedInUser", staffWithId);
                 session.setAttribute("userType", "staff");
+                session.removeAttribute("errorMessage");
 
                 UserAccessLogDao userAccessLogDao = db.getUserAccessLogDao();
                 int userAccessLogId = userAccessLogDao.logLogin(staffWithId.getStaffId(), "staff");
