@@ -6,15 +6,15 @@ import com.dao.CategoryDao;
 import com.dao.DBManager;
 import com.dao.ProductDao;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.*;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.sql.SQLException;
-
+@MultipartConfig
 @WebServlet("/AddNewProduct")
 public class AddNewProduct extends HttpServlet {
     @Override
@@ -30,7 +30,14 @@ public class AddNewProduct extends HttpServlet {
         double price = Double.parseDouble(req.getParameter("price"));
         int quantity = Integer.parseInt(req.getParameter("quantity"));
         String description = req.getParameter("description");
-        String image = req.getParameter("image");
+        //String image = req.getParameter("image");
+        String appPath=req.getServletContext().getRealPath("/");
+        String uploadPath = appPath+ File.separator+"assets"+File.separator+"img";
+
+        Part getFormImg = req.getPart("image");
+        String imgName = Paths.get(getFormImg.getSubmittedFileName()).getFileName().toString();
+
+
         int categoryId = Integer.parseInt(req.getParameter("categoryId"));
 
        // product.setProductId(productId);
@@ -38,7 +45,12 @@ public class AddNewProduct extends HttpServlet {
         product.setPrice(price);
         product.setQuantity(quantity);
         product.setDescription(description);
-        product.setImage(image);
+        if(imgName != null && !imgName.isEmpty()){
+            getFormImg.write(uploadPath+File.separator+imgName);
+            product.setImage(imgName);
+        }else{
+            product.setImage("");
+        }
         try{
             CategoryDao cd = db.getCategoryDao();
             Category category = cd.getCategoryById(categoryId);
