@@ -18,7 +18,7 @@
 <div class="sideBar">
     <h2>Admin Panel</h2>
     <h4>Current Staff: <%= staff.getStaffName()%></h4>
-    <a href="<%= request.getContextPath() %>/ShowCustomerInfo">
+    <a href="<%= request.getContextPath() %>/ShowCustomerInfo" class="current">
         <i class="fa-solid fa-user fa-lg"></i>
         <span>Customer Management</span>
     </a>
@@ -26,7 +26,7 @@
         <i class="fa-solid fa-user-tie fa-lg"></i>
         <span>Staff Management</span>
     </a>
-    <a href="<%= request.getContextPath() %>/ProductManagementServlet" class="current">
+    <a href="<%= request.getContextPath() %>/ProductManagementServlet">
         <i class="fa-solid fa-user-tie fa-lg"></i>
         <span>Product Management</span>
     </a>

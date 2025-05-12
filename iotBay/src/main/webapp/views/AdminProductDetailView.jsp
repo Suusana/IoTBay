@@ -6,7 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page import="com.bean.Product" %>
-<%@ page import="com.bean.Category" %>
 <%@ page import="com.bean.Staff" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>

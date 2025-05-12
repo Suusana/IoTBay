@@ -21,7 +21,6 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/OrderStyle.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/base.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/HeaderAndFooter.css">
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
@@ -33,9 +32,9 @@
     </a>
     <!-- menu -->
     <menu>
-        <a href="<%= request.getContextPath()%>/home"><span class="selected">Home</span></a>
+        <a href="<%= request.getContextPath()%>/home"><span>Home</span></a>
         <a href="<%= request.getContextPath() %>/productServlet"><span>Shop</span></a>
-        <a href="<%= request.getContextPath() %>/viewOrder"><span>Order</span></a>
+        <a href="<%= request.getContextPath() %>/viewOrder"><span class="selected">Order</span></a>
         <a href="#"><span>Category</span></a>
     </menu>
 

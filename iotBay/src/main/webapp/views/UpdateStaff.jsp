@@ -19,20 +19,20 @@
 </head>
 <body>
 <%
-    Staff staff = (Staff) session.getAttribute("loggedInUser");
+    Staff _staff = (Staff) session.getAttribute("loggedInUser");
 %>
 <div class="sideBar">
     <h2>Admin Panel</h2>
-    <h4>Current Staff: <%= staff.getStaffName()%></h4>
+    <h4>Current Staff: <%= _staff.getStaffName()%></h4>
     <a href="<%= request.getContextPath() %>/ShowCustomerInfo">
         <i class="fa-solid fa-user fa-lg"></i>
         <span>Customer Management</span>
     </a>
-    <a href="<%= request.getContextPath() %>/ShowStaffInfo">
+    <a href="<%= request.getContextPath() %>/ShowStaffInfo" class="current">
         <i class="fa-solid fa-user-tie fa-lg"></i>
         <span>Staff Management</span>
     </a>
-    <a href="<%= request.getContextPath() %>/ProductManagementServlet" class="current">
+    <a href="<%= request.getContextPath() %>/ProductManagementServlet">
         <i class="fa-solid fa-user-tie fa-lg"></i>
         <span>Product Management</span>
     </a>

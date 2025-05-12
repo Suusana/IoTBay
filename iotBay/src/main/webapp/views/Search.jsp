@@ -9,7 +9,6 @@
 <%@ page import="com.bean.Customer" %>
 <%@ page import="com.enums.Status" %>
 <%@ page import="com.bean.Product" %>
-<%@ page import="com.bean.Category" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.util.Utils" %>
 <html>
@@ -28,7 +27,6 @@
     <title>Search</title>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/base.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/HeaderAndFooter.css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/main.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/search.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -43,7 +41,7 @@
     </a>
     <!-- menu -->
     <menu>
-        <a href="<%= request.getContextPath()%>/home"><span class="selected">Home</span></a>
+        <a href="<%= request.getContextPath()%>/home"><span>Home</span></a>
         <a href="<%= request.getContextPath() %>/productServlet"><span>Shop</span></a>
         <a href="<%= request.getContextPath() %>/viewOrder"><span>Order</span></a>
         <a href="#"><span>Category</span></a>
@@ -55,7 +53,7 @@
             <i class="fa-solid fa-circle-user fa-2x"></i>
             <span><%= customer.getFirstName() != null ? Utils.capitaliseFirst(customer.getFirstName()) : Status.GUEST.getStatus()%></span>
         </a>
-        <a href="<%=request.getContextPath()%>/GetByProductNameToCustomer">
+        <a href="<%=request.getContextPath()%>/GetByProductNameToCustomer" class="selected">
             <i class="fa-solid fa-magnifying-glass fa-2x"></i>
             <span>Search</span>
         </a>

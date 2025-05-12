@@ -33,11 +33,11 @@
                 <%
                     if (userType.equalsIgnoreCase("customer")) {
                 %>
-                <button class="button" onclick="window.location.href='/home'">No</button>
+                <button class="button" onclick="window.location.href='<%=request.getContextPath()%>/home'">No</button>
                 <%
                     } else if (userType.equalsIgnoreCase("staff")) {
                 %>
-                <button class="button" onclick="window.location.href='/ProductManagementServlet'">No</button>
+                <button class="button" onclick="window.location.href='<%=request.getContextPath()%>/ProductManagementServlet'">No</button>
                 <%
                     }
                 %>

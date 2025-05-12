@@ -30,11 +30,11 @@
         <i class="fa-solid fa-user-tie fa-lg"></i>
         <span>Staff Management</span>
     </a>
-    <a href="<%= request.getContextPath() %>/ProductManagementServlet" class="current">
+    <a href="<%= request.getContextPath() %>/ProductManagementServlet">
         <i class="fa-solid fa-user-tie fa-lg"></i>
         <span>Product Management</span>
     </a>
-    <a href="<%=request.getContextPath()%>/ViewUserDetailsServlet">
+    <a href="<%=request.getContextPath()%>/ViewUserDetailsServlet" class="current">
         <i class="fa-solid fa-user-tie fa-lg"></i>
         <span>My Details Management</span>
     </a>
