@@ -71,6 +71,8 @@ public class RegisterServlet extends HttpServlet {
                 UserAccessLogDao userAccessLogDao = db.getUserAccessLogDao();
                 int userAccessLogId = userAccessLogDao.logLogin(customerWithId.getUserId(), "customer");
                 session.setAttribute("userAccessLogId", userAccessLogId);
+                resp.sendRedirect(req.getContextPath()+"/views/welcome.jsp");
+                return;
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -99,12 +101,16 @@ public class RegisterServlet extends HttpServlet {
                 UserAccessLogDao userAccessLogDao = db.getUserAccessLogDao();
                 int userAccessLogId = userAccessLogDao.logLogin(staffWithId.getStaffId(), "staff");
                 session.setAttribute("userAccessLogId", userAccessLogId);
+                resp.sendRedirect(req.getContextPath()+"/views/welcome.jsp");
+                return;
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
 
         }
 
-        resp.sendRedirect(req.getContextPath()+"/views/welcome.jsp");
+        req.setAttribute("errorMessage", "Could not register account");
+        req.getRequestDispatcher("/views/register.jsp").forward(req, resp);
+
     }
 }
