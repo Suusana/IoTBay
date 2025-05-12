@@ -1,0 +1,79 @@
+body {
+    background-color: #FFF3E3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    animation: fadeIn 1s ease-in-out;
+    font-family: Arial, sans-serif;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.payment-card {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    width: 480px;
+    animation: fadeInCard 1s ease-in-out;
+}
+
+@keyframes fadeInCard {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.payment-card h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #B88E2F;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.payment-card label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+.payment-card input,
+.payment-card select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #B88E2F;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.payment-card button {
+    width: 100%;
+    background-color: #F4B860;
+    color: white;
+    padding: 12px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.payment-card button:hover {
+    background-color: #a67224;
+    cursor: pointer;
+}
+
+.errorMsg {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    white-space: pre-line;
+    margin-bottom: 15px;
+}
