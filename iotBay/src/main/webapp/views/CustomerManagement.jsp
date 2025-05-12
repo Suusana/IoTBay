@@ -13,7 +13,7 @@
 
 <div class="sideBar">
     <h2>Admin Panel</h2>
-    <a href="./AdminDashboard.jsp">
+    <a href="<%= request.getContextPath() %>/views/AdminDashboard.jsp">
         <i class="fa-solid fa-house fa-lg"></i>
         <span>Dashboard</span>
     </a>
@@ -24,6 +24,10 @@
     <a href="<%= request.getContextPath() %>/ShowStaffInfo">
         <i class="fa-solid fa-user-tie fa-lg"></i>
         <span>Staff Management</span>
+    </a>
+    <a href="<%= request.getContextPath() %>/ProductManagementServlet" >
+        <i class="fa-solid fa-user-tie fa-lg"></i>
+        <span>Product Management</span>
     </a>
     <a href="#">
         <i class="fa-solid fa-right-from-bracket fa-lg"></i>
