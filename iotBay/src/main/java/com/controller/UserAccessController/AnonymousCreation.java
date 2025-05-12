@@ -21,7 +21,7 @@ public class AnonymousCreation extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        DBManager db =  (DBManager) session.getAttribute("db");
+        DBManager db = (DBManager) session.getAttribute("db");
         CustomerDao customerDao = db.getCustomerDao();
         UserAccessLogDao userAccessLogDao = db.getUserAccessLogDao();
 
@@ -31,8 +31,9 @@ public class AnonymousCreation extends HttpServlet {
         customer.setFirstName(String.valueOf(timestamp));
         customer.setLastName(Status.GUEST.getStatus());
 
-        customer.setUsername(customer.getLastName()+customer.getFirstName());
-
+        customer.setUsername(customer.getLastName() + customer.getFirstName());
+        customer.setPassword(customer.getFirstName());
+        customer.setEmail(customer.getLastName() + customer.getFirstName() + "@example.com");
         customer.setType(UserType.INDIVIDUAL.getName());
 
         try {

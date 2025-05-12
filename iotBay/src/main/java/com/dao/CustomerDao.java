@@ -185,11 +185,13 @@ public class CustomerDao {
 
     public void setUser(Customer customer) throws SQLException {
         PreparedStatement ps = connection.prepareStatement("INSERT INTO User " +
-                "(username, first_name, last_name, type) VALUES (?, ?, ?, ?)");
+                "(username, first_name, last_name, type, email, password) VALUES (?, ?, ?, ?, ?, ?)");
         ps.setString(1, customer.getUsername());
         ps.setString(2, customer.getFirstName());
         ps.setString(3, customer.getLastName());
         ps.setString(4, customer.getType());
+        ps.setString(5, customer.getEmail());
+        ps.setString(6, customer.getPassword());
         ps.executeUpdate();
     }
 
