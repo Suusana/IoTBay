@@ -12,24 +12,22 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 
-@WebServlet("/ViewPayments")
-public class ViewPaymentsServlet extends HttpServlet {
+@WebServlet("/EditPayment")
+public class EditPayment extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int orderId = Integer.parseInt(req.getParameter("orderId"));
-
+        int paymentId = Integer.parseInt(req.getParameter("paymentId"));
         HttpSession session = req.getSession();
         DBManager db = (DBManager) session.getAttribute("db");
         PaymentDao dao = db.getPaymentDao();
 
-//        try {
-////            List<Payment> payments = dao.getPaymentsByOrderId(orderId);
-////            req.setAttribute("payments", payments);
-//            req.getRequestDispatcher("/views/PaymentList.jsp").forward(req, resp);
-//        } catch (SQLException e) {
-//            throw new ServletException("Error retrieving payments", e);
-//        }
+        try {
+            Payment payment = dao.getPaymentById(paymentId);
+            req.setAttribute("payment", payment);
+            req.getRequestDispatcher("/views/EditPayment.jsp").forward(req, resp);
+        } catch (SQLException e) {
+            throw new ServletException("Failed to load payment", e);
+        }
     }
 }

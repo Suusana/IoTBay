@@ -2,29 +2,37 @@ package com.bean;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.sql.Date;
 
 public class Payment implements Serializable {
     private Integer paymentId;
-    private Double Amount;
     private String method;
-    private Integer AccountNum;
-    private String AccountName;
-    private Integer BSB;
-    private Date date;
+    private String cardHolder;
+    private String cardNumber;
+    private Date expiryDate;         // 변경됨: String → java.sql.Date
+    private String cvv;
+    private BigDecimal amount;
+    private String status;
+    private Integer orderId;
+    private Integer userId;
+    private Date paymentDate;
 
-    public Payment() {
-    }
+    public Payment() {}
 
-    public Payment(Integer paymentId, Double amount, String method, Integer accountNum,
-                   String accountName, Integer BSB, Date date) {
+    public Payment(Integer paymentId, String method, String cardHolder, String cardNumber,
+                   Date expiryDate, String cvv, BigDecimal amount, String status,
+                   Integer orderId, Integer userId, Date paymentDate) {
         this.paymentId = paymentId;
-        Amount = amount;
         this.method = method;
-        AccountNum = accountNum;
-        AccountName = accountName;
-        this.BSB = BSB;
-        this.date = date;
+        this.cardHolder = cardHolder;
+        this.cardNumber = cardNumber;
+        this.expiryDate = expiryDate;
+        this.cvv = cvv;
+        this.amount = amount;
+        this.status = status;
+        this.orderId = orderId;
+        this.userId = userId;
+        this.paymentDate = paymentDate;
     }
 
     public Integer getPaymentId() {
@@ -35,14 +43,6 @@ public class Payment implements Serializable {
         this.paymentId = paymentId;
     }
 
-    public Double getAmount() {
-        return Amount;
-    }
-
-    public void setAmount(Double amount) {
-        Amount = amount;
-    }
-
     public String getMethod() {
         return method;
     }
@@ -51,35 +51,75 @@ public class Payment implements Serializable {
         this.method = method;
     }
 
-    public Integer getAccountNum() {
-        return AccountNum;
+    public String getCardHolder() {
+        return cardHolder;
     }
 
-    public void setAccountNum(Integer accountNum) {
-        AccountNum = accountNum;
+    public void setCardHolder(String cardHolder) {
+        this.cardHolder = cardHolder;
     }
 
-    public String getAccountName() {
-        return AccountName;
+    public String getCardNumber() {
+        return cardNumber;
     }
 
-    public void setAccountName(String accountName) {
-        AccountName = accountName;
+    public void setCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber;
     }
 
-    public Integer getBSB() {
-        return BSB;
+    public Date getExpiryDate() {               // getter 수정
+        return expiryDate;
     }
 
-    public void setBSB(Integer BSB) {
-        this.BSB = BSB;
+    public void setExpiryDate(Date expiryDate) { // setter 수정
+        this.expiryDate = expiryDate;
     }
 
-    public Date getDate() {
-        return date;
+    public String getCvv() {
+        return cvv;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setCvv(String cvv) {
+        this.cvv = cvv;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Integer getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Date getPaymentDate() {
+        return paymentDate;
+    }
+
+    public void setPaymentDate(Date paymentDate) {
+        this.paymentDate = paymentDate;
     }
 }

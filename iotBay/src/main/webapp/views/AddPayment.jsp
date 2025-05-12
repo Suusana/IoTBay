@@ -3,6 +3,7 @@
 <%@ page import="com.enums.Status" %>
 <%@ page import="com.bean.Product" %>
 <%@ page import="com.bean.Order" %>
+<%@ page import="java.math.BigDecimal" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,6 +14,7 @@
     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/paymentDetail.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
+
 <%
     Customer customer = new Customer();
     if (session.getAttribute("loggedInUser") != null) {
@@ -24,24 +26,21 @@
     Product product = (Product) request.getAttribute("product");
     Order order = (Order) request.getAttribute("order");
     int quantity = order.getQuantity();
+    BigDecimal totalPrice = BigDecimal.valueOf(product.getPrice()).multiply(BigDecimal.valueOf(quantity));
 %>
 
 <body>
 <div class="header">
-    <!-- Logo -->
     <a href="<%=request.getContextPath()%>/home">
         <img src="<%=request.getContextPath()%>/assets/img/Logo.png" alt="IotBay Logo">
     </a>
-    <!-- menu -->
-    <menu>
+    <div class="menu">
         <a href="<%=request.getContextPath()%>/home"><span class="selected">Home</span></a>
         <a href="<%= request.getContextPath() %>/productServlet"><span>Shop</span></a>
         <a href="<%= request.getContextPath() %>/viewOrder"><span>Order</span></a>
-        <a href=""><span>Category</span></a>
-    </menu>
-
-    <!-- icon menu -->
-    <menu class="icon">
+        <a href="#"><span>Category</span></a>
+    </div>
+    <div class="icon">
         <a href="<%=request.getContextPath()%>/ViewUserDetailsServlet">
             <i class="fa-solid fa-circle-user fa-2x"></i>
             <span><%= customer.getFirstName() != null ? Utils.capitaliseFirst(customer.getFirstName()) : Status.GUEST.getStatus()%></span>
@@ -54,46 +53,39 @@
             <i class="fa-solid fa-cart-shopping fa-2x"></i>
             <span>Cart</span>
         </a>
-        <%
-            if (session.getAttribute("loggedInUser") != null) {
-        %>
+        <% if (session.getAttribute("loggedInUser") != null) { %>
         <a href="<%=request.getContextPath()%>/views/logout.jsp">
             <i class="fa-solid fa-right-from-bracket fa-2x"></i>
             <span>Log Out</span>
         </a>
-        <%
-            }
-        %>
-
-    </menu>
+        <% } %>
+    </div>
 </div>
 
 <div class="container">
-    <h2>Payment Information</h2>
+    <h2>Credit Card Payment</h2>
     <form method="post" action="<%=request.getContextPath()%>/AddPayment">
+        <input type="hidden" name="orderId" value="<%= order.getOrderId() %>">
+        <input type="hidden" name="productId" value="<%= product.getProductId() %>">
+        <input type="hidden" name="quantity" value="<%= quantity %>">
+        <input type="hidden" name="method" value="CreditCard">
+
         <table>
             <tr>
-                <th>Payment Method:</th>
-                <td>
-                    <select name="paymentMethod">
-                        <option value="Apple Pay">Apple Pay</option>
-                        <option value="Credit Card">Credit Card</option>
-                        <option value="Google Pay">Google Pay</option>
-                        <option value="Afterpay">Afterpay</option>
-                    </select>
-                </td>
+                <th>Card Holder Name:</th>
+                <td><input type="text" name="cardHolder" required></td>
             </tr>
             <tr>
-                <th>Account Number:</th>
-                <td><input type="text" name="accountNumber" required></td>
+                <th>Card Number:</th>
+                <td><input type="text" name="cardNumber" required></td>
             </tr>
             <tr>
-                <th>Account Name:</th>
-                <td><input type="text" name="accountName" required></td>
+                <th>Expiry Date:</th>
+                <td><input type="date" name="expiryDate" required></td>
             </tr>
             <tr>
-                <th>BSB:</th>
-                <td><input type="text" name="bsb" required></td>
+                <th>CVV:</th>
+                <td><input type="text" name="cvv" required></td>
             </tr>
         </table>
 
@@ -101,31 +93,23 @@
         <table>
             <tr>
                 <th>Product ID:</th>
-                <td><%=product.getProductId()%>
-                </td>
+                <td><%= product.getProductId() %></td>
             </tr>
             <tr>
                 <th>Name:</th>
-                <td><%=product.getProductName()%>
-                </td>
+                <td><%= product.getProductName() %></td>
             </tr>
             <tr>
                 <th>Quantity:</th>
-                <td><%=quantity%>
-                </td>
+                <td><%= quantity %></td>
             </tr>
             <tr>
-                <th>Price:</th>
-                <td><%=quantity * product.getPrice()%>
-                </td>
+                <th>Total Price:</th>
+                <td><%= totalPrice.setScale(2) %></td>
             </tr>
         </table>
 
         <div class="btn-container">
-            <input type="hidden" name="productId" value="<%= product.getProductId()%>">
-            <input type="hidden" name="quantity" value="<%= quantity%>">
-<%--            <input type="hidden" name="orderId" value="<%= order.getOrderId()%>">--%>
-
             <button class="btn-back" onclick="history.back()">Back</button>
             <button class="btn-back" type="submit">Submit</button>
         </div>
@@ -144,7 +128,7 @@
             <a href="<%=request.getContextPath()%>/home"><span>Home</span></a>
             <a href="<%=request.getContextPath()%>/productServlet"><span>Shop</span></a>
             <a href="<%=request.getContextPath()%>/viewOrder"><span>Order</span></a>
-            <a href=""><span>Category</span></a>
+            <a href="#"><span>Category</span></a>
         </div>
         <div class="section">
             <h6>Contact Us</h6>
@@ -175,6 +159,5 @@
     <hr>
     <p>©2025. IoTBay Group 4 All Right Reserved</p>
 </div>
-
 </body>
 </html>
