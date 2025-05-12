@@ -61,17 +61,6 @@
 
 <!-- main body -->
 <h2 class="title">My Orders</h2>
-<%
-  Boolean isGuest = (Boolean) request.getAttribute("isGuest");
-  if (isGuest != null && isGuest) {
-%>
-<div style="color: orange; font-weight: bold; text-align: center; margin-bottom: 15px;">
-  ⚠ You are browsing as a guest. Your orders are temporary and may disappear after closing the browser.
-</div>
-<%
-  }
-%>
-
 
 <!-- search by orderID -->
 <form action="<%= request.getContextPath() %>/viewOrder" method="get" style="text-align:center;">

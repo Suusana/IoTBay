@@ -23,9 +23,6 @@ public class Customer implements Serializable {
     public Customer() {
     }
 
-    // New User - database autogenerate userId
-
-
     public Customer(Integer userId, String username, String password, String firstName,
                     String lastName, Long phone, String type, String email, String status,
                     String address, String city, String state, Integer postcode, String country) {

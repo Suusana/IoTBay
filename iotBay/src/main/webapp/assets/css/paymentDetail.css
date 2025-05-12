@@ -1,0 +1,62 @@
+.container {
+    border: 1px solid #ff8400;
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+h2 {
+    border-bottom: 2px solid #ff8400;
+    padding-bottom: 10px;
+}
+
+table {
+    width: 100%;
+    margin-top: 15px;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    width: 40%;
+}
+
+.btn-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.btn-back {
+    background-color: #FFA500;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn-back:hover {
+    background-color: #FF8C00;
+}
+
+input[type="text"],
+select {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+select:focus {
+    border-color: #FFA500;
+    box-shadow: 0 0 5px rgba(255, 165, 0, 0.5);
+    outline: none;
+}

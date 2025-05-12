@@ -22,7 +22,7 @@
     }
 %>
 <head>
-    <title>Main</title>
+    <title>IoTBay Home</title>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/base.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/HeaderAndFooter.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/main.css">
@@ -109,7 +109,7 @@
         <div>
             <h5>Want to manage your orders?</h5>
             <p>Manage all of your orders and track your purchases easily.</p>
-            <a href="">
+            <a href="<%=request.getContextPath()%>/viewOrder">
                 <button>Go to Order</button>
             </a>
         </div>

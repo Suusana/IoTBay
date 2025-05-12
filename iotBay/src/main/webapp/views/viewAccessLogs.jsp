@@ -1,9 +1,15 @@
 <%@ page import="com.bean.UserAccessLog" %>
 <%@ page import="java.util.LinkedList" %>
-<%@ page import="com.bean.Customer" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     LinkedList<UserAccessLog> accessLogs = (LinkedList<UserAccessLog>) request.getAttribute("accessLogs");
+
+    String startDate = "";
+    String endDate = "";
+    if (request.getAttribute("startDate") != null && request.getAttribute("endDate") != null) {
+        startDate = (String) request.getAttribute("startDate");
+        endDate = (String) request.getAttribute("endDate");
+    }
 %>
 <html>
 <head>
@@ -17,7 +23,24 @@
     <div class="logs-box">
         <h1>Account Access Logs</h1>
 
-        <p>Search by date</p>
+        <h3>Search by date</h3>
+        <form class="date-search" method="get" action="<%=request.getContextPath()%>/SearchAccessLogsServlet">
+            <label for="startDate">From: </label>
+            <input type="date" id="startDate" name="startDate" value="<%=startDate%>" max="<%=java.time.LocalDate.now()%>">
+
+            <label for="endDate">To: </label>
+            <input type="date" id="endDate" name="endDate" value="<%=endDate%>" max="<%=java.time.LocalDate.now()%>">
+
+            <button type="submit" style="cursor: pointer;">Search</button>
+        </form>
+        <%
+            String errorMessage = (String) request.getAttribute("errorMessage");
+            if (errorMessage != null) {
+        %>
+        <p style="color: red;"><%=errorMessage%></p>
+        <%
+            }
+        %>
         <table>
             <thead>
             <tr>
@@ -53,7 +76,7 @@
                 }
             %>
         </table>
-        <a href="<%=request.getContextPath()%>/ViewUserDetailsServlet">Return to Account Details</a>
+        <a class="visibleLink" href="<%=request.getContextPath()%>/ViewUserDetailsServlet">Return to Account Details</a>
     </div>
 </main>
 

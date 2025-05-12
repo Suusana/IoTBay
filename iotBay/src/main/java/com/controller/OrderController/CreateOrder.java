@@ -5,6 +5,7 @@ import com.bean.Order;
 import com.bean.Product;
 import com.dao.DBManager;
 import com.dao.OrderDao;
+import com.dao.ProductDao;
 import com.enums.OrderStatus;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -20,21 +21,13 @@ public class CreateOrder extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         HttpSession session = request.getSession();
-        int userId;
+        DBManager db = (DBManager) session.getAttribute("db");
+        OrderDao orderDao = db.getOrderDao();
+        ProductDao productDao = db.getProductDao();
 
         // get userID from session
         Customer customer = (Customer) session.getAttribute("loggedInUser");
-        if (customer == null) {
-            if (session.getAttribute("guestId") == null) {
-                int guestId = -Math.abs(session.getId().hashCode());
-                session.setAttribute("guestId", guestId);
-            }
-            userId = (int) session.getAttribute("guestId");
-        } else {
-            userId = customer.getUserId();
-        }
 
         try {
             int productId = Integer.parseInt(request.getParameter("productId"));
@@ -47,14 +40,7 @@ public class CreateOrder extends HttpServlet {
                 return;
             }
 
-            DBManager db = (DBManager) session.getAttribute("db");
-            Product product = db.getProductDao().findProductById(productId);
-
-            if (product == null) {
-                request.setAttribute("error", "Product not found.");
-                response.sendRedirect(request.getContextPath() + "/productServlet");
-                return;
-            }
+            Product product = productDao.getProductById(productId);
 
             int stock = product.getQuantity();
             if (quantity > stock) {
@@ -79,9 +65,16 @@ public class CreateOrder extends HttpServlet {
             List<Product> productList = new ArrayList<>();
             productList.add(orderedProduct);
             order.setProducts(productList);
+            order.setQuantity(quantity);
 
-            OrderDao orderDao = new OrderDao(db.getConnection());
-            orderDao.saveOrder(order, userId);
+            if (status == OrderStatus.Saved) {
+                orderDao.saveOrder(order, customer.getUserId());
+                response.sendRedirect(request.getContextPath() + "/viewOrder");
+            } else{
+                request.setAttribute("product", product);
+                request.setAttribute("order", order);
+                request.getRequestDispatcher("/views/Payment.jsp").forward(request, response);
+            }
 
             // update stock
             if (status == OrderStatus.Confirmed) {
@@ -89,11 +82,9 @@ public class CreateOrder extends HttpServlet {
                 db.getProductDao().updateProductQuantity(productId, newStock);
             }
 
-            response.sendRedirect(request.getContextPath() + "/viewOrder");
-
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect(request.getContextPath() + "/views/main.jsp");
+            response.sendRedirect(request.getContextPath() + "/home");
         }
     }
 
@@ -104,7 +95,7 @@ public class CreateOrder extends HttpServlet {
         HttpSession session = request.getSession();
         DBManager db = (DBManager) session.getAttribute("db");
         try {
-            Product product = db.getProductDao().findProductById(productId);
+            Product product = db.getProductDao().getProductById(productId);
             if (product != null) {
                 request.setAttribute("product", product);
                 request.setAttribute("quantity", quantity);

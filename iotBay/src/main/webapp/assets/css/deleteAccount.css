@@ -81,3 +81,25 @@ th, td {
 tr:hover {
     background-color: #FFF3E3;
 }
+
+.date-search {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+label {
+    padding: 10px;
+}
+
+input {
+    margin-right: 10px;
+}
+
+.visibleLink {
+    font-size: 18px;
+    margin-top: 20px;
+    color: blue;
+    text-decoration: underline blue solid;
+}

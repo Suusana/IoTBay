@@ -3,6 +3,7 @@ package com.dao;
 import com.bean.UserAccessLog;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
@@ -65,5 +66,44 @@ public class UserAccessLogDao {
         return userAccessLogs;
     }
 
-    // User cannot change or delete log
+    // Read logs between specific dates for a user
+    public LinkedList<UserAccessLog> getLogsBetweenDate(int userId, String userType, Timestamp startDate, Timestamp endDate) throws SQLException {
+        LinkedList<UserAccessLog> userAccessLogs = new LinkedList<>();
+        String startDateStr = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(startDate);
+        String endDateStr = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(endDate);
+
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM UserAccessLog" +
+                " WHERE user_id = ? AND user_type = ? AND login_time BETWEEN ? AND ? ORDER BY login_time DESC");
+
+        preparedStatement.setInt(1, userId);
+        preparedStatement.setString(2, userType);
+        preparedStatement.setString(3, startDateStr);
+        preparedStatement.setString(4, endDateStr);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()) {
+            UserAccessLog accessLog = new UserAccessLog();
+            accessLog.setUserAccessLogId(resultSet.getInt("user_access_log_id"));
+            accessLog.setUserId(resultSet.getInt("user_id"));
+            accessLog.setUserType(resultSet.getString("user_type"));
+
+            String loginTimeStr = resultSet.getString("login_time");
+            if (loginTimeStr != null && !loginTimeStr.isEmpty()) {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                LocalDateTime loginTime = LocalDateTime.parse(loginTimeStr, formatter);
+                accessLog.setLoginTime(loginTime);
+            }
+
+            String logoutTimeStr = resultSet.getString("logout_time");
+            if (logoutTimeStr != null && !logoutTimeStr.isEmpty()) {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                LocalDateTime logoutTime = LocalDateTime.parse(logoutTimeStr, formatter);
+                accessLog.setLogoutTime(logoutTime);
+            }
+            userAccessLogs.add(accessLog);
+        }
+        return userAccessLogs;
+    }
+
+    // User cannot change or delete logs
 }

@@ -6,30 +6,25 @@ import java.util.Date;
 
 public class Payment implements Serializable {
     private Integer paymentId;
-    private Integer orderId;
+    private Double Amount;
     private String method;
-    private String cardHolder;
-    private String cardNumber;
-    private Date expiryDate;
-    private BigDecimal amount;
-    private Date paymentDate;
-    private String status; // "Saved", "Submitted", etc.
+    private Integer AccountNum;
+    private String AccountName;
+    private Integer BSB;
+    private Date date;
 
     public Payment() {
     }
 
-    public Payment(Integer paymentId, Integer orderId, String method, String cardHolder,
-                   String cardNumber, Date expiryDate, BigDecimal amount,
-                   Date paymentDate, String status) {
+    public Payment(Integer paymentId, Double amount, String method, Integer accountNum,
+                   String accountName, Integer BSB, Date date) {
         this.paymentId = paymentId;
-        this.orderId = orderId;
+        Amount = amount;
         this.method = method;
-        this.cardHolder = cardHolder;
-        this.cardNumber = cardNumber;
-        this.expiryDate = expiryDate;
-        this.amount = amount;
-        this.paymentDate = paymentDate;
-        this.status = status;
+        AccountNum = accountNum;
+        AccountName = accountName;
+        this.BSB = BSB;
+        this.date = date;
     }
 
     public Integer getPaymentId() {
@@ -40,12 +35,12 @@ public class Payment implements Serializable {
         this.paymentId = paymentId;
     }
 
-    public Integer getOrderId() {
-        return orderId;
+    public Double getAmount() {
+        return Amount;
     }
 
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
+    public void setAmount(Double amount) {
+        Amount = amount;
     }
 
     public String getMethod() {
@@ -56,51 +51,35 @@ public class Payment implements Serializable {
         this.method = method;
     }
 
-    public String getCardHolder() {
-        return cardHolder;
+    public Integer getAccountNum() {
+        return AccountNum;
     }
 
-    public void setCardHolder(String cardHolder) {
-        this.cardHolder = cardHolder;
+    public void setAccountNum(Integer accountNum) {
+        AccountNum = accountNum;
     }
 
-    public String getCardNumber() {
-        return cardNumber;
+    public String getAccountName() {
+        return AccountName;
     }
 
-    public void setCardNumber(String cardNumber) {
-        this.cardNumber = cardNumber;
+    public void setAccountName(String accountName) {
+        AccountName = accountName;
     }
 
-    public Date getExpiryDate() {
-        return expiryDate;
+    public Integer getBSB() {
+        return BSB;
     }
 
-    public void setExpiryDate(Date expiryDate) {
-        this.expiryDate = expiryDate;
+    public void setBSB(Integer BSB) {
+        this.BSB = BSB;
     }
 
-    public BigDecimal getAmount() {
-        return amount;
+    public Date getDate() {
+        return date;
     }
 
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
-    public Date getPaymentDate() {
-        return paymentDate;
-    }
-
-    public void setPaymentDate(Date paymentDate) {
-        this.paymentDate = paymentDate;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

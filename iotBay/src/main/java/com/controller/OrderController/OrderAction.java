@@ -15,46 +15,39 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet("/orderAction")
 public class OrderAction extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        DBManager db = (DBManager) session.getAttribute("db");
+        OrderDao orderDao = db.getOrderDao();
+        ProductDao productDao = db.getProductDao();
 
         String action = request.getParameter("action");
         int orderId = Integer.parseInt(request.getParameter("orderId"));
 
-        HttpSession session = request.getSession();
-        DBManager dbManager = (DBManager) session.getAttribute("db");
-        Connection connection = dbManager.getConnection();
-        OrderDao orderDao = new OrderDao(connection);
-
         try {
             Order order = orderDao.findOrderByOrderId(orderId);
-
-            if (order == null) {
-                response.sendError(HttpServletResponse.SC_NOT_FOUND, "Order not found.");
-                return;
-            }
-
-            if (!"Saved".equals(order.getOrderStatus().name())) {
-                response.sendError(HttpServletResponse.SC_FORBIDDEN, "Only Saved orders can be modified.");
-                return;
-            }
-
-            ProductDao productDao = new ProductDao(connection);
+            int prodId = orderDao.getProductIdByOrderId(orderId);
+            Product prod = productDao.getProductById(prodId);
+            List<Product> list = new ArrayList<>();
+            list.add(prod);
+            order.setProducts(list);
 
             switch (action) {
                 case "update":
                     boolean hasError = false;
                     StringBuilder errorMsg = new StringBuilder();
-
                     for (Product product : order.getProducts()) {
                         int productId = product.getProductId();
 
                         // getProductFreshQuantity
-                        Product freshProduct = productDao.findProductById(productId);
+                        Product freshProduct = productDao.getProductById(productId);
                         int availableStock = freshProduct.getQuantity();
 
                         String quantityParam = request.getParameter("quantity_" + productId);
@@ -91,15 +84,7 @@ public class OrderAction extends HttpServlet {
                     // using productDao to update productQuantity
                     for (Product product : order.getProducts()) {
                         int productId = product.getProductId();
-                        int orderQuantity = product.getQuantity();
-
-                        Product dbProduct = productDao.findProductById(productId);
-                        int currentStock = dbProduct.getQuantity();
-
-                        int updatedStock = currentStock - orderQuantity;
-                        if (updatedStock < 0) updatedStock = 0;
-
-                        productDao.updateProductQuantity(productId, updatedStock);
+                        productDao.updateProductQuantity(productId, order.getQuantity());
                     }
 
                     response.sendRedirect("viewOrderDetails?orderId=" + orderId);
@@ -112,12 +97,12 @@ public class OrderAction extends HttpServlet {
                     break;
 
                 default:
-                    response.sendRedirect("viewOrder");
+                    response.sendRedirect("/viewOrder");
                     break;
             }
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect("viewOrder");
+            response.sendRedirect("/viewOrder");
         }
     }
 }
