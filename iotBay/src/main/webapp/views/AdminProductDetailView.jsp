@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/base.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/sideBar.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/StaffDetail.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/AdminProductViewDetail.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>

@@ -69,7 +69,7 @@
         </div>
         <div class="search-box-category">
             <h3>Search by Category</h3>
-            <form action="<%= request.getContextPath() %>/GetByCategory" method="get" target="_blank">
+            <form action="<%= request.getContextPath() %>/GetByCategory" method="get">
                 <select name="categoryId">
                     <option disabled>Please select a category</option>
                     <option name="categoryId" value="1">Smart Home</option>
@@ -135,12 +135,12 @@
             </td>
             <td class="operation">
 
-                    <form action="<%= request.getContextPath() %>/ProductDetailAdminServlet" method="get" target="_blank">
+                    <form action="<%= request.getContextPath() %>/ProductDetailAdminServlet" method="get">
                         <input type="hidden" name="productId" value="<%= product.getProductId() %>">
                         <button type="submit" name="view" value="view">View</button>
                     </form>
 
-                    <form action="<%= request.getContextPath() %>/UpdateProductServlet" method="get" target="_blank">
+                    <form action="<%= request.getContextPath() %>/UpdateProductServlet" method="get">
                         <input type="hidden" name="productId" value="<%= product.getProductId() %>">
                         <button type="submit" name="update" class="update">Update</button>
                     </form>
