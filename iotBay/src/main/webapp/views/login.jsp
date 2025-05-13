@@ -19,7 +19,7 @@
 <body>
 <div class="header" style="border-bottom: 1px solid #a7a7a7">
     <!-- Logo -->
-    <a href="<%=request.getContextPath()%>/home">
+    <a href="../index.jsp">
         <img src="../assets/img/Logo.png" alt="IotBay Logo">
     </a>
 </div>
