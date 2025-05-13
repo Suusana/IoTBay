@@ -59,13 +59,13 @@
         <img src="<%= request.getContextPath() %>/assets/img/<%= product.getImage() %>" alt="Device">
 
         <div class="info-section">
-            <form action="<%=request.getContextPath()%>/UpdateProductServlet" method="post">
+            <form action="<%=request.getContextPath()%>/UpdateProductServlet" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="productId" value="<%=product.getProductId()%>"/>
                 <label>Product Name : <input type="text" name="productName" value="<%=product.getProductName()%>"/></label>
                 <label>Price : <input type="text" name="price" value="<%=product.getPrice()%>"/></label>
                 <label>Quantity : <input type="number" name="quantity" value="<%=product.getQuantity()%>"/></label>
                 <label>Description : <textarea name="description"> <%=product.getDescription()%></textarea></label>
-                <label>Image : <input type="text" name="image" value="<%=product.getImage()%>"/></label>
+                <label>Image : <input type="file" name="image" value="<%=product.getImage()%>"/></label>
                 <%
                     Category category = new Category();
                     category = product.getCategory();
