@@ -145,7 +145,6 @@
                         <button type="submit" name="update" class="update">Update</button>
                     </form>
 
-
                     <form action="<%= request.getContextPath() %>/DeleteProduct" method="post" onsubmit="return confirm('Are you sure you want to delete it permanently remove this product?')">
                         <input type="hidden" name="productId" value="<%= product.getProductId() %>">
                         <button class="delete" type="submit">Delete</button>

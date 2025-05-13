@@ -28,7 +28,6 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/base.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/HeaderAndFooter.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/search.css">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
@@ -44,7 +43,7 @@
         <a href="<%= request.getContextPath()%>/home"><span>Home</span></a>
         <a href="<%= request.getContextPath() %>/productServlet"><span>Shop</span></a>
         <a href="<%= request.getContextPath() %>/viewOrder"><span>Order</span></a>
-        <a href="#"><span>Category</span></a>
+        <a href="<%= request.getContextPath() %>/ViewPayment"><span>Payment</span></a>
     </menu>
 
     <!-- icon menu -->
@@ -168,7 +167,7 @@
             <a href="<%=request.getContextPath()%>/home"><span>Home</span></a>
             <a href="<%=request.getContextPath()%>/productServlet"><span>Shop</span></a>
             <a href="<%=request.getContextPath()%>/viewOrder"><span>Order</span></a>
-            <a href="#"><span>Category</span></a>
+            <a href="<%= request.getContextPath() %>/ViewPayment"><span>Payment</span></a>
         </div>
         <div class="section">
             <h6>Contact Us</h6>
