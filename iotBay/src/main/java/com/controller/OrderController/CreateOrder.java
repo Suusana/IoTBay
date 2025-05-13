@@ -21,6 +21,7 @@ public class CreateOrder extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         HttpSession session = request.getSession();
         DBManager db = (DBManager) session.getAttribute("db");
         OrderDao orderDao = db.getOrderDao();
@@ -41,15 +42,15 @@ public class CreateOrder extends HttpServlet {
             }
 
             Product product = productDao.getProductById(productId);
-
             int stock = product.getQuantity();
+
             if (quantity > stock) {
                 request.setAttribute("error", "Not enough stock. Only " + stock + " item(s) available.");
                 forwardBackToProduct(request, response, productId, quantity);
                 return;
             }
 
-            //only two buttons
+            // only two buttons: Submit or Save
             OrderStatus status = "Submit".equalsIgnoreCase(action)
                     ? OrderStatus.Confirmed
                     : OrderStatus.Saved;
@@ -58,8 +59,12 @@ public class CreateOrder extends HttpServlet {
             order.setOrderStatus(status);
             order.setCreateDate(new Timestamp(System.currentTimeMillis()));
 
+            // Copy all product details into the orderedProduct object
             Product orderedProduct = new Product();
-            orderedProduct.setProductId(productId);
+            orderedProduct.setProductId(product.getProductId());
+            orderedProduct.setProductName(product.getProductName());
+            orderedProduct.setPrice(product.getPrice());
+            orderedProduct.setDescription(product.getDescription());
             orderedProduct.setQuantity(quantity);
 
             List<Product> productList = new ArrayList<>();
@@ -67,13 +72,19 @@ public class CreateOrder extends HttpServlet {
             order.setProducts(productList);
             order.setQuantity(quantity);
 
+            // Save the order in DB
+            orderDao.saveOrder(order, customer.getUserId());
+
             if (status == OrderStatus.Saved) {
-                orderDao.saveOrder(order, customer.getUserId());
                 response.sendRedirect(request.getContextPath() + "/viewOrder");
-            } else{
-                request.setAttribute("product", product);
-                request.setAttribute("order", order);
-                request.getRequestDispatcher("/views/Payment.jsp").forward(request, response);
+            } else {
+                // Save order before proceeding to payment
+                // Store order and product in session so they can be accessed in AddPayment.jsp
+                session.setAttribute("order", order);
+                session.setAttribute("product", product);
+
+                // Redirect instead of forward to update browser address bar and prevent duplicate POST
+                response.sendRedirect(request.getContextPath() + "/views/AddPayment.jsp");
             }
 
             // update stock
@@ -88,12 +99,14 @@ public class CreateOrder extends HttpServlet {
         }
     }
 
-    // if stock is less than the quantity which the user wants, jump back to ProductDetails
-    //also mention the available stock
+    // If stock is less than the quantity the user wants, go back to product detail page
+    // Also show available stock
     private void forwardBackToProduct(HttpServletRequest request, HttpServletResponse response, int productId, int quantity)
             throws ServletException, IOException {
+
         HttpSession session = request.getSession();
         DBManager db = (DBManager) session.getAttribute("db");
+
         try {
             Product product = db.getProductDao().getProductById(productId);
             if (product != null) {
@@ -103,6 +116,7 @@ public class CreateOrder extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         request.getRequestDispatcher("/views/productDetail.jsp").forward(request, response);
     }
 }

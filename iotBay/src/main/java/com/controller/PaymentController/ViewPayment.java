@@ -14,20 +14,33 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet("/ViewPayments")
+@WebServlet("/ViewPayment")
 public class ViewPayment extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int orderId = Integer.parseInt(req.getParameter("orderId"));
-
         HttpSession session = req.getSession();
         DBManager db = (DBManager) session.getAttribute("db");
         PaymentDao dao = db.getPaymentDao();
 
+        String orderIdStr = req.getParameter("orderId");
+
         try {
-            List<Payment> payments = dao.getPaymentsByOrderId(orderId);
-            req.setAttribute("payments", payments);
+            List<Payment> payments;
+            int orderId = -1;
+
+            if (orderIdStr != null && !orderIdStr.isEmpty()) {
+                orderId = Integer.parseInt(orderIdStr);
+                payments = dao.getPaymentsByOrderId(orderId);
+                req.setAttribute("orderId", orderId);
+            } else {
+                payments = dao.getAllPayments();
+            }
+
+            req.setAttribute("paymentList", payments);
             req.getRequestDispatcher("/views/ViewPayment.jsp").forward(req, resp);
+
+        } catch (NumberFormatException e) {
+            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid orderId");
         } catch (SQLException e) {
             throw new ServletException("Error retrieving payments", e);
         }

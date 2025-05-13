@@ -17,17 +17,27 @@ import java.sql.SQLException;
 public class EditPayment extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int paymentId = Integer.parseInt(req.getParameter("paymentId"));
-        HttpSession session = req.getSession();
-        DBManager db = (DBManager) session.getAttribute("db");
-        PaymentDao dao = db.getPaymentDao();
-
         try {
+            int paymentId = Integer.parseInt(req.getParameter("paymentId"));
+            HttpSession session = req.getSession();
+            DBManager db = (DBManager) session.getAttribute("db");
+            PaymentDao dao = db.getPaymentDao();
+
             Payment payment = dao.getPaymentById(paymentId);
+
+            if (payment == null) {
+                resp.sendError(HttpServletResponse.SC_NOT_FOUND, "Payment not found.");
+                return;
+            }
+
             req.setAttribute("payment", payment);
             req.getRequestDispatcher("/views/EditPayment.jsp").forward(req, resp);
+
+        } catch (NumberFormatException e) {
+            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid payment ID.");
         } catch (SQLException e) {
             throw new ServletException("Failed to load payment", e);
         }
     }
 }
+

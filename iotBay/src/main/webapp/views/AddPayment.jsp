@@ -1,163 +1,169 @@
-<%@ page import="com.util.Utils" %>
-<%@ page import="com.bean.Customer" %>
-<%@ page import="com.enums.Status" %>
-<%@ page import="com.bean.Product" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.bean.Order" %>
-<%@ page import="java.math.BigDecimal" %>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Payment Details</title>
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/base.css">
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/HeaderAndFooter.css">
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/paymentDetail.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-</head>
-
+<%@ page import="com.bean.Product" %>
 <%
-    Customer customer = new Customer();
-    if (session.getAttribute("loggedInUser") != null) {
-        customer = (Customer) session.getAttribute("loggedInUser");
-    } else {
-        customer.setUsername(Status.GUEST.getStatus());
-    }
-
-    Product product = (Product) request.getAttribute("product");
-    Order order = (Order) request.getAttribute("order");
-    int quantity = order.getQuantity();
-    BigDecimal totalPrice = BigDecimal.valueOf(product.getPrice()).multiply(BigDecimal.valueOf(quantity));
+    Order order = (Order) session.getAttribute("order");
+    Product product = (Product) session.getAttribute("product");
 %>
 
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Add Payment</title>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
+    <style>
+        body {
+            background-color: #FFF3E3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            animation: fadeIn 1s ease-in-out;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .card {
+            background-color: #fff;
+            padding: 30px 40px 50px 40px;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            width: 450px;
+            animation: fadeInCard 1s ease-in-out;
+        }
+
+        @keyframes fadeInCard {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: 800;
+            color: #B88E2F;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin: 12px 0 5px 0;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .card-number-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .card-number-group input {
+            width: 22%;
+            text-align: center;
+            font-size: 18px;
+            letter-spacing: 2px;
+        }
+
+        .style1 {
+            border: 1px solid #B88E2F;
+            padding: 10px 25px;
+            font-size: 16px;
+            font-weight: 700;
+            color: #B88E2F;
+            background-color: transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 25px;
+        }
+
+        .style1:hover {
+            background-color: #B88E2F;
+            color: #fff;
+        }
+
+        .error {
+            color: red;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
 <body>
-<div class="header">
-    <a href="<%=request.getContextPath()%>/home">
-        <img src="<%=request.getContextPath()%>/assets/img/Logo.png" alt="IotBay Logo">
-    </a>
-    <div class="menu">
-        <a href="<%=request.getContextPath()%>/home"><span class="selected">Home</span></a>
-        <a href="<%= request.getContextPath() %>/productServlet"><span>Shop</span></a>
-        <a href="<%= request.getContextPath() %>/viewOrder"><span>Order</span></a>
-        <a href="#"><span>Category</span></a>
-    </div>
-    <div class="icon">
-        <a href="<%=request.getContextPath()%>/ViewUserDetailsServlet">
-            <i class="fa-solid fa-circle-user fa-2x"></i>
-            <span><%= customer.getFirstName() != null ? Utils.capitaliseFirst(customer.getFirstName()) : Status.GUEST.getStatus()%></span>
-        </a>
-        <a href="<%=request.getContextPath()%>/GetByProductNameToCustomer">
-            <i class="fa-solid fa-magnifying-glass fa-2x"></i>
-            <span>Search</span>
-        </a>
-        <a href="<%=request.getContextPath()%>/views/cart.jsp">
-            <i class="fa-solid fa-cart-shopping fa-2x"></i>
-            <span>Cart</span>
-        </a>
-        <% if (session.getAttribute("loggedInUser") != null) { %>
-        <a href="<%=request.getContextPath()%>/views/logout.jsp">
-            <i class="fa-solid fa-right-from-bracket fa-2x"></i>
-            <span>Log Out</span>
-        </a>
-        <% } %>
-    </div>
-</div>
+<div class="card">
+    <h2>Add Payment</h2>
+    <form action="<%= request.getContextPath() %>/AddPayment" method="post" onsubmit="return validatePaymentForm()">
+        <label for="firstName">First Name:</label>
+        <input type="text" name="firstName" id="firstName" required />
 
-<div class="container">
-    <h2>Credit Card Payment</h2>
-    <form method="post" action="<%=request.getContextPath()%>/AddPayment">
-        <input type="hidden" name="orderId" value="<%= order.getOrderId() %>">
-        <input type="hidden" name="productId" value="<%= product.getProductId() %>">
-        <input type="hidden" name="quantity" value="<%= quantity %>">
-        <input type="hidden" name="method" value="CreditCard">
+        <label for="lastName">Last Name:</label>
+        <input type="text" name="lastName" id="lastName" required />
 
-        <table>
-            <tr>
-                <th>Card Holder Name:</th>
-                <td><input type="text" name="cardHolder" required></td>
-            </tr>
-            <tr>
-                <th>Card Number:</th>
-                <td><input type="text" name="cardNumber" required></td>
-            </tr>
-            <tr>
-                <th>Expiry Date:</th>
-                <td><input type="date" name="expiryDate" required></td>
-            </tr>
-            <tr>
-                <th>CVV:</th>
-                <td><input type="text" name="cvv" required></td>
-            </tr>
-        </table>
-
-        <h2>Product Information</h2>
-        <table>
-            <tr>
-                <th>Product ID:</th>
-                <td><%= product.getProductId() %></td>
-            </tr>
-            <tr>
-                <th>Name:</th>
-                <td><%= product.getProductName() %></td>
-            </tr>
-            <tr>
-                <th>Quantity:</th>
-                <td><%= quantity %></td>
-            </tr>
-            <tr>
-                <th>Total Price:</th>
-                <td><%= totalPrice.setScale(2) %></td>
-            </tr>
-        </table>
-
-        <div class="btn-container">
-            <button class="btn-back" onclick="history.back()">Back</button>
-            <button class="btn-back" type="submit">Submit</button>
+        <label>Card Number:</label>
+        <div class="card-number-group">
+            <input type="password" maxlength="4" class="card-part" id="card1" required />
+            <input type="password" maxlength="4" class="card-part" id="card2" required />
+            <input type="password" maxlength="4" class="card-part" id="card3" required />
+            <input type="password" maxlength="4" class="card-part" id="card4" required />
         </div>
+        <input type="hidden" name="cardNumber" id="fullCardNumber" />
+
+        <label for="expiryDate">Expiry Date:</label>
+        <input type="date" name="expiryDate" id="expiryDate" required />
+
+        <label for="cvv">CVC:</label>
+        <input type="password" name="cvv" id="cvv" required />
+
+        <button type="submit" class="style1">Add payment</button>
     </form>
 </div>
 
-<div class="footer">
-    <hr>
-    <div>
-        <div class="section">
-            <h6 id="dif">IoTBay</h6><br>
-            <span>The most complete range of IoT devices to upgrade your life at the touch of a button.</span>
-        </div>
-        <div class="section">
-            <h6>Links</h6>
-            <a href="<%=request.getContextPath()%>/home"><span>Home</span></a>
-            <a href="<%=request.getContextPath()%>/productServlet"><span>Shop</span></a>
-            <a href="<%=request.getContextPath()%>/viewOrder"><span>Order</span></a>
-            <a href="#"><span>Category</span></a>
-        </div>
-        <div class="section">
-            <h6>Contact Us</h6>
-            <span>Address: 123 IotBay, Sydney</span>
-            <span>Phone Number: +61 0499999999</span>
-            <span>Email Address: IotBay@example.com</span>
-        </div>
-        <div class="section">
-            <h6>Follow Us</h6>
-            <a href="https://www.instagram.com/">
-                <i class="fa-brands fa-instagram fa-lg"></i>
-                <span>Instagram</span>
-            </a>
-            <a href="https://www.facebook.com/">
-                <i class="fa-brands fa-facebook fa-lg"></i>
-                <span>Facebook</span>
-            </a>
-            <a href="https://discord.com/">
-                <i class="fa-brands fa-discord fa-lg"></i>
-                <span>Discord</span>
-            </a>
-            <a href="https://x.com/?lang=en">
-                <i class="fa-brands fa-x-twitter fa-lg"></i>
-                <span>Twitter</span>
-            </a>
-        </div>
-    </div>
-    <hr>
-    <p>©2025. IoTBay Group 4 All Right Reserved</p>
-</div>
+<script>
+    const parts = ["card1", "card2", "card3", "card4"];
+
+    parts.forEach((id, index) => {
+        const input = document.getElementById(id);
+        input.addEventListener("input", (e) => {
+            e.target.value = e.target.value.replace(/\D/g, ""); // allow only digits
+            if (e.target.value.length === 4 && index < parts.length - 1) {
+                document.getElementById(parts[index + 1]).focus();
+            }
+        });
+
+        input.addEventListener("keydown", (e) => {
+            if (e.key === "Backspace" && input.value === "" && index > 0) {
+                document.getElementById(parts[index - 1]).focus();
+            }
+        });
+    });
+
+    function validatePaymentForm() {
+        const cardNumber = parts.map(id => document.getElementById(id).value).join("");
+        if (!/^\d{16}$/.test(cardNumber)) {
+            alert("Card number must be 16 digits.");
+            return false;
+        }
+
+        const cvc = document.getElementById("cvv").value;
+        if (!/^\d{3,4}$/.test(cvc)) {
+            alert("CVC must be 3 or 4 digits.");
+            return false;
+        }
+
+        document.getElementById("fullCardNumber").value = cardNumber;
+        return true;
+    }
+</script>
 </body>
 </html>
