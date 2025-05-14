@@ -64,7 +64,7 @@ public class UpdateProductServlet extends HttpServlet {
                 getFormImg.write(uploadPath+File.separator+imgName);
                 product.setImage(imgName);
             }else{
-                Product prevInfo = pd.getProductById(productId);
+                Product prevInfo = pd.getProductById(productId); //when staff update without new img -> keep current img
                 product.setImage(prevInfo.getImage());
             }
             //product db stores categoryId but product class stores string(category name)

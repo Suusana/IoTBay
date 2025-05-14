@@ -32,10 +32,12 @@ public class AddNewProduct extends HttpServlet {
         String description = req.getParameter("description");
         //String image = req.getParameter("image");
         String appPath=req.getServletContext().getRealPath("/");
-        String uploadPath = appPath+ File.separator+"assets"+File.separator+"img";
+        String uploadPath = appPath+ File.separator+"assets"+File.separator+"img"; // "../assets/img"
 
-        Part getFormImg = req.getPart("image");
-        String imgName = Paths.get(getFormImg.getSubmittedFileName()).getFileName().toString();
+        Part getFormImg = req.getPart("image"); //from form input
+        //System.out.println("getFormImg");
+        //System.out.println(getFormImg.getSubmittedFileName());
+        String imgName = getFormImg.getSubmittedFileName();
 
 
         int categoryId = Integer.parseInt(req.getParameter("categoryId"));
@@ -45,6 +47,7 @@ public class AddNewProduct extends HttpServlet {
         product.setPrice(price);
         product.setQuantity(quantity);
         product.setDescription(description);
+        //img upload
         if(imgName != null && !imgName.isEmpty()){
             getFormImg.write(uploadPath+File.separator+imgName);
             product.setImage(imgName);
