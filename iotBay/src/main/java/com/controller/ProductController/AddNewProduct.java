@@ -22,7 +22,7 @@ public class AddNewProduct extends HttpServlet {
         HttpSession session = req.getSession();
         DBManager db = (DBManager) session.getAttribute("db");
         ProductDao pd = db.getProductDao();
-
+        CategoryDao cd = db.getCategoryDao();
         Product product = new Product();
         boolean exists = false;
 
@@ -36,6 +36,7 @@ public class AddNewProduct extends HttpServlet {
                 resp.sendRedirect(req.getContextPath() + "/ProductManagementServlet");
                 return;
             }else{
+                exists = false;
                 req.getSession().setAttribute("exist", exists);//false - can add new product
             }
         } catch (SQLException e) {
@@ -55,7 +56,29 @@ public class AddNewProduct extends HttpServlet {
         String imgName = getFormImg.getSubmittedFileName();
 
         int categoryId = Integer.parseInt(req.getParameter("categoryId"));
-
+        try{
+            boolean categoryLenValidation = false;
+            int maxCategoryLen = cd.lenCategory();
+            if(categoryId>maxCategoryLen){
+                categoryLenValidation = true;
+                session.setAttribute("categoryLenValidation", categoryLenValidation);
+                resp.sendRedirect(req.getContextPath() + "/ProductManagementServlet");
+                return;
+            }else{
+                categoryLenValidation =false;
+                session.setAttribute("categoryLenValidation", categoryLenValidation);
+                try{
+                    Category category = cd.getCategoryById(categoryId);
+                    product.setCategory(category);
+                }catch(SQLException e){
+                    System.out.println("Category error detected");
+                    e.printStackTrace();
+                }
+            }
+        } catch (RuntimeException | SQLException Exception) {
+            System.out.println("Error - categoryLenValidation from addNewProduct");
+            throw new RuntimeException(Exception);
+        }
        // product.setProductId(productId);
         product.setProductName(productName);
         product.setPrice(price);
@@ -68,14 +91,7 @@ public class AddNewProduct extends HttpServlet {
         }else{
             product.setImage("");
         }
-        try{
-            CategoryDao cd = db.getCategoryDao();
-            Category category = cd.getCategoryById(categoryId);
-            product.setCategory(category);
-        }catch(SQLException e){
-            System.out.println("Category error detected");
-            e.printStackTrace();
-        }
+
         //This is for the test
         //('Capacitive Touch Sensor Module v2.0', 30, 18.90,
         // 'Capacitive touch sensor module used for detecting touch input in Arduino, Raspberry Pi, and interactive projects.',

@@ -1,6 +1,7 @@
 package com.controller.ProductController;
 
 import com.bean.Product;
+import com.dao.CategoryDao;
 import com.dao.DBManager;
 import com.dao.ProductDao;
 import jakarta.servlet.ServletException;
@@ -28,11 +29,12 @@ public class ProductManagementServlet extends HttpServlet {
             HttpSession session = req.getSession();
             DBManager db = (DBManager) session.getAttribute("db");
             ProductDao productDao = db.getProductDao();
-
+            CategoryDao categoryDao = db.getCategoryDao();
             List<Product> allProducts = productDao.getAllProducts();
             req.setAttribute("allProducts", allProducts); // set to request
             req.getRequestDispatcher("/views/ProductManagement.jsp").forward(req, resp); // forward to JSP
-
+            req.setAttribute("CategoryLen", categoryDao.lenCategory());
+            System.out.println("Category len: " + categoryDao.lenCategory());
             System.out.println("Fetched products: " + allProducts.size()); //To check whether this code runs
 
         } catch (SQLException e) {

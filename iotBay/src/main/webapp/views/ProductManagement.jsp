@@ -16,6 +16,7 @@
 <%
     List<Product> allProducts = (List<Product>) request.getAttribute("allProducts");
     List<Category> categories = (List<Category>) request.getAttribute("categories");
+    Integer CategoryLen = (Integer) request.getAttribute("CategoryLen");
 %>
 
 <head>
@@ -25,13 +26,6 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/ProductManagement.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <%
-        Boolean exists = (Boolean) session.getAttribute("exists");
-        if(exists != null && exists){%>
-        <script>alert("This product already exist!")</script>
-    <%
-        }
-    %>
 </head>
 <body>
 <%
@@ -101,10 +95,10 @@
         <h2>Add New Product</h2>
         <form action="<%= request.getContextPath() %>/AddNewProduct" method="post" enctype="multipart/form-data">
             <label>Name: <input type="text" name="productName" required></label>
-            <label>Price: <input type="text" name="price" required></label>
-            <label>Quantity: <input type="number" name="quantity" required></label>
+            <label>Price: <input type="number" min="0" step="0.01" name="price" required></label>
+            <label>Quantity: <input type="number" min="0" name="quantity" required></label>
             <label>Description: <textarea name="description"></textarea></label>
-            <label>Category ID:<input type="number" name="categoryId" required/></label>
+            <label>Category ID:<input type="number" name="categoryId" min="1" max="<%=CategoryLen%>" required/></label>
             <label>Image:<input type="file" name="image" value=""/></label><br>
             <button type="submit">Add New Product</button>
         </form>
@@ -166,6 +160,22 @@
         </tbody>
     </table>
 </div>
-
+<script>
+<%
+    Boolean exists = (Boolean) session.getAttribute("exists");
+    if(exists != null && exists){
+        session.removeAttribute("exists");
+%>
+    alert("This product already exist!")
+<%
+    }
+    Boolean categoryLenValidation = (Boolean) session.getAttribute("categoryLenValidation");
+    if(categoryLenValidation!=null && categoryLenValidation){
+        session.removeAttribute("categoryLenValidation");
+%>
+    alert("Category number out of range it should be 1 - 10");
+<%
+    }
+%></script>
 </body>
 </html>

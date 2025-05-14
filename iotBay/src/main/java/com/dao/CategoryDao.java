@@ -46,4 +46,14 @@ public class CategoryDao {
         }
         return null;
     }
+    public int lenCategory() throws SQLException {
+        PreparedStatement ps = connection.prepareStatement("select count(*) from Category");
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            int len = rs.getInt(1);
+            return len;
+        }
+        return 0;
+    }
 }
