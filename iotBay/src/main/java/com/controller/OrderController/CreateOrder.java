@@ -50,7 +50,7 @@ public class CreateOrder extends HttpServlet {
                 return;
             }
 
-            // only two buttons: Submit or Save
+            // only two buttons: Submit or Save, change Order status
             OrderStatus status = "Submit".equalsIgnoreCase(action)
                     ? OrderStatus.Confirmed
                     : OrderStatus.Saved;

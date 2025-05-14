@@ -113,7 +113,7 @@
     <tr>
       <td><%= product.getProductName() %> (ID: <%= productId %>)</td>
       <td>
-        <!--quantity must > 0-->
+        <!--quantity must more than 0-->
         <input type="number" name="quantity_<%= productId %>" value="<%= order.getQuantity() %>" min="1"
                style="width: 60px; text-align: center;">
       </td>

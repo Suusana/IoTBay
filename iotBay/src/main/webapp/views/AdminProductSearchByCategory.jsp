@@ -43,7 +43,7 @@
 
         <div class="update-product-info">
             <h4>Update Product Info</h4>
-            <form action="<%= request.getContextPath() %>/UpdateProductServlet" method="post">
+            <form action="<%= request.getContextPath() %>/UpdateProductServlet" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="productId" value="<%= product.getProductId() %>">
                 <label>Name: <input type="text" name="productName" value="<%= product.getProductName() %>"/></label>
                 <label>Price: <input type="text" name="price" value="<%= product.getPrice() %>"/></label>
@@ -63,7 +63,7 @@
                 <label>Category ID:<input type="number" name="categoryId" value="<%=categoryID%>"/></label>
                 <p>Category :<%=product.getCategory().getCategory()%>
                 </p>
-                <label>Image:<input type="text" name="image" value="<%=product.getImage()%>"/></label>
+                <label>Image:<input type="file" name="image" value="<%=product.getImage()%>"/></label>
                 <button type="submit">Update</button>
             </form>
         </div>
