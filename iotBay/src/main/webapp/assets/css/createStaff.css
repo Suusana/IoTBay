@@ -52,3 +52,8 @@ select{
 .buttonGroup{
     margin-left: 30%;
 }
+
+p{
+    color: red;
+    margin-left: 30%;
+}

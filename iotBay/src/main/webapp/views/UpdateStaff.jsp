@@ -23,7 +23,8 @@
 %>
 <div class="sideBar">
     <h2>Admin Panel</h2>
-    <h4>Current Staff: <%= _staff.getStaffName()%></h4>
+    <h4>Current Staff: <%= _staff.getStaffName()%>
+    </h4>
     <a href="<%= request.getContextPath() %>/ShowCustomerInfo">
         <i class="fa-solid fa-user fa-lg"></i>
         <span>Customer Management</span>
@@ -128,9 +129,15 @@
                 <input type="text" name="country" value="<%= staff.getCountry()%>" required>
             </div>
         </div>
+        <% String errorMsg = (String) request.getAttribute("msg"); %>
+        <% if (errorMsg != null && !errorMsg.isEmpty()) { %>
+        <p><%= errorMsg %></p>
+        <% } %>
 
         <div class="buttonGroup">
-            <button type="button" onclick="if(confirm('Are you sure you want to leave without saving?')) history.back();">Cancel</button>
+            <button type="button"
+                    onclick="if(confirm('Are you sure you want to leave without saving?')) history.back();">Cancel
+            </button>
             <input type="hidden" name="staffId" value="<%= staff.getStaffId()%>">
             <button type="submit">Save</button>
         </div>

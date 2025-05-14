@@ -55,30 +55,11 @@
 
 <div class="main-content">
     <h1>Customer Management</h1>
-
-<%--    <!-- Crate customer -->--%>
-<%--    <h2>Create New Customer</h2>--%>
-<%--    <form class="customer-form" action="<%=request.getContextPath()%>/AddCustomer" method="post">--%>
-
-<%--        <input type="text" name="name" placeholder="Full Name" required>--%>
-<%--        <input type="email" name="email" placeholder="Email" required>--%>
-
-<%--        <select name="type" required>--%>
-<%--            <option value="">Select Type</option>--%>
-<%--            <option value="Company">Company</option>--%>
-<%--            <option value="Individual">Individual</option>--%>
-<%--        </select>--%>
-
-<%--        <input type="text" name="address" placeholder="Address" required>--%>
-
-<%--        <button type="submit">Create Customer</button>--%>
-<%--    </form>--%>
-
     <!-- Search Customer -->
     <div class="top-bar">
         <%--        searh for a staff --%>
         <form action="<%= request.getContextPath() %>/ShowCustomerInfo" method="get" class="search-form">
-            <input type="text" name="query" placeholder="Search by Name or Position" class="search-input"
+            <input type="text" name="query" placeholder="Search by Name or Email" class="search-input"
                    value="<%= (request.getAttribute("query") != null) ? (String)request.getAttribute("query") : "" %>">
             <button type="submit" class="search-button">Search</button>
         </form>

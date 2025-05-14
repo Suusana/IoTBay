@@ -97,7 +97,7 @@
             <label>Quantity: <input type="number" name="quantity" required></label>
             <label>Description: <textarea name="description"></textarea></label>
             <label>Category ID:<input type="number" name="categoryId" required/></label>
-            <label>Image:<input type="file" name="image" value=""/></label>
+            <label>Image:<input type="file" name="image" value=""/></label><br>
             <button type="submit">Add New Product</button>
         </form>
     </div>

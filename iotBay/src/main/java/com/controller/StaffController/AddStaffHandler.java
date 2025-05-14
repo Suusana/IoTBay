@@ -21,24 +21,38 @@ public class AddStaffHandler extends HttpServlet {
         DBManager db = (DBManager) session.getAttribute("db");
         StaffDao staffDao = db.getStaffDao();
 
-        Staff staff = new Staff();
-        staff.setStaffName(req.getParameter("staff_name"));
-        staff.setPassword(req.getParameter("password"));
-        staff.setPhoneNum(new Integer(req.getParameter("phone_num")));
-        staff.setEmail(req.getParameter("email"));
-        staff.setPosition(req.getParameter("position"));
-        staff.setStatus("Active");
-        staff.setAddress(req.getParameter("address"));
-        staff.setCity(req.getParameter("city"));
-        staff.setPostcode(req.getParameter("postcode"));
-        staff.setState(req.getParameter("state"));
-        staff.setCountry(req.getParameter("country"));
+        // check if email or phone num is unique
+        String email = req.getParameter("email");
+        int phone = Integer.parseInt(req.getParameter("phone_num"));
 
         try {
-            staffDao.addStaff(staff);
-            resp.sendRedirect(req.getContextPath() + "/ShowStaffInfo");
+            Integer id = staffDao.getStaffIdByPhoneOrEmailInfo(phone,email);
+            if (id == null) {
+                Staff staff = new Staff();
+                staff.setStaffName(req.getParameter("staff_name"));
+                staff.setPassword(req.getParameter("password"));
+                staff.setPhoneNum(phone);
+                staff.setEmail(email);
+                staff.setPosition(req.getParameter("position"));
+                staff.setStatus("Active");
+                staff.setAddress(req.getParameter("address"));
+                staff.setCity(req.getParameter("city"));
+                staff.setPostcode(req.getParameter("postcode"));
+                staff.setState(req.getParameter("state"));
+                staff.setCountry(req.getParameter("country"));
+
+                try {
+                    staffDao.addStaff(staff);
+                    resp.sendRedirect(req.getContextPath() + "/ShowStaffInfo");
+                } catch (SQLException e) {
+                    System.out.println("Failed to create staff");
+                }
+            }else {
+                req.setAttribute("msg", "This phone number or email is already exist");
+                req.getRequestDispatcher("views/CreateStaff.jsp").forward(req, resp);
+            }
         } catch (SQLException e) {
-            System.out.println("Failed to create staff");
+            System.out.println("Failed to get Info");
         }
     }
 }

@@ -11,9 +11,9 @@
 <html>
 <head>
     <title>Staff Details</title>
-    <link rel="stylesheet" href="../assets/css/base.css">
-    <link rel="stylesheet" href="../assets/css/sideBar.css">
-    <link rel="stylesheet" href="../assets/css/createStaff.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/base.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/sideBar.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/createStaff.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
@@ -22,12 +22,13 @@
 %>
 <div class="sideBar">
     <h2>Admin Panel</h2>
-    <h4>Current Staff: <%= _staff.getStaffName()%></h4>
-    <a href="<%= request.getContextPath() %>/ShowCustomerInfo" class="current">
+    <h4>Current Staff: <%= _staff.getStaffName()%>
+    </h4>
+    <a href="<%= request.getContextPath() %>/ShowCustomerInfo">
         <i class="fa-solid fa-user fa-lg"></i>
         <span>Customer Management</span>
     </a>
-    <a href="<%= request.getContextPath() %>/ShowStaffInfo">
+    <a href="<%= request.getContextPath() %>/ShowStaffInfo" class="current">
         <i class="fa-solid fa-user-tie fa-lg"></i>
         <span>Staff Management</span>
     </a>
@@ -125,8 +126,14 @@
             </div>
         </div>
 
+        <% String errorMsg = (String) request.getAttribute("msg"); %>
+        <% if (errorMsg != null && !errorMsg.isEmpty()) { %>
+        <p><%= errorMsg %></p>
+        <% } %>
         <div class="buttonGroup">
-            <button type="button" onclick="if(confirm('Are you sure you want to leave without saving?')) history.back();">Cancel</button>
+            <button type="button"
+                    onclick="if(confirm('Are you sure you want to leave without saving?')) history.back();">Cancel
+            </button>
             <button type="submit">Save</button>
         </div>
     </form>

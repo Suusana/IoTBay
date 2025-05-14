@@ -21,24 +21,42 @@ public class UpdateStaffHandler extends HttpServlet {
         DBManager db = (DBManager) session.getAttribute("db");
         StaffDao staffDao = db.getStaffDao();
 
-        Staff staff = new Staff();
-        staff.setStaffId(Integer.parseInt(req.getParameter("staffId")));
-        staff.setStaffName(req.getParameter("staff_name"));
-        staff.setPassword(req.getParameter("password"));
-        staff.setPhoneNum(new Integer(req.getParameter("phone_num")));
-        staff.setEmail(req.getParameter("email"));
-        staff.setPosition(req.getParameter("position"));
-        staff.setAddress(req.getParameter("address"));
-        staff.setCity(req.getParameter("city"));
-        staff.setPostcode(req.getParameter("postcode"));
-        staff.setState(req.getParameter("state"));
-        staff.setCountry(req.getParameter("country"));
+        // check if email or phone num is unique
+        Integer staffId = Integer.parseInt(req.getParameter("staffId"));
+        String email = req.getParameter("email");
+        int phone = Integer.parseInt(req.getParameter("phone_num"));
 
         try {
-            staffDao.UpdateStaff(staff);
-            resp.sendRedirect(req.getContextPath() + "/ShowStaffInfo");
+            Integer id = staffDao.getStaffIdByPhoneOrEmail(phone, email, staffId);
+
+            if (id != null) {
+                req.setAttribute("msg", "This phone number or email is already exist.");
+                req.getRequestDispatcher("/showStaff").forward(req, resp);
+                return;
+            }
+
+            Staff staff = new Staff();
+            staff.setStaffId(staffId);
+            staff.setStaffName(req.getParameter("staff_name"));
+            staff.setPassword(req.getParameter("password"));
+            staff.setPhoneNum(new Integer(req.getParameter("phone_num")));
+            staff.setEmail(req.getParameter("email"));
+            staff.setPosition(req.getParameter("position"));
+            staff.setAddress(req.getParameter("address"));
+            staff.setCity(req.getParameter("city"));
+            staff.setPostcode(req.getParameter("postcode"));
+            staff.setState(req.getParameter("state"));
+            staff.setCountry(req.getParameter("country"));
+
+            try {
+                staffDao.UpdateStaff(staff);
+                resp.sendRedirect(req.getContextPath() + "/ShowStaffInfo");
+            } catch (SQLException e) {
+                System.out.println("Failed to update a staff");
+            }
+
         } catch (SQLException e) {
-            System.out.println("Failed to update a staff");
+            System.out.println("Failed to get Info");
         }
     }
 }

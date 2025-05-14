@@ -85,7 +85,7 @@
             <div>
                 <label>Type</label><br>
                 <select name="type" id="type">
-                    <option selected disabled>Choose a position</option>
+                    <option selected disabled>Choose a Type</option>
                     <%
                         for (UserType u : UserType.values()) {
                     %>

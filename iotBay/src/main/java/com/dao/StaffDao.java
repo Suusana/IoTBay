@@ -219,4 +219,34 @@ public class StaffDao {
         ps.setInt(1, staffId);
         ps.executeUpdate();
     }
+
+    // check if there is other staff using the same phone or email
+    public Integer getStaffIdByPhoneOrEmail(int phone, String email, int StaffId) throws SQLException {
+        PreparedStatement ps = connection.prepareStatement(
+                "select staff_id from Staff where (phone_num = ? OR email = ?) and staff_id !=?");
+        ps.setInt(1, phone);
+        ps.setString(2, email);
+        ps.setInt(3, StaffId);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            return rs.getInt("staff_id");
+        }
+
+        return null;
+    }
+    // check if there is other staff using the same phone or email( for creating staff)
+    public Integer getStaffIdByPhoneOrEmailInfo(int phone, String email) throws SQLException {
+        PreparedStatement ps = connection.prepareStatement(
+                "select staff_id from Staff where phone_num = ? OR email = ?");
+        ps.setInt(1, phone);
+        ps.setString(2, email);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            return rs.getInt("staff_id");
+        }
+
+        return null;
+    }
 }

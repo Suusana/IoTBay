@@ -13,8 +13,8 @@
 %>
 <head>
     <title>Edit Account</title>
-    <link rel="stylesheet" href="../assets/css/base.css">
-    <link rel="stylesheet" href="../assets/css/editDetails.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/base.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/editDetails.css">
 </head>
 <body>
 <main>

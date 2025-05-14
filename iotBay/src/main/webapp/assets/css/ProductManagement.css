@@ -97,3 +97,10 @@ button:hover{
     right:0px;
     bottom:0px;
 }
+
+input {
+    border: 1px solid rgba(0, 0, 0, 0.63);
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+}
