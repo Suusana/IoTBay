@@ -24,6 +24,14 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/sideBar.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/ProductManagement.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <%
+        Boolean exists = (Boolean) session.getAttribute("exists");
+        if(exists != null && exists){%>
+        <script>alert("This product already exist!")</script>
+    <%
+        }
+    %>
 </head>
 <body>
 <%
@@ -101,7 +109,6 @@
             <button type="submit">Add New Product</button>
         </form>
     </div>
-
     <h2>Product List</h2>
 
     <table>

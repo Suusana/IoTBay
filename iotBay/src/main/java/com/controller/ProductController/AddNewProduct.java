@@ -24,9 +24,24 @@ public class AddNewProduct extends HttpServlet {
         ProductDao pd = db.getProductDao();
 
         Product product = new Product();
+        boolean exists = false;
 
         // int productId = Integer.parseInt(req.getParameter("productId"));
         String productName = req.getParameter("productName");
+        try{
+            Product existsProduct = pd.getProductByName(productName);
+            if (existsProduct!=null){
+                exists = true;
+                session.setAttribute("exists", exists); //already exists
+                resp.sendRedirect(req.getContextPath() + "/ProductManagementServlet");
+                return;
+            }else{
+                req.getSession().setAttribute("exist", exists);//false - can add new product
+            }
+        } catch (SQLException e) {
+            System.out.println("Error - existProduct from addNewProduct");
+            throw new RuntimeException(e);
+        }
         double price = Double.parseDouble(req.getParameter("price"));
         int quantity = Integer.parseInt(req.getParameter("quantity"));
         String description = req.getParameter("description");
@@ -38,7 +53,6 @@ public class AddNewProduct extends HttpServlet {
         //System.out.println("getFormImg");
         //System.out.println(getFormImg.getSubmittedFileName());
         String imgName = getFormImg.getSubmittedFileName();
-
 
         int categoryId = Integer.parseInt(req.getParameter("categoryId"));
 
