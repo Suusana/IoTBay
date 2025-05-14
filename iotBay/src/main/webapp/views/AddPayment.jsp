@@ -34,14 +34,20 @@
             background-color: #fff;
             padding: 30px 40px 50px 40px;
             border-radius: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             width: 450px;
             animation: fadeInCard 1s ease-in-out;
         }
 
         @keyframes fadeInCard {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         h2 {
@@ -114,31 +120,32 @@
 
         <%-- Preserve pendingPaymentId if passed from previous page --%>
         <% if (pendingPaymentId != null) { %>
-        <input type="hidden" name="pendingPaymentId" value="<%= pendingPaymentId %>" />
+        <input type="hidden" name="pendingPaymentId" value="<%= pendingPaymentId %>"/>
         <script>console.log("DEBUG: pendingPaymentId = <%= pendingPaymentId %>");</script>
         <% } %>
 
         <label for="firstName">First Name:</label>
-        <input type="text" name="firstName" id="firstName" required />
+        <input type="text" name="firstName" id="firstName" required/>
 
         <label for="lastName">Last Name:</label>
-        <input type="text" name="lastName" id="lastName" required />
+        <input type="text" name="lastName" id="lastName" required/>
 
         <label>Card Number:</label>
         <div class="card-number-group">
-            <input type="password" maxlength="4" class="card-part" id="card1" required />
-            <input type="password" maxlength="4" class="card-part" id="card2" required />
-            <input type="password" maxlength="4" class="card-part" id="card3" required />
-            <input type="password" maxlength="4" class="card-part" id="card4" required />
+            <input type="password" maxlength="4" class="card-part" id="card1" required/>
+            <input type="password" maxlength="4" class="card-part" id="card2" required/>
+            <input type="password" maxlength="4" class="card-part" id="card3" required/>
+            <input type="password" maxlength="4" class="card-part" id="card4" required/>
         </div>
-        <input type="hidden" name="cardNumber" id="fullCardNumber" />
+        <input type="hidden" name="cardNumber" id="fullCardNumber"/>
 
         <label for="expiryDate">Expiry Date:</label>
-        <input type="date" name="expiryDate" id="expiryDate" required />
+        <input type="date" name="expiryDate" id="expiryDate" required/>
 
         <label for="cvv">CVC:</label>
-        <input type="password" name="cvv" id="cvv" required />
+        <input type="password" name="cvv" id="cvv" required/>
 
+        <input type="hidden" name="orderId" value="<%=order.getOrderId()%>"/>
         <button type="submit" class="style1">Add payment</button>
     </form>
 </div>

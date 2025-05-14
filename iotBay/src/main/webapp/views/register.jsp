@@ -28,17 +28,17 @@
 <html>
 <head>
     <title>Register</title>
-    <link rel="stylesheet" href="../assets/css/base.css">
-    <link rel="stylesheet" href="../assets/css/HeaderAndFooter.css">
-    <link rel="stylesheet" href="../assets/css/register.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/base.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/HeaderAndFooter.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/register.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="../assets/js/UIHandler.js"></script>
 </head>
 <body>
 <header class="header">
     <!-- Logo -->
-    <a href="../index.jsp">
-        <img src="../assets/img/Logo.png" alt="IotBay Logo">
+    <a href="<%=request.getContextPath()%>/index.jsp">
+        <img src="<%=request.getContextPath()%>/assets/img/Logo.png" alt="IotBay Logo">
     </a>
 </header>
 

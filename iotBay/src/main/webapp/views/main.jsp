@@ -15,8 +15,8 @@
 <html>
 <%
     Customer customer = new Customer();
-    if (session.getAttribute("loggedInUser") != null){
-        customer = (Customer)session.getAttribute("loggedInUser");
+    if (session.getAttribute("loggedInUser") != null) {
+        customer = (Customer) session.getAttribute("loggedInUser");
     } else {
         customer.setUsername(Status.GUEST.getStatus());
     }
@@ -80,27 +80,31 @@
         <img src="<%=request.getContextPath()%>/assets/img/<%=banner.getImage()%>" alt="Banner Img">
         <div class="intro">
             <h5>New Arrival</h5>
-            <p><%=banner.getProductName()%></p>
+            <p><%=banner.getProductName()%>
+            </p>
             <span><%=banner.getDescription()%></span>
-            <br><button class="style1">Buy Now</button>
+            <br>
+            <button class="style1">Buy Now</button>
         </div>
     </div>
     <h5 class="title">Our Products</h5>
-        <div class="Products">
-    <%
-        List<Product> productList = (List<Product>) request.getAttribute("productList");
-        for (Product product:productList) {
-    %>
-                <a href="<%= request.getContextPath()%>/ProductDetailServlet?id=<%=product.getProductId()%>" class="card">
-                    <img src="<%=request.getContextPath()%>/assets/img/<%=product.getImage()%>" alt="Device">
-                    <h5><%=product.getProductName()%></h5>
-                    <p><%=product.getDescription()%></p>
-                    <span>$<%=product.getPrice()%></span>
-                </a>
-    <%
-        }
-    %>
-        </div>
+    <div class="Products">
+        <%
+            List<Product> productList = (List<Product>) request.getAttribute("productList");
+            for (Product product : productList) {
+        %>
+        <a href="<%= request.getContextPath()%>/ProductDetailServlet?id=<%=product.getProductId()%>" class="card">
+            <img src="<%=request.getContextPath()%>/assets/img/<%=product.getImage()%>" alt="Device">
+            <h5><%=product.getProductName()%>
+            </h5>
+            <p><%=product.getDescription()%>
+            </p>
+            <span>$<%=product.getPrice()%></span>
+        </a>
+        <%
+            }
+        %>
+    </div>
     <a href="<%=request.getContextPath()%>/productServlet">
         <button class="style1">Show More</button>
     </a>
@@ -118,20 +122,23 @@
 
     <h5 class="title">Categories</h5>
     <div class="categories">
-    <%
-        List<Category> categories = (List<Category>) request.getAttribute("categories");
-        for (Category category :categories) {
-    %>
+        <%
+            List<Category> categories = (List<Category>) request.getAttribute("categories");
+            for (Category category : categories) {
+        %>
         <a href="" class="category">
-            <img src="<%=request.getContextPath()%>/assets/img/category<%=category.getCategoryId()%>.png" alt="Category">
+            <img src="<%=request.getContextPath()%>/assets/img/category<%=category.getCategoryId()%>.png"
+                 alt="Category">
             <br><span><%=category.getCategory()%></span>
         </a>
-    <%
-        }
-    %>
+        <%
+            }
+        %>
 
-</div>
-    <a href=""><button class="style1">Show More</button></a>
+    </div>
+    <a href="">
+        <button class="style1">Show More</button>
+    </a>
 </div>
 
 <!-- footer -->

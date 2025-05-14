@@ -86,8 +86,7 @@ public class CreateOrder extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + "/CheckPayment?orderId=" + order.getOrderId());
 
                 // update stock
-                int newStock = stock - quantity;
-                db.getProductDao().updateProductQuantity(productId, newStock);
+                db.getProductDao().updateProductQuantity(productId, quantity);
             } else {
                 // If status is Saved, just redirect to order list
                 response.sendRedirect(request.getContextPath() + "/viewOrder");
