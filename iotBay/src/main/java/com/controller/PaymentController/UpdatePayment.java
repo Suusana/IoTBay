@@ -1,14 +1,13 @@
 package com.controller.PaymentController;
 
 import com.bean.Payment;
+import com.bean.PaymentLog;
 import com.dao.DBManager;
 import com.dao.PaymentDao;
+import com.dao.PaymentLogDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.*;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -24,29 +23,32 @@ public class UpdatePayment extends HttpServlet {
         HttpSession session = req.getSession();
         DBManager db = (DBManager) session.getAttribute("db");
         PaymentDao dao = db.getPaymentDao();
+        PaymentLogDao logDao = db.getPaymentLogDao();
 
         try {
             String idParam = req.getParameter("paymentId");
 
+            // check paymentId is provided
             if (idParam == null || idParam.trim().isEmpty()) {
                 throw new IllegalArgumentException("Missing paymentId");
             }
 
             int paymentId = Integer.parseInt(idParam);
-
-            // 기존 결제 정보 가져오기
             Payment payment = dao.getPaymentById(paymentId);
+
+            // if the payment doesn't exist, return to the edit form with an error
             if (payment == null) {
                 req.setAttribute("error", "Payment not found.");
                 req.getRequestDispatcher("/views/EditPayment.jsp").forward(req, resp);
                 return;
             }
 
-            // 입력 값 반영
+            // update payment fields with new form input
             payment.setCardHolder(req.getParameter("cardHolder"));
             payment.setCardNumber(req.getParameter("cardNumber"));
             payment.setCvv(req.getParameter("cvv"));
 
+            // validate and set expiry date
             String expiryParam = req.getParameter("expiryDate");
             if (expiryParam == null || expiryParam.trim().isEmpty()) {
                 req.setAttribute("error", "Expiry date is missing.");
@@ -64,7 +66,7 @@ public class UpdatePayment extends HttpServlet {
                 return;
             }
 
-            // 기본값 보완
+            // set defaults for missing optional fields
             if (payment.getAmount() == null)
                 payment.setAmount(new java.math.BigDecimal("0.00"));
             if (payment.getPaymentDate() == null)
@@ -74,23 +76,28 @@ public class UpdatePayment extends HttpServlet {
             if (payment.getStatus() == null)
                 payment.setStatus("Paid");
 
-            // 업데이트 실행
+            // save updated payment
             dao.update(payment);
 
+            // log the update action
+            PaymentLog log = new PaymentLog();
+            log.setPaymentId(payment.getPaymentId());
+            log.setUserId(payment.getUserId());
+            log.setOrderId(payment.getOrderId());
+            log.setAction("UPDATE");
+            log.setTimestamp(new Date(System.currentTimeMillis()));
+            logDao.log(log);
+
+            // redirect to ViewPayment after successful update
             resp.sendRedirect(req.getContextPath() + "/ViewPayment?orderId=" + payment.getOrderId());
 
         } catch (NumberFormatException e) {
-            e.printStackTrace();
             req.setAttribute("error", "Invalid number format: " + e.getMessage());
             req.getRequestDispatcher("/views/EditPayment.jsp").forward(req, resp);
-
         } catch (SQLException e) {
-            e.printStackTrace();
             req.setAttribute("error", "Database error: " + e.getMessage());
             req.getRequestDispatcher("/views/EditPayment.jsp").forward(req, resp);
-
         } catch (IllegalArgumentException e) {
-            e.printStackTrace();
             req.setAttribute("error", "Invalid input: " + e.getMessage());
             req.getRequestDispatcher("/views/EditPayment.jsp").forward(req, resp);
         }
@@ -99,6 +106,7 @@ public class UpdatePayment extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+        // redirect GET access to home page (not allowed for updates)
         resp.sendRedirect(req.getContextPath() + "/home");
     }
 }

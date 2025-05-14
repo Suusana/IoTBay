@@ -14,6 +14,8 @@ public class DBManager {
     private CategoryDao categoryDao;
     private UserAccessLogDao userAccessLogDao;
     private OrderDao orderDao;
+    private InvoiceDao invoiceDao;
+    private PaymentLogDao paymentLogDao;
 
     public DBManager(Connection connection) throws SQLException {
         this.connection = connection;
@@ -25,8 +27,6 @@ public class DBManager {
         }
         return customerDao;
     }
-
-    private InvoiceDao invoiceDao;
 
     public InvoiceDao getInvoiceDao() {
         if (invoiceDao == null) {
@@ -75,5 +75,12 @@ public class DBManager {
             orderDao = new OrderDao(connection);
         }
         return orderDao;
+    }
+
+    public PaymentLogDao getPaymentLogDao() {
+        if (paymentLogDao == null) {
+            paymentLogDao = new PaymentLogDao(connection);
+        }
+        return paymentLogDao;
     }
 }

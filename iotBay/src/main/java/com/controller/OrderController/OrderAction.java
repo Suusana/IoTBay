@@ -14,7 +14,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,7 +45,6 @@ public class OrderAction extends HttpServlet {
                     for (Product product : order.getProducts()) {
                         int productId = product.getProductId();
 
-                        // getProductFreshQuantity
                         Product freshProduct = productDao.getProductById(productId);
                         int availableStock = freshProduct.getQuantity();
 
@@ -64,8 +62,6 @@ public class OrderAction extends HttpServlet {
                             } else {
                                 orderDao.updateOrderQuantity(order.getOrderId(), newQuantity);
                             }
-                        } else {
-                            System.out.println("Missing quantity param for product " + productId);
                         }
                     }
 
@@ -76,20 +72,18 @@ public class OrderAction extends HttpServlet {
                     response.sendRedirect("viewOrderDetails?orderId=" + order.getOrderId());
                     break;
 
-
                 case "submit":
-                    // update the order's status
                     orderDao.updateOrderStatus(orderId, OrderStatus.Confirmed);
 
-                    // using productDao to update productQuantity
                     for (Product product : order.getProducts()) {
                         int productId = product.getProductId();
                         productDao.updateProductQuantity(productId, order.getQuantity());
                     }
 
-                    response.sendRedirect("viewOrderDetails?orderId=" + orderId);
+                    session.setAttribute("order", order);
+                    session.setAttribute("product", prod);
+                    response.sendRedirect(request.getContextPath() + "/views/AddPayment.jsp");
                     break;
-
 
                 case "cancel":
                     orderDao.updateOrderStatus(orderId, OrderStatus.Cancelled);

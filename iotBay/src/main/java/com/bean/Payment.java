@@ -9,7 +9,7 @@ public class Payment implements Serializable {
     private String method;
     private String cardHolder;
     private String cardNumber;
-    private Date expiryDate;         // 변경됨: String → java.sql.Date
+    private Date expiryDate;
     private String cvv;
     private BigDecimal amount;
     private String status;
@@ -35,91 +35,36 @@ public class Payment implements Serializable {
         this.paymentDate = paymentDate;
     }
 
-    public Integer getPaymentId() {
-        return paymentId;
-    }
+    public Integer getPaymentId() { return paymentId; }
+    public void setPaymentId(Integer paymentId) { this.paymentId = paymentId; }
 
-    public void setPaymentId(Integer paymentId) {
-        this.paymentId = paymentId;
-    }
+    public String getMethod() { return method; }
+    public void setMethod(String method) { this.method = method; }
 
-    public String getMethod() {
-        return method;
-    }
+    public String getCardHolder() { return cardHolder; }
+    public void setCardHolder(String cardHolder) { this.cardHolder = cardHolder; }
 
-    public void setMethod(String method) {
-        this.method = method;
-    }
+    public String getCardNumber() { return cardNumber; }
+    public void setCardNumber(String cardNumber) { this.cardNumber = cardNumber; }
 
-    public String getCardHolder() {
-        return cardHolder;
-    }
+    public Date getExpiryDate() { return expiryDate; }
+    public void setExpiryDate(Date expiryDate) { this.expiryDate = expiryDate; }
 
-    public void setCardHolder(String cardHolder) {
-        this.cardHolder = cardHolder;
-    }
+    public String getCvv() { return cvv; }
+    public void setCvv(String cvv) { this.cvv = cvv; }
 
-    public String getCardNumber() {
-        return cardNumber;
-    }
+    public BigDecimal getAmount() { return amount; }
+    public void setAmount(BigDecimal amount) { this.amount = amount; }
 
-    public void setCardNumber(String cardNumber) {
-        this.cardNumber = cardNumber;
-    }
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
 
-    public Date getExpiryDate() {               // getter 수정
-        return expiryDate;
-    }
+    public Integer getOrderId() { return orderId; }
+    public void setOrderId(Integer orderId) { this.orderId = orderId; }
 
-    public void setExpiryDate(Date expiryDate) { // setter 수정
-        this.expiryDate = expiryDate;
-    }
+    public Integer getUserId() { return userId; }
+    public void setUserId(Integer userId) { this.userId = userId; }
 
-    public String getCvv() {
-        return cvv;
-    }
-
-    public void setCvv(String cvv) {
-        this.cvv = cvv;
-    }
-
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Integer getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public Date getPaymentDate() {
-        return paymentDate;
-    }
-
-    public void setPaymentDate(Date paymentDate) {
-        this.paymentDate = paymentDate;
-    }
+    public Date getPaymentDate() { return paymentDate; }
+    public void setPaymentDate(Date paymentDate) { this.paymentDate = paymentDate; }
 }
