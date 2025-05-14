@@ -30,6 +30,11 @@ public class EditPayment extends HttpServlet {
                 return;
             }
 
+            if ("Paid".equalsIgnoreCase(payment.getStatus())) {
+                resp.sendError(HttpServletResponse.SC_FORBIDDEN, "Cannot edit a paid payment.");
+                return;
+            }
+
             req.setAttribute("payment", payment);
             req.getRequestDispatcher("/views/EditPayment.jsp").forward(req, resp);
 
@@ -40,4 +45,3 @@ public class EditPayment extends HttpServlet {
         }
     }
 }
-

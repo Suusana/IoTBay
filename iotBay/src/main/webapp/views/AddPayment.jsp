@@ -4,6 +4,12 @@
 <%
     Order order = (Order) session.getAttribute("order");
     Product product = (Product) session.getAttribute("product");
+
+    // Support both GET param and request attribute for pendingPaymentId
+    String pendingPaymentId = request.getParameter("pendingPaymentId");
+    if (pendingPaymentId == null) {
+        pendingPaymentId = (String) request.getAttribute("pendingPaymentId");
+    }
 %>
 
 <!DOCTYPE html>
@@ -103,7 +109,15 @@
 <body>
 <div class="card">
     <h2>Add Payment</h2>
+
     <form action="<%= request.getContextPath() %>/AddPayment" method="post" onsubmit="return validatePaymentForm()">
+
+        <%-- Preserve pendingPaymentId if passed from previous page --%>
+        <% if (pendingPaymentId != null) { %>
+        <input type="hidden" name="pendingPaymentId" value="<%= pendingPaymentId %>" />
+        <script>console.log("DEBUG: pendingPaymentId = <%= pendingPaymentId %>");</script>
+        <% } %>
+
         <label for="firstName">First Name:</label>
         <input type="text" name="firstName" id="firstName" required />
 
@@ -132,10 +146,11 @@
 <script>
     const parts = ["card1", "card2", "card3", "card4"];
 
+    // Auto-focus and restrict to digits only for each card segment
     parts.forEach((id, index) => {
         const input = document.getElementById(id);
         input.addEventListener("input", (e) => {
-            e.target.value = e.target.value.replace(/\D/g, ""); // allow only digits
+            e.target.value = e.target.value.replace(/\D/g, "");
             if (e.target.value.length === 4 && index < parts.length - 1) {
                 document.getElementById(parts[index + 1]).focus();
             }
@@ -148,6 +163,7 @@
         });
     });
 
+    // Form validation before submission
     function validatePaymentForm() {
         const cardNumber = parts.map(id => document.getElementById(id).value).join("");
         if (!/^\d{16}$/.test(cardNumber)) {

@@ -63,6 +63,15 @@ public class OrderDao {
             order.setCreateDate(rs.getTimestamp("create_date"));
             order.setOrderStatus(OrderStatus.valueOf(rs.getString("order_status")));
             order.setQuantity(rs.getInt("quantity"));
+
+            Product product = new Product();
+            product.setProductId(rs.getInt("product_id"));
+            product.setQuantity(rs.getInt("quantity"));
+
+            List<Product> productList = new ArrayList<>();
+            productList.add(product);
+            order.setProducts(productList);
+
             orders.add(order);
         }
         return orders;
@@ -80,6 +89,14 @@ public class OrderDao {
             order.setCreateDate(rs.getTimestamp("create_date"));
             order.setOrderStatus(OrderStatus.valueOf(rs.getString("order_status")));
             order.setQuantity(rs.getInt("quantity"));
+
+            Product product = new Product();
+            product.setProductId(rs.getInt("product_id"));
+            product.setQuantity(rs.getInt("quantity"));
+
+            List<Product> productList = new ArrayList<>();
+            productList.add(product);
+            order.setProducts(productList);
         }
 
         return order;
@@ -107,6 +124,15 @@ public class OrderDao {
             order.setCreateDate(rs.getTimestamp("create_date"));
             order.setOrderStatus(OrderStatus.valueOf(rs.getString("order_status")));
             order.setQuantity(rs.getInt("quantity"));
+
+            Product product = new Product();
+            product.setProductId(rs.getInt("product_id"));
+            product.setQuantity(rs.getInt("quantity"));
+
+            List<Product> productList = new ArrayList<>();
+            productList.add(product);
+            order.setProducts(productList);
+
             orders.add(order);
         }
         return orders;
@@ -117,11 +143,19 @@ public class OrderDao {
         preparedStatement.setInt(1, orderId);
         ResultSet rs = preparedStatement.executeQuery();
         Order order = new Order();
-        if(rs.next()) {
+        if (rs.next()) {
             order.setOrderId(rs.getInt("order_id"));
             order.setCreateDate(rs.getTimestamp("create_date"));
             order.setOrderStatus(OrderStatus.valueOf(rs.getString("order_status")));
             order.setQuantity(rs.getInt("quantity"));
+
+            Product product = new Product();
+            product.setProductId(rs.getInt("product_id"));
+            product.setQuantity(rs.getInt("quantity"));
+
+            List<Product> productList = new ArrayList<>();
+            productList.add(product);
+            order.setProducts(productList);
         }
         return order;
     }
