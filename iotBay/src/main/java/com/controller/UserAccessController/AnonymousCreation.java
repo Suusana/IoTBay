@@ -26,31 +26,31 @@ public class AnonymousCreation extends HttpServlet {
         UserAccessLogDao userAccessLogDao = db.getUserAccessLogDao();
 
         Customer customer = new Customer();
-        // create guest ID
+        // create ID
         long timestamp = System.currentTimeMillis();
         customer.setFirstName(String.valueOf(timestamp));
-        customer.setLastName("Guest");
+        customer.setLastName(Status.GUEST.getStatus());
 
-        customer.setUsername("guest" + timestamp);
-        customer.setPassword("guest" + timestamp);
-        customer.setEmail("guest" + timestamp + "@example.com");
-        customer.setType("Individual");
-        session.setAttribute("userType", "guest"); // modify to save guest user type
+        customer.setUsername(customer.getLastName() + customer.getFirstName());
+        customer.setPassword(customer.getFirstName());
+        customer.setEmail(customer.getLastName() + customer.getFirstName() + "@example.com");
+        customer.setType(UserType.INDIVIDUAL.getName());
 
         try {
             customerDao.setUser(customer);
 
+            // Log login time
             Customer user = customerDao.getLastUser();
-            int userAccessLogId = userAccessLogDao.logLogin(user.getUserId(), "guest"); // ✅ 핵심 수정
+            int userAccessLogId = userAccessLogDao.logLogin(user.getUserId(), "customer");
             session.setAttribute("userAccessLogId", userAccessLogId);
 
             session.setAttribute("loggedInUser", user);
-            session.setAttribute("userType", "guest"); // modify to save guest user type
+            session.setAttribute("userType", "customer");
 
             resp.sendRedirect("views/welcome.jsp");
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("Failed to save guest user");
+            System.out.println("Failed to save customer");
         }
     }
 }

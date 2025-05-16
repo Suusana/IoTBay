@@ -16,9 +16,9 @@
     Customer customer = null;
     Staff staff = null;
 
-    if ("customer".equalsIgnoreCase(userType) || "guest".equalsIgnoreCase(userType)) {
+    if (userType.equalsIgnoreCase("customer")) {
         customer = (Customer) session.getAttribute("loggedInUser");
-    } else if ("staff".equalsIgnoreCase(userType)) {
+    } else if (userType.equalsIgnoreCase("staff")) {
         staff = (Staff) session.getAttribute("loggedInUser");
     }
 %>
@@ -38,25 +38,16 @@
     %>
     <h1>Welcome, <%= Utils.capitaliseFirst(customer.getFirstName()) %>!</h1>
     <p>Your email: <strong><%= customer.getEmail() %></strong></p>
-    <p class="description">
-        <%= "guest".equalsIgnoreCase(userType)
-                ? "You’re browsing as a guest. Your access is limited."
-                : "We're excited to have you join IoTBay <br> Start exploring now!" %>
-    </p>
+    <p class="description">We're excited to have you join IoTBay <br> Start exploring now!</p>
     <!-- Go to Main Page -->
     <a href="<%=request.getContextPath()%>/home"><button class="style1">Go to Main Page</button></a>
     <%
-    } else if (staff != null) {
+        } else if (staff != null) {
     %>
     <h1>Welcome, <%=staff.getStaffName()%>!</h1>
     <p class="description">Welcome to the IoTBay System <br> Continue to the Product Management Page</p>
     <!-- Go to Product Management Page -->
     <a href="<%=request.getContextPath()%>/ProductManagementServlet"><button class="style1">Go to Product Management</button></a>
-    <%
-    } else {
-    %>
-    <h2>Session expired or user not recognized.</h2>
-    <a href="<%=request.getContextPath()%>/views/login.jsp"><button class="style1">Go to Login</button></a>
     <%
         }
     %>

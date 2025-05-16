@@ -43,8 +43,7 @@ public class SearchAccessLogsServlet extends HttpServlet {
         Customer customer;
         Staff staff;
         int userId = 0;
-        // modify to separate user status: customer or guest
-        if (userType.equalsIgnoreCase("customer") || userType.equalsIgnoreCase("guest")) {
+        if (userType.equalsIgnoreCase("customer")) {
             customer = (Customer) session.getAttribute("loggedInUser");
             userId = customer.getUserId();
 

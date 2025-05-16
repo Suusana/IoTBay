@@ -38,12 +38,8 @@ public class LogoutServlet extends HttpServlet {
             }
         }
 
-        // Remove all user-related session attributes
+        // Logout
         session.removeAttribute("loggedInUser");
-        session.removeAttribute("userType");
-        session.removeAttribute("userAccessLogId");
-        session.removeAttribute("errorMessage");
-
-        resp.sendRedirect(req.getContextPath() + "/index.jsp");
+        resp.sendRedirect(req.getContextPath()+"/index.jsp");
     }
 }

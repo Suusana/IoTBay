@@ -33,13 +33,6 @@ public class UpdateUserDetailsServlet extends HttpServlet {
             return;
         }
 
-        // prevent guest users from editing details
-        if ("guest".equalsIgnoreCase(userType)) {
-            session.setAttribute("errorMessage", "Guest accounts cannot update details.");
-            resp.sendRedirect(req.getContextPath() + "/ViewUserDetailsServlet");
-            return;
-        }
-
         String username = req.getParameter("username");
         String password = req.getParameter("password");
         String confirmPassword = req.getParameter("confirmPassword");
