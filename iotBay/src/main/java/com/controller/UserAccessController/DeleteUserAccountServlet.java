@@ -33,7 +33,14 @@ public class DeleteUserAccountServlet extends HttpServlet {
 
         if (session.getAttribute("loggedInUser") == null || userType == null) {
             session.setAttribute("errorMessage", "Please login before trying to delete your account");
-            resp.sendRedirect(req.getContextPath()+"/views/login.jsp");
+            resp.sendRedirect(req.getContextPath() + "/views/login.jsp");
+            return;
+        }
+
+        // prevent guest user from this function
+        if (userType.equalsIgnoreCase("guest")) {
+            session.setAttribute("errorMessage", "Guest accounts cannot be deleted manually.");
+            resp.sendRedirect(req.getContextPath() + "/views/userDetails.jsp");
             return;
         }
 
@@ -59,10 +66,10 @@ public class DeleteUserAccountServlet extends HttpServlet {
             try {
                 customerDao.deleteUser(customer);
                 session.removeAttribute("loggedInUser");
-                resp.sendRedirect(req.getContextPath()+"/index.jsp");
+                resp.sendRedirect(req.getContextPath() + "/index.jsp");
             } catch (SQLException e) {
                 session.setAttribute("errorMessage", "Couldn't delete customer account");
-                resp.sendRedirect(req.getContextPath()+"/deleteAccount.jsp");
+                resp.sendRedirect(req.getContextPath() + "/deleteAccount.jsp");
                 System.out.println("Customer could not be deleted");
                 throw new RuntimeException(e);
             }
@@ -73,14 +80,13 @@ public class DeleteUserAccountServlet extends HttpServlet {
             try {
                 staffDao.deleteStaffById(staff.getStaffId());
                 session.removeAttribute("loggedInUser");
-                resp.sendRedirect(req.getContextPath()+"/index.jsp");
+                resp.sendRedirect(req.getContextPath() + "/index.jsp");
             } catch (SQLException e) {
                 session.setAttribute("errorMessage", "Couldn't delete staff account");
-                resp.sendRedirect(req.getContextPath()+"/deleteAccount.jsp");
+                resp.sendRedirect(req.getContextPath() + "/deleteAccount.jsp");
                 System.out.println("Staff could not be deleted");
                 throw new RuntimeException(e);
             }
         }
-
     }
 }

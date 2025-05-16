@@ -30,7 +30,16 @@ public class EditUserDetailsServlet extends HttpServlet {
             session.setAttribute("errorMessage", "Please login to edit your profile");
             resp.sendRedirect(req.getContextPath() + "/login.jsp");
             return;
-        } else if (userType.equalsIgnoreCase("customer")) {
+        }
+
+        // prevent guest from editing user details
+        if (userType.equalsIgnoreCase("guest")) {
+            session.setAttribute("errorMessage", "Guest users are not allowed to edit profile details.");
+            resp.sendRedirect(req.getContextPath() + "/views/userDetails.jsp");
+            return;
+        }
+
+        else if (userType.equalsIgnoreCase("customer")) {
             Customer customer = (Customer) session.getAttribute("loggedInUser");
 
             Customer updatedCustomer;

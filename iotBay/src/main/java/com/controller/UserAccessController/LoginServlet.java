@@ -34,19 +34,18 @@ public class LoginServlet extends HttpServlet {
             return;
         }
 
-        // first check input against customer database
         try {
+            // Try customer login
             Customer customer = customerDao.getUser(email, password);
-
             if (customer != null) {
-                // Add user to session
                 session.removeAttribute("errorMessage");
                 session.setAttribute("loggedInUser", customer);
-                session.setAttribute("userType", "customer");
 
-                // Log login time
+                String userTypeFromDb = customer.getType(); // "customer" or "guest"
+                session.setAttribute("userType", userTypeFromDb);
+
                 UserAccessLogDao userAccessLogDao = db.getUserAccessLogDao();
-                int userAccessLogId = userAccessLogDao.logLogin(customer.getUserId(), "customer");
+                int userAccessLogId = userAccessLogDao.logLogin(customer.getUserId(), userTypeFromDb);
                 session.setAttribute("userAccessLogId", userAccessLogId);
 
                 resp.sendRedirect("views/welcome.jsp");
@@ -56,17 +55,14 @@ public class LoginServlet extends HttpServlet {
             System.out.println("Can't retrieve customer from database");
         }
 
-        // if not in customer database, check in staff database
         try {
+            // Try staff login
             Staff staff = staffDao.getStaffForLogin(email, password);
-
-            if  (staff != null) {
-                // Add user to session
+            if (staff != null) {
                 session.removeAttribute("errorMessage");
                 session.setAttribute("loggedInUser", staff);
                 session.setAttribute("userType", "staff");
 
-                // Log login time
                 UserAccessLogDao userAccessLogDao = db.getUserAccessLogDao();
                 int userAccessLogId = userAccessLogDao.logLogin(staff.getStaffId(), "staff");
                 session.setAttribute("userAccessLogId", userAccessLogId);
@@ -79,11 +75,8 @@ public class LoginServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        // if login matches neither customer nor staff
+        // Login failed
         session.setAttribute("errorMessage", "Incorrect Email or Password");
         resp.sendRedirect(req.getContextPath() + "/views/login.jsp");
-
     }
-
-
 }

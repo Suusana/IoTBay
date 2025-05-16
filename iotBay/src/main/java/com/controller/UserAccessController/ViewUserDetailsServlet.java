@@ -32,9 +32,10 @@ public class ViewUserDetailsServlet extends HttpServlet {
             session.setAttribute("errorMessage", "Please login to edit your profile");
             resp.sendRedirect(req.getContextPath()+"/views/login.jsp");
             return;
-        } else if (userType.equalsIgnoreCase("customer")) {
+        } else if (userType.equalsIgnoreCase("customer") || userType.equalsIgnoreCase("guest")) {
             customer = (Customer) session.getAttribute("loggedInUser");
-        } else if (userType.equalsIgnoreCase("staff")) {
+        } // modify to save guest user type
+        else if (userType.equalsIgnoreCase("staff")) {
             staff = (Staff) session.getAttribute("loggedInUser");
         }
 
