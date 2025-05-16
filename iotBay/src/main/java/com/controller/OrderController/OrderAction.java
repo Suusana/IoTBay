@@ -82,7 +82,7 @@ public class OrderAction extends HttpServlet {
 
                     session.setAttribute("order", order);
                     session.setAttribute("product", prod);
-                    response.sendRedirect(request.getContextPath() + "/views/AddPayment.jsp");
+                    response.sendRedirect(request.getContextPath() + "/views/ConfirmPayment.jsp");
                     break;
 
                 case "cancel":

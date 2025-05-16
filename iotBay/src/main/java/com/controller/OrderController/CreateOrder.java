@@ -76,14 +76,14 @@ public class CreateOrder extends HttpServlet {
             orderDao.saveOrder(order, customer.getUserId());
 
             // Save order before proceeding to payment
-            // Store order and product in session so they can be accessed in AddPayment.jsp
+            // Store order and product in session so they can be accessed in ConfirmPayment.jsp
             session.setAttribute("order", order);
             session.setAttribute("product", product);
 
             if (status == OrderStatus.Confirmed) {
                 // Redirect instead of forward to update browser address bar and prevent duplicate POST
-                //response.sendRedirect(request.getContextPath() + "/views/AddPayment.jsp");
-                response.sendRedirect(request.getContextPath() + "/CheckPayment?orderId=" + order.getOrderId());
+                //response.sendRedirect(request.getContextPath() + "/views/ConfirmPayment.jsp");
+                response.sendRedirect(request.getContextPath() + "/SelectPayment?orderId=" + order.getOrderId());
 
                 // update stock
                 int newStock = stock - quantity;

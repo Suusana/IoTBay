@@ -6,35 +6,35 @@ import com.dao.DBManager;
 import com.dao.PaymentDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.*;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/ViewPayment")
 public class ViewPayment extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+
         HttpSession session = req.getSession();
-
-        // check if user is logged in
-        Customer loggedInUser = (Customer) session.getAttribute("loggedInUser");
-        if (loggedInUser == null) {
-            resp.sendRedirect("login.jsp");
-            return;
-        }
-
-        // get the logged-in user's ID
-        int userId = loggedInUser.getUserId();
-
         DBManager db = (DBManager) session.getAttribute("db");
         PaymentDao dao = db.getPaymentDao();
 
+        // Check if user is logged in
+        Customer loggedInUser = (Customer) session.getAttribute("loggedInUser");
+
+        // Reject if guest or not logged in
+        if (loggedInUser == null || loggedInUser.getUsername().toLowerCase().contains("guest")) {
+            resp.sendRedirect(req.getContextPath() + "/GuestViewPayment");
+            return;
+        }
+
+        // Get the logged-in user's ID
+        int userId = loggedInUser.getUserId();
+
+        // Get search parameters
         String orderIdStr = req.getParameter("orderId");
         String searchPaymentIdStr = req.getParameter("searchPaymentId");
         String searchDate = req.getParameter("searchDate");
@@ -42,38 +42,42 @@ public class ViewPayment extends HttpServlet {
         try {
             List<Payment> payments = new ArrayList<>();
 
-            // search by payment ID (restricted to current user)
+            // Search by payment ID
             if (searchPaymentIdStr != null && !searchPaymentIdStr.isEmpty()) {
                 try {
                     int searchPaymentId = Integer.parseInt(searchPaymentIdStr);
-                    Payment p = dao.getPaymentByIdAndUser(searchPaymentId, userId);  // secure call
+                    Payment p = dao.getPaymentByIdAndUser(searchPaymentId, userId);
                     if (p != null) {
                         payments.add(p);
                     }
-                } catch (NumberFormatException ignored) {}
+                } catch (NumberFormatException e) {
+                    req.setAttribute("message", "Invalid Payment ID format.");
+                }
             }
-            // search by payment date (restricted to current user)
+            // Search by date
             else if (searchDate != null && !searchDate.isEmpty()) {
                 payments = dao.getPaymentsByDateAndUser(searchDate, userId);
             }
-            // search by order ID (restricted to current user)
+            // View by order ID
             else if (orderIdStr != null && !orderIdStr.isEmpty()) {
-                int orderId = Integer.parseInt(orderIdStr);
-                payments = dao.getPaymentsByOrderIdAndUser(orderId, userId);
-                req.setAttribute("orderId", orderId);
+                try {
+                    int orderId = Integer.parseInt(orderIdStr);
+                    payments = dao.getPaymentsByOrderIdAndUser(orderId, userId);
+                } catch (NumberFormatException e) {
+                    req.setAttribute("message", "Invalid Order ID.");
+                }
             }
-            // load all payments for the current user
+            // View all for this user
             else {
                 payments = dao.getPaymentsByUserId(userId);
             }
 
-            // forward payment list to JSP
             req.setAttribute("paymentList", payments);
             req.getRequestDispatcher("/views/ViewPayment.jsp").forward(req, resp);
 
         } catch (Exception e) {
             e.printStackTrace();
-            resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error retrieving payments");
+            resp.sendRedirect(req.getContextPath() + "/home");
         }
     }
 }

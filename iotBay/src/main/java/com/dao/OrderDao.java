@@ -1,5 +1,6 @@
 package com.dao;
 
+import com.bean.Customer;
 import com.bean.Order;
 import com.bean.Product;
 import com.enums.OrderStatus;
@@ -149,13 +150,22 @@ public class OrderDao {
             order.setOrderStatus(OrderStatus.valueOf(rs.getString("order_status")));
             order.setQuantity(rs.getInt("quantity"));
 
-            Product product = new Product();
-            product.setProductId(rs.getInt("product_id"));
+            int productId = rs.getInt("product_id");
+            ProductDao productDao = new ProductDao(connection);
+            Product product = productDao.getProductById(productId);
+
             product.setQuantity(rs.getInt("quantity"));
+
 
             List<Product> productList = new ArrayList<>();
             productList.add(product);
             order.setProducts(productList);
+
+            // Inject buyer info (used for guest payment view)
+            int userId = rs.getInt("user_id");
+            CustomerDao customerDao = new CustomerDao(connection);
+            Customer buyer = customerDao.getUserById(userId);
+            order.setBuyer(buyer);
         }
         return order;
     }

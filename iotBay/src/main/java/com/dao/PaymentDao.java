@@ -14,20 +14,27 @@ public class PaymentDao {
         this.conn = conn;
     }
 
+    // Save new payment
     public void save(Payment payment, Integer userId, Integer orderId) throws SQLException {
-        String sql = "INSERT INTO Payment (payment_method, card_holder, card_number, expiry_date, cvv, amount, payment_date, status, user_id, order_id) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Payment (payment_method, card_holder, card_number, expiry_date, cvc, " +
+                "bsb, account_name, account_number, amount, payment_date, status, user_id, order_id) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
         try (PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, payment.getMethod());
             ps.setString(2, payment.getCardHolder());
             ps.setString(3, payment.getCardNumber());
             ps.setDate(4, payment.getExpiryDate());
-            ps.setString(5, payment.getCvv());
-            ps.setBigDecimal(6, payment.getAmount());
-            ps.setDate(7, payment.getPaymentDate());
-            ps.setString(8, payment.getStatus());
-            ps.setInt(9, userId);
-            ps.setInt(10, orderId);
+            ps.setString(5, payment.getCvc());
+            ps.setString(6, payment.getBsb());
+            ps.setString(7, payment.getAccountName());
+            ps.setString(8, payment.getAccountNumber());
+            ps.setBigDecimal(9, payment.getAmount());
+            ps.setDate(10, payment.getPaymentDate());
+            ps.setString(11, payment.getStatus());
+            ps.setInt(12, userId);
+            ps.setInt(13, orderId);
+
             ps.executeUpdate();
 
             try (ResultSet rs = ps.getGeneratedKeys()) {
@@ -38,22 +45,31 @@ public class PaymentDao {
         }
     }
 
+    // Update existing payment
     public void update(Payment payment) throws SQLException {
-        String sql = "UPDATE Payment SET payment_method = ?, card_holder = ?, card_number = ?, expiry_date = ?, cvv = ?, amount = ?, payment_date = ?, status = ? WHERE payment_id = ?";
+        String sql = "UPDATE Payment SET payment_method = ?, card_holder = ?, card_number = ?, " +
+                "expiry_date = ?, cvc = ?, bsb = ?, account_name = ?, account_number = ?, amount = ?, " +
+                "payment_date = ?, status = ? WHERE payment_id = ?";
+
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, payment.getMethod());
             ps.setString(2, payment.getCardHolder());
             ps.setString(3, payment.getCardNumber());
             ps.setDate(4, payment.getExpiryDate());
-            ps.setString(5, payment.getCvv());
-            ps.setBigDecimal(6, payment.getAmount());
-            ps.setDate(7, payment.getPaymentDate());
-            ps.setString(8, payment.getStatus());
-            ps.setInt(9, payment.getPaymentId());
+            ps.setString(5, payment.getCvc());
+            ps.setString(6, payment.getBsb());
+            ps.setString(7, payment.getAccountName());
+            ps.setString(8, payment.getAccountNumber());
+            ps.setBigDecimal(9, payment.getAmount());
+            ps.setDate(10, payment.getPaymentDate());
+            ps.setString(11, payment.getStatus());
+            ps.setInt(12, payment.getPaymentId());
+
             ps.executeUpdate();
         }
     }
 
+    // Delete payment
     public void delete(int paymentId) throws SQLException {
         String sql = "DELETE FROM Payment WHERE payment_id = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -62,6 +78,7 @@ public class PaymentDao {
         }
     }
 
+    // Get single payment by ID
     public Payment getPaymentById(int paymentId) throws SQLException {
         String sql = "SELECT * FROM Payment WHERE payment_id = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -74,6 +91,7 @@ public class PaymentDao {
         return null;
     }
 
+    // Get payments by order ID
     public List<Payment> getPaymentsByOrderId(int orderId) throws SQLException {
         List<Payment> payments = new ArrayList<>();
         String sql = "SELECT * FROM Payment WHERE order_id = ?";
@@ -87,36 +105,39 @@ public class PaymentDao {
         return payments;
     }
 
+    // Get payments for a specific date and user
     public List<Payment> getPaymentsByDateAndUser(String date, int userId) throws SQLException {
         List<Payment> list = new ArrayList<>();
         String sql = "SELECT * FROM Payment WHERE DATE(payment_date) = ? AND user_id = ?";
-        PreparedStatement stmt = conn.prepareStatement(sql);
-        stmt.setString(1, date);
-        stmt.setInt(2, userId);
-        ResultSet rs = stmt.executeQuery();
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, date);
+            stmt.setInt(2, userId);
+            ResultSet rs = stmt.executeQuery();
 
-        while (rs.next()) {
-            Payment p = extractPayment(rs);
-            list.add(p);
+            while (rs.next()) {
+                list.add(extractPayment(rs));
+            }
         }
         return list;
     }
 
+    // Get all payments by order and user
     public List<Payment> getPaymentsByOrderIdAndUser(int orderId, int userId) throws SQLException {
         List<Payment> list = new ArrayList<>();
         String sql = "SELECT * FROM Payment WHERE order_id = ? AND user_id = ?";
-        PreparedStatement stmt = conn.prepareStatement(sql);
-        stmt.setInt(1, orderId);
-        stmt.setInt(2, userId);
-        ResultSet rs = stmt.executeQuery();
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, orderId);
+            stmt.setInt(2, userId);
+            ResultSet rs = stmt.executeQuery();
 
-        while (rs.next()) {
-            Payment p = extractPayment(rs);
-            list.add(p);
+            while (rs.next()) {
+                list.add(extractPayment(rs));
+            }
         }
         return list;
     }
 
+    // Get all payments (admin view)
     public List<Payment> getAllPayments() throws SQLException {
         List<Payment> payments = new ArrayList<>();
         String sql = "SELECT * FROM Payment";
@@ -129,6 +150,7 @@ public class PaymentDao {
         return payments;
     }
 
+    // Get payments for one user
     public List<Payment> getPaymentsByUserId(int userId) throws SQLException {
         List<Payment> payments = new ArrayList<>();
         String sql = "SELECT * FROM Payment WHERE user_id = ?";
@@ -142,6 +164,7 @@ public class PaymentDao {
         return payments;
     }
 
+    // Get payment by ID and user ID
     public Payment getPaymentByIdAndUser(int paymentId, int userId) throws SQLException {
         String sql = "SELECT * FROM Payment WHERE payment_id = ? AND user_id = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -155,7 +178,8 @@ public class PaymentDao {
         return null;
     }
 
-    public Payment findDuplicateCard(int userId, String cardNumber, Date expiryDate) throws SQLException {
+    // Optional: Check for duplicate card
+    public Payment findDuplicateCreditCard(int userId, String cardNumber, Date expiryDate) throws SQLException {
         String sql = "SELECT * FROM Payment WHERE user_id = ? AND card_number = ? AND DATE(expiry_date) = ?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, userId);
@@ -169,6 +193,7 @@ public class PaymentDao {
         return null;
     }
 
+    // Convert result set to Payment bean
     private Payment extractPayment(ResultSet rs) throws SQLException {
         Payment p = new Payment();
         p.setPaymentId(rs.getInt("payment_id"));
@@ -177,24 +202,25 @@ public class PaymentDao {
         p.setMethod(rs.getString("payment_method"));
         p.setCardHolder(rs.getString("card_holder"));
         p.setCardNumber(rs.getString("card_number"));
+        p.setCvc(rs.getString("cvc"));
+        p.setBsb(rs.getString("bsb"));
+        p.setAccountName(rs.getString("account_name"));
+        p.setAccountNumber(rs.getString("account_number"));
+        p.setAmount(rs.getBigDecimal("amount"));
+        p.setStatus(rs.getString("status"));
 
         try {
-            p.setExpiryDate(Date.valueOf(rs.getString("expiry_date")));
+            p.setExpiryDate(rs.getDate("expiry_date"));
         } catch (Exception e) {
             p.setExpiryDate(null);
         }
 
-        p.setCvv(rs.getString("cvv"));
-        p.setAmount(rs.getBigDecimal("amount"));
-
         try {
-            p.setPaymentDate(Date.valueOf(rs.getString("payment_date")));
+            p.setPaymentDate(rs.getDate("payment_date"));
         } catch (Exception e) {
             p.setPaymentDate(null);
         }
 
-        p.setStatus(rs.getString("status"));
         return p;
     }
-
 }

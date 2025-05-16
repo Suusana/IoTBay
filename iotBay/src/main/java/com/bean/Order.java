@@ -5,6 +5,7 @@ import com.enums.OrderStatus;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.math.BigDecimal;
 
 public class Order implements Serializable {
     private Integer orderId;
@@ -74,4 +75,32 @@ public class Order implements Serializable {
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
+
+    // support payment feature
+    public BigDecimal getTotalAmount() {
+        if (products == null || products.isEmpty()) {
+            return BigDecimal.ZERO;
+        }
+
+        BigDecimal total = BigDecimal.ZERO;
+        for (Product p : products) {
+            if (p == null || p.getPrice() == null || p.getQuantity() == null) {
+                continue; // skip invalid product
+            }
+            BigDecimal price = BigDecimal.valueOf(p.getPrice());
+            BigDecimal qty = BigDecimal.valueOf(p.getQuantity());
+            total = total.add(price.multiply(qty));
+        }
+        return total;
+    }
+
+
+//    public BigDecimal getTotalAmount() {
+//        if (products != null && !products.isEmpty()) {
+//            Product p = products.get(0);
+//            return BigDecimal.valueOf(p.getPrice()).multiply(BigDecimal.valueOf(p.getQuantity()));
+//        }
+//        return BigDecimal.ZERO;
+//    }
+
 }

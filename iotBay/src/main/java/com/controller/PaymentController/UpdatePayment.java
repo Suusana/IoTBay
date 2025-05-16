@@ -46,7 +46,7 @@ public class UpdatePayment extends HttpServlet {
             // update payment fields with new form input
             payment.setCardHolder(req.getParameter("cardHolder"));
             payment.setCardNumber(req.getParameter("cardNumber"));
-            payment.setCvv(req.getParameter("cvv"));
+            payment.setCvc(req.getParameter("cvc"));
 
             // validate and set expiry date
             String expiryParam = req.getParameter("expiryDate");
