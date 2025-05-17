@@ -22,12 +22,19 @@ body{
 }
 
 .update-product-info{
-    padding-bottom: 5px;
+    padding-left: 10px;
     margin-bottom:5px;
-    border-top:1px solid #f5f38c;
-    border-bottom:1px solid #f5f38c;
+    border:1px solid  rgb(166, 114, 36,0.5);
+    border-radius: 10px;
     form{
         display:flex;
         flex-direction: column;
     }
+}
+img{
+    width:100px;
+    height:100px;
+}
+input{
+    width:50%;
 }

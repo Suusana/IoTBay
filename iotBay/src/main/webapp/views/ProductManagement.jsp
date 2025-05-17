@@ -94,12 +94,12 @@
     <div class="add-product-box">
         <h2>Add New Product</h2>
         <form action="<%= request.getContextPath() %>/AddNewProduct" method="post" enctype="multipart/form-data">
-            <label>Name: <input type="text" name="productName" required></label>
-            <label>Price: <input type="number" min="0" step="0.01" name="price" required></label>
-            <label>Quantity: <input type="number" min="0" name="quantity" required></label>
-            <label>Description: <textarea name="description"></textarea></label>
-            <label>Category ID:<input type="number" name="categoryId" min="1" max="<%=CategoryLen%>" required/></label>
-            <label>Image:<input type="file" name="image" value=""/></label><br>
+            <label>Name: <input placeholder="Product Name" type="text" name="productName" required></label>
+            <label>Price: <input placeholder="Price" type="number" min="0" step="0.01" name="price" required></label>
+            <label>Quantity: <input placeholder="Stock" type="number" min="0" name="quantity" required></label>
+            <label>Description: <textarea placeholder="Product details" name="description"></textarea></label>
+            <label>Category ID:<input placeholder="1 - 10" type="number" name="categoryId" min="1" max="<%=CategoryLen%>" required/></label>
+            <label class="img">Image:<input type="file" name="image" value=""/></label><br>
             <button type="submit">Add New Product</button>
         </form>
     </div>
@@ -112,6 +112,7 @@
             <th>Name</th>
             <th>Price</th>
             <th>Quantity</th>
+            <th>Category</th>
             <th>Description</th>
             <th>Image</th>
             <th>Operation</th>
@@ -129,6 +130,9 @@
             <td><%= product.getPrice()%>
             </td>
             <td><%= product.getQuantity()%>
+            </td>
+            <td>
+                <%=product.getCategory().getCategory()%>
             </td>
             <td><%= product.getDescription()%>
             </td>

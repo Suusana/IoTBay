@@ -27,3 +27,19 @@ img{
     width:300px;
     height:300px;
 }
+input {
+    border-bottom: 1px solid rgb(166, 114, 36,0.5);
+    padding: 10px;
+    margin-top: 5px;
+
+}
+.img{
+    input{
+        border-bottom: none;
+    }
+}
+textarea{
+    margin-top:10px;
+    border: 1px solid rgb(166, 114, 36,0.5);
+
+}

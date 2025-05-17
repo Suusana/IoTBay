@@ -10,6 +10,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.bean.Product" %>
 <%@ page import="com.bean.Category" %>
+<%@ page import="com.bean.Staff"%>
 <html>
 <%
     List<Product> allProducts = (List<Product>) request.getAttribute("products");
@@ -23,63 +24,93 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/sideBar.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/ProductManagement.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/AdminSearchByCategory.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-<h2>Product List</h2>
-<div class="list">
-    <% if (allProducts != null && !allProducts.isEmpty()) {
-        for (Product product : allProducts) { %>
-    <a class="shop_product">
-
-        <img src="<%= request.getContextPath() %>/assets/img/<%= product.getImage() %>" alt="Device">
-        <h3><%= product.getProductName() %>
-        </h3>
-        <p><%= product.getDescription() %>
-        </p>
-        <span>$<%= product.getPrice() %></span>
-        <h5>Category: <%= product.getCategory().getCategory()%>
-        </h5>
-
-        <div class="update-product-info">
-            <h4>Update Product Info</h4>
-            <form action="<%= request.getContextPath() %>/UpdateProductServlet" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="productId" value="<%= product.getProductId() %>">
-                <label>Name: <input type="text" name="productName" value="<%= product.getProductName() %>"/></label>
-                <label>Price: <input type="text" name="price" value="<%= product.getPrice() %>"/></label>
-                <label>Quantity: <input type="number" name="quantity" value="<%= product.getQuantity() %>"></label>
-                <label>Description: <textarea name="description"><%= product.getDescription() %></textarea></label>
-                <%
-                    //product.getCategory -> receives category obj
-        /*
-          product.getCategory() -> returns the obj addr not the string (Category name)
-          product db stores categoryID / product class stores category obj
-        * */
-                    Category category = new Category();
-                    category = product.getCategory();
-                    int categoryID = category.getCategoryId();
-                %>
-                <br>
-                <label>Category ID:<input type="number" name="categoryId" value="<%=categoryID%>"/></label>
-                <p>Category :<%=product.getCategory().getCategory()%>
-                </p>
-                <label>Image:<input type="file" name="image" value="<%=product.getImage()%>"/></label>
-                <button type="submit">Update</button>
-            </form>
-        </div>
-        <div class="delete-product">
-            <form action="<%= request.getContextPath() %>/DeleteProduct" method="post"
-                  onsubmit="return confirm('Are you sure you want to delete it permanently remove this product?')">
-                <input type="hidden" name="productId" value="<%= product.getProductId() %>">
-                <button type="submit">Delete</button>
-            </form>
-        </div>
+<%
+    Staff staff = (Staff) session.getAttribute("loggedInUser");
+%>
+<div class="sideBar">
+    <h2>Admin Panel</h2>
+    <h4>Current Staff: <%= staff.getStaffName()%></h4>
+    <a href="<%= request.getContextPath() %>/ShowCustomerInfo">
+        <i class="fa-solid fa-user fa-lg"></i>
+        <span>Customer Management</span>
     </a>
-    <% }
-    } else { %>
-    <p>No products available right now.</p>
-    <!--this will appear when there is an servlet connection error or nothing to show --->
-    <% } %>
+    <a href="<%= request.getContextPath() %>/ShowStaffInfo">
+        <i class="fa-solid fa-user-tie fa-lg"></i>
+        <span>Staff Management</span>
+    </a>
+    <a href="<%= request.getContextPath() %>/ProductManagementServlet" class="current">
+        <i class="fa-solid fa-user-tie fa-lg"></i>
+        <span>Product Management</span>
+    </a>
+    <a href="<%=request.getContextPath()%>/ViewUserDetailsServlet">
+        <i class="fa-solid fa-user-tie fa-lg"></i>
+        <span>My Details Management</span>
+    </a>
+    <a href="<%=request.getContextPath()%>/views/logout.jsp">
+        <i class="fa-solid fa-right-from-bracket fa-lg"></i>
+        <span>Logout</span>
+    </a>
 </div>
+    <main>
+    <h2>Product List</h2>
+    <div class="list">
+        <% if (allProducts != null && !allProducts.isEmpty()) {
+            for (Product product : allProducts) { %>
+        <a class="shop_product">
+
+            <img src="<%= request.getContextPath() %>/assets/img/<%= product.getImage() %>" alt="Device">
+            <h3><%= product.getProductName() %>
+            </h3>
+            <p><%= product.getDescription() %>
+            </p>
+            <span>$<%= product.getPrice() %></span>
+            <h5>Category: <%= product.getCategory().getCategory()%>
+            </h5>
+
+            <div class="update-product-info">
+                <h4>Update Product Info</h4>
+                <form action="<%= request.getContextPath() %>/UpdateProductServlet" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="productId" value="<%= product.getProductId() %>">
+                    <label>Name: <input type="text" name="productName" value="<%= product.getProductName() %>"/></label>
+                    <label>Price: <input type="text" name="price" value="<%= product.getPrice() %>"/></label>
+                    <label>Quantity: <input type="number" name="quantity" value="<%= product.getQuantity() %>"></label>
+                    <label>Description: <textarea name="description"><%= product.getDescription() %></textarea></label>
+                    <%
+                        //product.getCategory -> receives category obj
+            /*
+              product.getCategory() -> returns the obj addr not the string (Category name)
+              product db stores categoryID / product class stores category obj
+            * */
+                        Category category = new Category();
+                        category = product.getCategory();
+                        int categoryID = category.getCategoryId();
+                    %>
+                    <br>
+                    <label>Category ID:<input type="number" name="categoryId" value="<%=categoryID%>"/></label>
+                    <p>Category :<%=product.getCategory().getCategory()%>
+                    </p>
+                    <label>Image:<input type="file" name="image" value="<%=product.getImage()%>"/></label>
+                    <button type="submit">Update</button>
+                </form>
+            </div>
+            <div class="delete-product">
+                <form action="<%= request.getContextPath() %>/DeleteProduct" method="post"
+                      onsubmit="return confirm('Are you sure you want to delete it permanently remove this product?')">
+                    <input type="hidden" name="productId" value="<%= product.getProductId() %>">
+                    <button type="submit">Delete</button>
+                </form>
+            </div>
+        </a>
+        <% }
+        } else { %>
+        <p>No products available right now.</p>
+        <!--this will appear when there is an servlet connection error or nothing to show --->
+        <% } %>
+    </div>
+</main>
 </body>
 </html>

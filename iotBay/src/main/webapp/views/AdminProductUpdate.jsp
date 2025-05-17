@@ -65,7 +65,7 @@
                 <label>Price : <input type="text" name="price" value="<%=product.getPrice()%>"/></label>
                 <label>Quantity : <input type="number" name="quantity" value="<%=product.getQuantity()%>"/></label>
                 <label>Description : <textarea name="description"> <%=product.getDescription()%></textarea></label>
-                <label>Image : <input type="file" name="image" value="<%=product.getImage()%>"/></label>
+                <label class="img">Image : <input type="file" name="image" value="<%=product.getImage()%>"/></label>
                 <%
                     Category category = new Category();
                     category = product.getCategory();
