@@ -37,7 +37,7 @@ public class UpdateProductServlet extends HttpServlet {
             HttpSession session = req.getSession();
             DBManager db = (DBManager) session.getAttribute("db");
             ProductDao pd = db.getProductDao();
-
+            CategoryDao cd = db.getCategoryDao();
             Product product = new Product();
 
             int productId = Integer.parseInt(req.getParameter("productId"));
@@ -53,7 +53,29 @@ public class UpdateProductServlet extends HttpServlet {
             String imgName = Paths.get(getFormImg.getSubmittedFileName()).getFileName().toString();
 
             int categoryId = Integer.parseInt(req.getParameter("categoryId"));
-
+            try{
+                boolean categoryLenValidation = false;
+                int maxCategoryLen = cd.lenCategory();
+                if(categoryId>maxCategoryLen){
+                    categoryLenValidation = true;
+                    session.setAttribute("categoryLenValidation", categoryLenValidation);
+                    resp.sendRedirect(req.getContextPath() + "/ProductManagementServlet");
+                    return;
+                }else{
+                    categoryLenValidation =false;
+                    session.setAttribute("categoryLenValidation", categoryLenValidation);
+                    try{
+                        Category category = cd.getCategoryById(categoryId);
+                        product.setCategory(category);
+                    }catch(SQLException e){
+                        System.out.println("Category-dao error detected");
+                        e.printStackTrace();
+                    }
+                }
+            } catch (RuntimeException | SQLException Exception) {
+                System.out.println("Error - categoryLenValidation from UpdateProductServlet");
+                throw new RuntimeException(Exception);
+            }
             product.setProductId(productId);
             product.setProductName(productName);
             product.setPrice(price);
@@ -69,7 +91,6 @@ public class UpdateProductServlet extends HttpServlet {
             }
             //product db stores categoryId but product class stores string(category name)
             //So get CategoryName using categoryId from category db.
-            CategoryDao cd = db.getCategoryDao();
             Category category = cd.getCategoryById(categoryId);
             product.setCategory(category);
 

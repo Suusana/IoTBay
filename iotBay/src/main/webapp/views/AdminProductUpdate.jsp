@@ -82,5 +82,15 @@
         <button class="back-button">Back to Product Management</button>
     </a>
 </div>
+<script>
+    <%
+        Boolean categoryLenValidation = (Boolean) session.getAttribute("categoryLenValidation");
+        if(categoryLenValidation!=null && categoryLenValidation){
+            session.removeAttribute("categoryLenValidation");
+    %>
+    alert("Category number out of range it should be 1 - 10");
+    <%
+        }
+    %></script>
 </body>
 </html>
