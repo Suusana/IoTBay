@@ -2,6 +2,7 @@ package com.controller.ProductController;
 
 import com.bean.Product;
 import com.bean.Category;
+import com.dao.CategoryDao;
 import com.dao.DBManager;
 import com.dao.ProductDao;
 import jakarta.servlet.ServletException;
@@ -22,13 +23,15 @@ public class GetByCategory extends HttpServlet{
             HttpSession session = req.getSession();
             DBManager db = (DBManager) session.getAttribute("db");
             ProductDao productDao = db.getProductDao();
+            CategoryDao cd= db.getCategoryDao();
 
             int categoryId = Integer.parseInt(req.getParameter("categoryId"));
             List<Product> products= productDao.getProductByCategory(categoryId);
-
+            Category category = cd.getCategoryById(categoryId);
 
             if (products != null) {
                 req.setAttribute("products", products);
+                req.setAttribute("category", category.getCategory());
                 req.getRequestDispatcher("/views/AdminProductSearchByCategory.jsp").forward(req, resp);
             } else {
                 req.setAttribute("message", "404 NotFound");

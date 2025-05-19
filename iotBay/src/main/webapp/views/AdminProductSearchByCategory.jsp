@@ -17,6 +17,7 @@
     List<Category> categories = (List<Category>) request.getAttribute("categories");
 
     String message = (String) request.getAttribute("message");
+    String selected_category = (String) request.getAttribute("category");
 %>
 <head>
     <title>Admin Dashboard</title>
@@ -55,62 +56,66 @@
         <span>Logout</span>
     </a>
 </div>
-    <main>
-    <h2>Product List</h2>
-    <div class="list">
-        <% if (allProducts != null && !allProducts.isEmpty()) {
-            for (Product product : allProducts) { %>
-        <a class="shop_product">
+    <main class="main-content">
+    <h2><%=selected_category%> Product List</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>Operation</th>
+            </tr>
+            </thead>
+            <tbody>
 
-            <img src="<%= request.getContextPath() %>/assets/img/<%= product.getImage() %>" alt="Device">
-            <h3><%= product.getProductName() %>
-            </h3>
-            <p><%= product.getDescription() %>
-            </p>
-            <span>$<%= product.getPrice() %></span>
-            <h5>Category: <%= product.getCategory().getCategory()%>
-            </h5>
+            <% if (allProducts != null && !allProducts.isEmpty()) {
+                for (Product product : allProducts) { %>
+            <tr>
+                <td><%= product.getProductId()%>
+                </td>
+                <td><%= product.getProductName()%>
+                </td>
+                <td><%= product.getPrice()%>
+                </td>
+                <td><%= product.getQuantity()%>
+                </td>
+                <td>
+                    <%=product.getCategory().getCategory()%>
+                </td>
+                <td><%= product.getDescription()%>
+                </td>
+                <td><img src="<%= request.getContextPath() %>/assets/img/<%= product.getImage() %>" alt="Device">
+                </td>
+                <td class="operation">
 
-            <div class="update-product-info">
-                <h4>Update Product Info</h4>
-                <form action="<%= request.getContextPath() %>/UpdateProductServlet" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="productId" value="<%= product.getProductId() %>">
-                    <label>Name: <input type="text" name="productName" value="<%= product.getProductName() %>"/></label>
-                    <label>Price: <input type="text" name="price" value="<%= product.getPrice() %>"/></label>
-                    <label>Quantity: <input type="number" name="quantity" value="<%= product.getQuantity() %>"></label>
-                    <label>Description: <textarea name="description"><%= product.getDescription() %></textarea></label>
-                    <%
-                        //product.getCategory -> receives category obj
-            /*
-              product.getCategory() -> returns the obj addr not the string (Category name)
-              product db stores categoryID / product class stores category obj
-            * */
-                        Category category = new Category();
-                        category = product.getCategory();
-                        int categoryID = category.getCategoryId();
-                    %>
-                    <br>
-                    <label>Category ID:<input type="number" name="categoryId" value="<%=categoryID%>"/></label>
-                    <p>Category :<%=product.getCategory().getCategory()%>
-                    </p>
-                    <label>Image:<input type="file" name="image" value="<%=product.getImage()%>"/></label>
-                    <button type="submit">Update</button>
-                </form>
-            </div>
-            <div class="delete-product">
-                <form action="<%= request.getContextPath() %>/DeleteProduct" method="post"
-                      onsubmit="return confirm('Are you sure you want to delete it permanently remove this product?')">
-                    <input type="hidden" name="productId" value="<%= product.getProductId() %>">
-                    <button type="submit">Delete</button>
-                </form>
-            </div>
-        </a>
-        <% }
-        } else { %>
-        <p>No products available right now.</p>
-        <!--this will appear when there is an servlet connection error or nothing to show --->
-        <% } %>
-    </div>
+                    <form action="<%= request.getContextPath() %>/ProductDetailAdminServlet" method="get">
+                        <input type="hidden" name="productId" value="<%= product.getProductId() %>">
+                        <button type="submit" name="view" value="view">View</button>
+                    </form>
+
+                    <form action="<%= request.getContextPath() %>/UpdateProductServlet" method="get">
+                        <input type="hidden" name="productId" value="<%= product.getProductId() %>">
+                        <button type="submit" name="update" class="update">Update</button>
+                    </form>
+
+                    <form action="<%= request.getContextPath() %>/DeleteProduct" method="post" onsubmit="return confirm('Are you sure you want to delete it permanently remove this product?')">
+                        <input type="hidden" name="productId" value="<%= product.getProductId() %>">
+                        <button class="delete" type="submit">Delete</button>
+                    </form>
+
+                </td>
+            </tr>
+            <%
+                    }
+                }
+            %>
+            </tbody>
+        </table>
 </main>
 </body>
 </html>
