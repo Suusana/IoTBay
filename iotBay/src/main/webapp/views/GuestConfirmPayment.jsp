@@ -9,10 +9,12 @@
         orderId = (Integer) orderIdObj;
     }
 
-    if (payment == null || orderId == null) {
+    String guestEmail = (String) session.getAttribute("guestEmail");
+
+    if (payment == null || orderId == null || guestEmail == null) {
 %>
 <p style="color: red; font-family: Arial, sans-serif; padding: 40px;">
-    Missing payment information. Please go back and try again.
+    Missing guest payment information. Please go back and try again.
 </p>
 <a href="<%= request.getContextPath() %>/home"
    style="font-family: Arial; text-decoration: none; color: #B88E2F;">Back to Home</a>
@@ -25,7 +27,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Confirm Payment</title>
+    <title>Guest Payment Confirmation</title>
     <style>
         body {
             background-color: #FFF3E3;
@@ -63,18 +65,38 @@
 </head>
 <body>
 <div class="card">
-    <h2>Payment Summary</h2>
+    <h2>Thank You for Your Purchase!</h2>
+
+    <p style="margin-top: 10px;">
+        Please keep your <strong>Order ID</strong> and <strong>Guest Email</strong> safe to view your payment later.
+    </p>
 
     <div class="info">Order ID: <span class="highlight"><%= orderId %></span></div>
+    <div class="info">Guest Email: <span class="highlight"><%= guestEmail %></span></div>
+
     <div class="info">Payment Method: <span class="highlight"><%= payment.getMethod() %></span></div>
     <div class="info">Status: <span class="highlight"><%= payment.getStatus() %></span></div>
     <div class="info">Amount: <span class="highlight"><%= payment.getAmount() %></span></div>
 
-    <p>Your payment has been recorded successfully.</p>
+    <% if ("Credit Card".equalsIgnoreCase(payment.getMethod())) {
+        String maskedCard = "Invalid";
+        if (payment.getCardNumber() != null && payment.getCardNumber().length() >= 4) {
+            maskedCard = "**** **** **** " + payment.getCardNumber().substring(payment.getCardNumber().length() - 4);
+        }
+    %>
+    <div class="info">Card Holder: <span class="highlight"><%= payment.getCardHolder() %></span></div>
+    <div class="info">Card Number: <span class="highlight"><%= maskedCard %></span></div>
+    <div class="info">Expiry Date: <span class="highlight"><%= payment.getExpiryDate() %></span></div>
+    <% } else if ("Bank Transfer".equalsIgnoreCase(payment.getMethod())) { %>
+    <div class="info">BSB: <span class="highlight"><%= payment.getBsb() %></span></div>
+    <div class="info">Account Name: <span class="highlight"><%= payment.getAccountName() %></span></div>
+    <div class="info">Account Number: <span class="highlight"><%= payment.getAccountNumber() %></span></div>
+    <% } %>
 
-    <form method="get" action="<%= request.getContextPath() %>/ViewPayment">
-        <input type="hidden" name="orderId" value="<%= orderId %>" />
-        <button class="btn">View All Payments</button>
+    <form method="get" action="<%= request.getContextPath() %>/GuestViewPayment">
+        <input type="hidden" name="orderId" value="<%= orderId %>">
+        <input type="hidden" name="guestEmail" value="<%= guestEmail %>">
+        <button class="btn">View Guest Payments</button>
     </form>
 </div>
 </body>

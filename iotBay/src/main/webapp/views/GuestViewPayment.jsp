@@ -1,8 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.bean.Payment" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.text.NumberFormat" %>
+<%@ page import="com.bean.Payment" %>
+<%@ page import="com.enums.Status" %>
 
 <%
   List<Payment> guestPayments = (List<Payment>) request.getAttribute("guestPayments");
@@ -16,54 +17,162 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Guest Payment View</title>
-  <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/base.css">
+  <title>Find Your Payment</title>
+  <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/base.css?<%= System.currentTimeMillis() %>">
+  <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/HeaderAndFooter.css?<%= System.currentTimeMillis() %>">
+  <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/PaymentStyle.css?<%= System.currentTimeMillis() %>">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    .flex-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: flex-end;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .flex-form div {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .flex-form input,
+    .flex-form button {
+      height: 36px;
+      padding: 0 10px;
+      font-size: 14px;
+    }
+
+    .infoCard {
+      max-width: 700px;
+      margin: 40px auto;
+      background-color: #fff;
+      padding: 30px 35px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      text-align: center;
+    }
+
+    .infoCard h2 {
+      margin-bottom: 10px;
+    }
+
+    .formError {
+      color: red;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
 </head>
-<body style="font-family: Arial, sans-serif; background-color: #FFF3E3; padding: 20px;">
+<body style="background-color: #FFF3E3;">
 
-<h2>View Your Payment</h2>
+<!-- Header -->
+<div class="header">
+  <a href="<%=request.getContextPath()%>/home">
+    <img src="<%=request.getContextPath()%>/assets/img/Logo.png" alt="IotBay Logo">
+  </a>
+  <menu>
+    <a href="<%= request.getContextPath()%>/home"><span>Home</span></a>
+    <a href="<%= request.getContextPath()%>/productServlet"><span>Shop</span></a>
+    <a href="<%= request.getContextPath()%>/viewOrder"><span>Order</span></a>
+    <a href="<%= request.getContextPath()%>/ViewPayment"><span class="selected">Payment</span></a>
+  </menu>
+  <menu class="icon">
+    <a href="#">
+      <i class="fa-solid fa-circle-user fa-2x"></i>
+      <span>Guest</span>
+    </a>
+    <a href="<%=request.getContextPath()%>/GetByProductNameToCustomer">
+      <i class="fa-solid fa-magnifying-glass fa-2x"></i><span>Search</span>
+    </a>
+    <a href="#"><i class="fa-solid fa-cart-shopping fa-2x"></i><span>Cart</span></a>
+  </menu>
+</div>
 
-<% if (message != null) { %>
-<p style="color: red;"><%= message %></p>
-<% } %>
+<!-- Main Content -->
+<div class="mainContainer">
+  <div class="infoCard">
+    <h2>Find Your Payment</h2>
 
-<form method="get" action="GuestViewPayment" style="margin-bottom: 20px;">
-  <div style="margin-bottom: 10px;">
-    <label for="orderId">Order ID:</label><br>
-    <input type="text" name="orderId" id="orderId" required />
+    <% if (message != null) { %>
+    <p class="formError"><%= message %></p>
+    <% } %>
+
+    <form method="get" action="GuestViewPayment" class="flex-form">
+      <div>
+        <label for="orderId">Order ID:</label>
+        <input type="text" name="orderId" id="orderId" required />
+      </div>
+      <div>
+        <label for="guestEmail">Email:</label>
+        <input type="email" name="guestEmail" id="guestEmail" required />
+      </div>
+      <div>
+        <button type="submit" class="actionButton">View Payment</button>
+      </div>
+    </form>
+
+    <% if (guestPayments != null && !guestPayments.isEmpty()) { %>
+    <h3 style="margin-top: 30px;">Payments for Order ID: <%= orderId %></h3>
+    <table class="infoTable">
+      <thead>
+      <tr>
+        <th>Payment Method</th>
+        <th>Amount</th>
+        <th>Status</th>
+        <th>Payment Date</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% for (Payment payment : guestPayments) { %>
+      <tr>
+        <td><%= payment.getMethod() %></td>
+        <td><%= currencyFormat.format(payment.getAmount()) %></td>
+        <td><%= payment.getStatus() %></td>
+        <td><%= payment.getPaymentDate() != null ? sdf.format(payment.getPaymentDate()) : "N/A" %></td>
+      </tr>
+      <% } %>
+      </tbody>
+    </table>
+    <% } else if (orderId != null) { %>
+    <p style="margin-top: 20px;">No payment records found for Order ID: <%= orderId %></p>
+    <% } %>
   </div>
-  <div style="margin-bottom: 10px;">
-    <label for="guestEmail">Email:</label><br>
-    <input type="email" name="guestEmail" id="guestEmail" required />
-  </div>
-  <button type="submit">View Payment</button>
-</form>
+</div>
 
-<% if (guestPayments != null && !guestPayments.isEmpty()) { %>
-<h3>Payments for Order ID: <%= orderId %></h3>
-<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; background-color: #fff;">
-  <thead style="background-color: #f0f0f0;">
-  <tr>
-    <th>Payment Method</th>
-    <th>Amount</th>
-    <th>Status</th>
-    <th>Payment Date</th>
-  </tr>
-  </thead>
-  <tbody>
-  <% for (Payment payment : guestPayments) { %>
-  <tr>
-    <td><%= payment.getMethod() %></td>
-    <td><%= currencyFormat.format(payment.getAmount()) %></td>
-    <td><%= payment.getStatus() %></td>
-    <td><%= payment.getPaymentDate() != null ? sdf.format(payment.getPaymentDate()) : "N/A" %></td>
-  </tr>
-  <% } %>
-  </tbody>
-</table>
-<% } else if (orderId != null) { %>
-<p>No payment records found for Order ID: <%= orderId %></p>
-<% } %>
+<!-- Footer -->
+<div class="footer">
+  <hr>
+  <div>
+    <div class="section">
+      <h6 id="dif">IoTBay</h6><br>
+      <span>The most complete range of IoT devices to upgrade your life at the touch of a button.</span>
+    </div>
+    <div class="section">
+      <h6>Links</h6>
+      <a href="<%=request.getContextPath()%>/home">Home</a>
+      <a href="<%=request.getContextPath()%>/productServlet">Shop</a>
+      <a href="<%=request.getContextPath()%>/viewOrder">Order</a>
+      <a href="<%=request.getContextPath()%>/ViewPayment">Payment</a>
+    </div>
+    <div class="section">
+      <h6>Contact Us</h6>
+      <span>Address: 123 IotBay, Sydney</span>
+      <span>Phone Number: +61 0499999999</span>
+      <span>Email: IotBay@example.com</span>
+    </div>
+    <div class="section">
+      <h6>Follow Us</h6>
+      <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram fa-lg"></i> Instagram</a>
+      <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook fa-lg"></i> Facebook</a>
+      <a href="https://discord.com/"><i class="fa-brands fa-discord fa-lg"></i> Discord</a>
+      <a href="https://x.com/?lang=en"><i class="fa-brands fa-x-twitter fa-lg"></i> Twitter</a>
+    </div>
+  </div>
+  <hr>
+  <p>©2025 IoTBay Group 4. All Rights Reserved.</p>
+</div>
 
 </body>
 </html>

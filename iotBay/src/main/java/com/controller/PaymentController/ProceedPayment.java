@@ -1,6 +1,5 @@
 package com.controller.PaymentController;
 
-import com.bean.Customer;
 import com.bean.Payment;
 import com.bean.PaymentLog;
 import com.dao.DBManager;
@@ -15,55 +14,68 @@ import java.sql.Date;
 
 @WebServlet("/ProceedPayment")
 public class ProceedPayment extends HttpServlet {
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
+        System.out.println("[DEBUG] Entered doPost() in ProceedPayment");
+
         HttpSession session = req.getSession();
         DBManager db = (DBManager) session.getAttribute("db");
-
         PaymentDao dao = db.getPaymentDao();
         PaymentLogDao logDao = db.getPaymentLogDao();
 
-        Customer customer = (Customer) session.getAttribute("loggedInUser");
-        if (customer == null) {
-            resp.sendRedirect("login.jsp");
-            return;
-        }
-
         try {
-            int paymentId = Integer.parseInt(req.getParameter("paymentId"));
-            int userId = customer.getUserId();
+            String idParam = req.getParameter("paymentId");
+            System.out.println("[DEBUG] Received paymentId: " + idParam);
 
-            // get payment and validate
-            Payment payment = dao.getPaymentByIdAndUser(paymentId, userId);
-            if (payment == null || !"Pending".equalsIgnoreCase(payment.getStatus())) {
-                req.setAttribute("message", "Invalid or already processed payment.");
-                req.getRequestDispatcher("/ViewPayment").forward(req, resp);
-                return;
+            if (idParam == null || idParam.trim().isEmpty()) {
+                throw new IllegalArgumentException("Missing paymentId");
             }
 
-            // update status
-            payment.setStatus("Paid");
-            payment.setPaymentDate(new Date(System.currentTimeMillis()));
-            dao.update(payment);
+            int paymentId = Integer.parseInt(idParam);
+            Payment payment = dao.getPaymentById(paymentId);
 
-            // log the update
-            PaymentLog log = new PaymentLog();
-            log.setPaymentId(payment.getPaymentId());
-            log.setUserId(userId);
-            log.setOrderId(payment.getOrderId());
-            log.setAction("UPDATE");
-            log.setTimestamp(new Date(System.currentTimeMillis()));
-            logDao.log(log);
+            if (payment == null) {
+                System.out.println("[DEBUG] Payment not found.");
+            } else if ("Paid".equalsIgnoreCase(payment.getStatus())) {
+                System.out.println("[DEBUG] Payment already marked as Paid.");
+            } else {
+                System.out.println("[DEBUG] Proceeding payment ID: " + paymentId);
 
-            req.setAttribute("message", "Payment completed successfully.");
-            req.getRequestDispatcher("/ViewPayment").forward(req, resp);
+                // Update status and payment date
+                payment.setStatus("Paid");
+                payment.setPaymentDate(new Date(System.currentTimeMillis()));
+
+                dao.update(payment);
+                System.out.println("[DEBUG] Payment updated to Paid");
+
+                // log the proceed action
+                PaymentLog log = new PaymentLog();
+                log.setPaymentId(payment.getPaymentId());
+                log.setUserId(payment.getUserId());
+                log.setOrderId(payment.getOrderId());
+                log.setAction("PROCEED");
+                log.setTimestamp(new Date(System.currentTimeMillis()));
+                logDao.log(log);
+
+                System.out.println("[DEBUG] Payment action logged as PROCEED");
+            }
 
         } catch (Exception e) {
+            System.out.println("[DEBUG] Exception in ProceedPayment:");
             e.printStackTrace();
-            req.setAttribute("message", "An error occurred while processing payment.");
-            req.getRequestDispatcher("/ViewPayment").forward(req, resp);
         }
+
+        // Use redirect to prevent 405 error
+        resp.sendRedirect(req.getContextPath() + "/ViewPayment");
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        // redirect GET requests to ViewPayment
+        resp.sendRedirect(req.getContextPath() + "/ViewPayment");
     }
 }

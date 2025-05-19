@@ -21,6 +21,23 @@ public class PaymentDao {
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            // Debugging logs
+            System.out.println("======[DEBUG] Saving Payment ======");
+            System.out.println("Method         : " + payment.getMethod());
+            System.out.println("Card Holder    : " + payment.getCardHolder());
+            System.out.println("Card Number    : " + payment.getCardNumber());
+            System.out.println("Expiry Date    : " + payment.getExpiryDate());
+            System.out.println("CVC            : " + payment.getCvc());
+            System.out.println("BSB            : " + payment.getBsb());
+            System.out.println("Account Name   : " + payment.getAccountName());
+            System.out.println("Account Number : " + payment.getAccountNumber());
+            System.out.println("Amount         : " + payment.getAmount());
+            System.out.println("Payment Date   : " + payment.getPaymentDate());
+            System.out.println("Status         : " + payment.getStatus());
+            System.out.println("User ID        : " + userId);
+            System.out.println("Order ID       : " + orderId);
+            System.out.println("===================================");
+
             ps.setString(1, payment.getMethod());
             ps.setString(2, payment.getCardHolder());
             ps.setString(3, payment.getCardNumber());
@@ -39,11 +56,20 @@ public class PaymentDao {
 
             try (ResultSet rs = ps.getGeneratedKeys()) {
                 if (rs.next()) {
-                    payment.setPaymentId(rs.getInt(1));
+                    int generatedId = rs.getInt(1);
+                    payment.setPaymentId(generatedId);
+                    System.out.println("Payment inserted successfully. ID = " + generatedId);
+                } else {
+                    System.err.println("Payment inserted, but no ID was returned.");
                 }
             }
+        } catch (SQLException e) {
+            System.err.println("Payment INSERT 실패: " + e.getMessage());
+            e.printStackTrace();
+            throw e; // optionally rethrow to be handled above
         }
     }
+
 
     // Update existing payment
     public void update(Payment payment) throws SQLException {
