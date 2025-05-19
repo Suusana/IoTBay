@@ -14,36 +14,36 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/GetByCategory")
-public class GetByCategory extends HttpServlet{
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException{
+@WebServlet("/GetByCategoryAndName")
+public class GetByCategoryAndName extends HttpServlet {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException {
         try{
             HttpSession session = req.getSession();
             DBManager db = (DBManager) session.getAttribute("db");
-            ProductDao productDao = db.getProductDao();
-            CategoryDao cd= db.getCategoryDao();
+            ProductDao pd = db.getProductDao();
+            CategoryDao cd = db.getCategoryDao();
 
+            String searchName = req.getParameter("productName");
             int categoryId = Integer.parseInt(req.getParameter("categoryId"));
-            List<Product> products= productDao.getProductByCategory(categoryId);
             Category category = cd.getCategoryById(categoryId);
+            System.out.println("Searching for: " + searchName + ", categoryId: " + categoryId);
+            List<Product> products = pd.getProductByCategory_searchName(searchName, categoryId);
 
             if (products != null) {
                 req.setAttribute("products", products);
                 req.setAttribute("category", category.getCategory());
-                req.setAttribute("categoryId", categoryId);
-                req.getRequestDispatcher("/views/AdminProductSearchByCategory.jsp").forward(req, resp);
+                req.getRequestDispatcher("/views/AdminProductSearchByCategoryName.jsp").forward(req, resp);
             } else {
                 req.setAttribute("message", "404 NotFound");
-                req.getRequestDispatcher("/views/AdminProductSearchByCategory.jsp").forward(req, resp);
+                req.setAttribute("category", category.getCategory());
+                req.getRequestDispatcher("/views/AdminProductSearchByCategoryName.jsp").forward(req, resp);
             }
 
-        } catch(SQLException | IOException e){
-            System.out.println("Failed to load a product");
-            throw new ServletException(e);
+        }catch (SQLException | IOException e){
+            e.printStackTrace();
         }
-
     }
-
 }

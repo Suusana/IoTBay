@@ -38,3 +38,8 @@ img{
 input{
     width:50%;
 }
+.search-box-name{
+    input{
+        width: 20%;
+    }
+}

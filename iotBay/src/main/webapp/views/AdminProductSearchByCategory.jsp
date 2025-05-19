@@ -17,6 +17,7 @@
     List<Category> categories = (List<Category>) request.getAttribute("categories");
 
     String message = (String) request.getAttribute("message");
+    Integer categoryId = (Integer) request.getAttribute("categoryId");
     String selected_category = (String) request.getAttribute("category");
 %>
 <head>
@@ -58,6 +59,19 @@
 </div>
     <main class="main-content">
     <h2><%=selected_category%> Product List</h2>
+        <div class="search-box">
+            <div class="search-box-name">
+                <h3>Search by Name</h3>
+                <form action="<%= request.getContextPath() %>/GetByCategoryAndName" method="get" target="_blank">
+                    <input type="hidden" name="categoryId" value="<%=categoryId%>">
+                    <label for="productName">
+                        <input type="search" id="productName" name="productName"/>
+                    </label>
+                    <button>Search</button>
+                </form>
+            </div> <!-end of search-box-name -->
+        </div><!-end of search-box -->
+
         <table>
             <thead>
             <tr>
