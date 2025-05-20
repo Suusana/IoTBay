@@ -11,11 +11,11 @@ target/
 *.iws
 *.iml
 *.ipr
-
+.idea/webContexts.xml
 ### Eclipse ###
 .apt_generated
 .classpath
-.factorypath
+.factorypat
 .project
 .settings
 .springBeans
