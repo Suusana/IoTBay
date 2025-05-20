@@ -6,6 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Statement;
+import java.util.Objects;
 
 public class CustomerDao {
     private final Connection connection;
@@ -18,7 +19,8 @@ public class CustomerDao {
     public void addUser(Customer customer) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO User (username, first_name, last_name, " +
                 "password, email, phone, status, address, state, city, postcode, country,`type`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        int status = customer.getStatus()=="Active"?1:0;
+        int status = Objects.equals(customer.getStatus(), "Active") ? 1 : 0;
+
         preparedStatement.setString(1, customer.getUsername());
         preparedStatement.setString(2, customer.getFirstName());
         preparedStatement.setString(3, customer.getLastName());
