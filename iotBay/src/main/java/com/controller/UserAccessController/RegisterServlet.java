@@ -55,7 +55,7 @@ public class RegisterServlet extends HttpServlet {
         } else {
             address = req.getParameter("street");
         }
-        String status = "1";
+        String status = "Active";
 
         // validate input and return errors
         Map<String, String> errors = Utils.validateUserInput(firstName, lastName, email, password, confirmPassword, phoneNumber,

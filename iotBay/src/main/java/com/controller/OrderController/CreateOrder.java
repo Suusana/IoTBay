@@ -81,13 +81,15 @@ public class CreateOrder extends HttpServlet {
             session.setAttribute("product", product);
 
             if (status == OrderStatus.Confirmed) {
+                // update stock
+                productDao.updateProductQuantity(productId, quantity);
+                product.setQuantity(stock - quantity);
+                session.setAttribute("product", product);
+
                 // Redirect instead of forward to update browser address bar and prevent duplicate POST
                 //response.sendRedirect(request.getContextPath() + "/views/ConfirmPayment.jsp");
                 response.sendRedirect(request.getContextPath() + "/SelectPayment?orderId=" + order.getOrderId());
 
-                // update stock
-                int newStock = stock - quantity;
-                db.getProductDao().updateProductQuantity(productId, newStock);
             } else {
                 // If status is Saved, just redirect to order list
                 response.sendRedirect(request.getContextPath() + "/viewOrder");

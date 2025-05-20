@@ -27,59 +27,95 @@ public class UpdatePayment extends HttpServlet {
 
         try {
             String idParam = req.getParameter("paymentId");
-
-            // check paymentId is provided
             if (idParam == null || idParam.trim().isEmpty()) {
-                throw new IllegalArgumentException("Missing paymentId");
+                throw new IllegalArgumentException("Missing payment ID");
             }
 
             int paymentId = Integer.parseInt(idParam);
             Payment payment = dao.getPaymentById(paymentId);
 
-            // if the payment doesn't exist, return to the edit form with an error
             if (payment == null) {
                 req.setAttribute("error", "Payment not found.");
                 req.getRequestDispatcher("/views/EditPayment.jsp").forward(req, resp);
                 return;
             }
 
-            // update payment fields with new form input
-            payment.setCardHolder(req.getParameter("cardHolder"));
-            payment.setCardNumber(req.getParameter("cardNumber"));
-            payment.setCvc(req.getParameter("cvc"));
+            String method = req.getParameter("actualMethod");
 
-            // validate and set expiry date
-            String expiryParam = req.getParameter("expiryDate");
-            if (expiryParam == null || expiryParam.trim().isEmpty()) {
-                req.setAttribute("error", "Expiry date is missing.");
-                req.setAttribute("payment", payment);
-                req.getRequestDispatcher("/views/EditPayment.jsp").forward(req, resp);
-                return;
-            }
+            if ("Credit Card".equalsIgnoreCase(method)) {
+                String firstName = req.getParameter("firstName");
+                String lastName = req.getParameter("lastName");
+                String cardHolder = firstName + " " + lastName;
+                String cardNumber = req.getParameter("cardNumber");
+                String cvc = req.getParameter("cvc");
+                String expiryDate = req.getParameter("expiryDate");
 
-            try {
-                payment.setExpiryDate(Date.valueOf(expiryParam));
-            } catch (IllegalArgumentException e) {
-                req.setAttribute("error", "Invalid expiry date format.");
-                req.setAttribute("payment", payment);
-                req.getRequestDispatcher("/views/EditPayment.jsp").forward(req, resp);
-                return;
-            }
+                if (cardNumber == null || cardNumber.length() != 16) {
+                    req.setAttribute("error", "Card number must be 16 digits.");
+                    req.setAttribute("payment", payment);
+                    req.getRequestDispatcher("/views/EditPayment.jsp").forward(req, resp);
+                    return;
+                }
 
-            // set defaults for missing optional fields
-            if (payment.getAmount() == null)
-                payment.setAmount(new java.math.BigDecimal("0.00"));
-            if (payment.getPaymentDate() == null)
-                payment.setPaymentDate(new Date(System.currentTimeMillis()));
-            if (payment.getMethod() == null)
-                payment.setMethod("CreditCard");
-            if (payment.getStatus() == null)
+                payment.setMethod("Credit Card");
+                payment.setCardHolder(cardHolder);
+                payment.setCardNumber(cardNumber);
+                payment.setCvc(cvc);
+
+                try {
+                    payment.setExpiryDate(Date.valueOf(expiryDate));
+                } catch (IllegalArgumentException e) {
+                    req.setAttribute("error", "Invalid expiry date.");
+                    req.setAttribute("payment", payment);
+                    req.getRequestDispatcher("/views/EditPayment.jsp").forward(req, resp);
+                    return;
+                }
+
                 payment.setStatus("Paid");
+                payment.setPaymentDate(new Date(System.currentTimeMillis()));
 
-            // save updated payment
-            dao.update(payment);
+            } else if ("Bank Transfer".equalsIgnoreCase(method)) {
+                String bsb = req.getParameter("bsb");
+                String accountName = req.getParameter("accountName");
+                String accountNumber = req.getParameter("accountNumber");
 
-            // log the update action
+                if (bsb == null || bsb.length() != 6 ||
+                        accountName == null || accountName.trim().isEmpty() ||
+                        accountNumber == null || accountNumber.length() < 6) {
+
+                    req.setAttribute("error", "Please fill out all bank transfer details correctly.");
+                    req.setAttribute("payment", payment);
+                    req.getRequestDispatcher("/views/EditPayment.jsp").forward(req, resp);
+                    return;
+                }
+
+                payment.setMethod("Bank Transfer");
+                payment.setBsb(bsb);
+                payment.setAccountName(accountName);
+                payment.setAccountNumber(accountNumber);
+
+                payment.setStatus("Pending");
+                payment.setPaymentDate(new Date(System.currentTimeMillis()));
+
+            } else {
+                req.setAttribute("error", "Unsupported payment method.");
+                req.setAttribute("payment", payment);
+                req.getRequestDispatcher("/views/EditPayment.jsp").forward(req, resp);
+                return;
+            }
+
+            if (payment.getAmount() == null) {
+                payment.setAmount(new java.math.BigDecimal("0.00"));
+            }
+
+            int rowsUpdated = dao.update(payment);
+            if (rowsUpdated == 0) {
+                req.setAttribute("error", "Update failed. No rows were affected.");
+                req.setAttribute("payment", payment);
+                req.getRequestDispatcher("/views/EditPayment.jsp").forward(req, resp);
+                return;
+            }
+
             PaymentLog log = new PaymentLog();
             log.setPaymentId(payment.getPaymentId());
             log.setUserId(payment.getUserId());
@@ -88,15 +124,16 @@ public class UpdatePayment extends HttpServlet {
             log.setTimestamp(new Date(System.currentTimeMillis()));
             logDao.log(log);
 
-            // redirect to ViewPayment after successful update
-            resp.sendRedirect(req.getContextPath() + "/ViewPayment?orderId=" + payment.getOrderId());
+            resp.sendRedirect(req.getContextPath() + "/ViewPayment");
 
         } catch (NumberFormatException e) {
             req.setAttribute("error", "Invalid number format: " + e.getMessage());
             req.getRequestDispatcher("/views/EditPayment.jsp").forward(req, resp);
+
         } catch (SQLException e) {
             req.setAttribute("error", "Database error: " + e.getMessage());
             req.getRequestDispatcher("/views/EditPayment.jsp").forward(req, resp);
+
         } catch (IllegalArgumentException e) {
             req.setAttribute("error", "Invalid input: " + e.getMessage());
             req.getRequestDispatcher("/views/EditPayment.jsp").forward(req, resp);
@@ -106,7 +143,6 @@ public class UpdatePayment extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        // redirect GET access to home page (not allowed for updates)
         resp.sendRedirect(req.getContextPath() + "/home");
     }
 }

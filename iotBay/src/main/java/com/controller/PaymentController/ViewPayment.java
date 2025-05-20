@@ -9,6 +9,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,27 +23,20 @@ public class ViewPayment extends HttpServlet {
         DBManager db = (DBManager) session.getAttribute("db");
         PaymentDao dao = db.getPaymentDao();
 
-        // Check if user is logged in
         Customer loggedInUser = (Customer) session.getAttribute("loggedInUser");
-
-        // Reject if guest or not logged in
         if (loggedInUser == null || loggedInUser.getUsername().toLowerCase().contains("guest")) {
             resp.sendRedirect(req.getContextPath() + "/GuestViewPayment");
             return;
         }
 
-        // Get the logged-in user's ID
         int userId = loggedInUser.getUserId();
-
-        // Get search parameters
         String orderIdStr = req.getParameter("orderId");
         String searchPaymentIdStr = req.getParameter("searchPaymentId");
-        String searchDate = req.getParameter("searchDate");
+        String searchDateStr = req.getParameter("searchDate");
 
         try {
             List<Payment> payments = new ArrayList<>();
 
-            // Search by payment ID
             if (searchPaymentIdStr != null && !searchPaymentIdStr.isEmpty()) {
                 try {
                     int searchPaymentId = Integer.parseInt(searchPaymentIdStr);
@@ -53,22 +47,21 @@ public class ViewPayment extends HttpServlet {
                 } catch (NumberFormatException e) {
                     req.setAttribute("message", "Invalid Payment ID format.");
                 }
-            }
-            // Search by date
-            else if (searchDate != null && !searchDate.isEmpty()) {
-                payments = dao.getPaymentsByDateAndUser(searchDate, userId);
-            }
-            // View by order ID
-            else if (orderIdStr != null && !orderIdStr.isEmpty()) {
+            } else if (searchDateStr != null && !searchDateStr.isEmpty()) {
+                try {
+                    Date searchDate = Date.valueOf(searchDateStr); // yyyy-MM-dd
+                    payments = dao.getPaymentsByTimestampDate(searchDate, userId);
+                } catch (IllegalArgumentException e) {
+                    req.setAttribute("message", "Invalid Date format.");
+                }
+            } else if (orderIdStr != null && !orderIdStr.isEmpty()) {
                 try {
                     int orderId = Integer.parseInt(orderIdStr);
                     payments = dao.getPaymentsByOrderIdAndUser(orderId, userId);
                 } catch (NumberFormatException e) {
                     req.setAttribute("message", "Invalid Order ID.");
                 }
-            }
-            // View all for this user
-            else {
+            } else {
                 payments = dao.getPaymentsByUserId(userId);
             }
 

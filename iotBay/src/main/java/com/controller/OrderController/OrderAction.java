@@ -73,15 +73,50 @@ public class OrderAction extends HttpServlet {
                     break;
 
                 case "submit":
-                    orderDao.updateOrderStatus(orderId, OrderStatus.Confirmed);
+                    boolean hasError2 = false;
+                    StringBuilder errorMsg2 = new StringBuilder();
 
                     for (Product product : order.getProducts()) {
                         int productId = product.getProductId();
-                        productDao.updateProductQuantity(productId, order.getQuantity());
+
+                        Product freshProduct = productDao.getProductById(productId);
+                        int availableStock = freshProduct.getQuantity();
+
+                        String quantityParam = request.getParameter("quantity_" + productId);
+                        if (quantityParam != null && !quantityParam.isEmpty()) {
+                            int newQuantity = Integer.parseInt(quantityParam);
+
+                            if (newQuantity > availableStock) {
+                                hasError2 = true;
+                                errorMsg2.append("Quantity for product ID ")
+                                        .append(productId)
+                                        .append(" exceeds available stock (")
+                                        .append(availableStock)
+                                        .append(").\n");
+                            } else {
+                                product.setQuantity(newQuantity);
+                            }
+                        }
                     }
 
+                    if (hasError2) {
+                        session.setAttribute("error", errorMsg2.toString());
+                        response.sendRedirect("viewOrderDetails?orderId=" + order.getOrderId());
+                        break;
+                    }
+
+                    orderDao.updateOrderStatus(order.getOrderId(), OrderStatus.Confirmed);
+
+                    // update stock
+                    for (Product product : order.getProducts()) {
+                        int productId = product.getProductId();
+                        int finalQuantity = product.getQuantity();
+                        productDao.updateProductQuantity(productId, finalQuantity);
+                    }
+
+                    // go to payment page
                     session.setAttribute("order", order);
-                    session.setAttribute("product", prod);
+                    session.setAttribute("product", order.getProducts().get(0));
                     response.sendRedirect(request.getContextPath() + "/views/ConfirmPayment.jsp");
                     break;
 

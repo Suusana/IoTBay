@@ -44,7 +44,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-<!-- header -->
 <div class="header">
     <a href="<%=request.getContextPath()%>/home">
         <img src="<%=request.getContextPath()%>/assets/img/Logo.png" alt="IotBay Logo">
@@ -88,13 +87,13 @@
     <p style="color: red;"><%= message %></p>
     <% } %>
 
-    <h3 class="subtitle">Saved Payments</h3>
+    <!-- Saved Payments -->
     <table class="infoTable">
         <thead>
         <tr>
             <th>Payment ID</th>
-            <th>Card Holder</th>
-            <th>Card Number</th>
+            <th>Card Holder / Account Name</th>
+            <th>Card Number / Bank Info</th>
             <th>Expiry Date</th>
             <th>Amount</th>
             <th>Payment Date</th>
@@ -104,28 +103,42 @@
         <tbody>
         <% if (!savedPayments.isEmpty()) {
             for (Payment payment : savedPayments) {
-                String maskedCard = (payment.getCardNumber() != null && payment.getCardNumber().length() >= 4)
-                        ? "**** **** **** " + payment.getCardNumber().substring(payment.getCardNumber().length() - 4)
-                        : payment.getCardNumber();
-                String expiryFormatted = (payment.getExpiryDate() != null) ? sdf.format(payment.getExpiryDate()) : "N/A";
-                String paymentDateFormatted = (payment.getPaymentDate() != null) ? sdf.format(payment.getPaymentDate()) : "N/A";
+                String method = payment.getMethod();
+                String holder = (payment.getCardHolder() != null) ? payment.getCardHolder() : payment.getAccountName();
+                String displayInfo = "-";
+
+                if ("Credit Card".equalsIgnoreCase(method)) {
+                    String cardNum = payment.getCardNumber();
+                    displayInfo = (cardNum != null && cardNum.length() >= 4) ?
+                            "**** **** **** " + cardNum.substring(cardNum.length() - 4) : "N/A";
+                } else if ("Bank Transfer".equalsIgnoreCase(method)) {
+                    String bsb = payment.getBsb();
+                    String acc = payment.getAccountNumber();
+                    String maskedBsb = (bsb != null && bsb.length() >= 3) ? "***" + bsb.substring(bsb.length() - 3) : "***";
+                    String maskedAcc = (acc != null && acc.length() >= 3) ? "***" + acc.substring(acc.length() - 3) : "***";
+                    displayInfo = "BSB: " + maskedBsb + ", Acc: " + maskedAcc;
+                }
+
+                String expiryFormatted = ("Credit Card".equalsIgnoreCase(method) && payment.getExpiryDate() != null)
+                        ? sdf.format(payment.getExpiryDate()) : "—";
                 String amountFormatted = (payment.getAmount() != null) ? currencyFormat.format(payment.getAmount()) : "N/A";
+                String paymentDateFormatted = (payment.getPaymentDate() != null) ? sdf.format(payment.getPaymentDate()) : "N/A";
         %>
         <tr>
             <td><%= payment.getPaymentId() %></td>
-            <td><%= payment.getCardHolder() %></td>
-            <td><%= maskedCard %></td>
+            <td><%= holder != null ? holder : "-" %></td>
+            <td><%= displayInfo %></td>
             <td><%= expiryFormatted %></td>
             <td><%= amountFormatted %></td>
             <td><%= paymentDateFormatted %></td>
             <td>
-                <form action="<%= request.getContextPath() %>/ProceedPayment" method="post" style="display:inline;" onsubmit="return confirmProceed();">
+                <form action="<%= request.getContextPath() %>/EditPayment" method="get" style="display:inline;" onsubmit="return confirmEdit();">
                     <input type="hidden" name="paymentId" value="<%= payment.getPaymentId() %>"/>
-                    <button type="submit">Proceed</button>
+                    <button type="submit">Edit</button>
                 </form>
-                <form action="<%= request.getContextPath() %>/DeletePayment" method="post" style="display:inline;" onsubmit="return confirmDelete();">
+                <form action="<%= request.getContextPath() %>/DeletePayment" method="post" style="display:inline;" onsubmit="return confirmCancel();">
                     <input type="hidden" name="paymentId" value="<%= payment.getPaymentId() %>"/>
-                    <button type="submit">Delete</button>
+                    <button type="submit">Cancel</button>
                 </form>
             </td>
         </tr>
@@ -135,13 +148,14 @@
         </tbody>
     </table>
 
+    <!-- Completed Payments -->
     <h3 class="subtitle">Completed Payments</h3>
     <table class="infoTable">
         <thead>
         <tr>
             <th>Payment ID</th>
-            <th>Card Holder</th>
-            <th>Card Number</th>
+            <th>Card Holder / Account Name</th>
+            <th>Card Number / Bank Info</th>
             <th>Expiry Date</th>
             <th>Amount</th>
             <th>Payment Date</th>
@@ -150,17 +164,31 @@
         <tbody>
         <% if (!completedPayments.isEmpty()) {
             for (Payment payment : completedPayments) {
-                String maskedCard = (payment.getCardNumber() != null && payment.getCardNumber().length() >= 4)
-                        ? "**** **** **** " + payment.getCardNumber().substring(payment.getCardNumber().length() - 4)
-                        : payment.getCardNumber();
-                String expiryFormatted = (payment.getExpiryDate() != null) ? sdf.format(payment.getExpiryDate()) : "N/A";
-                String paymentDateFormatted = (payment.getPaymentDate() != null) ? sdf.format(payment.getPaymentDate()) : "N/A";
+                String method = payment.getMethod();
+                String holder = (payment.getCardHolder() != null) ? payment.getCardHolder() : payment.getAccountName();
+                String displayInfo = "-";
+
+                if ("Credit Card".equalsIgnoreCase(method)) {
+                    String cardNum = payment.getCardNumber();
+                    displayInfo = (cardNum != null && cardNum.length() >= 4) ?
+                            "**** **** **** " + cardNum.substring(cardNum.length() - 4) : "N/A";
+                } else if ("Bank Transfer".equalsIgnoreCase(method)) {
+                    String bsb = payment.getBsb();
+                    String acc = payment.getAccountNumber();
+                    String maskedBsb = (bsb != null && bsb.length() >= 3) ? "***" + bsb.substring(bsb.length() - 3) : "***";
+                    String maskedAcc = (acc != null && acc.length() >= 3) ? "***" + acc.substring(acc.length() - 3) : "***";
+                    displayInfo = "BSB: " + maskedBsb + ", Acc: " + maskedAcc;
+                }
+
+                String expiryFormatted = ("Credit Card".equalsIgnoreCase(method) && payment.getExpiryDate() != null)
+                        ? sdf.format(payment.getExpiryDate()) : "—";
                 String amountFormatted = (payment.getAmount() != null) ? currencyFormat.format(payment.getAmount()) : "N/A";
+                String paymentDateFormatted = (payment.getPaymentDate() != null) ? sdf.format(payment.getPaymentDate()) : "N/A";
         %>
         <tr>
             <td><%= payment.getPaymentId() %></td>
-            <td><%= payment.getCardHolder() %></td>
-            <td><%= maskedCard %></td>
+            <td><%= holder != null ? holder : "-" %></td>
+            <td><%= displayInfo %></td>
             <td><%= expiryFormatted %></td>
             <td><%= amountFormatted %></td>
             <td><%= paymentDateFormatted %></td>
@@ -170,6 +198,7 @@
         <% } %>
         </tbody>
     </table>
+
 
     <div style="text-align: center; margin: 30px 0;">
         <form action="<%= request.getContextPath() %>/home" method="get">
@@ -210,14 +239,13 @@
     <p>©2025 IoTBay Group 4. All Rights Reserved.</p>
 </div>
 
-<!-- JavaScript for popup confirm -->
 <script>
-    function confirmProceed() {
-        return confirm("Do you want to proceed with this payment?");
+    function confirmEdit() {
+        return confirm("Are you sure you want to edit this payment?");
     }
 
-    function confirmDelete() {
-        return confirm("Are you sure you want to delete this payment?");
+    function confirmCancel() {
+        return confirm("Are you sure you want to cancel this payment?");
     }
 </script>
 

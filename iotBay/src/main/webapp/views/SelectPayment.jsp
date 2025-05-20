@@ -15,6 +15,7 @@
     }
 
     String guestEmail = (String) session.getAttribute("guestEmail");
+    String error = (String) request.getAttribute("error");
 %>
 
 <!DOCTYPE html>
@@ -127,6 +128,12 @@
 
 <h2>Select Payment Method</h2>
 
+<% if (error != null && !error.isEmpty()) { %>
+<div style="color: red; font-weight: bold; margin-bottom: 15px; text-align: center;">
+    <%= error %>
+</div>
+<% } %>
+
 <form id="paymentForm" action="<%= request.getContextPath() %>/ConfirmPayment" method="post">
     <input type="hidden" name="orderId" value="<%= orderId %>">
     <input type="hidden" name="guestEmail" value="<%= guestEmail %>">
@@ -160,11 +167,11 @@
 
     <div id="bankSection" style="display:none;">
         <label>BSB:</label>
-        <input type="text" name="bsb" maxlength="6" />
+        <input type="password" name="bsb" maxlength="6" />
         <label>Account Name:</label>
         <input type="text" name="accountName" />
         <label>Account Number:</label>
-        <input type="text" name="accountNumber" maxlength="10" />
+        <input type="password" name="accountNumber" maxlength="10" />
     </div>
 
     <button type="button" class="submit-btn" onclick="openConfirm()">Proceed</button>
