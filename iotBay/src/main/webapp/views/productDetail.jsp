@@ -96,7 +96,7 @@
             <input type="hidden" name="productId" value="<%= product.getProductId() %>" />
 
             <label for="quantity">Quantity:</label>
-            <input type="number" id="quantity" name="quantity" value="1" min="1" style="width: 60px;">
+            <input type="number" id="quantity" name="quantity" value="<%= quantityVal %>" min="1" style="width: 60px;">
 
             <button type="submit" name="action" value="Submit" class="buy-btn">Buy Now</button>
             <button type="submit" name="action" value="Save" class="cart-btn">Add to Cart</button>
