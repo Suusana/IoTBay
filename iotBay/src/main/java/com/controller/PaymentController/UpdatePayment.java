@@ -12,6 +12,7 @@ import jakarta.servlet.http.*;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 @WebServlet("/UpdatePayment")
 public class UpdatePayment extends HttpServlet {
@@ -72,7 +73,7 @@ public class UpdatePayment extends HttpServlet {
                 }
 
                 payment.setStatus("Paid");
-                payment.setPaymentDate(new Date(System.currentTimeMillis()));
+                payment.setPaymentDate(new Timestamp(System.currentTimeMillis()));
 
             } else if ("Bank Transfer".equalsIgnoreCase(method)) {
                 String bsb = req.getParameter("bsb");
@@ -95,7 +96,7 @@ public class UpdatePayment extends HttpServlet {
                 payment.setAccountNumber(accountNumber);
 
                 payment.setStatus("Pending");
-                payment.setPaymentDate(new Date(System.currentTimeMillis()));
+                payment.setPaymentDate(new Timestamp(System.currentTimeMillis()));
 
             } else {
                 req.setAttribute("error", "Unsupported payment method.");
@@ -121,7 +122,7 @@ public class UpdatePayment extends HttpServlet {
             log.setUserId(payment.getUserId());
             log.setOrderId(payment.getOrderId());
             log.setAction("UPDATE");
-            log.setTimestamp(new Date(System.currentTimeMillis()));
+            log.setTimestamp(new Timestamp(System.currentTimeMillis()));
             logDao.log(log);
 
             resp.sendRedirect(req.getContextPath() + "/ViewPayment");

@@ -61,7 +61,7 @@ public class ConfirmPayment extends HttpServlet {
             payment.setOrderId(orderId);
             payment.setAmount(totalAmount);
             payment.setMethod(method);
-            payment.setPaymentDate(new Date(System.currentTimeMillis()));
+            payment.setPaymentDate(new java.sql.Timestamp(System.currentTimeMillis()));
             payment.setUserId(customer != null ? customer.getUserId() : 0);  // 0 = guest user
 
             if ("Credit Card".equalsIgnoreCase(method)) {
@@ -170,7 +170,7 @@ public class ConfirmPayment extends HttpServlet {
             log.setUserId(payment.getUserId());
             log.setOrderId(orderId);
             log.setAction("CREATE");
-            log.setTimestamp(new Date(System.currentTimeMillis()));
+            log.setTimestamp(new java.sql.Timestamp(System.currentTimeMillis()));
             logDao.log(log);
 
             // Set attributes for confirmation screen

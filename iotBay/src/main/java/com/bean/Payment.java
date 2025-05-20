@@ -2,39 +2,33 @@ package com.bean;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Payment implements Serializable {
 
-    // Unique identifier for each payment
     private Integer paymentId;
-
-    // Payment method: 'Credit Card' or 'Bank Transfer'
     private String method;
-
-    // For Credit Card payments
     private String cardHolder;
     private String cardNumber;
-    private Date expiryDate;
+    private java.sql.Date expiryDate;
     private String cvc;
 
-    // For Bank Transfer payments
     private String bsb;
     private String accountName;
     private String accountNumber;
 
-    // Common fields
     private BigDecimal amount;
-    private String status;         // 'Pending' or 'Paid'
+    private String status;
     private Integer orderId;
     private Integer userId;
-    private Date paymentDate;      // Filled when payment is finalized
+
+    private Timestamp paymentDate;  // changed from java.sql.Date
 
     public Payment() {}
 
     public Payment(Integer paymentId, String method, String cardHolder, String cardNumber,
-                   Date expiryDate, String cvc, String bsb, String accountName, String accountNumber,
-                   BigDecimal amount, String status, Integer orderId, Integer userId, Date paymentDate) {
+                   java.sql.Date expiryDate, String cvc, String bsb, String accountName, String accountNumber,
+                   BigDecimal amount, String status, Integer orderId, Integer userId, Timestamp paymentDate) {
         this.paymentId = paymentId;
         this.method = method;
         this.cardHolder = cardHolder;
@@ -52,7 +46,6 @@ public class Payment implements Serializable {
     }
 
     // Getters and Setters
-
     public Integer getPaymentId() { return paymentId; }
     public void setPaymentId(Integer paymentId) { this.paymentId = paymentId; }
 
@@ -65,8 +58,8 @@ public class Payment implements Serializable {
     public String getCardNumber() { return cardNumber; }
     public void setCardNumber(String cardNumber) { this.cardNumber = cardNumber; }
 
-    public Date getExpiryDate() { return expiryDate; }
-    public void setExpiryDate(Date expiryDate) { this.expiryDate = expiryDate; }
+    public java.sql.Date getExpiryDate() { return expiryDate; }
+    public void setExpiryDate(java.sql.Date expiryDate) { this.expiryDate = expiryDate; }
 
     public String getCvc() { return cvc; }
     public void setCvc(String cvc) { this.cvc = cvc; }
@@ -92,6 +85,6 @@ public class Payment implements Serializable {
     public Integer getUserId() { return userId; }
     public void setUserId(Integer userId) { this.userId = userId; }
 
-    public Date getPaymentDate() { return paymentDate; }
-    public void setPaymentDate(Date paymentDate) { this.paymentDate = paymentDate; }
+    public Timestamp getPaymentDate() { return paymentDate; }
+    public void setPaymentDate(Timestamp paymentDate) { this.paymentDate = paymentDate; }
 }

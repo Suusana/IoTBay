@@ -9,7 +9,8 @@ public class PaymentLog implements Serializable {
     private int userId;
     private int orderId;
     private String action;
-    private Date timestamp;
+    private java.sql.Timestamp timestamp;
+
 
     public int getLogId() { return logId; }
     public void setLogId(int logId) { this.logId = logId; }
@@ -26,6 +27,6 @@ public class PaymentLog implements Serializable {
     public String getAction() { return action; }
     public void setAction(String action) { this.action = action; }
 
-    public Date getTimestamp() { return timestamp; }
-    public void setTimestamp(Date timestamp) { this.timestamp = timestamp; }
+    public java.sql.Timestamp getTimestamp() { return timestamp; }
+    public void setTimestamp(java.sql.Timestamp timestamp) { this.timestamp = timestamp; }
 }

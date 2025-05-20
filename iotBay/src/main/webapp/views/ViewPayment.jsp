@@ -9,7 +9,7 @@
 
 <%
     List<Payment> paymentList = (List<Payment>) request.getAttribute("paymentList");
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
 
     List<Payment> savedPayments = new java.util.ArrayList<>();

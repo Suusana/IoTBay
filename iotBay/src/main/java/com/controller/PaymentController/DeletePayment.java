@@ -2,13 +2,16 @@ package com.controller.PaymentController;
 
 import com.bean.Customer;
 import com.bean.Payment;
+import com.bean.PaymentLog;
 import com.dao.DBManager;
 import com.dao.PaymentDao;
+import com.dao.PaymentLogDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
 import java.io.IOException;
+import java.sql.Date;
 
 @WebServlet("/DeletePayment")
 public class DeletePayment extends HttpServlet {
@@ -20,8 +23,8 @@ public class DeletePayment extends HttpServlet {
         HttpSession session = req.getSession();
         DBManager db = (DBManager) session.getAttribute("db");
         PaymentDao dao = db.getPaymentDao();
+        PaymentLogDao logDao = db.getPaymentLogDao();
 
-        // Ensure the user is logged in
         Customer customer = (Customer) session.getAttribute("loggedInUser");
         if (customer == null) {
             resp.sendRedirect("login.jsp");
@@ -30,31 +33,36 @@ public class DeletePayment extends HttpServlet {
 
         try {
             String paymentIdStr = req.getParameter("paymentId");
-
-            // Validate and parse payment ID
             int paymentId = Integer.parseInt(paymentIdStr);
             int userId = customer.getUserId();
 
-            // Retrieve the payment record by ID and user
+            // Retrieve the payment
             Payment payment = dao.getPaymentByIdAndUser(paymentId, userId);
 
-            // Allow deletion only if the payment exists and is not marked as 'Paid'
+            // Allow deletion only if not 'Paid'
             if (payment != null && !"Paid".equalsIgnoreCase(payment.getStatus())) {
+                // Log the DELETE action
+                PaymentLog log = new PaymentLog();
+                log.setPaymentId(paymentId);
+                log.setUserId(userId);
+                log.setOrderId(payment.getOrderId());
+                log.setAction("DELETE");
+                log.setTimestamp(new java.sql.Timestamp(System.currentTimeMillis()));
+                logDao.log(log);
+
+                // Delete the payment
                 dao.delete(paymentId);
             }
 
         } catch (NumberFormatException e) {
-            // Invalid or missing payment ID
+            // Invalid payment ID
         } catch (Exception e) {
-            // Handle unexpected errors
             e.printStackTrace();
         }
 
-        // Redirect to payment view after processing
         resp.sendRedirect(req.getContextPath() + "/ViewPayment");
     }
 
-    // Redirect GET requests to ViewPayment to avoid HTTP 405 error
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {

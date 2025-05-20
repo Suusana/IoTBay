@@ -3,12 +3,14 @@ package com.dao;
 import com.bean.Payment;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PaymentDao {
 
     private final Connection conn;
+    private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 
     public PaymentDao(Connection conn) {
         this.conn = conn;
@@ -30,7 +32,10 @@ public class PaymentDao {
             ps.setString(7, payment.getAccountName());
             ps.setString(8, payment.getAccountNumber());
             ps.setBigDecimal(9, payment.getAmount());
-            ps.setLong(10, payment.getPaymentDate().getTime()); // timestamp 저장
+
+            // Store as string-formatted date
+            ps.setString(10, payment.getPaymentDate() != null ? sdf.format(payment.getPaymentDate()) : null);
+
             ps.setString(11, payment.getStatus());
             ps.setInt(12, userId);
             ps.setInt(13, orderId);
@@ -61,7 +66,8 @@ public class PaymentDao {
             ps.setString(7, payment.getAccountName());
             ps.setString(8, payment.getAccountNumber());
             ps.setBigDecimal(9, payment.getAmount());
-            ps.setLong(10, payment.getPaymentDate().getTime());
+
+            ps.setString(10, payment.getPaymentDate() != null ? sdf.format(payment.getPaymentDate()) : null);
             ps.setString(11, payment.getStatus());
             ps.setInt(12, payment.getPaymentId());
 
@@ -69,6 +75,37 @@ public class PaymentDao {
         }
     }
 
+    // Extract Payment
+    private Payment extractPayment(ResultSet rs) throws SQLException {
+        Payment p = new Payment();
+        p.setPaymentId(rs.getInt("payment_id"));
+        p.setOrderId(rs.getInt("order_id"));
+        p.setUserId(rs.getInt("user_id"));
+        p.setMethod(rs.getString("payment_method"));
+        p.setCardHolder(rs.getString("card_holder"));
+        p.setCardNumber(rs.getString("card_number"));
+        p.setCvc(rs.getString("cvc"));
+        p.setBsb(rs.getString("bsb"));
+        p.setAccountName(rs.getString("account_name"));
+        p.setAccountNumber(rs.getString("account_number"));
+        p.setAmount(rs.getBigDecimal("amount"));
+        p.setStatus(rs.getString("status"));
+
+        try {
+            p.setExpiryDate(rs.getDate("expiry_date"));
+        } catch (Exception e) {
+            p.setExpiryDate(null);
+        }
+
+        try {
+            String dateStr = rs.getString("payment_date");
+            p.setPaymentDate(dateStr != null ? Timestamp.valueOf(dateStr) : null);
+        } catch (Exception e) {
+            p.setPaymentDate(null);
+        }
+
+        return p;
+    }
 
     // Delete payment
     public void delete(int paymentId) throws SQLException {
@@ -177,8 +214,8 @@ public class PaymentDao {
 
         String sql = "SELECT * FROM Payment WHERE payment_date >= ? AND payment_date < ? AND user_id = ?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setLong(1, startOfDay);
-            stmt.setLong(2, endOfDay);
+            stmt.setString(1, sdf.format(new Timestamp(startOfDay)));
+            stmt.setString(2, sdf.format(new Timestamp(endOfDay)));
             stmt.setInt(3, userId);
             ResultSet rs = stmt.executeQuery();
 
@@ -202,37 +239,5 @@ public class PaymentDao {
             }
         }
         return null;
-    }
-
-    // Convert ResultSet to Payment
-    private Payment extractPayment(ResultSet rs) throws SQLException {
-        Payment p = new Payment();
-        p.setPaymentId(rs.getInt("payment_id"));
-        p.setOrderId(rs.getInt("order_id"));
-        p.setUserId(rs.getInt("user_id"));
-        p.setMethod(rs.getString("payment_method"));
-        p.setCardHolder(rs.getString("card_holder"));
-        p.setCardNumber(rs.getString("card_number"));
-        p.setCvc(rs.getString("cvc"));
-        p.setBsb(rs.getString("bsb"));
-        p.setAccountName(rs.getString("account_name"));
-        p.setAccountNumber(rs.getString("account_number"));
-        p.setAmount(rs.getBigDecimal("amount"));
-        p.setStatus(rs.getString("status"));
-
-        try {
-            p.setExpiryDate(rs.getDate("expiry_date"));
-        } catch (Exception e) {
-            p.setExpiryDate(null);
-        }
-
-        try {
-            long millis = rs.getLong("payment_date");
-            p.setPaymentDate(new Date(millis));
-        } catch (Exception e) {
-            p.setPaymentDate(null);
-        }
-
-        return p;
     }
 }
