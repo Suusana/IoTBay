@@ -115,6 +115,7 @@
                 <th>Category</th>
                 <th>Image</th>
                 <th>Description</th>
+                <th>Availability</th>
             </tr>
             </thead>
             <tbody>
@@ -135,14 +136,21 @@
                 <td><img src="<%= request.getContextPath() %>/assets/img/<%= product.getImage() %>" alt="Device">
                 </td>
                 <td>
-                    <%= product.getDescription()%>
-
+                    <%=product.getDescription()%>
+                </td>
+                <td>
+                    <% if(product.getQuantity()==0){ %>
+                        <h4>Out of Stock</h4>
+                    <% }else{ %>
+                    <a href="<%= request.getContextPath()%>/ProductDetailServlet?id=<%=product.getProductId()%>">
+                        <h4>Click to order</h4>
+                    </a>
+                    <% } %>
                 </td>
             </tr>
-            <%
-                }
-            } else if (message != null) {
-            %> <h3>Error: <%=message%>
+            <%} //end of for
+            } else if(message != null) { %>
+             <h3>Error: <%=message%>
             </h3>
             <%} else {%>
             <h3>No result</h3>

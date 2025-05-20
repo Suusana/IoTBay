@@ -1,26 +1,50 @@
-/*
-a class="shop_product">
-    <img src="<%= request.getContextPath() %>/assets/img/<%= product.getImage() %>" alt="Device">
-    <h5><%= product.getProductName() %></h5>
-    <p><%= product.getDescription() %></p>
-    <span>$<%= product.getPrice() %></span>
-    <h5>Category: <%= product.getCategory().getCategory()%></h5>
-  </a>
-*/
-main{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    h2{
-        align-self: center;
-    }
+h2{
+    text-align: center;
 }
-
-main div{
+main{
     padding: 30px 100px;
     margin-bottom: 50px;
     display: grid;
     grid-template-columns: repeat(auto-fit,300px);
     grid-template-rows: repeat(auto-fit, 370px);
     gap:20px;
+
+}
+.wrapper{
+    margin-bottom: 15px;
+}
+.shop_product{
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    img{
+        margin-bottom: 2%;
+        width: 100%;
+        height: 70%;
+    }
+}
+.search-box{
+    padding-left:30%;
+}
+.out-of-stock-wrapper{
+    position:relative;
+
+}
+.out-of-stock{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index: 2;
+    background-color: rgba(200,200,200,0.5);
+    display: flex;
+    h1{
+        width:100%;
+        text-align: center;
+        align-self: center;
+        justify-self: center;
+    }
+}
+.block-order{
+    pointer-events: none;
 }
