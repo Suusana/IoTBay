@@ -21,23 +21,33 @@ public class SelectPayment extends HttpServlet {
         DBManager db = (DBManager) session.getAttribute("db");
 
         try {
-            // Get current logged-in user
-            Customer customer = (Customer) session.getAttribute("loggedInUser");
-
-            // Get orderId from parameter
+            // Retrieve the order ID from the request parameter
             int orderId = Integer.parseInt(request.getParameter("orderId"));
+            request.setAttribute("orderId", orderId);
 
-            // Get saved payment methods for the user
+            // Check if the user is logged in
+            Object userObj = session.getAttribute("loggedInUser");
+
+            if (userObj == null) {
+                // If the user is a guest, no saved payment methods are needed
+                // Just forward to the SelectPayment page with guest email
+                String guestEmail = (String) session.getAttribute("guestEmail");
+                request.setAttribute("guestEmail", guestEmail); // in case the JSP needs it
+                request.getRequestDispatcher("/views/SelectPayment.jsp").forward(request, response);
+                return;
+            }
+
+            // If the user is logged in, retrieve their saved payment methods
+            Customer customer = (Customer) userObj;
             PaymentDao paymentDao = db.getPaymentDao();
             List<Payment> savedPayments = paymentDao.getPaymentsByUserId(customer.getUserId());
 
-            // Set data to forward
-            request.setAttribute("orderId", orderId);
+            // Set the data and forward to the SelectPayment page
             request.setAttribute("savedPayments", savedPayments);
-
             request.getRequestDispatcher("/views/SelectPayment.jsp").forward(request, response);
 
         } catch (Exception e) {
+            // If any error occurs, redirect the user back to the order page
             e.printStackTrace();
             response.sendRedirect(request.getContextPath() + "/viewOrder");
         }

@@ -12,9 +12,12 @@ import java.io.IOException;
 
 @WebServlet("/DeletePayment")
 public class DeletePayment extends HttpServlet {
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+
+        System.out.println("[DEBUG] Entered doPost() in DeletePayment");
 
         HttpSession session = req.getSession();
         DBManager db = (DBManager) session.getAttribute("db");
@@ -22,31 +25,48 @@ public class DeletePayment extends HttpServlet {
 
         Customer customer = (Customer) session.getAttribute("loggedInUser");
         if (customer == null) {
+            System.out.println("[DEBUG] No logged-in user. Redirecting to login.jsp");
             resp.sendRedirect("login.jsp");
             return;
         }
 
         try {
-            int paymentId = Integer.parseInt(req.getParameter("paymentId"));
+            String paymentIdStr = req.getParameter("paymentId");
+            System.out.println("[DEBUG] paymentId parameter: " + paymentIdStr);
+
+            int paymentId = Integer.parseInt(paymentIdStr);
             int userId = customer.getUserId();
+            System.out.println("[DEBUG] Logged-in user ID: " + userId);
 
             Payment payment = dao.getPaymentByIdAndUser(paymentId, userId);
+
             if (payment == null) {
-                req.setAttribute("message", "Payment record not found.");
+                System.out.println("[DEBUG] Payment not found or not owned by user.");
+                // You could log this or show feedback later
             } else if ("Paid".equalsIgnoreCase(payment.getStatus())) {
-                req.setAttribute("message", "Cannot delete a completed payment.");
+                System.out.println("[DEBUG] Payment is 'Paid'. Cannot delete.");
+                // You could log this or show feedback later
             } else {
+                System.out.println("[DEBUG] Deleting payment ID: " + paymentId);
                 dao.delete(paymentId);
-                req.setAttribute("message", "Payment deleted successfully.");
+                System.out.println("[DEBUG] Payment deleted successfully.");
             }
 
         } catch (NumberFormatException e) {
-            req.setAttribute("message", "Invalid Payment ID.");
+            System.out.println("[DEBUG] Invalid paymentId format.");
         } catch (Exception e) {
+            System.out.println("[DEBUG] Exception occurred during deletion:");
             e.printStackTrace();
-            req.setAttribute("message", "Error occurred while deleting payment.");
         }
 
-        req.getRequestDispatcher("/ViewPayment").forward(req, resp);
+        // Use redirect to avoid 405 error
+        resp.sendRedirect(req.getContextPath() + "/ViewPayment");
+    }
+
+    // handle GET defensively (not used, but avoid 405 if accessed directly)
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        resp.sendRedirect(req.getContextPath() + "/ViewPayment");
     }
 }

@@ -34,7 +34,7 @@ public class GuestViewPayment extends HttpServlet {
             if (orderIdStr != null && guestEmail != null && !orderIdStr.isEmpty() && !guestEmail.isEmpty()) {
                 int orderId = Integer.parseInt(orderIdStr);
 
-                // 1. Find the order by ID
+                // Find the order by ID
                 Order order = orderDao.findOrderByOrderId(orderId);
 
                 if (order == null || order.getBuyer() == null) {
@@ -43,7 +43,7 @@ public class GuestViewPayment extends HttpServlet {
                     return;
                 }
 
-                // 2. Verify guest email
+                // Verify guest email
                 Customer buyer = order.getBuyer();
                 if (!guestEmail.equalsIgnoreCase(buyer.getEmail())) {
                     req.setAttribute("message", "The email does not match the order.");
@@ -51,7 +51,7 @@ public class GuestViewPayment extends HttpServlet {
                     return;
                 }
 
-                // 3. Retrieve payment history for the order
+                // Retrieve payment history for the order
                 List<Payment> guestPayments = paymentDao.getPaymentsByOrderId(orderId);
 
                 req.setAttribute("guestPayments", guestPayments);
