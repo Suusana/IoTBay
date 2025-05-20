@@ -22,8 +22,11 @@
 
     //from Servlet GetByProductNameTOCustomer
     List<Product> allProducts = (List<Product>) request.getAttribute("products");
+    List<Product> all_C_Products = (List<Product>) request.getAttribute("c_products");
     String message = (String) request.getAttribute("message");
     String category = (String) request.getAttribute("category");
+    Boolean searchBtnClick = (Boolean) request.getAttribute("searchBtnCategory");
+    Integer categoryId = (Integer) request.getAttribute("categoryId");
 %>
 <head>
     <title>Shop</title>
@@ -77,10 +80,56 @@
     </menu>
 </div>
 <h2><%=category%> Product List</h2>
+<div class="search-box">
+    <div class="search-box-name">
+        <h3>Search by Name</h3>
+        <form action="<%= request.getContextPath() %>/GetByCategoryAndNameToCustomer" method="get">
+            <input type="hidden" name="categoryId" value="<%=request.getParameter("categoryId")%>">
+            <label for="productName">
+                <input type="search" id="productName" name="productName"/>
+            </label>
+            <button type="submit" name="searchCategoryNameBtn">Search</button>
+        </form>
+    </div> <!-end of search-box-name -->
+</div><!-end of search-box -->
 <!-- main body -->
 <main>
-
-    <% if (allProducts != null && !allProducts.isEmpty()) {
+    <%if (searchBtnClick != null && searchBtnClick == true){%>
+    <% if (all_C_Products != null && !all_C_Products.isEmpty()) {
+        for (Product product : all_C_Products) {
+            // System.out.println(product.getQuantity().getClass()) ;
+            if(product.getQuantity()==0){%>
+    <div class="out-of-stock-wrapper wrapper">
+        <div class="out-of-stock">
+            <h1> Out Of Stock</h1>
+        </div>
+        <a class="shop_product block-order">
+            <img src="<%= request.getContextPath() %>/assets/img/<%= product.getImage() %>" alt="Device">
+            <h5><%= product.getProductName() %>
+            </h5>
+            <p><%= product.getDescription() %>
+            </p>
+            <span>$<%= product.getPrice() %></span>
+        </a>
+    </div>
+            <%}else{%>
+    <div class="wrapper in-stock">
+        <a href="<%= request.getContextPath()%>/ProductDetailServlet?id=<%=product.getProductId()%>" class="shop_product">
+            <img src="<%= request.getContextPath() %>/assets/img/<%= product.getImage() %>" alt="Device">
+            <h5><%= product.getProductName() %>
+            </h5>
+            <p><%= product.getDescription() %>
+            </p>
+            <span>$<%= product.getPrice() %></span>
+        </a>
+    </div>
+            <%} // end of quantity if condition
+        } //end of for loop
+    } else { %>
+    <p>No products available right now.</p>
+    <% } // end of product = null if
+    } else{ //if it's before the search button is clicked -> how the whole list first
+        if (allProducts != null && !allProducts.isEmpty()) {
         for (Product product : allProducts) {
             // System.out.println(product.getQuantity().getClass()) ;
             if(product.getQuantity()==0){%>
@@ -113,6 +162,8 @@
     } else { %>
     <p>No products available right now.</p>
     <% } %>
+    <%}%>
+
 
 </main>
 
