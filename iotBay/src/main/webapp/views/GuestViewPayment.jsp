@@ -3,6 +3,7 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="com.bean.Payment" %>
+<%@ page import="com.bean.Customer" %>
 <%@ page import="com.enums.Status" %>
 
 <%
@@ -11,6 +12,18 @@
   String message = (String) request.getAttribute("message");
   SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
   NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
+
+  // Display name for header
+  String displayName = "Guest";
+  Object loggedInUser = session.getAttribute("loggedInUser");
+  if (loggedInUser instanceof Customer) {
+    Customer c = (Customer) loggedInUser;
+    if (c.getUsername() != null && c.getUsername().toLowerCase().startsWith("guest")) {
+      displayName = c.getUsername().replaceFirst("(?i)guest", ""); // remove 'guest'
+    } else if (c.getFirstName() != null) {
+      displayName = c.getFirstName();
+    }
+  }
 %>
 
 <!DOCTYPE html>
@@ -30,7 +43,6 @@
       align-items: center;
       margin-top: 30px;
     }
-
     .flex-form-row {
       display: flex;
       align-items: center;
@@ -39,13 +51,11 @@
       max-width: 500px;
       justify-content: space-between;
     }
-
     .flex-form-row label {
       flex: 1;
       text-align: right;
       font-weight: bold;
     }
-
     .flex-form-row input {
       flex: 2;
       height: 36px;
@@ -54,7 +64,6 @@
       border: 1px solid #ccc;
       border-radius: 6px;
     }
-
     .flex-form button {
       height: 40px;
       padding: 0 25px;
@@ -67,11 +76,9 @@
       cursor: pointer;
       transition: 0.3s;
     }
-
     .flex-form button:hover {
       background-color: #c6921a;
     }
-
     .infoCard {
       max-width: 800px;
       margin: 0 auto;
@@ -81,11 +88,9 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
       text-align: center;
     }
-
     .infoCard h2 {
       margin-bottom: 20px;
     }
-
     .formError {
       color: red;
       font-weight: bold;
@@ -109,7 +114,7 @@
   <menu class="icon">
     <a href="#">
       <i class="fa-solid fa-circle-user fa-2x"></i>
-      <span>Guest</span>
+      <span><%= displayName %></span>
     </a>
     <a href="<%=request.getContextPath()%>/GetByProductNameToCustomer">
       <i class="fa-solid fa-magnifying-glass fa-2x"></i><span>Search</span>

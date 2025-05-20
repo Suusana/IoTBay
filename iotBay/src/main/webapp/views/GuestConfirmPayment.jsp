@@ -78,24 +78,9 @@
     <div class="info">Status: <span class="highlight"><%= payment.getStatus() %></span></div>
     <div class="info">Amount: <span class="highlight"><%= payment.getAmount() %></span></div>
 
-    <% if ("Credit Card".equalsIgnoreCase(payment.getMethod())) {
-        String maskedCard = "Invalid";
-        if (payment.getCardNumber() != null && payment.getCardNumber().length() >= 4) {
-            maskedCard = "**** **** **** " + payment.getCardNumber().substring(payment.getCardNumber().length() - 4);
-        }
-    %>
-    <div class="info">Card Holder: <span class="highlight"><%= payment.getCardHolder() %></span></div>
-    <div class="info">Card Number: <span class="highlight"><%= maskedCard %></span></div>
-    <div class="info">Expiry Date: <span class="highlight"><%= payment.getExpiryDate() %></span></div>
-    <% } else if ("Bank Transfer".equalsIgnoreCase(payment.getMethod())) { %>
-    <div class="info">BSB: <span class="highlight"><%= payment.getBsb() %></span></div>
-    <div class="info">Account Name: <span class="highlight"><%= payment.getAccountName() %></span></div>
-    <div class="info">Account Number: <span class="highlight"><%= payment.getAccountNumber() %></span></div>
-    <% } %>
+    <!-- Sensitive card and bank details intentionally hidden for guest users -->
 
     <form method="get" action="<%= request.getContextPath() %>/GuestViewPayment">
-        <input type="hidden" name="orderId" value="<%= orderId %>">
-        <input type="hidden" name="guestEmail" value="<%= guestEmail %>">
         <button class="btn">View Guest Payments</button>
     </form>
 </div>
