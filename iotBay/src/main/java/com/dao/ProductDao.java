@@ -206,6 +206,28 @@ public class ProductDao {
 
         return products;
     }
+    public List<Product> getProductByCategory_searchName(String searchName, int categoryId) throws SQLException {
+        List<Product> products = new ArrayList<>();
+        PreparedStatement preparedstatement = connection.prepareStatement("select * from product where category_id = ? and product_name like ?");
+        preparedstatement.setInt(1,categoryId);
+        preparedstatement.setString(2,"%"+searchName+"%");
+        ResultSet rs = preparedstatement.executeQuery();
+        CategoryDao cd = new CategoryDao(connection);
+        System.out.println("Searching for: " + searchName + ", categoryId: " + categoryId);
+        while(rs.next()) {
+            Product product = new Product();
+            product.setProductId(rs.getInt("product_id"));
+            product.setProductName(rs.getString("product_name"));
+            product.setQuantity(rs.getInt("quantity"));
+            product.setPrice(rs.getDouble("price"));
+            product.setDescription(rs.getString("description"));
+            product.setImage(rs.getString("image"));
+            Category category = cd.getCategoryById(categoryId);
+            product.setCategory(category);
+            products.add(product);
+        }
+        return products;
+    }
     //Product Update - staff only
     public void updateProduct(Product product) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Product SET price = ?, product_name=?, category_id=? ,quantity=? ,image=? ,description=? WHERE product_id = ?");

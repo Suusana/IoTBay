@@ -31,11 +31,11 @@ th:nth-child(4), td:nth-child(4) {
 }
 
 th:nth-child(5), td:nth-child(5) {
-    width: 20%;
+    width: 10%;
 }
 
 th:nth-child(6), td:nth-child(6) {
-    width: 10%;
+    width: 20%;
 }
 
 thead {
@@ -84,7 +84,7 @@ button:hover{
     }
 }
 .add-product-box form{
-    width: 300px;
+    width: 400px;
     height:auto;
     display:flex;
     flex-direction: column;
@@ -99,8 +99,18 @@ button:hover{
 }
 
 input {
-    border: 1px solid rgba(0, 0, 0, 0.63);
+    border-bottom: 1px solid rgb(166, 114, 36,0.5);
     padding: 10px;
     margin-top: 5px;
-    border-radius: 5px;
+
+}
+.img{
+    input{
+        border-bottom: none;
+    }
+}
+textarea{
+    margin-top:10px;
+    border: 1px solid rgb(166, 114, 36,0.5);
+
 }

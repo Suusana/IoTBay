@@ -75,16 +75,35 @@
 <main>
 
     <% if (allProducts != null && !allProducts.isEmpty()) {
-        for (Product product : allProducts) { %>
-    <a href="<%= request.getContextPath()%>/ProductDetailServlet?id=<%=product.getProductId()%>" class="shop_product">
-        <img src="<%= request.getContextPath() %>/assets/img/<%= product.getImage() %>" alt="Device">
-        <h5><%= product.getProductName() %>
-        </h5>
-        <p><%= product.getDescription() %>
-        </p>
-        <span>$<%= product.getPrice() %></span>
-    </a>
-    <% }
+        for (Product product : allProducts) {
+           // System.out.println(product.getQuantity().getClass()) ;
+            if(product.getQuantity()==0){%>
+            <div class="out-of-stock-wrapper wrapper">
+                <div class="out-of-stock">
+                    <h1> Out Of Stock</h1>
+                </div>
+                <a class="shop_product block-order">
+                    <img src="<%= request.getContextPath() %>/assets/img/<%= product.getImage() %>" alt="Device">
+                    <h5><%= product.getProductName() %>
+                    </h5>
+                    <p><%= product.getDescription() %>
+                    </p>
+                    <span>$<%= product.getPrice() %></span>
+                </a>
+            </div>
+            <%}else{%>
+            <div class="wrapper in-stock">
+                <a href="<%= request.getContextPath()%>/ProductDetailServlet?id=<%=product.getProductId()%>" class="shop_product">
+                    <img src="<%= request.getContextPath() %>/assets/img/<%= product.getImage() %>" alt="Device">
+                    <h5><%= product.getProductName() %>
+                    </h5>
+                    <p><%= product.getDescription() %>
+                    </p>
+                    <span>$<%= product.getPrice() %></span>
+                </a>
+            </div>
+                 <%}
+                } //end of for
     } else { %>
     <p>No products available right now.</p>
     <% } %>
