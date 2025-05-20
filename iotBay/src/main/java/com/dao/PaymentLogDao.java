@@ -17,7 +17,7 @@ public class PaymentLogDao {
             ps.setInt(2, log.getUserId());
             ps.setInt(3, log.getOrderId());
             ps.setString(4, log.getAction());
-            ps.setDate(5, log.getTimestamp());  // ✅ Date로 저장
+            ps.setDate(5, log.getTimestamp());
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

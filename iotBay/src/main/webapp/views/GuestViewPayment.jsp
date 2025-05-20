@@ -25,37 +25,65 @@
   <style>
     .flex-form {
       display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      align-items: flex-end;
-      justify-content: center;
-      margin-top: 20px;
-    }
-
-    .flex-form div {
-      display: flex;
       flex-direction: column;
+      gap: 20px;
+      align-items: center;
+      margin-top: 30px;
     }
 
-    .flex-form input,
-    .flex-form button {
+    .flex-form-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      max-width: 500px;
+      justify-content: space-between;
+    }
+
+    .flex-form-row label {
+      flex: 1;
+      text-align: right;
+      font-weight: bold;
+    }
+
+    .flex-form-row input {
+      flex: 2;
       height: 36px;
       padding: 0 10px;
-      font-size: 14px;
+      font-size: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .flex-form button {
+      height: 40px;
+      padding: 0 25px;
+      font-size: 15px;
+      font-weight: bold;
+      background-color: #DAA520;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .flex-form button:hover {
+      background-color: #c6921a;
     }
 
     .infoCard {
-      max-width: 700px;
-      margin: 40px auto;
+      max-width: 800px;
+      margin: 0 auto;
       background-color: #fff;
-      padding: 30px 35px;
+      padding: 35px 40px;
       border-radius: 12px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
       text-align: center;
     }
 
     .infoCard h2 {
-      margin-bottom: 10px;
+      margin-bottom: 20px;
     }
 
     .formError {
@@ -65,7 +93,7 @@
     }
   </style>
 </head>
-<body style="background-color: #FFF3E3;">
+<body>
 
 <!-- Header -->
 <div class="header">
@@ -100,17 +128,15 @@
     <% } %>
 
     <form method="get" action="GuestViewPayment" class="flex-form">
-      <div>
+      <div class="flex-form-row">
         <label for="orderId">Order ID:</label>
         <input type="text" name="orderId" id="orderId" required />
       </div>
-      <div>
+      <div class="flex-form-row">
         <label for="guestEmail">Email:</label>
         <input type="email" name="guestEmail" id="guestEmail" required />
       </div>
-      <div>
-        <button type="submit" class="actionButton">View Payment</button>
-      </div>
+      <button type="submit">View Payment</button>
     </form>
 
     <% if (guestPayments != null && !guestPayments.isEmpty()) { %>

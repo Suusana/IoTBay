@@ -17,53 +17,44 @@ public class DeletePayment extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        System.out.println("[DEBUG] Entered doPost() in DeletePayment");
-
         HttpSession session = req.getSession();
         DBManager db = (DBManager) session.getAttribute("db");
         PaymentDao dao = db.getPaymentDao();
 
+        // Ensure the user is logged in
         Customer customer = (Customer) session.getAttribute("loggedInUser");
         if (customer == null) {
-            System.out.println("[DEBUG] No logged-in user. Redirecting to login.jsp");
             resp.sendRedirect("login.jsp");
             return;
         }
 
         try {
             String paymentIdStr = req.getParameter("paymentId");
-            System.out.println("[DEBUG] paymentId parameter: " + paymentIdStr);
 
+            // Validate and parse payment ID
             int paymentId = Integer.parseInt(paymentIdStr);
             int userId = customer.getUserId();
-            System.out.println("[DEBUG] Logged-in user ID: " + userId);
 
+            // Retrieve the payment record by ID and user
             Payment payment = dao.getPaymentByIdAndUser(paymentId, userId);
 
-            if (payment == null) {
-                System.out.println("[DEBUG] Payment not found or not owned by user.");
-                // You could log this or show feedback later
-            } else if ("Paid".equalsIgnoreCase(payment.getStatus())) {
-                System.out.println("[DEBUG] Payment is 'Paid'. Cannot delete.");
-                // You could log this or show feedback later
-            } else {
-                System.out.println("[DEBUG] Deleting payment ID: " + paymentId);
+            // Allow deletion only if the payment exists and is not marked as 'Paid'
+            if (payment != null && !"Paid".equalsIgnoreCase(payment.getStatus())) {
                 dao.delete(paymentId);
-                System.out.println("[DEBUG] Payment deleted successfully.");
             }
 
         } catch (NumberFormatException e) {
-            System.out.println("[DEBUG] Invalid paymentId format.");
+            // Invalid or missing payment ID
         } catch (Exception e) {
-            System.out.println("[DEBUG] Exception occurred during deletion:");
+            // Handle unexpected errors
             e.printStackTrace();
         }
 
-        // Use redirect to avoid 405 error
+        // Redirect to payment view after processing
         resp.sendRedirect(req.getContextPath() + "/ViewPayment");
     }
 
-    // handle GET defensively (not used, but avoid 405 if accessed directly)
+    // Redirect GET requests to ViewPayment to avoid HTTP 405 error
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {

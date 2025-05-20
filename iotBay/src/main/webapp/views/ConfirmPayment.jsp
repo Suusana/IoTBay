@@ -72,10 +72,10 @@
 
     <p>Your payment has been recorded successfully.</p>
 
-    <form method="get" action="<%= request.getContextPath() %>/ViewPayment">
-        <input type="hidden" name="orderId" value="<%= orderId %>" />
-        <button class="btn">View All Payments</button>
+    <form action="<%= request.getContextPath() %>/ViewPayment" method="get">
+        <button type="submit">View All Payments</button>
     </form>
+
 </div>
 </body>
 </html>
