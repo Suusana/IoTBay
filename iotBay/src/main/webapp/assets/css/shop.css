@@ -45,3 +45,7 @@ main{
 .block-order{
     pointer-events: none;
 }
+
+.price {
+    color: red;
+}

@@ -99,7 +99,7 @@
                     </h5>
                     <p><%= product.getDescription() %>
                     </p>
-                    <span>$<%= product.getPrice() %></span>
+                    <span class="price">$<%= product.getPrice() %></span>
                 </a>
             </div>
                  <%}
