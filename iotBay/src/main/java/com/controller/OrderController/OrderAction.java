@@ -116,8 +116,8 @@ public class OrderAction extends HttpServlet {
 
                     // go to payment page
                     session.setAttribute("order", order);
-                    session.setAttribute("product", order.getProducts().get(0));
-                    response.sendRedirect(request.getContextPath() + "/views/ConfirmPayment.jsp");
+                            session.setAttribute("product", order.getProducts().get(0));
+                    response.sendRedirect(request.getContextPath() + "/SelectPayment?orderId="+order.getOrderId());
                     break;
 
                 case "cancel":
