@@ -5,6 +5,7 @@
 <%@ page import="com.bean.Payment" %>
 <%@ page import="com.bean.Customer" %>
 <%@ page import="com.enums.Status" %>
+<%@ page import="com.util.Utils" %>
 
 <%
   List<Payment> guestPayments = (List<Payment>) request.getAttribute("guestPayments");
@@ -99,27 +100,52 @@
   </style>
 </head>
 <body>
-
+<%
+  Customer customer = new Customer();
+  if (session.getAttribute("loggedInUser") != null) {
+    customer = (Customer) session.getAttribute("loggedInUser");
+  } else {
+    customer.setUsername(Status.GUEST.getStatus());
+  }
+%>
 <!-- Header -->
 <div class="header">
+  <!-- Logo -->
   <a href="<%=request.getContextPath()%>/home">
     <img src="<%=request.getContextPath()%>/assets/img/Logo.png" alt="IotBay Logo">
   </a>
+  <!-- menu -->
   <menu>
     <a href="<%= request.getContextPath()%>/home"><span>Home</span></a>
-    <a href="<%= request.getContextPath()%>/productServlet"><span>Shop</span></a>
-    <a href="<%= request.getContextPath()%>/viewOrder"><span>Order</span></a>
-    <a href="<%= request.getContextPath()%>/ViewPayment"><span class="selected">Payment</span></a>
+    <a href="<%= request.getContextPath() %>/productServlet"><span>Shop</span></a>
+    <a href="<%= request.getContextPath() %>/viewOrder"><span>Order</span></a>
+    <a href="<%= request.getContextPath() %>/ViewPayment"><span class="selected">Payment</span></a>
   </menu>
+
+  <!-- icon menu -->
   <menu class="icon">
-    <a href="#">
+    <a href="<%=request.getContextPath()%>/ViewUserDetailsServlet">
       <i class="fa-solid fa-circle-user fa-2x"></i>
-      <span><%= displayName %></span>
+      <span><%= customer.getFirstName() != null ? Utils.capitaliseFirst(customer.getFirstName()) : Status.GUEST.getStatus()%></span>
     </a>
     <a href="<%=request.getContextPath()%>/GetByProductNameToCustomer">
-      <i class="fa-solid fa-magnifying-glass fa-2x"></i><span>Search</span>
+      <i class="fa-solid fa-magnifying-glass fa-2x"></i>
+      <span>Search</span>
     </a>
-    <a href="#"><i class="fa-solid fa-cart-shopping fa-2x"></i><span>Cart</span></a>
+    <a href="#">
+      <i class="fa-solid fa-cart-shopping fa-2x"></i>
+      <span>Cart</span>
+    </a>
+    <%
+      if (session.getAttribute("loggedInUser") != null) {
+    %>
+    <a href="<%=request.getContextPath()%>/views/logout.jsp">
+      <i class="fa-solid fa-right-from-bracket fa-2x"></i>
+      <span>Log Out</span>
+    </a>
+    <%
+      }
+    %>
   </menu>
 </div>
 
