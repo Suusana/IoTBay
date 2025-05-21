@@ -23,7 +23,8 @@ main{
     }
 }
 .search-box{
-    padding-left:30%;
+    padding-left:40%;
+    margin-top:20px;
 }
 .out-of-stock-wrapper{
     position:relative;
@@ -47,4 +48,8 @@ main{
 }
 .block-order{
     pointer-events: none;
+}
+
+.search-box-name label input{
+    width: 200px;
 }
