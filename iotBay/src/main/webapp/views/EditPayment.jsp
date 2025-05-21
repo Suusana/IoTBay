@@ -141,11 +141,9 @@
         const method = document.getElementById("paymentMethod").value;
         const isCard = method === "Credit Card";
 
-        // 보이기/숨기기
         document.getElementById("cardSection").style.display = isCard ? "block" : "none";
         document.getElementById("bankSection").style.display = isCard ? "none" : "block";
 
-        // required 속성 동적 조정
         const cardFields = document.querySelectorAll("#cardSection input");
         const bankFields = document.querySelectorAll("#bankSection input");
 
