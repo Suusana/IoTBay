@@ -9,7 +9,7 @@
 
 <%
     List<Payment> paymentList = (List<Payment>) request.getAttribute("paymentList");
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
 
     List<Payment> savedPayments = new java.util.ArrayList<>();
@@ -88,13 +88,13 @@
     <% } %>
 
     <!-- Saved Payments -->
+    <h3 class="subtitle">Saved Payments</h3>
     <table class="infoTable">
         <thead>
         <tr>
             <th>Payment ID</th>
             <th>Card Holder / Account Name</th>
             <th>Card Number / Bank Info</th>
-            <th>Expiry Date</th>
             <th>Amount</th>
             <th>Payment Date</th>
             <th>Action</th>
@@ -119,16 +119,13 @@
                     displayInfo = "BSB: " + maskedBsb + ", Acc: " + maskedAcc;
                 }
 
-                String expiryFormatted = ("Credit Card".equalsIgnoreCase(method) && payment.getExpiryDate() != null)
-                        ? sdf.format(payment.getExpiryDate()) : "—";
                 String amountFormatted = (payment.getAmount() != null) ? currencyFormat.format(payment.getAmount()) : "N/A";
-                String paymentDateFormatted = (payment.getPaymentDate() != null) ? sdf.format(payment.getPaymentDate()) : "N/A";
+                String paymentDateFormatted = (payment.getPaymentDate() != null) ? dateTimeFormat.format(payment.getPaymentDate()) : "N/A";
         %>
         <tr>
             <td><%= payment.getPaymentId() %></td>
-            <td><%= holder != null ? holder : "-" %></td>
+            <td><%= holder %></td>
             <td><%= displayInfo %></td>
-            <td><%= expiryFormatted %></td>
             <td><%= amountFormatted %></td>
             <td><%= paymentDateFormatted %></td>
             <td>
@@ -143,7 +140,7 @@
             </td>
         </tr>
         <% } } else { %>
-        <tr><td colspan="7">No saved payments.</td></tr>
+        <tr><td colspan="6">No saved payments.</td></tr>
         <% } %>
         </tbody>
     </table>
@@ -156,7 +153,6 @@
             <th>Payment ID</th>
             <th>Card Holder / Account Name</th>
             <th>Card Number / Bank Info</th>
-            <th>Expiry Date</th>
             <th>Amount</th>
             <th>Payment Date</th>
         </tr>
@@ -180,25 +176,21 @@
                     displayInfo = "BSB: " + maskedBsb + ", Acc: " + maskedAcc;
                 }
 
-                String expiryFormatted = ("Credit Card".equalsIgnoreCase(method) && payment.getExpiryDate() != null)
-                        ? sdf.format(payment.getExpiryDate()) : "—";
                 String amountFormatted = (payment.getAmount() != null) ? currencyFormat.format(payment.getAmount()) : "N/A";
-                String paymentDateFormatted = (payment.getPaymentDate() != null) ? sdf.format(payment.getPaymentDate()) : "N/A";
+                String paymentDateFormatted = (payment.getPaymentDate() != null) ? dateTimeFormat.format(payment.getPaymentDate()) : "N/A";
         %>
         <tr>
             <td><%= payment.getPaymentId() %></td>
-            <td><%= holder != null ? holder : "-" %></td>
+            <td><%= holder %></td>
             <td><%= displayInfo %></td>
-            <td><%= expiryFormatted %></td>
             <td><%= amountFormatted %></td>
             <td><%= paymentDateFormatted %></td>
         </tr>
         <% } } else { %>
-        <tr><td colspan="6">No completed payments.</td></tr>
+        <tr><td colspan="5">No completed payments.</td></tr>
         <% } %>
         </tbody>
     </table>
-
 
     <div style="text-align: center; margin: 30px 0;">
         <form action="<%= request.getContextPath() %>/home" method="get">

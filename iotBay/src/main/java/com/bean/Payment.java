@@ -8,11 +8,14 @@ public class Payment implements Serializable {
 
     private Integer paymentId;
     private String method;
+
+    // Card information
     private String cardHolder;
     private String cardNumber;
     private java.sql.Date expiryDate;
     private String cvc;
 
+    // Bank account information
     private String bsb;
     private String accountName;
     private String accountNumber;
